@@ -1,0 +1,243 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Rol {
+  ADMIN
+  CLIENTE
+}
+
+enum TipoPromocion {
+  Porcentaje
+  CantidadFija
+}
+
+enum EstadoCarrito {
+  Activo
+  Inactivo
+}
+
+enum MetodoPago {
+  Efectivo
+  Tarjeta
+}
+
+enum EstadoPedido {
+  PendienteDePago
+  Pagado
+  EnPreparacion
+  Entregado
+}
+
+model Usuario {
+  id                  Int        @id @default(autoincrement())
+  nombre_usuario      String
+  correo              String     @unique
+  contraseña          String
+  rol                 Rol
+  ultimo_inicio_sesion DateTime?
+  reseñas             Resena[]
+  carritos            Carrito[]
+  pedidos             Pedido[]
+  transiciones_estado TransicionEstadoPedido[] @relation("AdminTransiciones")
+}
+
+model Categoria {
+  id                          Int                       @id @default(autoincrement())
+  nombre                      String
+  descripcion                 String
+  productos                   Producto[]
+  promociones                 Promocion[]
+  productosPersonalizables    ProductoPersonalizable[]
+}
+
+model Etiqueta {
+  id        Int                 @id @default(autoincrement())
+  nombre    String
+  productos ProductoEtiqueta[]
+}
+
+model Producto {
+  id                  Int        @id @default(autoincrement())
+  nombre              String
+  descripcion         String
+  precio_base         Float
+  stock               Int
+  categoria_id        Int
+  promedio_valoracion Float     @default(0)
+  activo              Boolean   @default(true)
+  categoria           Categoria @relation(fields: [categoria_id], references: [id])
+  imagenes            ImagenProducto[]
+  etiquetas           ProductoEtiqueta[]
+  reseñas             Resena[]
+  carritoItems        CarritoItem[]
+  pedidoItems         PedidoItem[]
+  promociones         Promocion[]
+}
+
+model ImagenProducto {
+  id          Int      @id @default(autoincrement())
+  producto_id Int
+  url         String
+  producto    Producto @relation(fields: [producto_id], references: [id])
+}
+
+model ProductoEtiqueta {
+  producto_id Int
+  etiqueta_id Int
+  producto    Producto @relation(fields: [producto_id], references: [id])
+  etiqueta    Etiqueta @relation(fields: [etiqueta_id], references: [id])
+  @@id([producto_id, etiqueta_id])
+}
+
+model Resena {
+  id          Int      @id @default(autoincrement())
+  usuario_id  Int
+  producto_id Int
+  comentario  String
+  valoracion  Int
+  fecha       DateTime
+  visible     Boolean  @default(true)
+  usuario     Usuario  @relation(fields: [usuario_id], references: [id])
+  producto    Producto @relation(fields: [producto_id], references: [id])
+}
+
+model ProductoPersonalizable {
+  id                   Int                @id @default(autoincrement())
+  nombre               String
+  descripcion_general  String
+  id_categoria         Int
+  precio_base          Float
+  activo               Boolean            @default(true)
+  categoria            Categoria          @relation(fields: [id_categoria], references: [id])
+  variantes            VarianteProducto[]
+}
+
+model VarianteProducto {
+  id_variante    Int                     @id @default(autoincrement())
+  id_producto    Int
+  sku            String                 @unique
+  precio_final   Float
+  stock          Int
+  imagen_variante String?
+  producto       ProductoPersonalizable @relation(fields: [id_producto], references: [id])
+  detalles       VarianteDetalle[]
+}
+
+model Atributo {
+  id_atributo Int              @id @default(autoincrement())
+  nombre      String
+  tipo        String
+  valores     ValorAtributo[]
+  detalles    VarianteDetalle[]
+}
+
+model ValorAtributo {
+  id_valor     Int      @id @default(autoincrement())
+  id_atributo  Int
+  valor        String
+  precio_extra Float    @default(0)
+  atributo     Atributo @relation(fields: [id_atributo], references: [id_atributo])
+
+   varianteDetalles VarianteDetalle[] @relation("ValorAtributoToVarianteDetalle")
+}
+
+model VarianteDetalle {
+  id_variante   Int
+  id_atributo   Int
+  id_valor      Int
+  variante      VarianteProducto @relation(fields: [id_variante], references: [id_variante])
+  atributo      Atributo         @relation(fields: [id_atributo], references: [id_atributo])
+  valor         ValorAtributo    @relation("ValorAtributoToVarianteDetalle", fields: [id_valor], references: [id_valor])
+  @@id([id_variante, id_atributo, id_valor])
+}
+
+model Promocion {
+  id                      Int       @id @default(autoincrement())
+  nombre                  String
+  tipo                    TipoPromocion
+  referencia_id_producto  Int?
+  referencia_id_categoria Int?
+  valor                   Float
+  fecha_inicio            DateTime
+  fecha_fin               DateTime
+  activa                  Boolean   @default(true)
+  producto                Producto? @relation(fields: [referencia_id_producto], references: [id])
+  categoria               Categoria? @relation(fields: [referencia_id_categoria], references: [id])
+  historial               HistorialPromocionAplicada[]
+}
+
+model HistorialPromocionAplicada {
+  id           Int       @id @default(autoincrement())
+  promocion_id Int
+  pedido_id    Int
+  fecha        DateTime
+  promocion    Promocion @relation(fields: [promocion_id], references: [id])
+  pedido       Pedido    @relation(fields: [pedido_id], references: [id])
+}
+
+model Carrito {
+  id                  Int          @id @default(autoincrement())
+  usuario_id          Int
+  fecha_actualizacion DateTime
+  estado              EstadoCarrito
+  usuario             Usuario      @relation(fields: [usuario_id], references: [id])
+  items               CarritoItem[]
+}
+
+model CarritoItem {
+  carrito_id                Int
+  producto_id               Int
+  cantidad                  Int
+  producto_personalizado_id Int?
+  carrito                   Carrito @relation(fields: [carrito_id], references: [id])
+  producto                  Producto @relation(fields: [producto_id], references: [id])
+  @@id([carrito_id, producto_id])
+}
+
+model Pedido {
+  id                      Int                         @id @default(autoincrement())
+  usuario_id              Int
+  fecha_pedido           DateTime
+  direccion_envio        String
+  metodo_pago            MetodoPago
+  subtotal               Float
+  total                  Float
+  usuario                Usuario                     @relation(fields: [usuario_id], references: [id])
+  items                  PedidoItem[]
+  transiciones           TransicionEstadoPedido[]
+  promociones_aplicadas  HistorialPromocionAplicada[]
+}
+
+model PedidoItem {
+  pedido_id                 Int
+  producto_id               Int
+  cantidad                  Int
+  producto_personalizado_id Int?
+  pedido                    Pedido  @relation(fields: [pedido_id], references: [id])
+  producto                  Producto @relation(fields: [producto_id], references: [id])
+  @@id([pedido_id, producto_id])
+}
+
+model TransicionEstadoPedido {
+  id         Int          @id @default(autoincrement())
+  pedido_id  Int
+  estado     EstadoPedido
+  fecha_hora DateTime
+  admin_id   Int
+  pedido     Pedido       @relation(fields: [pedido_id], references: [id])
+  admin      Usuario      @relation("AdminTransiciones", fields: [admin_id], references: [id])
+}
+
