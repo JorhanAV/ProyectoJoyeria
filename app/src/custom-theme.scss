@@ -29,14 +29,14 @@ html {
   --mat-sys-body-large-tracking: 0.025rem;
   --mat-sys-body-large-weight: 600;
   /*https://v19.material.angular.dev/components/toolbar/styling*/
-  @include mat.toolbar-overrides((container-background-color: map.get(theme.$primary-palette, 40),
+  @include mat.toolbar-overrides((container-background-color: map.get(theme.$secondary-palette, 25),
     ));
   //Menu desplegable
   @include mat.menu-overrides((container-color: map.get(theme.$primary-palette, 50),
     ));
 
   .footer {
-    @include mat.toolbar-overrides((container-background-color: map.get(theme.$secondary-palette, 25),
+    @include mat.toolbar-overrides((container-background-color: map.get(theme.$tertiary-palette, 50),
       ));
   }
 
