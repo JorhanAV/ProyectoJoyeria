@@ -12,7 +12,7 @@
   flex: 1 1 auto;
 }
 .example-header-image {
-  background-image: url("/images/gamepad.png");
+  /* background-image: url("/images/gamepad.png"); */
   background-size: cover;
   height: 40px;
   width: 40px;
