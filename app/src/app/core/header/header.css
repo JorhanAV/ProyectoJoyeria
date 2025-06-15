@@ -2,23 +2,24 @@
   position: fixed;
   top: 0;
   width: 100%;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px rgba(248, 245, 245, 0.1);
   display: flex;
   align-items: center;
   padding: 0 16px;
   z-index: 1000;
+  color: white;
 }
 .example-spacer {
   flex: 1 1 auto;
 }
 .example-header-image {
-  /* background-image: url("/images/gamepad.png"); */
+  background-image: url("/images/LogoBlanco.jpg"); 
   background-size: cover;
   height: 40px;
   width: 40px;
   border-radius: 50%;
   flex-shrink: 0;
-  margin-bottom: 16px;
+  margin-bottom: 5px;
   object-fit: cover;
 }
 .small-text {

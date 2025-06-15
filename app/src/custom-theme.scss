@@ -6,7 +6,7 @@
 
 
 html {
-  color-scheme: dark;
+  //color-scheme: dark;
   //small
   --mat-sys-body-small: 200 0.3rem / 1rem Roboto, sans-serif;
   --mat-sys-body-small-font: Roboto, sans-serif;
@@ -32,11 +32,11 @@ html {
   @include mat.toolbar-overrides((container-background-color: map.get(theme.$secondary-palette, 25),
     ));
   //Menu desplegable
-  @include mat.menu-overrides((container-color: map.get(theme.$primary-palette, 50),
+  @include mat.menu-overrides((container-color: map.get(theme.$primary-palette, 90),
     ));
 
   .footer {
-    @include mat.toolbar-overrides((container-background-color: map.get(theme.$tertiary-palette, 50),
+    @include mat.toolbar-overrides((container-background-color: map.get(theme.$secondary-palette, 25),
       ));
   }
 
