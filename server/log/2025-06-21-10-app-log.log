@@ -1,0 +1,18 @@
+2025-06-21 10:13:35.370 error: 	Mario Vindas--Se produjo un error interno del servidor 
+Invalid `this.prisma.promocion.findMany()` invocation in
+C:\Angular\ProyectoJoyeria\server\source\controllers\promocionController.ts:12:54
+
+   9 try {
+  10   //Obtener todas las Promocions incluyendo el usuario, ordenadas por fecha 
+  11   // de forma ascendente, omitiendo el password del usuario
+→ 12   const promociones= await this.prisma.promocion.findMany(
+Value '' not found in enum 'TipoPromocion'
+2025-06-21 10:14:10.441 error: 	Mario Vindas--Se produjo un error interno del servidor 
+Invalid `this.prisma.promocion.findMany()` invocation in
+C:\Angular\ProyectoJoyeria\server\source\controllers\promocionController.ts:12:54
+
+   9 try {
+  10   //Obtener todas las Promocions incluyendo el usuario, ordenadas por fecha 
+  11   // de forma ascendente, omitiendo el password del usuario
+→ 12   const promociones= await this.prisma.promocion.findMany(
+Value '' not found in enum 'TipoPromocion'
