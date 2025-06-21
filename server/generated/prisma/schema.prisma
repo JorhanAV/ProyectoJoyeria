@@ -48,10 +48,10 @@ model Usuario {
   contraseña          String
   rol                  Rol
   ultimo_inicio_sesion DateTime?
-  reseñas             Resena[]
-  carritos             Carrito[]
+  resenas              Resena[]
   pedidos              Pedido[]
   transiciones_estado  TransicionEstadoPedido[] @relation("AdminTransiciones")
+  reportes_resena      ReporteResena[]
 }
 
 model Categoria {
@@ -70,21 +70,21 @@ model Etiqueta {
 }
 
 model Producto {
-  id                  Int                @id @default(autoincrement())
-  nombre              String
-  descripcion         String
-  precio_base         Float
-  stock               Int
-  categoria_id        Int
-  promedio_valoracion Float              @default(0)
-  activo              Boolean            @default(true)
-  categoria           Categoria          @relation(fields: [categoria_id], references: [id])
-  imagenes            ImagenProducto[]
-  etiquetas           ProductoEtiqueta[]
-  reseñas            Resena[]
-  carritoItems        CarritoItem[]
-  pedidoItems         PedidoItem[]
-  promociones         Promocion[]
+  id                       Int                      @id @default(autoincrement())
+  nombre                   String
+  descripcion              String
+  precio_base              Float
+  stock                    Int
+  categoria_id             Int
+  promedio_valoracion      Float                    @default(0)
+  activo                   Boolean                  @default(true)
+  categoria                Categoria                @relation(fields: [categoria_id], references: [id])
+  imagenes                 ImagenProducto[]
+  etiquetas                ProductoEtiqueta[]
+  resenas                  Resena[]
+  pedidoItems              PedidoItem[]
+  promociones              Promocion[]
+  productosPersonalizables ProductoPersonalizable[]
 }
 
 model ImagenProducto {
@@ -104,15 +104,16 @@ model ProductoEtiqueta {
 }
 
 model Resena {
-  id          Int      @id @default(autoincrement())
+  id          Int             @id @default(autoincrement())
   usuario_id  Int
   producto_id Int
   comentario  String
   valoracion  Int
   fecha       DateTime
-  visible     Boolean  @default(true)
-  usuario     Usuario  @relation(fields: [usuario_id], references: [id])
-  producto    Producto @relation(fields: [producto_id], references: [id])
+  visible     Boolean         @default(true)
+  usuario     Usuario         @relation(fields: [usuario_id], references: [id])
+  producto    Producto        @relation(fields: [producto_id], references: [id])
+  reportes    ReporteResena[]
 }
 
 model ProductoPersonalizable {
@@ -120,10 +121,12 @@ model ProductoPersonalizable {
   nombre              String
   descripcion_general String
   id_categoria        Int
-  precio_base         Float
+  id_producto_base    Int
   activo              Boolean            @default(true)
   categoria           Categoria          @relation(fields: [id_categoria], references: [id])
+  producto_base       Producto           @relation(fields: [id_producto_base], references: [id])
   variantes           VarianteProducto[]
+  pedidoItems         PedidoItem[]
 }
 
 model VarianteProducto {
@@ -175,7 +178,6 @@ model Promocion {
   valor                   Float
   fecha_inicio            DateTime
   fecha_fin               DateTime
-  activa                  Boolean                      @default(true)
   producto                Producto?                    @relation(fields: [referencia_id_producto], references: [id])
   categoria               Categoria?                   @relation(fields: [referencia_id_categoria], references: [id])
   historial               HistorialPromocionAplicada[]
@@ -190,26 +192,6 @@ model HistorialPromocionAplicada {
   pedido       Pedido    @relation(fields: [pedido_id], references: [id])
 }
 
-model Carrito {
-  id                  Int           @id @default(autoincrement())
-  usuario_id          Int
-  fecha_actualizacion DateTime
-  estado              EstadoCarrito
-  usuario             Usuario       @relation(fields: [usuario_id], references: [id])
-  items               CarritoItem[]
-}
-
-model CarritoItem {
-  carrito_id                Int
-  producto_id               Int
-  cantidad                  Int
-  producto_personalizado_id Int?
-  carrito                   Carrito  @relation(fields: [carrito_id], references: [id])
-  producto                  Producto @relation(fields: [producto_id], references: [id])
-
-  @@id([carrito_id, producto_id])
-}
-
 model Pedido {
   id                    Int                          @id @default(autoincrement())
   usuario_id            Int
@@ -218,6 +200,7 @@ model Pedido {
   metodo_pago           MetodoPago
   subtotal              Float
   total                 Float
+  estado_carrito        Boolean                      @default(true)
   usuario               Usuario                      @relation(fields: [usuario_id], references: [id])
   items                 PedidoItem[]
   transiciones          TransicionEstadoPedido[]
@@ -229,8 +212,9 @@ model PedidoItem {
   producto_id               Int
   cantidad                  Int
   producto_personalizado_id Int?
-  pedido                    Pedido   @relation(fields: [pedido_id], references: [id])
-  producto                  Producto @relation(fields: [producto_id], references: [id])
+  pedido                    Pedido                  @relation(fields: [pedido_id], references: [id])
+  producto                  Producto                @relation(fields: [producto_id], references: [id])
+  producto_personalizado    ProductoPersonalizable? @relation(fields: [producto_personalizado_id], references: [id])
 
   @@id([pedido_id, producto_id])
 }
@@ -243,4 +227,14 @@ model TransicionEstadoPedido {
   admin_id   Int
   pedido     Pedido       @relation(fields: [pedido_id], references: [id])
   admin      Usuario      @relation("AdminTransiciones", fields: [admin_id], references: [id])
+}
+
+model ReporteResena {
+  id         Int    @id @default(autoincrement())
+  resena_id  Int
+  usuario_id Int
+  comentario String
+
+  resena  Resena  @relation(fields: [resena_id], references: [id])
+  usuario Usuario @relation(fields: [usuario_id], references: [id])
 }

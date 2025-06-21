@@ -177,7 +177,7 @@ exports.Prisma.ProductoPersonalizableScalarFieldEnum = {
   nombre: 'nombre',
   descripcion_general: 'descripcion_general',
   id_categoria: 'id_categoria',
-  precio_base: 'precio_base',
+  id_producto_base: 'id_producto_base',
   activo: 'activo'
 };
 
@@ -217,8 +217,7 @@ exports.Prisma.PromocionScalarFieldEnum = {
   referencia_id_categoria: 'referencia_id_categoria',
   valor: 'valor',
   fecha_inicio: 'fecha_inicio',
-  fecha_fin: 'fecha_fin',
-  activa: 'activa'
+  fecha_fin: 'fecha_fin'
 };
 
 exports.Prisma.HistorialPromocionAplicadaScalarFieldEnum = {
@@ -228,20 +227,6 @@ exports.Prisma.HistorialPromocionAplicadaScalarFieldEnum = {
   fecha: 'fecha'
 };
 
-exports.Prisma.CarritoScalarFieldEnum = {
-  id: 'id',
-  usuario_id: 'usuario_id',
-  fecha_actualizacion: 'fecha_actualizacion',
-  estado: 'estado'
-};
-
-exports.Prisma.CarritoItemScalarFieldEnum = {
-  carrito_id: 'carrito_id',
-  producto_id: 'producto_id',
-  cantidad: 'cantidad',
-  producto_personalizado_id: 'producto_personalizado_id'
-};
-
 exports.Prisma.PedidoScalarFieldEnum = {
   id: 'id',
   usuario_id: 'usuario_id',
@@ -249,7 +234,8 @@ exports.Prisma.PedidoScalarFieldEnum = {
   direccion_envio: 'direccion_envio',
   metodo_pago: 'metodo_pago',
   subtotal: 'subtotal',
-  total: 'total'
+  total: 'total',
+  estado_carrito: 'estado_carrito'
 };
 
 exports.Prisma.PedidoItemScalarFieldEnum = {
@@ -265,6 +251,13 @@ exports.Prisma.TransicionEstadoPedidoScalarFieldEnum = {
   estado: 'estado',
   fecha_hora: 'fecha_hora',
   admin_id: 'admin_id'
+};
+
+exports.Prisma.ReporteResenaScalarFieldEnum = {
+  id: 'id',
+  resena_id: 'resena_id',
+  usuario_id: 'usuario_id',
+  comentario: 'comentario'
 };
 
 exports.Prisma.SortOrder = {
@@ -331,6 +324,10 @@ exports.Prisma.PromocionOrderByRelevanceFieldEnum = {
 exports.Prisma.PedidoOrderByRelevanceFieldEnum = {
   direccion_envio: 'direccion_envio'
 };
+
+exports.Prisma.ReporteResenaOrderByRelevanceFieldEnum = {
+  comentario: 'comentario'
+};
 exports.Rol = exports.$Enums.Rol = {
   ADMIN: 'ADMIN',
   CLIENTE: 'CLIENTE'
@@ -339,11 +336,6 @@ exports.Rol = exports.$Enums.Rol = {
 exports.TipoPromocion = exports.$Enums.TipoPromocion = {
   Porcentaje: 'Porcentaje',
   CantidadFija: 'CantidadFija'
-};
-
-exports.EstadoCarrito = exports.$Enums.EstadoCarrito = {
-  Activo: 'Activo',
-  Inactivo: 'Inactivo'
 };
 
 exports.MetodoPago = exports.$Enums.MetodoPago = {
@@ -373,11 +365,10 @@ exports.Prisma.ModelName = {
   VarianteDetalle: 'VarianteDetalle',
   Promocion: 'Promocion',
   HistorialPromocionAplicada: 'HistorialPromocionAplicada',
-  Carrito: 'Carrito',
-  CarritoItem: 'CarritoItem',
   Pedido: 'Pedido',
   PedidoItem: 'PedidoItem',
-  TransicionEstadoPedido: 'TransicionEstadoPedido'
+  TransicionEstadoPedido: 'TransicionEstadoPedido',
+  ReporteResena: 'ReporteResena'
 };
 
 /**

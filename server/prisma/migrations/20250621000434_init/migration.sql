@@ -78,7 +78,7 @@ CREATE TABLE `ProductoPersonalizable` (
     `nombre` VARCHAR(191) NOT NULL,
     `descripcion_general` VARCHAR(191) NOT NULL,
     `id_categoria` INTEGER NOT NULL,
-    `precio_base` DOUBLE NOT NULL,
+    `id_producto_base` INTEGER NOT NULL,
     `activo` BOOLEAN NOT NULL DEFAULT true,
 
     PRIMARY KEY (`id`)
@@ -135,7 +135,6 @@ CREATE TABLE `Promocion` (
     `valor` DOUBLE NOT NULL,
     `fecha_inicio` DATETIME(3) NOT NULL,
     `fecha_fin` DATETIME(3) NOT NULL,
-    `activa` BOOLEAN NOT NULL DEFAULT true,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -151,26 +150,6 @@ CREATE TABLE `HistorialPromocionAplicada` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `Carrito` (
-    `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `usuario_id` INTEGER NOT NULL,
-    `fecha_actualizacion` DATETIME(3) NOT NULL,
-    `estado` ENUM('Activo', 'Inactivo') NOT NULL,
-
-    PRIMARY KEY (`id`)
-) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-
--- CreateTable
-CREATE TABLE `CarritoItem` (
-    `carrito_id` INTEGER NOT NULL,
-    `producto_id` INTEGER NOT NULL,
-    `cantidad` INTEGER NOT NULL,
-    `producto_personalizado_id` INTEGER NULL,
-
-    PRIMARY KEY (`carrito_id`, `producto_id`)
-) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-
--- CreateTable
 CREATE TABLE `Pedido` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `usuario_id` INTEGER NOT NULL,
@@ -179,6 +158,7 @@ CREATE TABLE `Pedido` (
     `metodo_pago` ENUM('Efectivo', 'Tarjeta') NOT NULL,
     `subtotal` DOUBLE NOT NULL,
     `total` DOUBLE NOT NULL,
+    `estado_carrito` BOOLEAN NOT NULL DEFAULT true,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -204,6 +184,16 @@ CREATE TABLE `TransicionEstadoPedido` (
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
+-- CreateTable
+CREATE TABLE `ReporteResena` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `resena_id` INTEGER NOT NULL,
+    `usuario_id` INTEGER NOT NULL,
+    `comentario` VARCHAR(191) NOT NULL,
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
 -- AddForeignKey
 ALTER TABLE `Producto` ADD CONSTRAINT `Producto_categoria_id_fkey` FOREIGN KEY (`categoria_id`) REFERENCES `Categoria`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
@@ -224,6 +214,9 @@ ALTER TABLE `Resena` ADD CONSTRAINT `Resena_producto_id_fkey` FOREIGN KEY (`prod
 
 -- AddForeignKey
 ALTER TABLE `ProductoPersonalizable` ADD CONSTRAINT `ProductoPersonalizable_id_categoria_fkey` FOREIGN KEY (`id_categoria`) REFERENCES `Categoria`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `ProductoPersonalizable` ADD CONSTRAINT `ProductoPersonalizable_id_producto_base_fkey` FOREIGN KEY (`id_producto_base`) REFERENCES `Producto`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `VarianteProducto` ADD CONSTRAINT `VarianteProducto_id_producto_fkey` FOREIGN KEY (`id_producto`) REFERENCES `ProductoPersonalizable`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -253,15 +246,6 @@ ALTER TABLE `HistorialPromocionAplicada` ADD CONSTRAINT `HistorialPromocionAplic
 ALTER TABLE `HistorialPromocionAplicada` ADD CONSTRAINT `HistorialPromocionAplicada_pedido_id_fkey` FOREIGN KEY (`pedido_id`) REFERENCES `Pedido`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `Carrito` ADD CONSTRAINT `Carrito_usuario_id_fkey` FOREIGN KEY (`usuario_id`) REFERENCES `Usuario`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE `CarritoItem` ADD CONSTRAINT `CarritoItem_carrito_id_fkey` FOREIGN KEY (`carrito_id`) REFERENCES `Carrito`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE `CarritoItem` ADD CONSTRAINT `CarritoItem_producto_id_fkey` FOREIGN KEY (`producto_id`) REFERENCES `Producto`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
 ALTER TABLE `Pedido` ADD CONSTRAINT `Pedido_usuario_id_fkey` FOREIGN KEY (`usuario_id`) REFERENCES `Usuario`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
@@ -271,7 +255,16 @@ ALTER TABLE `PedidoItem` ADD CONSTRAINT `PedidoItem_pedido_id_fkey` FOREIGN KEY 
 ALTER TABLE `PedidoItem` ADD CONSTRAINT `PedidoItem_producto_id_fkey` FOREIGN KEY (`producto_id`) REFERENCES `Producto`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE `PedidoItem` ADD CONSTRAINT `PedidoItem_producto_personalizado_id_fkey` FOREIGN KEY (`producto_personalizado_id`) REFERENCES `ProductoPersonalizable`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE `TransicionEstadoPedido` ADD CONSTRAINT `TransicionEstadoPedido_pedido_id_fkey` FOREIGN KEY (`pedido_id`) REFERENCES `Pedido`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `TransicionEstadoPedido` ADD CONSTRAINT `TransicionEstadoPedido_admin_id_fkey` FOREIGN KEY (`admin_id`) REFERENCES `Usuario`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `ReporteResena` ADD CONSTRAINT `ReporteResena_resena_id_fkey` FOREIGN KEY (`resena_id`) REFERENCES `Resena`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `ReporteResena` ADD CONSTRAINT `ReporteResena_usuario_id_fkey` FOREIGN KEY (`usuario_id`) REFERENCES `Usuario`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
