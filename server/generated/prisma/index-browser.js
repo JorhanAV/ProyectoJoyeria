@@ -235,6 +235,7 @@ exports.Prisma.PedidoScalarFieldEnum = {
   metodo_pago: 'metodo_pago',
   subtotal: 'subtotal',
   total: 'total',
+  impuestos: 'impuestos',
   estado_carrito: 'estado_carrito'
 };
 

@@ -17027,6 +17027,7 @@ export namespace Prisma {
     usuario_id: number | null
     subtotal: number | null
     total: number | null
+    impuestos: number | null
   }
 
   export type PedidoSumAggregateOutputType = {
@@ -17034,6 +17035,7 @@ export namespace Prisma {
     usuario_id: number | null
     subtotal: number | null
     total: number | null
+    impuestos: number | null
   }
 
   export type PedidoMinAggregateOutputType = {
@@ -17044,6 +17046,7 @@ export namespace Prisma {
     metodo_pago: $Enums.MetodoPago | null
     subtotal: number | null
     total: number | null
+    impuestos: number | null
     estado_carrito: boolean | null
   }
 
@@ -17055,6 +17058,7 @@ export namespace Prisma {
     metodo_pago: $Enums.MetodoPago | null
     subtotal: number | null
     total: number | null
+    impuestos: number | null
     estado_carrito: boolean | null
   }
 
@@ -17066,6 +17070,7 @@ export namespace Prisma {
     metodo_pago: number
     subtotal: number
     total: number
+    impuestos: number
     estado_carrito: number
     _all: number
   }
@@ -17076,6 +17081,7 @@ export namespace Prisma {
     usuario_id?: true
     subtotal?: true
     total?: true
+    impuestos?: true
   }
 
   export type PedidoSumAggregateInputType = {
@@ -17083,6 +17089,7 @@ export namespace Prisma {
     usuario_id?: true
     subtotal?: true
     total?: true
+    impuestos?: true
   }
 
   export type PedidoMinAggregateInputType = {
@@ -17093,6 +17100,7 @@ export namespace Prisma {
     metodo_pago?: true
     subtotal?: true
     total?: true
+    impuestos?: true
     estado_carrito?: true
   }
 
@@ -17104,6 +17112,7 @@ export namespace Prisma {
     metodo_pago?: true
     subtotal?: true
     total?: true
+    impuestos?: true
     estado_carrito?: true
   }
 
@@ -17115,6 +17124,7 @@ export namespace Prisma {
     metodo_pago?: true
     subtotal?: true
     total?: true
+    impuestos?: true
     estado_carrito?: true
     _all?: true
   }
@@ -17213,6 +17223,7 @@ export namespace Prisma {
     metodo_pago: $Enums.MetodoPago
     subtotal: number
     total: number
+    impuestos: number
     estado_carrito: boolean
     _count: PedidoCountAggregateOutputType | null
     _avg: PedidoAvgAggregateOutputType | null
@@ -17243,6 +17254,7 @@ export namespace Prisma {
     metodo_pago?: boolean
     subtotal?: boolean
     total?: boolean
+    impuestos?: boolean
     estado_carrito?: boolean
     usuario?: boolean | UsuarioDefaultArgs<ExtArgs>
     items?: boolean | Pedido$itemsArgs<ExtArgs>
@@ -17261,10 +17273,11 @@ export namespace Prisma {
     metodo_pago?: boolean
     subtotal?: boolean
     total?: boolean
+    impuestos?: boolean
     estado_carrito?: boolean
   }
 
-  export type PedidoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "usuario_id" | "fecha_pedido" | "direccion_envio" | "metodo_pago" | "subtotal" | "total" | "estado_carrito", ExtArgs["result"]["pedido"]>
+  export type PedidoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "usuario_id" | "fecha_pedido" | "direccion_envio" | "metodo_pago" | "subtotal" | "total" | "impuestos" | "estado_carrito", ExtArgs["result"]["pedido"]>
   export type PedidoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     usuario?: boolean | UsuarioDefaultArgs<ExtArgs>
     items?: boolean | Pedido$itemsArgs<ExtArgs>
@@ -17289,6 +17302,7 @@ export namespace Prisma {
       metodo_pago: $Enums.MetodoPago
       subtotal: number
       total: number
+      impuestos: number
       estado_carrito: boolean
     }, ExtArgs["result"]["pedido"]>
     composites: {}
@@ -17670,6 +17684,7 @@ export namespace Prisma {
     readonly metodo_pago: FieldRef<"Pedido", 'MetodoPago'>
     readonly subtotal: FieldRef<"Pedido", 'Float'>
     readonly total: FieldRef<"Pedido", 'Float'>
+    readonly impuestos: FieldRef<"Pedido", 'Float'>
     readonly estado_carrito: FieldRef<"Pedido", 'Boolean'>
   }
     
@@ -21205,6 +21220,7 @@ export namespace Prisma {
     metodo_pago: 'metodo_pago',
     subtotal: 'subtotal',
     total: 'total',
+    impuestos: 'impuestos',
     estado_carrito: 'estado_carrito'
   };
 
@@ -22299,6 +22315,7 @@ export namespace Prisma {
     metodo_pago?: EnumMetodoPagoFilter<"Pedido"> | $Enums.MetodoPago
     subtotal?: FloatFilter<"Pedido"> | number
     total?: FloatFilter<"Pedido"> | number
+    impuestos?: FloatFilter<"Pedido"> | number
     estado_carrito?: BoolFilter<"Pedido"> | boolean
     usuario?: XOR<UsuarioScalarRelationFilter, UsuarioWhereInput>
     items?: PedidoItemListRelationFilter
@@ -22314,6 +22331,7 @@ export namespace Prisma {
     metodo_pago?: SortOrder
     subtotal?: SortOrder
     total?: SortOrder
+    impuestos?: SortOrder
     estado_carrito?: SortOrder
     usuario?: UsuarioOrderByWithRelationInput
     items?: PedidoItemOrderByRelationAggregateInput
@@ -22333,6 +22351,7 @@ export namespace Prisma {
     metodo_pago?: EnumMetodoPagoFilter<"Pedido"> | $Enums.MetodoPago
     subtotal?: FloatFilter<"Pedido"> | number
     total?: FloatFilter<"Pedido"> | number
+    impuestos?: FloatFilter<"Pedido"> | number
     estado_carrito?: BoolFilter<"Pedido"> | boolean
     usuario?: XOR<UsuarioScalarRelationFilter, UsuarioWhereInput>
     items?: PedidoItemListRelationFilter
@@ -22348,6 +22367,7 @@ export namespace Prisma {
     metodo_pago?: SortOrder
     subtotal?: SortOrder
     total?: SortOrder
+    impuestos?: SortOrder
     estado_carrito?: SortOrder
     _count?: PedidoCountOrderByAggregateInput
     _avg?: PedidoAvgOrderByAggregateInput
@@ -22367,6 +22387,7 @@ export namespace Prisma {
     metodo_pago?: EnumMetodoPagoWithAggregatesFilter<"Pedido"> | $Enums.MetodoPago
     subtotal?: FloatWithAggregatesFilter<"Pedido"> | number
     total?: FloatWithAggregatesFilter<"Pedido"> | number
+    impuestos?: FloatWithAggregatesFilter<"Pedido"> | number
     estado_carrito?: BoolWithAggregatesFilter<"Pedido"> | boolean
   }
 
@@ -23337,6 +23358,7 @@ export namespace Prisma {
     metodo_pago: $Enums.MetodoPago
     subtotal: number
     total: number
+    impuestos: number
     estado_carrito?: boolean
     usuario: UsuarioCreateNestedOneWithoutPedidosInput
     items?: PedidoItemCreateNestedManyWithoutPedidoInput
@@ -23352,6 +23374,7 @@ export namespace Prisma {
     metodo_pago: $Enums.MetodoPago
     subtotal: number
     total: number
+    impuestos: number
     estado_carrito?: boolean
     items?: PedidoItemUncheckedCreateNestedManyWithoutPedidoInput
     transiciones?: TransicionEstadoPedidoUncheckedCreateNestedManyWithoutPedidoInput
@@ -23364,6 +23387,7 @@ export namespace Prisma {
     metodo_pago?: EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
     subtotal?: FloatFieldUpdateOperationsInput | number
     total?: FloatFieldUpdateOperationsInput | number
+    impuestos?: FloatFieldUpdateOperationsInput | number
     estado_carrito?: BoolFieldUpdateOperationsInput | boolean
     usuario?: UsuarioUpdateOneRequiredWithoutPedidosNestedInput
     items?: PedidoItemUpdateManyWithoutPedidoNestedInput
@@ -23379,6 +23403,7 @@ export namespace Prisma {
     metodo_pago?: EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
     subtotal?: FloatFieldUpdateOperationsInput | number
     total?: FloatFieldUpdateOperationsInput | number
+    impuestos?: FloatFieldUpdateOperationsInput | number
     estado_carrito?: BoolFieldUpdateOperationsInput | boolean
     items?: PedidoItemUncheckedUpdateManyWithoutPedidoNestedInput
     transiciones?: TransicionEstadoPedidoUncheckedUpdateManyWithoutPedidoNestedInput
@@ -23393,6 +23418,7 @@ export namespace Prisma {
     metodo_pago: $Enums.MetodoPago
     subtotal: number
     total: number
+    impuestos: number
     estado_carrito?: boolean
   }
 
@@ -23402,6 +23428,7 @@ export namespace Prisma {
     metodo_pago?: EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
     subtotal?: FloatFieldUpdateOperationsInput | number
     total?: FloatFieldUpdateOperationsInput | number
+    impuestos?: FloatFieldUpdateOperationsInput | number
     estado_carrito?: BoolFieldUpdateOperationsInput | boolean
   }
 
@@ -23413,6 +23440,7 @@ export namespace Prisma {
     metodo_pago?: EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
     subtotal?: FloatFieldUpdateOperationsInput | number
     total?: FloatFieldUpdateOperationsInput | number
+    impuestos?: FloatFieldUpdateOperationsInput | number
     estado_carrito?: BoolFieldUpdateOperationsInput | boolean
   }
 
@@ -24583,6 +24611,7 @@ export namespace Prisma {
     metodo_pago?: SortOrder
     subtotal?: SortOrder
     total?: SortOrder
+    impuestos?: SortOrder
     estado_carrito?: SortOrder
   }
 
@@ -24591,6 +24620,7 @@ export namespace Prisma {
     usuario_id?: SortOrder
     subtotal?: SortOrder
     total?: SortOrder
+    impuestos?: SortOrder
   }
 
   export type PedidoMaxOrderByAggregateInput = {
@@ -24601,6 +24631,7 @@ export namespace Prisma {
     metodo_pago?: SortOrder
     subtotal?: SortOrder
     total?: SortOrder
+    impuestos?: SortOrder
     estado_carrito?: SortOrder
   }
 
@@ -24612,6 +24643,7 @@ export namespace Prisma {
     metodo_pago?: SortOrder
     subtotal?: SortOrder
     total?: SortOrder
+    impuestos?: SortOrder
     estado_carrito?: SortOrder
   }
 
@@ -24620,6 +24652,7 @@ export namespace Prisma {
     usuario_id?: SortOrder
     subtotal?: SortOrder
     total?: SortOrder
+    impuestos?: SortOrder
   }
 
   export type EnumMetodoPagoWithAggregatesFilter<$PrismaModel = never> = {
@@ -26564,6 +26597,7 @@ export namespace Prisma {
     metodo_pago: $Enums.MetodoPago
     subtotal: number
     total: number
+    impuestos: number
     estado_carrito?: boolean
     items?: PedidoItemCreateNestedManyWithoutPedidoInput
     transiciones?: TransicionEstadoPedidoCreateNestedManyWithoutPedidoInput
@@ -26577,6 +26611,7 @@ export namespace Prisma {
     metodo_pago: $Enums.MetodoPago
     subtotal: number
     total: number
+    impuestos: number
     estado_carrito?: boolean
     items?: PedidoItemUncheckedCreateNestedManyWithoutPedidoInput
     transiciones?: TransicionEstadoPedidoUncheckedCreateNestedManyWithoutPedidoInput
@@ -26693,6 +26728,7 @@ export namespace Prisma {
     metodo_pago?: EnumMetodoPagoFilter<"Pedido"> | $Enums.MetodoPago
     subtotal?: FloatFilter<"Pedido"> | number
     total?: FloatFilter<"Pedido"> | number
+    impuestos?: FloatFilter<"Pedido"> | number
     estado_carrito?: BoolFilter<"Pedido"> | boolean
   }
 
@@ -28472,6 +28508,7 @@ export namespace Prisma {
     metodo_pago: $Enums.MetodoPago
     subtotal: number
     total: number
+    impuestos: number
     estado_carrito?: boolean
     usuario: UsuarioCreateNestedOneWithoutPedidosInput
     items?: PedidoItemCreateNestedManyWithoutPedidoInput
@@ -28486,6 +28523,7 @@ export namespace Prisma {
     metodo_pago: $Enums.MetodoPago
     subtotal: number
     total: number
+    impuestos: number
     estado_carrito?: boolean
     items?: PedidoItemUncheckedCreateNestedManyWithoutPedidoInput
     transiciones?: TransicionEstadoPedidoUncheckedCreateNestedManyWithoutPedidoInput
@@ -28545,6 +28583,7 @@ export namespace Prisma {
     metodo_pago?: EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
     subtotal?: FloatFieldUpdateOperationsInput | number
     total?: FloatFieldUpdateOperationsInput | number
+    impuestos?: FloatFieldUpdateOperationsInput | number
     estado_carrito?: BoolFieldUpdateOperationsInput | boolean
     usuario?: UsuarioUpdateOneRequiredWithoutPedidosNestedInput
     items?: PedidoItemUpdateManyWithoutPedidoNestedInput
@@ -28559,6 +28598,7 @@ export namespace Prisma {
     metodo_pago?: EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
     subtotal?: FloatFieldUpdateOperationsInput | number
     total?: FloatFieldUpdateOperationsInput | number
+    impuestos?: FloatFieldUpdateOperationsInput | number
     estado_carrito?: BoolFieldUpdateOperationsInput | boolean
     items?: PedidoItemUncheckedUpdateManyWithoutPedidoNestedInput
     transiciones?: TransicionEstadoPedidoUncheckedUpdateManyWithoutPedidoNestedInput
@@ -28746,6 +28786,7 @@ export namespace Prisma {
     metodo_pago: $Enums.MetodoPago
     subtotal: number
     total: number
+    impuestos: number
     estado_carrito?: boolean
     usuario: UsuarioCreateNestedOneWithoutPedidosInput
     transiciones?: TransicionEstadoPedidoCreateNestedManyWithoutPedidoInput
@@ -28760,6 +28801,7 @@ export namespace Prisma {
     metodo_pago: $Enums.MetodoPago
     subtotal: number
     total: number
+    impuestos: number
     estado_carrito?: boolean
     transiciones?: TransicionEstadoPedidoUncheckedCreateNestedManyWithoutPedidoInput
     promociones_aplicadas?: HistorialPromocionAplicadaUncheckedCreateNestedManyWithoutPedidoInput
@@ -28847,6 +28889,7 @@ export namespace Prisma {
     metodo_pago?: EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
     subtotal?: FloatFieldUpdateOperationsInput | number
     total?: FloatFieldUpdateOperationsInput | number
+    impuestos?: FloatFieldUpdateOperationsInput | number
     estado_carrito?: BoolFieldUpdateOperationsInput | boolean
     usuario?: UsuarioUpdateOneRequiredWithoutPedidosNestedInput
     transiciones?: TransicionEstadoPedidoUpdateManyWithoutPedidoNestedInput
@@ -28861,6 +28904,7 @@ export namespace Prisma {
     metodo_pago?: EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
     subtotal?: FloatFieldUpdateOperationsInput | number
     total?: FloatFieldUpdateOperationsInput | number
+    impuestos?: FloatFieldUpdateOperationsInput | number
     estado_carrito?: BoolFieldUpdateOperationsInput | boolean
     transiciones?: TransicionEstadoPedidoUncheckedUpdateManyWithoutPedidoNestedInput
     promociones_aplicadas?: HistorialPromocionAplicadaUncheckedUpdateManyWithoutPedidoNestedInput
@@ -28944,6 +28988,7 @@ export namespace Prisma {
     metodo_pago: $Enums.MetodoPago
     subtotal: number
     total: number
+    impuestos: number
     estado_carrito?: boolean
     usuario: UsuarioCreateNestedOneWithoutPedidosInput
     items?: PedidoItemCreateNestedManyWithoutPedidoInput
@@ -28958,6 +29003,7 @@ export namespace Prisma {
     metodo_pago: $Enums.MetodoPago
     subtotal: number
     total: number
+    impuestos: number
     estado_carrito?: boolean
     items?: PedidoItemUncheckedCreateNestedManyWithoutPedidoInput
     promociones_aplicadas?: HistorialPromocionAplicadaUncheckedCreateNestedManyWithoutPedidoInput
@@ -29013,6 +29059,7 @@ export namespace Prisma {
     metodo_pago?: EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
     subtotal?: FloatFieldUpdateOperationsInput | number
     total?: FloatFieldUpdateOperationsInput | number
+    impuestos?: FloatFieldUpdateOperationsInput | number
     estado_carrito?: BoolFieldUpdateOperationsInput | boolean
     usuario?: UsuarioUpdateOneRequiredWithoutPedidosNestedInput
     items?: PedidoItemUpdateManyWithoutPedidoNestedInput
@@ -29027,6 +29074,7 @@ export namespace Prisma {
     metodo_pago?: EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
     subtotal?: FloatFieldUpdateOperationsInput | number
     total?: FloatFieldUpdateOperationsInput | number
+    impuestos?: FloatFieldUpdateOperationsInput | number
     estado_carrito?: BoolFieldUpdateOperationsInput | boolean
     items?: PedidoItemUncheckedUpdateManyWithoutPedidoNestedInput
     promociones_aplicadas?: HistorialPromocionAplicadaUncheckedUpdateManyWithoutPedidoNestedInput
@@ -29198,6 +29246,7 @@ export namespace Prisma {
     metodo_pago: $Enums.MetodoPago
     subtotal: number
     total: number
+    impuestos: number
     estado_carrito?: boolean
   }
 
@@ -29248,6 +29297,7 @@ export namespace Prisma {
     metodo_pago?: EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
     subtotal?: FloatFieldUpdateOperationsInput | number
     total?: FloatFieldUpdateOperationsInput | number
+    impuestos?: FloatFieldUpdateOperationsInput | number
     estado_carrito?: BoolFieldUpdateOperationsInput | boolean
     items?: PedidoItemUpdateManyWithoutPedidoNestedInput
     transiciones?: TransicionEstadoPedidoUpdateManyWithoutPedidoNestedInput
@@ -29261,6 +29311,7 @@ export namespace Prisma {
     metodo_pago?: EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
     subtotal?: FloatFieldUpdateOperationsInput | number
     total?: FloatFieldUpdateOperationsInput | number
+    impuestos?: FloatFieldUpdateOperationsInput | number
     estado_carrito?: BoolFieldUpdateOperationsInput | boolean
     items?: PedidoItemUncheckedUpdateManyWithoutPedidoNestedInput
     transiciones?: TransicionEstadoPedidoUncheckedUpdateManyWithoutPedidoNestedInput
@@ -29274,6 +29325,7 @@ export namespace Prisma {
     metodo_pago?: EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
     subtotal?: FloatFieldUpdateOperationsInput | number
     total?: FloatFieldUpdateOperationsInput | number
+    impuestos?: FloatFieldUpdateOperationsInput | number
     estado_carrito?: BoolFieldUpdateOperationsInput | boolean
   }
 

@@ -199,6 +199,7 @@ model Pedido {
   metodo_pago            MetodoPago
   subtotal               Float
   total                  Float
+  impuestos              Float
   estado_carrito         Boolean @default(true)
   usuario                Usuario                     @relation(fields: [usuario_id], references: [id])
   items                  PedidoItem[]
