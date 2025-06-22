@@ -158,6 +158,7 @@ CREATE TABLE `Pedido` (
     `metodo_pago` ENUM('Efectivo', 'Tarjeta') NOT NULL,
     `subtotal` DOUBLE NOT NULL,
     `total` DOUBLE NOT NULL,
+    `impuestos` DOUBLE NOT NULL,
     `estado_carrito` BOOLEAN NOT NULL DEFAULT true,
 
     PRIMARY KEY (`id`)
@@ -169,6 +170,7 @@ CREATE TABLE `PedidoItem` (
     `producto_id` INTEGER NOT NULL,
     `cantidad` INTEGER NOT NULL,
     `producto_personalizado_id` INTEGER NULL,
+    `id_variante_producto` INTEGER NULL,
 
     PRIMARY KEY (`pedido_id`, `producto_id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -256,6 +258,9 @@ ALTER TABLE `PedidoItem` ADD CONSTRAINT `PedidoItem_producto_id_fkey` FOREIGN KE
 
 -- AddForeignKey
 ALTER TABLE `PedidoItem` ADD CONSTRAINT `PedidoItem_producto_personalizado_id_fkey` FOREIGN KEY (`producto_personalizado_id`) REFERENCES `ProductoPersonalizable`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `PedidoItem` ADD CONSTRAINT `PedidoItem_id_variante_producto_fkey` FOREIGN KEY (`id_variante_producto`) REFERENCES `VarianteProducto`(`id_variante`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `TransicionEstadoPedido` ADD CONSTRAINT `TransicionEstadoPedido_pedido_id_fkey` FOREIGN KEY (`pedido_id`) REFERENCES `Pedido`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
