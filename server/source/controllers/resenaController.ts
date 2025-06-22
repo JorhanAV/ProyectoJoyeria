@@ -8,8 +8,8 @@ export class ResenaController {
   get = async (request: Request, response: Response, next: NextFunction) => {
     try {
       //Obtener todas las resenas incluyendo el usuario, ordenadas por fecha 
-      // de forma ascendente, omitiendo el password del usuario
-      const ordenes= await this.prisma.resena.findMany({
+      // de forma descendiente, omitiendo el password del usuario
+      const resena= await this.prisma.resena.findMany({
         include:{
           usuario:{
             omit:{
@@ -22,7 +22,7 @@ export class ResenaController {
           fecha:'desc'
         }
       })
-      response.json(ordenes)
+      response.json(resena)
     } catch (error) {
       next(error);
     }
@@ -34,9 +34,9 @@ export class ResenaController {
     next: NextFunction
   ) => {
     try {
-      let idOrden=parseInt(request.params.id)
-      const orden= await this.prisma.resena.findUnique({
-        where:{id: idOrden},
+      let idResena=parseInt(request.params.id)
+      const resena= await this.prisma.resena.findUnique({
+        where:{id: idResena},
         include:{
           usuario:{
             omit:{ contraseña:true},
@@ -49,7 +49,7 @@ export class ResenaController {
           }
         }
       })
-      response.json(orden)
+      response.json(resena)
     } catch (error: any) {
 
       next(error)
