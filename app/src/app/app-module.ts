@@ -9,7 +9,10 @@ import { HomeModule } from './home/home-module';
 import { UserModule } from './user/user-module';
 import { ProductoModule } from './producto/producto-module';
 import { OrdenModule } from './orden/orden-module';
-import { provideHttpClient } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
+import { HttpErrorInterceptorService } from './share/http-error-interceptor.service';
+//import { provideAnimations } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -28,6 +31,12 @@ import { provideHttpClient } from '@angular/common/http';
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideHttpClient(),
+    //provideAnimations(),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptorService,
+      multi: true,
+    },
   ],
   bootstrap: [App]
 })
