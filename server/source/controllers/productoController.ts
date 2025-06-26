@@ -52,7 +52,7 @@ export class ProductoController {
 
         return {
           ...producto,
-          promociones: promocionesAplicables.map(p => ({ // Selecciona solo los campos que necesitas para la respuesta
+          promociones: promocionesAplicables.map(p => ({ // Selecciona solo los campos que necesitas para la respuesta necesaria
             nombre: p.nombre,
             tipo: p.tipo,
             valor: p.valor,
