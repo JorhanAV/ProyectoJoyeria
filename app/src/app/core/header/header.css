@@ -1,0 +1,121 @@
+/* HEADER SUPERIOR */
+.top-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #000;
+  color: white;
+  z-index: 1000;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* MENÚ PRINCIPAL */
+.main-menu {
+  position: relative;
+  margin-top: 48px;
+  width: 100%;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  font-family: 'Montserrat', sans-serif;
+  flex-wrap: wrap;
+}
+
+/* LOGO */
+.main-logo {
+  background-image: url('/images/LogoBlanco.jpg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 100px;
+  width: 100px;
+}
+
+
+/* ICONOS DE USUARIO */
+.user-actions {
+ display: flex;
+ align-items: center;
+ gap: 1rem;
+ flex-shrink: 0;
+}
+
+.user-email {
+ font-size: 0.9rem;
+ font-weight: 500;
+}
+
+
+/* BOTÓN DE MENÚ PARA MÓVIL */
+.mobile-menu-button {
+  display: none;
+}
+
+/* ENLACES */
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+
+.nav-links a {
+  color: black;
+  text-decoration: none;font-size: 1.1rem;font-weight: bold;position: relative; transition: color 0.3s;
+}
+
+
+.nav-links a::after {
+ content: '';
+ position: absolute;
+ bottom: -4px;
+ left: 0;
+ width: 0%;
+ height: 2px;
+ background-color: #c0a060;
+ transition: width 0.3s;
+}
+
+.nav-links a:hover::after {
+width: 100%;
+}
+
+.nav-links a:hover {
+ color: #c0a060;
+}
+
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  
+  .main-menu {
+  position: solid;
+  display: block;
+}
+  .main-logo {
+  background-image: url('/images/LogoBlanco.jpg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-left: 120px;
+  height: 200px;
+  width: 2000px;
+}
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .mobile-menu-button {
+    display: block;
+  }
+}

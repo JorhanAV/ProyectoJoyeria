@@ -1,0 +1,44 @@
+<!-- HEADER SUPERIOR FIJO EN NEGRO -->
+<mat-toolbar class="top-header">
+  <span>Joyería Brillos Eternos</span>
+</mat-toolbar>
+
+<!-- MENÚ PRINCIPAL TRANSPARENTE -->
+<mat-toolbar class="main-menu" color="transparent">
+  <!-- LOGO GRANDE -->
+  <div class="main-logo"></div>
+
+  <!-- BOTÓN DE MENÚ PARA MÓVIL -->
+  <button mat-icon-button class="mobile-menu-button" (click)="toggleMenu()">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <!-- ENLACES DE NAVEGACIÓN -->
+  <nav class="nav-links" [class.open]="menuOpen">
+    <a routerLink="/">Inicio</a>
+    <a routerLink="/acerca">Acerca de</a>
+    <a routerLink="/productos">Productos</a>
+    <a routerLink="/contacto">Contacto</a>
+  </nav>
+
+  <!-- ICONOS DE USUARIO -->
+  <div class="user-actions">
+    <button mat-icon-button matTooltip="Carrito">
+      <mat-icon>shopping_cart</mat-icon>
+    </button>
+    <span class="user-email">Email</span>
+    <button mat-icon-button [matMenuTriggerFor]="menu3">
+      <mat-icon>person</mat-icon>
+    </button>
+    <mat-menu #menu3="matMenu">
+      <button mat-menu-item>
+        <mat-icon>login</mat-icon>
+        <span>Login</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>logout</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
+  </div>
+</mat-toolbar>
