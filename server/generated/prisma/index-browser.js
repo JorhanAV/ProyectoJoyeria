@@ -243,7 +243,8 @@ exports.Prisma.PedidoItemScalarFieldEnum = {
   pedido_id: 'pedido_id',
   producto_id: 'producto_id',
   cantidad: 'cantidad',
-  producto_personalizado_id: 'producto_personalizado_id'
+  producto_personalizado_id: 'producto_personalizado_id',
+  id_variante_producto: 'id_variante_producto'
 };
 
 exports.Prisma.TransicionEstadoPedidoScalarFieldEnum = {

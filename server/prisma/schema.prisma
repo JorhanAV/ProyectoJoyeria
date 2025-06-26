@@ -129,15 +129,19 @@ model ProductoPersonalizable {
 }
 
 model VarianteProducto {
-  id_variante    Int                     @id @default(autoincrement())
-  id_producto    Int
-  sku            String                 @unique
-  precio_final   Float
-  stock          Int
+  id_variante     Int                     @id @default(autoincrement())
+  id_producto     Int
+  sku             String                 @unique
+  precio_final    Float
+  stock           Int
   imagen_variante String?
-  producto       ProductoPersonalizable @relation(fields: [id_producto], references: [id])
-  detalles       VarianteDetalle[]
+  producto        ProductoPersonalizable @relation(fields: [id_producto], references: [id])
+  detalles        VarianteDetalle[]
+
+  // 🔧 Campo inverso agregado para la relación con PedidoItem
+  pedidoItems     PedidoItem[]
 }
+
 
 model Atributo {
   id_atributo Int              @id @default(autoincrement())
@@ -212,12 +216,16 @@ model PedidoItem {
   producto_id               Int
   cantidad                  Int
   producto_personalizado_id Int?
+  id_variante_producto               Int?  // <- NUEVO
+
   pedido                    Pedido  @relation(fields: [pedido_id], references: [id])
   producto                  Producto @relation(fields: [producto_id], references: [id])
   producto_personalizado   ProductoPersonalizable? @relation(fields: [producto_personalizado_id], references: [id])
+  variante_seleccionada    VarianteProducto? @relation(fields: [id_variante_producto], references: [id_variante])
 
   @@id([pedido_id, producto_id])
 }
+
 
 model TransicionEstadoPedido {
   id         Int          @id @default(autoincrement())
