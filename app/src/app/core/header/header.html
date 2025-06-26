@@ -1,59 +1,42 @@
-<mat-toolbar color="primary" class="header">
-  <button
-    mat-icon-button
-    class="example-header-image"
-    matTooltip="AppJoyeria"
-  ></button>
-  <button
-    [matMenuTriggerFor]="menu1"
-    mat-icon-button
-    class="example-icon"
-    matTooltip="Menu"
-  >
+<!-- HEADER SUPERIOR FIJO EN NEGRO -->
+<mat-toolbar class="top-header">
+  <span>Joyería Brillos Eternos</span>
+</mat-toolbar>
+
+<!-- MENÚ PRINCIPAL TRANSPARENTE -->
+<mat-toolbar class="main-menu" color="transparent">
+  <!-- LOGO GRANDE -->
+  <div class="main-logo"></div>
+
+  <!-- BOTÓN DE MENÚ PARA MÓVIL -->
+  <button mat-icon-button class="mobile-menu-button" (click)="toggleMenu()">
     <mat-icon>menu</mat-icon>
   </button>
-  <!--https://fonts.google.com/icons-->
-  <button
-    mat-icon-button
-    matTooltip="Mantenimientos"
-    [matMenuTriggerFor]="menu2"
-  >
-    <mat-icon>save_as</mat-icon>
-  </button>
-  <button mat-icon-button matTooltip="Reportes" [matMenuTriggerFor]="menu4">
-    <mat-icon>monitoring</mat-icon>
-  </button>
-  <!-- https://material.angular.dev/components/menu/overview -->
-  <mat-menu #menu1="matMenu">
-    <button mat-menu-item>Inicio</button>
-    <button mat-menu-item>Acerca de</button>
-    <button mat-menu-item>Producto</button>
-  </mat-menu>
-  <mat-menu #menu2="matMenu">
-    <button mat-menu-item>Productos</button>
-  </mat-menu>
-  <mat-menu #menu4="matMenu">
-    <button mat-menu-item>Productos x Categoria</button>
-    <button mat-menu-item>Ordenes agrupadas x Mes</button>
-    <button mat-menu-item>Productos vendidos x Mes</button>
-  </mat-menu>
-  <div class="example-spacer"></div>
-  <div class="example-spacer">
-    <button mat-icon-button matBadgeColor="accent" class="small-text">
+
+  <!-- ENLACES DE NAVEGACIÓN -->
+  <nav class="nav-links" [class.open]="menuOpen">
+    <a routerLink="/">Inicio</a>
+    <a routerLink="/acerca">Acerca de</a>
+    <a routerLink="/productos">Productos</a>
+    <a routerLink="/contacto">Contacto</a>
+  </nav>
+
+  <!-- ICONOS DE USUARIO -->
+  <div class="user-actions">
+    <button mat-icon-button matTooltip="Carrito">
       <mat-icon>shopping_cart</mat-icon>
     </button>
-    <!-- Menu de Usuario-->
-    <span class="small-text">Email</span>
+    <span class="user-email">Email</span>
     <button mat-icon-button [matMenuTriggerFor]="menu3">
       <mat-icon>person</mat-icon>
     </button>
     <mat-menu #menu3="matMenu">
       <button mat-menu-item>
-        <mat-icon>person_add</mat-icon>
+        <mat-icon>login</mat-icon>
         <span>Login</span>
       </button>
       <button mat-menu-item>
-        <mat-icon>person_remove</mat-icon>
+        <mat-icon>logout</mat-icon>
         <span>Logout</span>
       </button>
     </mat-menu>

@@ -138,6 +138,9 @@ model VarianteProducto {
   imagen_variante String?
   producto        ProductoPersonalizable @relation(fields: [id_producto], references: [id])
   detalles        VarianteDetalle[]
+
+  // 🔧 Campo inverso agregado para la relación con PedidoItem
+  pedidoItems PedidoItem[]
 }
 
 model Atributo {
@@ -200,6 +203,7 @@ model Pedido {
   metodo_pago           MetodoPago
   subtotal              Float
   total                 Float
+  impuestos             Float
   estado_carrito        Boolean                      @default(true)
   usuario               Usuario                      @relation(fields: [usuario_id], references: [id])
   items                 PedidoItem[]
@@ -212,9 +216,12 @@ model PedidoItem {
   producto_id               Int
   cantidad                  Int
   producto_personalizado_id Int?
-  pedido                    Pedido                  @relation(fields: [pedido_id], references: [id])
-  producto                  Producto                @relation(fields: [producto_id], references: [id])
-  producto_personalizado    ProductoPersonalizable? @relation(fields: [producto_personalizado_id], references: [id])
+  id_variante_producto      Int? // <- NUEVO
+
+  pedido                 Pedido                  @relation(fields: [pedido_id], references: [id])
+  producto               Producto                @relation(fields: [producto_id], references: [id])
+  producto_personalizado ProductoPersonalizable? @relation(fields: [producto_personalizado_id], references: [id])
+  variante_seleccionada  VarianteProducto?       @relation(fields: [id_variante_producto], references: [id_variante])
 
   @@id([pedido_id, producto_id])
 }
