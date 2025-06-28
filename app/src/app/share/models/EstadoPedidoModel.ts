@@ -1,0 +1,10 @@
+export enum EstadoPedidoModel {
+  PENDIENTE_DE_PAGO = 'PENDIENTE_DE_PAGO',
+  PAGADO = 'PAGADO',
+  ENPREPARACION = 'ENPREPARACION',
+  ENTREGADO = 'ENTREGADO',
+}
+
+
+
+
