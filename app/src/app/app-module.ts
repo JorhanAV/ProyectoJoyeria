@@ -11,6 +11,7 @@ import { ProductoModule } from './producto/producto-module';
 import { OrdenModule } from './orden/orden-module';
 import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
 import { HttpErrorInterceptorService } from './share/http-error-interceptor.service';
+import { ResenaModule } from './resena/resena-module';
 //import { provideAnimations } from '@angular/platform-browser/animations';
 
 
@@ -26,6 +27,7 @@ import { HttpErrorInterceptorService } from './share/http-error-interceptor.serv
     UserModule,
     ProductoModule,
     OrdenModule,
+    ResenaModule,
     AppRoutingModule
   ],
   providers: [
