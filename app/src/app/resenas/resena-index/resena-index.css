@@ -21,7 +21,7 @@ h2 {
 
 .resena-card {
   flex: 1 1 calc(33.333% - 1.5rem); /* Tres tarjetas por fila */
-  height: 300px;
+  min-height: 300px;
   display: flex;
   flex-direction: column;
   min-width: 250px;
@@ -37,6 +37,16 @@ h2 {
   justify-content: space-between;
   font-size: 1rem;
   margin-bottom: 0.5rem;
+}
+
+.resena-img {
+  display: block;
+  width: 50%;
+  max-height: 400px;       /* ajusta según quieras que se vea grande */
+  object-fit: cover;       /* recorta centrado */
+  border-radius: 6px;
+  margin: 0.5rem 0;
+  margin-left: 8.5rem;
 }
 
 .fecha {
@@ -84,3 +94,4 @@ h2 {
   text-decoration: underline;
   outline: none; /* o puedes customizar outline para accesibilidad */
 }
+

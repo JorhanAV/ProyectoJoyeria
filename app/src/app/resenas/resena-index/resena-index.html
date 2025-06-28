@@ -9,7 +9,12 @@
       </div>
 
       <p class="comentario">"{{ resena.comentario }}"</p>
-
+      <img
+        *ngIf="resena.producto?.imagenes?.length"
+        class="resena-img"
+        [src]="'/images/' + resena.producto.imagenes[0].url"
+        [alt]="resena.producto.nombre || 'Imagen del producto'"
+      />
       <div class="resena-footer">
         <span class="valoracion">{{ resena.valoracion }}/5</span>
         <a (click)="detalle(resena.id)" class="detalle-link">Ver detalle</a>
