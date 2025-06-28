@@ -1,1 +1,19 @@
-<p>resena-index works!</p>
+<div class="resenas-container">
+  <h2>Listado de Reseñas</h2>
+
+  <div class="resenas-grid">
+    <div *ngFor="let resena of datos" class="resena-card">
+      <div class="resena-header">
+        <strong>{{ resena.usuario.nombre_usuario }}</strong>
+        <span class="fecha">{{ resena.fecha | date: 'mediumDate' }}</span>
+      </div>
+
+      <p class="comentario">"{{ resena.comentario }}"</p>
+
+      <div class="resena-footer">
+        <span class="valoracion">{{ resena.valoracion }}/5</span>
+        <a (click)="detalle(resena.id)" class="detalle-link">Ver detalle</a>
+      </div>
+    </div>
+  </div>
+</div>
