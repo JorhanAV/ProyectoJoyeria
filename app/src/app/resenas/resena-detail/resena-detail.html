@@ -1,1 +1,45 @@
-<p>resena-detail works!</p>
+<div class="resena-detail-container" *ngIf="datos">
+  <h2>Detalle de Reseña</h2>
+
+  <div class="resena-card">
+    <div class="resena-row">
+      <span class="label">Usuario:</span>
+      <span>{{ datos.usuario.nombre_usuario }}</span>
+    </div>
+
+    <div class="resena-row">
+      <span class="label">Producto:</span>
+      <span>{{ datos.producto.nombre }}</span>
+    </div>
+
+    <div class="resena-row">
+      <span class="label">Fecha:</span>
+      <span>{{ datos.fecha | date: 'mediumDate' }}</span>
+    </div>
+
+    <div class="resena-row comentario">
+      <span class="label">Comentario:</span>
+      <p>{{ datos.comentario }}</p>
+    </div>
+
+    <div class="resena-row valoracion">
+      <span class="label">Valoración:</span>
+
+      <span class="stars">
+        <ng-container *ngFor="let _ of stars; let i = index">
+          <i class="star" [class.filled]="i < datos.valoracion">★</i>
+        </ng-container>
+        <span class="rating">( {{ datos.valoracion }}/5 )</span>
+      </span>
+    </div>
+
+    <img
+      *ngIf="datos?.producto?.imagenes?.length"
+      class="resena-producto-img"
+      [src]="'/images/' +datos.producto.imagenes[0].url"
+      [alt]="datos.producto.nombre"
+    />
+  </div>
+
+  <button class="back-button" (click)="goback()">← Volver</button>
+</div>
