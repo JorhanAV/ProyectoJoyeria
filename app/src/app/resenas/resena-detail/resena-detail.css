@@ -1,5 +1,6 @@
 .resena-detail-container {
-  max-width: 600px;
+  width: 90%;
+  max-width: 900px;
   margin: 2rem auto;
   padding: 1rem;
   font-family: "Segoe UI", sans-serif;
@@ -26,11 +27,14 @@ h2 {
 }
 
 .resena-card {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 1.5rem;
-  background: #fff;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  background: #ebecf8;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .resena-row {
@@ -75,12 +79,16 @@ h2 {
 }
 
 .resena-producto-img {
-  display: block;
-  margin: 0 auto 1.5rem;
-  width: 100%;
-  max-width: 400px;
-  height: auto;
+  flex: 0 0 300px; /* siempre 300px de ancho */
+  height: 500px;
   border-radius: 8px;
   object-fit: cover;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+/* Contenedor de texto a la derecha */
+.resena-info {
+  flex: 1;                  /* ocupa el resto del espacio */
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;             /* espacio entre filas de info */
+  margin-top: 5rem; /* margen superior para separar del borde */
 }
