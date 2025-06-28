@@ -15,7 +15,7 @@
 
 /* MENÚ PRINCIPAL */
 .main-menu {
-  position: relative;
+  position: solid;
   margin-top: 48px;
   width: 100%;
   background-color: transparent;
@@ -93,29 +93,22 @@ width: 100%;
 @media (max-width: 768px) {
   
   .main-menu {
-  position: solid;
-  display: block;
+  display: flex;
+  margin-top: 5%;
 }
   .main-logo {
   background-image: url('/images/LogoBlanco.jpg');
   background-size: contain;
   background-repeat: no-repeat;
+  margin-top: 25px;
   margin-left: 120px;
   height: 200px;
   width: 2000px;
 }
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    margin-top: 1rem;
-  }
-
-  .nav-links.open {
-    display: flex;
-  }
-
-  .mobile-menu-button {
-    display: block;
-  }
+.nav-links {
+  margin-top: 5%;
+}
+.user-actions {
+ margin-top: 5%;
+}
 }
