@@ -28,8 +28,11 @@ h2 {
   border: 1px solid #ccc;
   border-radius: 12px;
   padding: 1rem;
-  background-color:#ebecf8;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  background-color: #fff;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+.resena-card:hover {
+  transform: translateY(-5px);
 }
 
 .resena-header {
@@ -80,7 +83,7 @@ h2 {
 
 .detalle-link {
   /* Le damos color y estilo de enlace */
-  color: #007bff;
+  color: #a56f3f;
   text-decoration: none;
   font-weight: 500;
   cursor: pointer;
@@ -90,7 +93,7 @@ h2 {
 /* Estado hover y focus (accesibilidad) */
 .detalle-link:hover,
 .detalle-link:focus {
-  color: #0056b3;
+  color:  #a56f3f;
   text-decoration: underline;
   outline: none; /* o puedes customizar outline para accesibilidad */
 }
