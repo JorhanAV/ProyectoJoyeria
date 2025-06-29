@@ -8,7 +8,7 @@
   padding: 40px;
 }
 
-.info {
+.infoDiv {
   margin-bottom: 30px;
 }
 
@@ -58,13 +58,11 @@
 @media (max-width: 768px) {
   
   .contenedor {
-    position: solid;
-  display: block;
+  display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  max-width: 800px;
-  margin: auto;
-  padding: 40px;
+  margin-top: 50%;
+  padding: 1rem;
 }
 }
