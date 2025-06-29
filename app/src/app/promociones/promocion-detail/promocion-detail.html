@@ -1,1 +1,49 @@
-<p>promocion-detail works!</p>
+<div class="detalle-container">
+  <h2>{{ datos.nombre }}</h2>
+  <p class="descripcion-promo">{{ datos.productos }}</p>
+  <p class="rango-fechas">
+    Vigente del {{ datos.fecha_inicio | date: 'dd/MM/yyyy' }} al {{ datos.fecha_fin | date: 'dd/MM/yyyy' }}
+  </p>
+  <button class="back-button" (click)="goback()">← Volver</button>
+  <div class="detalle-grid">
+    <div *ngFor="let p of productos" class="detalle-card">
+  <!-- ICONOS flotantes -->
+  <div class="origen-etiqueta">
+    <ng-container *ngIf="p.esPorProducto && !p.esPorCategoria">
+      <i class="fas fa-box" title="Promoción por producto"></i>
+    </ng-container>
+    <ng-container *ngIf="p.esPorCategoria && !p.esPorProducto">
+      <i class="fas fa-tags" [title]="'Categoría: ' + p.nombre_categoria || 'Promoción por categoría'"></i>
+    </ng-container>
+    <ng-container *ngIf="p.esPorProducto && p.esPorCategoria">
+      <i class="fas fa-box" title="Promoción por producto y categoría"></i>
+      <i class="fas fa-tags" [title]="'Categoría: ' + p.nombre_categoria || 'Promoción por categoría'"></i>
+    </ng-container>
+  </div>
+
+  <!-- IMAGEN -->
+  <div class="img-container">
+    <img [src]="'images/' + getImagenPrincipal(p)" alt="{{ p.nombre }}" />
+    <div class="etiqueta-descuento">
+      {{
+        p.tipo_promocion === 'Porcentaje'
+          ? '-' + p.valor_promocion + '%'
+          : '-₡' + p.valor_promocion
+      }}
+    </div>
+  </div>
+
+  <!-- INFORMACIÓN -->
+  <div class="detalle-info">
+    <h3>{{ p.nombre }}</h3>
+    <p class="descripcion">{{ p.descripcion }}</p>
+    <div class="precios">
+      <span class="precio-original">₡{{ p.precio_base }}</span>
+      <span class="precio-descuento">₡{{ p.precio_con_descuento }}</span>
+    </div>
+    <button class="btn-detalle" (click)="verDetalleProducto(p.id)">Ver más</button>
+  </div>
+</div>
+
+  </div>
+</div>

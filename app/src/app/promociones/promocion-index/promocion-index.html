@@ -1,1 +1,44 @@
-<p>promocion-index works!</p>
+<div class="promociones-container">
+  <h2>Listado de Promociones</h2>
+
+  <div class="promociones-grid">
+    <div
+      *ngFor="let promo of datos"
+      class="promo-card"
+      [ngClass]="getEstadoClase(promo)"
+    >
+      <!-- Íconos condicionales -->
+      <div class="promo-iconos">
+        <i *ngIf="promo.esPorProducto" class="fas fa-box" title="Productos"></i>
+        <i
+          *ngIf="promo.esPorCategoria"
+          class="fas fa-tags"
+          [title]="promo.categoria?.nombre"
+        ></i>
+      </div>
+
+      <!-- Etiqueta de estado y vencimiento -->
+      <!-- Etiqueta de estado y rango de vigencia -->
+      <div class="promo-etiqueta">
+        <span>{{ getEstadoTexto(promo) }}</span>
+      </div>
+
+      <!-- Contenido de la tarjeta -->
+      <div class="promo-contenido">
+        <h3>{{ promo.nombre }}</h3>
+        <p>
+          <strong>Tipo:</strong> {{ promo.tipo === 'Porcentaje' ? 'Porcentaje' :
+          'Cantidad Fija' }}
+        </p>
+        <p>
+          <strong>Valor:</strong>
+          {{ promo.tipo === 'Porcentaje' ? promo.valor + '%' : '₡' + promo.valor
+          }}
+        </p>
+      </div>
+      <a (click)="detalle(promo.id)" class="btn-detalle"
+        >Ver detalles</a
+      >
+    </div>
+  </div>
+</div>
