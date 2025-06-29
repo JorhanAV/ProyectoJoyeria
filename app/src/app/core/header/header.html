@@ -16,10 +16,30 @@
   <!-- ENLACES DE NAVEGACIÓN -->
   <nav class="nav-links" [class.open]="menuOpen">
     <a routerLink="/">Inicio</a>
+    <a class="more-link" [matMenuTriggerFor]="moreMenu">
+      Tienda
+      <mat-icon class="arrow-icon">arrow_drop_down</mat-icon>
+    </a>
     <a routerLink="/acerca">Acerca de</a>
-    <a routerLink="/productos">Productos</a>
-    <a routerLink="/resena">Reseñas</a>
     <a routerLink="/contacto">Contacto</a>
+
+
+    <mat-menu #moreMenu="matMenu" panelClass="white-menu-panel">
+      <button mat-menu-item routerLink="/productos">
+        <span>Productos</span>
+      </button>
+      <button mat-menu-item routerLink="/resena">
+        <span>Reseñas</span>
+      </button>
+      <button mat-menu-item routerLink="/pedido">
+        <span>Pedidos</span>
+      </button>
+      <button mat-menu-item routerLink="/promociones">
+        <span>Promociones</span>
+      </button>
+      <!-- agrega más <button mat-menu-item> según necesites -->
+    </mat-menu>
+
   </nav>
 
   <!-- ICONOS DE USUARIO -->
