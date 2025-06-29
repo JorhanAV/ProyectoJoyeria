@@ -1,1 +1,53 @@
-<p>producto-detail works!</p>
+<button class="btn-volver" (click)="goBack()">← Volver al listado</button>
+
+
+<div class="detalle-container" *ngIf="datos">
+  <div class="detalle-header">
+    <div class="imagen-principal">
+      <img [src]="'images/' + imagenActiva" alt="Imagen de producto" />
+    </div>
+
+    <div class="informacion">
+      <h2>{{ datos.nombre }}</h2>
+      <p>{{ datos.descripcion }}</p>
+      <p class="categoria">Categoría: {{ datos.categoria.nombre }}</p>
+
+      <div class="etiquetas">
+        <span *ngFor="let e of datos.etiquetas" class="etiqueta">
+          {{ e.etiqueta.nombre }}
+        </span>
+      </div>
+
+      <div class="precio-valoracion">
+        <p class="precio">{{ datos.precio_base | currency: 'CRC':'symbol':'1.0-0' }}</p>
+        <p class="valoracion">
+          <ng-container *ngFor="let estrella of estrellas">
+            <span class="estrella" [ngClass]="{ activa: estrella <= promedioValoracion }">★</span>
+          </ng-container>
+          <span class="valor-numerico">({{ promedioValoracion.toFixed(1) }})</span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="miniaturas">
+    <img *ngFor="let img of datos.imagenes; let i = index"
+         [src]="'images/' + img.url"
+         (click)="cambiarImagen(img.url)"
+         [class.seleccionada]="img.url === imagenActiva" />
+  </div>
+
+  <div class="resenas">
+    <h3>Reseñas</h3>
+    <div class="resena" *ngFor="let r of datos.resenas">
+      <div class="resena-info">
+        <strong>{{ r.usuario.nombre_usuario }}</strong>
+        <span class="fecha">{{ r.fecha | date: 'longDate' }}</span>
+      </div>
+      <p class="comentario">“{{ r.comentario }}”</p>
+      <div class="estrellas">
+        <span *ngFor="let i of [1,2,3,4,5]" class="estrella" [ngClass]="{ activa: i <= r.valoracion }">★</span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,124 @@
+.detalle-container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 24px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.detalle-header {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 20px;
+}
+
+.imagen-principal img {
+  width: 320px;
+  height: auto;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.informacion {
+  flex: 1;
+}
+
+.etiquetas {
+  margin: 10px 0;
+}
+
+.etiqueta {
+  background-color: #e0cfa9;
+  padding: 5px 10px;
+  border-radius: 12px;
+  margin-right: 8px;
+  font-size: 0.9em;
+}
+
+.precio-valoracion {
+  margin-top: 10px;
+}
+
+.precio {
+  font-size: 1.5em;
+  color: #a67c52;
+  font-weight: bold;
+}
+
+.valoracion .estrella {
+  color: #ddd;
+  font-size: 20px;
+}
+
+.valoracion .estrella.activa {
+  color: gold;
+}
+
+.miniaturas {
+  display: flex;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.miniaturas img {
+  width: 60px;
+  height: 60px;
+  border-radius: 6px;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: 0.3s ease;
+}
+
+.miniaturas img.seleccionada {
+  border: 2px solid #a67c52;
+  opacity: 1;
+}
+
+.resenas {
+  margin-top: 30px;
+}
+
+.resena {
+  border-top: 1px solid #ccc;
+  padding: 15px 0;
+}
+
+.resena-info {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+}
+
+.fecha {
+  font-size: 0.9em;
+  color: #777;
+}
+
+.comentario {
+  margin: 10px 0;
+  font-style: italic;
+}
+
+.estrellas .estrella {
+  color: #ccc;
+  font-size: 18px;
+}
+
+.estrellas .estrella.activa {
+  color: gold;
+}
+
+.btn-volver {
+  background-color: #a67c52;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 16px;
+  font-size: 1em;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-volver:hover {
+  background-color: #8c643d;
+}
