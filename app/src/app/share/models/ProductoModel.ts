@@ -22,6 +22,9 @@ export interface ProductoModel {
   pedidoItems: PedidoItemModel[];
   promociones: PromocionModel[];
   productosPersonalizables: ProductoPersonalizableModel[];
+  imagenActual?: string; // Para manejar la imagen actual en el frontend
+  precioFinal?: number; // Para manejar el precio final con promociones
+  tienePromocion?: boolean; // Para indicar si el producto tiene una promoción activa
 }
 
 

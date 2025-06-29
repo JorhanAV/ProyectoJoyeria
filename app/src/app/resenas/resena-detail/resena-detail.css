@@ -1,0 +1,94 @@
+.resena-detail-container {
+  width: 90%;
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1rem;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  color: #007bff;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  transition: color 0.2s;
+}
+.back-button:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.resena-card {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1.5rem;
+  background: #ebecf8;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.resena-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  align-items: center;
+}
+
+.label {
+  font-weight: 600;
+  color: #333;
+  margin-right: 0.5rem;
+}
+
+.comentario p {
+  margin: 0;
+  color: #555;
+  flex: 1;
+}
+
+.valoracion .stars {
+  display: inline-flex;
+  align-items: center;
+}
+
+.star {
+  font-size: 1.3rem;
+  color: #ccc;
+  margin-right: 0.1rem;
+  transition: color 0.2s;
+}
+
+.star.filled {
+  color: #ff9800;
+}
+
+.rating {
+  margin-left: 0.5rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.resena-producto-img {
+  flex: 0 0 300px; /* siempre 300px de ancho */
+  height: 500px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+/* Contenedor de texto a la derecha */
+.resena-info {
+  flex: 1;                  /* ocupa el resto del espacio */
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;             /* espacio entre filas de info */
+  margin-top: 5rem; /* margen superior para separar del borde */
+}

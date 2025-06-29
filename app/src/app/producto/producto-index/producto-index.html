@@ -1,1 +1,26 @@
-<p>producto-index works!</p>
+<div class="contenedor-productos">
+  <div
+    class="tarjeta-producto"
+    *ngFor="let producto of datos"
+    (mouseenter)="cambiarImagen(producto, true)"
+    (mouseleave)="cambiarImagen(producto, false)"
+  >
+    <img [src]="'images/' + producto.imagenActual" [alt]="producto.nombre" />
+
+    <div class="contenido">
+      <h3>{{ producto.nombre }}</h3>
+      <p class="precio">
+        <span *ngIf="producto.tienePromocion" class="precio-anterior">
+          {{ producto.precio_base | currency: 'CRC':'symbol':'1.0-0' }}
+        </span>
+        <span [ngClass]="{'precio-descuento': producto.tienePromocion}">
+          {{ producto.precioFinal | currency: 'CRC':'symbol':'1.0-0' }}
+        </span>
+      </p>
+      <p class="categoria">{{ producto.categoria.nombre }}</p>
+      <a [routerLink]="['/producto', producto.id]" class="enlace-detalle"
+        >Ver detalles</a
+      >
+    </div>
+  </div>
+</div>

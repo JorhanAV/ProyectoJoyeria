@@ -1,4 +1,4 @@
-import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
+import { NgModule, provideBrowserGlobalErrorListeners, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing-module';
@@ -42,6 +42,7 @@ import { ResenasModule } from './resenas/resenas-module';
     provideBrowserGlobalErrorListeners(),
     provideHttpClient(),
     //provideAnimations(),
+    { provide: LOCALE_ID, useValue: 'es' }, // Configura el idioma por defecto a español
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpErrorInterceptorService,

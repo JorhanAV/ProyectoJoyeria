@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './acerca-de.css'
 })
 export class AcercaDe {
-
+  today: number = Date.now();
 }
