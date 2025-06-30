@@ -1,1 +1,60 @@
-<p>pedido-index works!</p>
+  <div
+    class="volver-inicio"
+    (click)="volverInicio()"
+    tabindex="0"
+    role="button"
+    [attr.aria-label]="'Volver a inicio'"
+  >
+    <mat-icon>arrow_back</mat-icon>
+    <span>Inicio</span>
+  </div>
+
+<div class="pedido-wrapper">
+  <h2>Listado de Pedidos</h2>
+
+
+  <div
+    class="pedido-card"
+    *ngFor="let pedido of datos"
+    (click)="detalle(pedido.pedidoId)"
+    tabindex="0"
+    role="button"
+    [attr.aria-label]="'Ver detalle pedido '+pedido.pedidoId"
+    role="button"
+  >
+    <div class="pedido-info">
+      <div class="columna-id">
+        <strong>#{{ pedido.pedidoId }}</strong>
+      </div>
+
+      <div class="columna-datos">
+        <div>
+          <strong>Cliente: </strong> {{ pedido.usuario.nombre_usuario }}
+        </div>
+        <div>
+          <strong>Fecha: </strong>{{ pedido.fecha_pedido | date: 'shortDate' }}
+        </div>
+      </div>
+
+      <div class="columna-estado">
+        <mat-icon
+          class="estado-icono"
+          [ngClass]="getIconoEstadoClase(pedido.estado)"
+        >
+          {{ getIconoEstado(pedido.estado) }}
+        </mat-icon>
+        <div class="estado-texto">{{ pedido.estado.replace('_', ' ') }}</div>
+      </div>
+
+      <div class="columna-total">
+        <div><strong>Total:</strong></div>
+        <div>₡{{ pedido.total | number: '1.2-2' }}</div>
+      </div>
+    </div>
+
+    <!-- Flecha de detalle al lado derecho -->
+    <div class="detalle-flecha">
+      <mat-icon>arrow_forward</mat-icon>
+    </div>
+  </div>
+</div>

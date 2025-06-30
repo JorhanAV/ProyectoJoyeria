@@ -81,4 +81,8 @@ listPromos() {
   if (estado === 'Aplicado') return 'promo-card promo-aplicado';
   return 'promo-card promo-vigente';
 }
+volverInicio() {
+  this.router.navigate(['/']); // o a la ruta principal que uses
+}
+
 }
