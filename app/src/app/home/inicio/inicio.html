@@ -1,12 +1,17 @@
-<div class="contenedor">
+<div class="contenedor-inicio">
   <div class="infoDiv">
-    <h1>Joyería Brillos Eternos</h1>
-    <p>Diseño exclusivo y lujo en cada detalle. Nuestra joyería representa la sofisticación y la calidad, creando piezas únicas para cada cliente.</p>
+    <h1><span class="titulo-dorado">Brillos Eternos</span></h1>
+    <p class="descripcion">
+      Diseño exclusivo y lujo en cada detalle. Nuestra joyería representa la sofisticación y la calidad, creando piezas únicas para cada cliente.
+    </p>
   </div>
+
   <div class="galeria">
     <div class="imagen-item" *ngFor="let imagen of imagenes">
-      <img [src]="imagen.src" alt="{{imagen.alt}}">
-      
+      <img [src]="imagen.src" alt="{{ imagen.alt }}" />
+      <div class="overlay">
+        <span>{{ imagen.alt }}</span>
+      </div>
     </div>
   </div>
 </div>

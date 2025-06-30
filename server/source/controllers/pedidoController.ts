@@ -43,6 +43,15 @@ export class PedidoController {
               nombre_usuario: true,
             },
           },
+          transiciones: {
+            select: {
+              estado: true,
+              fecha_hora: true,
+            },
+            orderBy: {
+              fecha_hora: 'asc',
+            },
+          },
         },
         orderBy: {
           fecha_pedido: "desc",
@@ -96,6 +105,10 @@ export class PedidoController {
           };
         });
 
+        const ultimoEstado = ped.transiciones.length
+          ? ped.transiciones[ped.transiciones.length - 1].estado
+          : 'Pendiente';
+
         return { 
           pedidoId: ped.id,
           usuario: ped.usuario,
@@ -106,6 +119,7 @@ export class PedidoController {
           subtotal: ped.subtotal,
           impuestos: ped.impuestos,
           total: parseFloat(ped.total.toFixed(2)),
+          estado: ultimoEstado,
         };
       });
 
@@ -156,6 +170,15 @@ export class PedidoController {
           usuario: {
             select: {
               nombre_usuario: true,
+            },
+          },
+          transiciones: {
+            select: {
+              estado: true,
+              fecha_hora: true,
+            },
+            orderBy: {
+              fecha_hora: 'asc',
             },
           },
         },
@@ -212,6 +235,10 @@ export class PedidoController {
         };
       });
 
+      const ultimoEstado = pedido.transiciones.length
+        ? pedido.transiciones[pedido.transiciones.length - 1].estado
+        : 'Pendiente';
+
       const pedidoFormateado = {
         id: pedido.id,
         direccion_envio: pedido.direccion_envio,
@@ -222,6 +249,7 @@ export class PedidoController {
         subtotal: pedido.subtotal,
         impuestos: pedido.impuestos,
         total: parseFloat(pedido.total.toFixed(2)),
+        estado: ultimoEstado,
       };
 
       res.json(pedidoFormateado);

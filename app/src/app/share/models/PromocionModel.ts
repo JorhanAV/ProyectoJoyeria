@@ -14,4 +14,6 @@ export interface PromocionModel {
   producto: ProductoModel | null;
   categoria: CategoriaModel | null;
   historial: HistorialPromocionAplicadaModel[];
+  esPorProducto?: boolean;
+  esPorCategoria?: boolean;
 }

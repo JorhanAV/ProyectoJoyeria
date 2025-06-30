@@ -85,6 +85,15 @@ export class PromocionController {
       if (!promocion) {
         throw AppError.notFound("Promoción no encontrada");
       }
+      let nombreCategoria = null;
+
+      if (promocion.referencia_id_categoria) {
+        const categoria = await this.prisma.categoria.findUnique({
+          where: { id: promocion.referencia_id_categoria },
+          select: { nombre: true },
+        });
+        nombreCategoria = categoria?.nombre || null;
+      }
 
       const productos: any[] = [];
 
@@ -122,6 +131,11 @@ export class PromocionController {
             nombre: true,
             descripcion: true,
             precio_base: true,
+            imagenes: {
+              select: {
+                url: true,
+              },
+            },
           },
         });
 
@@ -135,6 +149,9 @@ export class PromocionController {
             valor_promocion: promocion.valor,
             precio_con_descuento,
             monto_descuento,
+            esPorProducto: true,
+            esPorCategoria: false,
+            nombre_categoria: null,
           });
         }
       }
@@ -147,11 +164,20 @@ export class PromocionController {
             nombre: true,
             descripcion: true,
             precio_base: true,
+            imagenes: {
+              select: {
+                url: true,
+              },
+            },
           },
         });
 
         for (const prod of productosCategoria) {
-          if (!productos.find((p) => p.id === prod.id)) {
+          const existente = productos.find((p) => p.id === prod.id);
+          if (existente) {
+            existente.esPorCategoria = true; // ya venía por producto, ahora también por categoría
+            existente.nombre_categoria = nombreCategoria;
+          } else {
             const { precio_con_descuento, monto_descuento } = calcularDescuento(
               prod.precio_base
             );
@@ -161,6 +187,9 @@ export class PromocionController {
               valor_promocion: promocion.valor,
               precio_con_descuento,
               monto_descuento,
+              esPorProducto: false,
+              esPorCategoria: true,
+              nombre_categoria: nombreCategoria,
             });
           }
         }
