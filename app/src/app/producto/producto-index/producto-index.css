@@ -46,6 +46,11 @@
   color: #a56f3f;
   font-weight: 500;
 }
+.enlace-detalle:hover,
+.enlace-detalle:focus {
+  text-decoration: underline;
+  color: #8a5b3f;
+}
 
 .tarjeta-producto img {
   transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
