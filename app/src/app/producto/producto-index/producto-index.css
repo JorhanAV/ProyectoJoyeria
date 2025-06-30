@@ -53,8 +53,9 @@
 }
 
 .tarjeta-producto img {
-  transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 
 .precio-anterior {
   text-decoration: line-through;
@@ -66,19 +67,40 @@
   color: #b8860b;
   font-weight: bold;
 }
-.volver-inicio {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: 0.95rem;
-  color: #6e4b1f;
-  background-color: #f2ebe0;
-  padding: 0.3rem 0.8rem;
-  border-radius: 20px;
-  margin-bottom: 1.5rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-weight: 500;
-  width: fit-content;
+.imagen-container {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
 }
+
+.imagen-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: opacity 0.8s ease-in-out;
+}
+
+.imagen-base {
+  opacity: 1;
+  z-index: 1;
+}
+
+.imagen-hover {
+  opacity: 0;
+  z-index: 2;
+}
+
+.tarjeta-producto:hover .imagen-hover {
+  opacity: 1;
+}
+
+.tarjeta-producto:hover .imagen-base {
+  opacity: 0;
+}
+
+
 
