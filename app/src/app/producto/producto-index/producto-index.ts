@@ -96,9 +96,6 @@ export class ProductoIndex {
   comprar(producto: ProductoModel) {
     this.noti.success('Compra', 'Producto comprado: ' + producto.nombre, 3000);
   }
-  volverInicio() {
-  this.router.navigate(['/']); // o a la ruta principal que uses
-}
 
   cambiarImagen(producto: any, hover: boolean) {
     producto.imagenActual = hover

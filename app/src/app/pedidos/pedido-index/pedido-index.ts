@@ -61,10 +61,6 @@ export class PedidoIndex {
         return '';
     }
   }
-  volverInicio() {
-  this.router.navigate(['/']); // o a la ruta principal que uses
-}
-
   detalle(id: Number) {
     this.router.navigate(['/pedido', id]);
   }

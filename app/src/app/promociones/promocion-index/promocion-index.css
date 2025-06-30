@@ -120,11 +120,3 @@ h2 {
   width: fit-content;
 }
 
-.volver-inicio:hover {
-  background-color: #d4af37;
-  color: white;
-}
-
-.volver-inicio mat-icon {
-  font-size: 20px;
-}
