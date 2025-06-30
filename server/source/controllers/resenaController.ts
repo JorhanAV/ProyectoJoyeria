@@ -15,6 +15,11 @@ export class ResenaController {
             omit:{
               contraseña:true
             }
+          },
+          producto:{
+            select:{
+              imagenes:true,
+            }
           }
           
         },
@@ -45,6 +50,7 @@ export class ResenaController {
             select:{
                 nombre:true,
                 descripcion:true,
+                imagenes:true,
             }
           }
         }

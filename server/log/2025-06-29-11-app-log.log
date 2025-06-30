@@ -1,0 +1,27 @@
+2025-06-29 11:00:42.991 error: 	jorha--Se produjo un error interno del servidor 
+Invalid `this.prisma.promocion.findMany()` invocation in
+D:\UTN\XI Cuatrimestre\Progra\ProyectoJoyeria\server\source\controllers\productoController.ts:29:62
+
+  26 });
+  27 
+  28 // 2. Obtener todas las promociones activas (del producto O de la categoría)
+→ 29 const promocionesActivas = await this.prisma.promocion.findMany(
+Value '' not found in enum 'TipoPromocion'
+2025-06-29 11:00:45.562 error: 	jorha--Se produjo un error interno del servidor 
+Invalid `this.prisma.promocion.findMany()` invocation in
+D:\UTN\XI Cuatrimestre\Progra\ProyectoJoyeria\server\source\controllers\productoController.ts:29:62
+
+  26 });
+  27 
+  28 // 2. Obtener todas las promociones activas (del producto O de la categoría)
+→ 29 const promocionesActivas = await this.prisma.promocion.findMany(
+Value '' not found in enum 'TipoPromocion'
+2025-06-29 11:01:01.270 error: 	jorha--Se produjo un error interno del servidor 
+Invalid `this.prisma.promocion.findMany()` invocation in
+D:\UTN\XI Cuatrimestre\Progra\ProyectoJoyeria\server\source\controllers\productoController.ts:29:62
+
+  26 });
+  27 
+  28 // 2. Obtener todas las promociones activas (del producto O de la categoría)
+→ 29 const promocionesActivas = await this.prisma.promocion.findMany(
+Value '' not found in enum 'TipoPromocion'

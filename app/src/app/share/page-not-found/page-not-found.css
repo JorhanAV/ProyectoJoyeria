@@ -1,0 +1,36 @@
+.notfound-container {
+  height: calc(100vh - 48px - 64px); /* ajusta según tus toolbars */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 1rem;
+  font-family: 'Segoe UI', sans-serif;
+  color: #333;
+}
+
+.notfound-container h1 {
+  font-size: 6rem;
+  margin: 0;
+  color: #c0a060;
+}
+
+.notfound-container p {
+  font-size: 1.25rem;
+  margin: 1rem 0 2rem;
+}
+
+.home-link {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: #c0a060;
+  color: white;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+.home-link:hover {
+  background-color: #a7894f;
+}

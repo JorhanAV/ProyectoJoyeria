@@ -31,3 +31,25 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .mat-mdc-snack-bar-container.warning .mat-mdc-button-base {
   color: black !important;
 }
+
+/* 1) Fondo blanco para el panel (MDC) */
+.cdk-overlay-container .mat-mdc-menu-panel {
+  background-color: #ffffff !important;
+}
+
+/* 2) Asegurar que el contenido interno también herede blanco */
+.cdk-overlay-container .mat-mdc-menu-panel .mat-mdc-menu-content {
+  background-color: #ffffff !important;
+}
+
+/* 3) Hover dorado suave en cada opción */
+.cdk-overlay-container .mat-mdc-menu-panel .mat-mdc-menu-item:hover {
+  background-color: rgba(192, 160, 96, 0.15) !important;
+  color: #333333 !important;
+}
+
+/* 4) (Opcional) Anular ripple si te molesta */
+.cdk-overlay-container .mat-mdc-menu-panel .mat-mdc-menu-item .mat-ripple-element {
+  background-color: transparent !important;
+}
+
