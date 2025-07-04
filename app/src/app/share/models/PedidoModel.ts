@@ -1,3 +1,4 @@
+import { EstadoPedidoModel } from "./EstadoPedidoModel";
 import { HistorialPromocionAplicadaModel } from "./HistorialPromocionAplicadaModel";
 import { MetodoPagoModel } from "./MetodoPagoModel";
 import { PedidoItemModel } from "./PedidoItemModel";
@@ -18,4 +19,5 @@ export interface PedidoModel {
   items: PedidoItemModel[];
   transiciones: TransicionEstadoPedidoModel[];
   promociones_aplicadas: HistorialPromocionAplicadaModel[];
+  estado: EstadoPedidoModel;
 }

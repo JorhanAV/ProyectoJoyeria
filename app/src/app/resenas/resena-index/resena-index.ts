@@ -33,4 +33,6 @@ export class ResenaIndex {
   detalle(id:Number){
     this.router.navigate(['/resena',id])
   }
+ 
+
 }

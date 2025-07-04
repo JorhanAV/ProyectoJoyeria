@@ -1,1 +1,57 @@
-<p>pedido-detail works!</p>
+
+<button class="back-button" (click)="goback()">← Volver</button>
+
+<div class="factura-contenedor" *ngIf="pedido">
+  <h2 class="factura-titulo">Detalle - Pedido #{{ pedido.id }}</h2>
+
+  <div class="factura-datos">
+    <div><strong>Cliente:</strong> {{ pedido.usuario.nombre_usuario }}</div>
+    <div><strong>Fecha:</strong> {{ pedido.fecha_pedido | date: 'longDate' }}</div>
+    <div><strong>Dirección de envío:</strong> {{ pedido.direccion_envio }}</div>
+    <div><strong>Método de Pago:</strong> {{ pedido.metodoPago }}</div>
+    <div><strong>Estado:</strong> {{ pedido.estado }}</div>
+  </div>
+
+  <table class="factura-tabla">
+    <thead>
+      <tr>
+        <th>Producto</th>
+        <th>Tipo</th>
+        <th>Detalles</th>
+        <th>Cantidad</th>
+        <th>Precio Unitario</th>
+        <th>Subtotal</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let prod of pedido.productos">
+        <td>{{ prod.nombre }}</td>
+        <td>
+          {{prod.tipo}}
+        </td>
+        <td>
+          <div *ngIf="prod.tipo === 'Producto personalizado'">
+            <div *ngFor="let c of prod.criterios">
+              <em>{{ c.criterio }}:</em> {{ c.seleccion }} (₡{{ c.precio_extra }})
+            </div>
+          </div>
+          <div *ngIf="prod.tipo === 'Producto estándar'">-</div>
+        </td>
+        <td>{{ prod.cantidad }}</td>
+        <td>
+          ₡
+          {{
+            prod.tipo === 'Producto personalizado'
+              ? prod.precio_base
+              : prod.precio_unitario
+          | number: '1.2-2' }}
+        </td>
+        <td>₡{{ prod.subtotal | number: '1.2-2' }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="factura-totales">
+    <div><strong>Subtotal:</strong> ₡{{ pedido.subtotal | number: '1.2-2' }}</div>
+    <div><strong>Impuestos:</strong> ₡{{ pedido.impuestos | number: '1.2-2' }}</div>
+    <div class="total-final"><strong>Total: ₡{{ pedido.total | number: '1.2-2' }}</strong>

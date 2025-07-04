@@ -1,52 +1,72 @@
-.contenedor {
-  display: solid;
-  flex-direction: column;
-  align-items: center;
+.contenedor-inicio {
+  background: linear-gradient(to bottom right, #fffaf000, #f7f1e100);
+  padding: 4rem 2rem;
   text-align: center;
-  max-width: 800px;
-  margin: auto;
-  padding: 40px;
+  min-height: 100vh;
+  font-family: 'Georgia', serif;
 }
 
 .infoDiv {
-  margin-bottom: 30px;
+  margin-bottom: 3rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  animation: fadeIn 1s ease-out;
+}
+
+.titulo-dorado {
+  font-size: 3rem;
+  color: #bfa134;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+.descripcion {
+  font-size: 1.1rem;
+  color: #4b3621;
+  margin-top: 1rem;
 }
 
 .galeria {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 2rem;
+  justify-items: center;
 }
 
 .imagen-item {
   position: relative;
-  width: 200px;
-  height: 200px;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 12px;
   overflow: hidden;
-  border-radius: 10px;
-  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease-in-out;
 }
 
 .imagen-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.4s ease;
 }
 
 .imagen-item:hover img {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 .overlay {
   position: absolute;
   bottom: 0;
   left: 0;
+  height: 5px;
   width: 100%;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(59, 54, 38, 0.8); /* dorado traslúcido */
   color: white;
-  padding: 10px;
+  padding: 0.8rem;
+  text-align: center;
+  font-weight: bold;
+  font-size: 0.80rem;
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
 }
@@ -55,14 +75,25 @@
   opacity: 1;
 }
 
-@media (max-width: 768px) {
-  
-  .contenedor {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  margin-top: 50%;
-  padding: 1rem;
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
+
+@media (max-width: 768px) {
+  .contenedor-inicio {
+    padding: 2rem 1rem;
+  }
+
+  .titulo-dorado {
+    font-size: 2.2rem;
+  }
+
+  .descripcion {
+    font-size: 1rem;
+  }
+
+  .galeria {
+    gap: 1rem;
+  }
 }
