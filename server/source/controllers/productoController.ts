@@ -13,33 +13,34 @@ export class ProductoController {
           categoria: {
             select: {
               nombre: true,
-              id: true
-            }
+              id: true,
+            },
           },
           imagenes: {
             select: {
-              url: true
-            }
+              url: true,
+            },
           },
           // No incluyas promociones aquí directamente, las manejaremos aparte
-        }
+        },
       });
 
       // 2. Obtener todas las promociones activas (del producto O de la categoría)
       const promocionesActivas = await this.prisma.promocion.findMany({
         where: {
           fecha_inicio: { lte: new Date() },
-          fecha_fin: { gte: new Date() }
-        }
+          fecha_fin: { gte: new Date() },
+        },
       });
 
       // 3. Mapear las promociones a los productos
-      const productosConPromociones = productos.map(producto => {
-        const promocionesAplicables = promocionesActivas.filter(promo => {
+      const productosConPromociones = productos.map((producto) => {
+        const promocionesAplicables = promocionesActivas.filter((promo) => {
           // Si la promoción es específica de un producto, que coincida con el ID del producto
           const isProductPromo = promo.referencia_id_producto === producto.id;
           // Si la promoción es específica de una categoría, que coincida con el ID de la categoría del producto
-          const isCategoryPromo = promo.referencia_id_categoria === producto.categoria.id;
+          const isCategoryPromo =
+            promo.referencia_id_categoria === producto.categoria.id;
 
           // Una promoción aplica si es una promoción de producto O una promoción de categoría
           return isProductPromo || isCategoryPromo;
@@ -52,15 +53,16 @@ export class ProductoController {
 
         return {
           ...producto,
-          promociones: promocionesAplicables.map(p => ({ // Selecciona solo los campos que necesitas para la respuesta necesaria
+          promociones: promocionesAplicables.map((p) => ({
+            // Selecciona solo los campos que necesitas para la respuesta necesaria
             nombre: p.nombre,
             tipo: p.tipo,
             valor: p.valor,
             fecha_inicio: p.fecha_inicio,
             fecha_fin: p.fecha_fin,
             referencia_id_producto: p.referencia_id_producto,
-            referencia_id_categoria: p.referencia_id_categoria
-          }))
+            referencia_id_categoria: p.referencia_id_categoria,
+          })),
         };
       });
 
@@ -70,53 +72,79 @@ export class ProductoController {
     }
   };
 
-  //Obtener por Id 
+  //Obtener por Id
   getById = async (
     request: Request,
     response: Response,
     next: NextFunction
   ) => {
     try {
-      let idProducto=parseInt(request.params.id)
-      const producto= await this.prisma.producto.findUnique({
-        where:{id: idProducto},
-        include:{
-          categoria:{
-            select:{
-              nombre:true
-            }
+      let idProducto = parseInt(request.params.id);
+      const producto = await this.prisma.producto.findUnique({
+        where: { id: idProducto },
+        include: {
+          categoria: {
+            select: {
+              nombre: true,
+            },
           },
-          etiquetas:{
-            select:{
-                etiqueta:true,
-            }
+          etiquetas: {
+            select: {
+              etiqueta: true,
+            },
           },
-          resenas:{
-            include:{
-              usuario:{
-                omit:{ contraseña:true},
-              }
-            }
+          resenas: {
+            include: {
+              usuario: {
+                omit: { contraseña: true },
+              },
+            },
           },
-          imagenes:{
-            select:{
-                url:true
-            }
-          }
-        }
-      })
-      response.json(producto)
-    } catch (error: any) {
+          imagenes: {
+            select: {
+              url: true,
+            },
+          },
+        },
+      });
+      const hoy = new Date();
+      const promocionesActivas = await this.prisma.promocion.findMany({
+        where: {
+          fecha_inicio: { lte: hoy },
+          fecha_fin: { gte: hoy },
+        },
+      });
 
-      next(error)
+      // 3. Filtrar promociones que aplican al producto o a su categoría
+      const promocionesAplicables = promocionesActivas.filter((promo) => {
+        const esPromoProducto = promo.referencia_id_producto === producto?.id;
+        const esPromoCategoria =
+          promo.referencia_id_categoria === producto?.categoria_id;
+        return esPromoProducto || esPromoCategoria;
+      });
+
+      // 4. Agregar las promociones al producto
+      const productoConPromociones = producto as any; // Usamos 'as any' para evitar problemas de tipos
+      productoConPromociones.promociones = promocionesAplicables.map((p) => ({
+        nombre: p.nombre,
+        tipo: p.tipo,
+        valor: p.valor,
+        fecha_inicio: p.fecha_inicio,
+        fecha_fin: p.fecha_fin,
+        referencia_id_producto: p.referencia_id_producto,
+        referencia_id_categoria: p.referencia_id_categoria,
+      }));
+
+      response.json(productoConPromociones);
+    } catch (error: any) {
+      next(error);
     }
   };
-  //Crear 
+  //Crear
   create = async (request: Request, response: Response, next: NextFunction) => {
     try {
-
     } catch (error) {
       next(error);
     }
   };
-}   
+}
