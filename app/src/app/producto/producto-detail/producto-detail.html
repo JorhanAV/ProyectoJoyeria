@@ -1,6 +1,5 @@
 <button class="btn-volver" (click)="goBack()">← Volver al listado</button>
 
-
 <div class="detalle-container" *ngIf="datos">
   <div class="detalle-header">
     <div class="imagen-principal">
@@ -19,22 +18,38 @@
       </div>
 
       <div class="precio-valoracion">
-        <p class="precio">{{ datos.precio_base | currency: 'CRC':'symbol':'1.0-0' }}</p>
+        <p class="precio">
+          <span *ngIf="tipoDescuento" class="precio-anterior">
+            {{ precioAnterior | currency:'₡':'symbol':'1.0-0' }}
+          </span>
+          <span [ngClass]="{'precio-descuento': tipoDescuento}">
+            {{ precioFinal | currency:'₡':'symbol':'1.0-0' }}
+          </span>
+        </p>
+
         <p class="valoracion">
           <ng-container *ngFor="let estrella of estrellas">
-            <span class="estrella" [ngClass]="{ activa: estrella <= promedioValoracion }">★</span>
+            <span
+              class="estrella"
+              [ngClass]="{ activa: estrella <= promedioValoracion }"
+              >★</span
+            >
           </ng-container>
-          <span class="valor-numerico">({{ promedioValoracion.toFixed(1) }})</span>
+          <span class="valor-numerico"
+            >({{ promedioValoracion.toFixed(1) }})</span
+          >
         </p>
       </div>
     </div>
   </div>
 
   <div class="miniaturas">
-    <img *ngFor="let img of datos.imagenes; let i = index"
-         [src]="'images/' + img.url"
-         (click)="cambiarImagen(img.url)"
-         [class.seleccionada]="img.url === imagenActiva" />
+    <img
+      *ngFor="let img of datos.imagenes; let i = index"
+      [src]="'images/' + img.url"
+      (click)="cambiarImagen(img.url)"
+      [class.seleccionada]="img.url === imagenActiva"
+    />
   </div>
 
   <div class="resenas">
@@ -46,7 +61,12 @@
       </div>
       <p class="comentario">“{{ r.comentario }}”</p>
       <div class="estrellas">
-        <span *ngFor="let i of [1,2,3,4,5]" class="estrella" [ngClass]="{ activa: i <= r.valoracion }">★</span>
+        <span
+          *ngFor="let i of [1,2,3,4,5]"
+          class="estrella"
+          [ngClass]="{ activa: i <= r.valoracion }"
+          >★</span
+        >
       </div>
     </div>
   </div>

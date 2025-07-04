@@ -122,3 +122,14 @@
 .btn-volver:hover {
   background-color: #8c643d;
 }
+
+.precio-anterior {
+  text-decoration: line-through;
+  color: #999;
+  margin-right: 10px;
+}
+
+.precio-descuento {
+  color: #a67c52;
+  font-weight: bold;
+}

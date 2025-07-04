@@ -1,0 +1,9 @@
+2025-07-01 09:53:18.227 error: 	jorha--Se produjo un error interno del servidor 
+Invalid `this.prisma.pedido.findMany()` invocation in
+D:\UTN\XI Cuatrimestre\Progra\ProyectoJoyeria\server\source\controllers\pedidoController.ts:9:48
+
+  6 
+  7 get: RequestHandler = async (req, res, next) => {
+  8   try {
+→ 9     const pedidos = await this.prisma.pedido.findMany(
+The column `joyeriaDB.PedidoItem.id_variante_producto` does not exist in the current database.
