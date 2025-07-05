@@ -1,0 +1,91 @@
+2025-07-05 13:54:28.697 error: 	jorha--Se produjo un error interno del servidor 
+Invalid `this.prisma.resena.create()` invocation in
+D:\UTN\XI Cuatrimestre\Progra\ProyectoJoyeria\server\source\controllers\resenaController.ts:69:52
+
+  66 try {
+  67   const body = request.body;
+  68 
+→ 69   const nuevaResena = await this.prisma.resena.create({
+         data: {
+           usuario_id: undefined,
+           producto_id: undefined,
+           comentario: "Me gustó mucho.",
+           valoracion: 4,
+           fecha: "2025-07-02 18:20:26.000",
+           visible: 1,
+       +   usuario: {
+       +     create: UsuarioCreateWithoutResenasInput | UsuarioUncheckedCreateWithoutResenasInput,
+       +     connectOrCreate: UsuarioCreateOrConnectWithoutResenasInput,
+       +     connect: UsuarioWhereUniqueInput
+       +   }
+         }
+       })
+
+Argument `usuario` is missing.
+2025-07-05 13:55:56.165 error: 	jorha--Se produjo un error interno del servidor 
+Invalid `this.prisma.resena.create()` invocation in
+D:\UTN\XI Cuatrimestre\Progra\ProyectoJoyeria\server\source\controllers\resenaController.ts:67:52
+
+  64 try {
+  65   const body = request.body;
+  66 
+→ 67   const nuevaResena = await this.prisma.resena.create({
+         data: {
+           visible: 1,
+                    ~
+           comentario: "Me gustó mucho.",
+           valoracion: 4,
+           fecha: new Date("2025-07-05T19:55:56.146Z"),
+           usuario: {
+             connect: {
+               id: undefined
+             }
+           },
+           producto: {
+             connect: {
+               id: undefined
+             }
+           }
+         }
+       })
+
+Argument `visible`: Invalid value provided. Expected Boolean, provided Int.
+2025-07-05 13:56:23.241 error: 	jorha--Se produjo un error interno del servidor 
+Invalid `this.prisma.resena.create()` invocation in
+D:\UTN\XI Cuatrimestre\Progra\ProyectoJoyeria\server\source\controllers\resenaController.ts:67:52
+
+  64 try {
+  65   const body = request.body;
+  66 
+→ 67   const nuevaResena = await this.prisma.resena.create({
+         data: {
+           visible: true,
+           comentario: "Me gustó mucho.",
+           valoracion: 4,
+           fecha: new Date("2025-07-05T19:56:23.235Z"),
+           usuario: {
+             connect: {
+               id: undefined,
+       ?       correo?: String,
+       ?       AND?: UsuarioWhereInput | UsuarioWhereInput[],
+       ?       OR?: UsuarioWhereInput[],
+       ?       NOT?: UsuarioWhereInput | UsuarioWhereInput[],
+       ?       nombre_usuario?: StringFilter | String,
+       ?       contraseña?: StringFilter | String,
+       ?       rol?: EnumRolFilter | Rol,
+       ?       ultimo_inicio_sesion?: DateTimeNullableFilter | DateTime | Null,
+       ?       resenas?: ResenaListRelationFilter,
+       ?       pedidos?: PedidoListRelationFilter,
+       ?       transiciones_estado?: TransicionEstadoPedidoListRelationFilter,
+       ?       reportes_resena?: ReporteResenaListRelationFilter
+             }
+           },
+           producto: {
+             connect: {
+               id: undefined
+             }
+           }
+         }
+       })
+
+Argument `connect` of type UsuarioWhereUniqueInput needs at least one of `id` or `correo` arguments. Available options are marked with ?.
