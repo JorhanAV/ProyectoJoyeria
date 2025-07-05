@@ -9,6 +9,8 @@ export class ProductoRoutes {
         //localhost:3000/producto/6
         router.get('/:id',controller.getById)  
         
+        //Crear
+        router.post('/',controller.create)
         return router 
     } 
 }

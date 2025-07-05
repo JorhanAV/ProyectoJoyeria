@@ -22914,14 +22914,14 @@ export namespace Prisma {
   }
 
   export type ImagenProductoCreateInput = {
-    url: string
+    url?: string
     producto: ProductoCreateNestedOneWithoutImagenesInput
   }
 
   export type ImagenProductoUncheckedCreateInput = {
     id?: number
     producto_id: number
-    url: string
+    url?: string
   }
 
   export type ImagenProductoUpdateInput = {
@@ -22938,7 +22938,7 @@ export namespace Prisma {
   export type ImagenProductoCreateManyInput = {
     id?: number
     producto_id: number
-    url: string
+    url?: string
   }
 
   export type ImagenProductoUpdateManyMutationInput = {
@@ -27202,12 +27202,12 @@ export namespace Prisma {
   }
 
   export type ImagenProductoCreateWithoutProductoInput = {
-    url: string
+    url?: string
   }
 
   export type ImagenProductoUncheckedCreateWithoutProductoInput = {
     id?: number
-    url: string
+    url?: string
   }
 
   export type ImagenProductoCreateOrConnectWithoutProductoInput = {
@@ -29783,7 +29783,7 @@ export namespace Prisma {
 
   export type ImagenProductoCreateManyProductoInput = {
     id?: number
-    url: string
+    url?: string
   }
 
   export type ProductoEtiquetaCreateManyProductoInput = {

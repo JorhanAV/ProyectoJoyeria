@@ -143,6 +143,35 @@ export class ProductoController {
   //Crear
   create = async (request: Request, response: Response, next: NextFunction) => {
     try {
+      const body = request.body;
+
+      const nuevoProducto = await this.prisma.producto.create({
+        data: {
+          nombre: body.nombre,
+          descripcion: body.descripcion,
+          precio_base: parseFloat(body.precio),
+          stock: parseInt(body.stock),
+          activo: body.activo,
+          categoria: {
+            connect: {
+              id: body.categoria_id,
+            },
+          },
+          etiquetas: {
+            create: body.etiquetas_ids.map((id: number) => ({
+              etiqueta: { connect: { id } },
+            })),
+          },
+          imagenes: {
+            create: (body.imagenes?.length
+              ? body.imagenes
+              : ["image-not-found.jpg"]
+            ).map((url: string) => ({ url })),
+          },
+        },
+      });
+
+      response.status(201).json(nuevoProducto);
     } catch (error) {
       next(error);
     }
