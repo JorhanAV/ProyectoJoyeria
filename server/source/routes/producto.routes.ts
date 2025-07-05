@@ -11,6 +11,10 @@ export class ProductoRoutes {
         
         //Crear
         router.post('/',controller.create)
+
+        //Actualizar
+        router.put('/:id',controller.update)
+
         return router 
     } 
 }
