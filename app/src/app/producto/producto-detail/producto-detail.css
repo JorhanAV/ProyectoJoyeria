@@ -133,3 +133,37 @@
   color: #a67c52;
   font-weight: bold;
 }
+
+.star {
+  font-size: 24px;
+  color: #ccc;
+  cursor: pointer;
+}
+.star.activa {
+  color: #a67c52;
+}
+
+.btn-resena {
+  background-color: #a67c52;
+  color: #fff;
+  border: none;
+  padding: 10px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(166, 124, 82, 0.3);
+  letter-spacing: 0.5px;
+}
+
+.btn-resena:hover {
+  background-color: #8c693f;
+  box-shadow: 0 4px 12px rgba(140, 105, 63, 0.4);
+  transform: translateY(-1px);
+}
+
+.btn-resena:active {
+  transform: scale(0.98);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}

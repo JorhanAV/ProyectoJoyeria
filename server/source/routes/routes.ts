@@ -5,6 +5,7 @@ import { PromocionRoutes } from "./promociones.routes";
 import { PedidoRoutes } from "./pedidos.routes";
 
 import { ProductoRoutes } from "./producto.routes";
+import { UsuarioRoutes } from "./usuario.routes";
 
 export class AppRoutes {
   static get routes(): Router {
@@ -26,6 +27,7 @@ export class AppRoutes {
     // localhost:3000/producto/
     router.use("/producto", ProductoRoutes.routes);
 
+    router.use("/usuario", UsuarioRoutes.routes); 
 
     return router;
   }
