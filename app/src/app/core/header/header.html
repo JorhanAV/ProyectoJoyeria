@@ -23,7 +23,6 @@
     <a routerLink="/acercade">Acerca de</a>
     <!-- <a routerLink="/contacto">Contacto</a> -->
 
-
     <mat-menu #moreMenu="matMenu" panelClass="white-menu-panel">
       <button mat-menu-item routerLink="/productos">
         <span>Productos</span>
@@ -39,27 +38,38 @@
       </button>
       <!-- agrega más <button mat-menu-item> según necesites -->
     </mat-menu>
-
   </nav>
 
   <!-- ICONOS DE USUARIO -->
   <div class="user-actions">
-    <button mat-icon-button matTooltip="Carrito">
+    <button
+      mat-icon-button
+      matTooltip="Carrito"
+      [matBadge]="qtyItems.toString()"
+      matBadgeSize="medium"
+    >
       <mat-icon>shopping_cart</mat-icon>
     </button>
+    @if (isAuth) {
+    <span class="user-email">{{user}}</span>
+    } @else {
     <span class="user-email">Email</span>
+    }
     <button mat-icon-button [matMenuTriggerFor]="menu3">
       <mat-icon>person</mat-icon>
     </button>
     <mat-menu #menu3="matMenu">
+      @if (!isAuth) {
       <button mat-menu-item>
         <mat-icon>login</mat-icon>
         <span>Login</span>
       </button>
+      } @else {
       <button mat-menu-item>
         <mat-icon>logout</mat-icon>
         <span>Logout</span>
       </button>
+      }
     </mat-menu>
   </div>
 </mat-toolbar>
