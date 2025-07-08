@@ -201,9 +201,111 @@ export class PromocionController {
     }
   };
 
+  search = async (request: Request, response: Response, next: NextFunction) => {
+    try {
+      //Obtener los valores del query string
+      const { termino } = request.query;
+
+      //const { categoria,etiquetas } =request.query;
+      if (typeof termino !== "string" || termino.trim() === "") {
+        next(AppError.badRequest("El término de búsqueda es requerido"));
+      }
+      const searchTerm: string = termino as string;
+      const objVideojuego = await this.prisma.promocion.findMany({
+        where: {
+          nombre: {
+            contains: searchTerm,
+          },
+        },
+        include: {
+          producto: {
+            select: {
+              nombre: true,
+              descripcion: true,
+            },
+          },
+          categoria: {
+            select: {
+              nombre: true,
+              descripcion: true,
+            },
+          },
+        },
+      });
+      //Dar respuesta
+      response.json(objVideojuego);
+    } catch (error) {
+      next(error);
+    }
+  };
   //Crear
   create = async (request: Request, response: Response, next: NextFunction) => {
     try {
+      //Obtener los datos json
+      const body = request.body;
+
+      const nuevaPromo = await this.prisma.promocion.create({
+        data: {
+          nombre: body.nombre,
+          tipo: body.tipo,
+          valor: body.valor,
+          fecha_inicio: body.fecha_inicio,
+          fecha_fin: body.fecha_fin,
+          referencia_id_categoria: body.idCategoria,
+          referencia_id_producto: body.idproducto,
+        },
+      });
+      response.status(201).json(nuevaPromo);
+    } catch (error) {
+      next(error);
+    }
+  };
+  //Actualizar
+  //Actualizar un videojuego
+  update = async (request: Request, response: Response, next: NextFunction) => {
+    try {
+      const body = request.body;
+      const idPromo = parseInt(request.params.id);
+
+      //Obtener videojuego anterior
+      const promoExistente = await this.prisma.promocion.findUnique({
+        where: { id: idPromo },
+        include: {
+          producto: {
+            select: {
+              nombre: true,
+              descripcion: true,
+            },
+          },
+          categoria: {
+            select: {
+              nombre: true,
+              descripcion: true,
+            },
+          },
+        },
+      });
+      if (!promoExistente) {
+        response.status(404).json({ message: "La promoción no existe" });
+        return;
+      }
+      //Actualizar
+      const updatePromo = await this.prisma.promocion.update({
+        where: {
+          id: idPromo,
+        },
+        data: {
+          nombre: body.nombre,
+          tipo: body.tipo,
+          valor: body.valor,
+          fecha_inicio: body.fecha_inicio,
+          fecha_fin: body.fecha_fin,
+          referencia_id_categoria: body.idCategoria,
+          referencia_id_producto: body.idproducto,
+        },
+      });
+
+      response.json(updatePromo);
     } catch (error) {
       next(error);
     }
