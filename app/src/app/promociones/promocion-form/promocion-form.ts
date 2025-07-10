@@ -7,9 +7,10 @@ import { PromocionService } from '../../share/services/promocion.service';
 @Component({
   selector: 'app-promocion-form',
   templateUrl: './promocion-form.html',
-  styleUrls: ['./promocion-form.css']
+  styleUrls: ['./promocion-form.css'],
+  standalone:false
 })
-export class PromocionFormComponent implements OnInit, OnDestroy {
+export class PromocionForm implements OnInit, OnDestroy {
   formPromocion!: FormGroup;
   private destroy$ = new Subject<void>();
 

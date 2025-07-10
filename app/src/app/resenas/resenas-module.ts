@@ -21,6 +21,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [ResenaIndex, ResenaDetail, ResenaAdmin],
@@ -43,6 +44,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatRadioModule,
     MatDividerModule,
     MatTooltipModule,
+    ReactiveFormsModule
   ],
 })
 export class ResenasModule {}
