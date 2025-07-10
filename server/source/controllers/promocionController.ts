@@ -240,74 +240,146 @@ export class PromocionController {
   };
   //Crear
   create = async (request: Request, response: Response, next: NextFunction) => {
-    try {
-      //Obtener los datos json
-      const body = request.body;
+  try {
+    const body = request.body;
 
-      const nuevaPromo = await this.prisma.promocion.create({
-        data: {
-          nombre: body.nombre,
-          tipo: body.tipo,
-          valor: body.valor,
-          fecha_inicio: body.fecha_inicio,
-          fecha_fin: body.fecha_fin,
-          referencia_id_categoria: body.idCategoria,
-          referencia_id_producto: body.idproducto,
-        },
-      });
-      response.status(201).json(nuevaPromo);
-    } catch (error) {
-      next(error);
+    // Convertir tipos
+    const valor = Number(body.valor);
+    const idCategoria = body.idCategoria ? Number(body.idCategoria) : null;
+    const idProducto = body.idproducto ? Number(body.idproducto) : null;
+
+    // Validar campos obligatorios
+    if (!body.nombre || !body.tipo || isNaN(valor) || !body.fecha_inicio || !body.fecha_fin) {
+      throw AppError.badRequest("Faltan campos obligatorios o hay datos inválidos.");
     }
-  };
+
+    // Validar que al menos uno de los dos esté presente
+    if (!idCategoria && !idProducto) {
+      throw AppError.badRequest("Debe asociar la promoción a un producto o a una categoría.");
+    }
+
+    // Validar existencia de categoría si se proporciona
+    if (idCategoria) {
+      const categoria = await this.prisma.categoria.findUnique({
+        where: { id: idCategoria }
+      });
+      if (!categoria) throw AppError.notFound("Categoría no encontrada.");
+    }
+
+    // Validar existencia de producto si se proporciona
+    if (idProducto) {
+      const producto = await this.prisma.producto.findUnique({
+        where: { id: idProducto }
+      });
+      if (!producto) throw AppError.notFound("Producto no encontrado.");
+    }
+
+    // Crear data de promoción
+    const dataPromo: any = {
+      nombre: body.nombre,
+      tipo: body.tipo,
+      valor: valor,
+      fecha_inicio: new Date(body.fecha_inicio),
+      fecha_fin: new Date(body.fecha_fin),
+    };
+
+    // Condicionalmente conectar categoría o producto
+    if (idCategoria) {
+      dataPromo.categoria = {
+        connect: { id: idCategoria }
+      };
+    }
+
+    if (idProducto) {
+      dataPromo.producto = {
+        connect: { id: idProducto }
+      };
+    }
+
+    // Crear promoción
+    const nuevaPromo = await this.prisma.promocion.create({
+      data: dataPromo
+    });
+
+    response.status(201).json(nuevaPromo);
+  } catch (error) {
+    console.error("Error en create:", error);
+    next(error);
+  }
+};
+
   //Actualizar
   //Actualizar un videojuego
   update = async (request: Request, response: Response, next: NextFunction) => {
-    try {
-      const body = request.body;
-      const idPromo = parseInt(request.params.id);
+  try {
+    const idPromo = parseInt(request.params.id);
+    const body = request.body;
 
-      //Obtener videojuego anterior
-      const promoExistente = await this.prisma.promocion.findUnique({
-        where: { id: idPromo },
-        include: {
-          producto: {
-            select: {
-              nombre: true,
-              descripcion: true,
-            },
-          },
-          categoria: {
-            select: {
-              nombre: true,
-              descripcion: true,
-            },
-          },
-        },
-      });
-      if (!promoExistente) {
-        response.status(404).json({ message: "La promoción no existe" });
-        return;
-      }
-      //Actualizar
-      const updatePromo = await this.prisma.promocion.update({
-        where: {
-          id: idPromo,
-        },
-        data: {
-          nombre: body.nombre,
-          tipo: body.tipo,
-          valor: body.valor,
-          fecha_inicio: body.fecha_inicio,
-          fecha_fin: body.fecha_fin,
-          referencia_id_categoria: body.idCategoria,
-          referencia_id_producto: body.idproducto,
-        },
-      });
+    // Convertir valores
+    const valor = Number(body.valor);
+    const idCategoria = body.idCategoria ? Number(body.idCategoria) : null;
+    const idProducto = body.idproducto ? Number(body.idproducto) : null;
 
-      response.json(updatePromo);
-    } catch (error) {
-      next(error);
+    // Validaciones iniciales
+    if (!body.nombre || !body.tipo || isNaN(valor) || !body.fecha_inicio || !body.fecha_fin) {
+      throw AppError.badRequest("Faltan campos obligatorios o hay datos inválidos.");
     }
-  };
+
+    if (!idCategoria && !idProducto) {
+      throw AppError.badRequest("Debe asociar la promoción a un producto o a una categoría.");
+    }
+
+    // Validar existencia de la promoción
+    const promoExistente = await this.prisma.promocion.findUnique({
+      where: { id: idPromo }
+    });
+
+    if (!promoExistente) {
+      throw AppError.notFound("La promoción no existe.");
+    }
+
+    // Validar existencia de la categoría si se proporciona
+    if (idCategoria) {
+      const categoria = await this.prisma.categoria.findUnique({
+        where: { id: idCategoria }
+      });
+      if (!categoria) {
+        throw AppError.notFound("Categoría no encontrada.");
+      }
+    }
+
+    // Validar existencia del producto si se proporciona
+    if (idProducto) {
+      const producto = await this.prisma.producto.findUnique({
+        where: { id: idProducto }
+      });
+      if (!producto) {
+        throw AppError.notFound("Producto no encontrado.");
+      }
+    }
+
+    // Preparar data para actualización
+    const dataPromo: any = {
+      nombre: body.nombre,
+      tipo: body.tipo,
+      valor: valor,
+      fecha_inicio: new Date(body.fecha_inicio),
+      fecha_fin: new Date(body.fecha_fin),
+      referencia_id_categoria: idCategoria,
+      referencia_id_producto: idProducto,
+    };
+
+    // Actualizar promoción
+    const updatePromo = await this.prisma.promocion.update({
+      where: { id: idPromo },
+      data: dataPromo,
+    });
+
+    response.json(updatePromo);
+  } catch (error) {
+    console.error("Error en update:", error);
+    next(error);
+  }
+};
+
 }
