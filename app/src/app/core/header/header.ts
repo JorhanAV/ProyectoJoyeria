@@ -4,13 +4,14 @@ import { Component } from '@angular/core';
   selector: 'app-header',
   standalone: false,
   templateUrl: './header.html',
-  styleUrl: './header.css'
+  styleUrl: './header.css',
 })
 export class Header {
-menuOpen = false;
-
-toggleMenu() {
-  this.menuOpen = !this.menuOpen;
-}
-
+  menuOpen = false;
+  qtyItems: Number = 4;
+  isAuth: boolean = true;
+  user: string = 'user@email.com';
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
+  }
 }

@@ -11,6 +11,10 @@ export class PromocionRoutes {
         router.get('/',controller.get) 
         //localhost:3000/promocion/6
         router.get('/:id',controller.getById)  
+        //Crear
+        router.post('/',controller.create)
+        //Actualizar
+        router.put('/:id',controller.update)
         return router 
     } 
 }
