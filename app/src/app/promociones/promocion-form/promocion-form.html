@@ -1,0 +1,60 @@
+<form [formGroup]="formPromocion" (ngSubmit)="submitPromocion()" novalidate>
+  <h2>Crear Promoción</h2>
+
+  <!-- Nombre -->
+  <div class="form-group">
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" formControlName="nombre" />
+    <small *ngIf="formPromocion.get('nombre')?.touched && formPromocion.get('nombre')?.invalid" class="error">
+      El nombre es obligatorio.
+    </small>
+  </div>
+
+  <!-- Tipo -->
+  <div class="form-group">
+    <label for="tipo">Tipo de promoción:</label>
+    <select id="tipo" formControlName="tipo">
+      <option value="">Seleccione tipo</option>
+      <option value="Porcentaje">Porcentaje</option>
+      <option value="CantidadFija">Cantidad fija</option>
+    </select>
+    <small *ngIf="formPromocion.get('tipo')?.touched && formPromocion.get('tipo')?.invalid" class="error">
+      Seleccione un tipo válido.
+    </small>
+  </div>
+
+  <!-- Valor -->
+  <div class="form-group">
+    <label for="valor">Valor:</label>
+    <input type="number" id="valor" formControlName="valor" />
+    <small *ngIf="formPromocion.get('valor')?.touched && formPromocion.get('valor')?.invalid" class="error">
+      Ingrese un valor válido.
+    </small>
+  </div>
+
+  <!-- Fechas -->
+  <div class="form-group">
+    <label for="fecha_inicio">Fecha de inicio:</label>
+    <input type="datetime-local" id="fecha_inicio" formControlName="fecha_inicio" />
+  </div>
+  <div class="form-group">
+    <label for="fecha_fin">Fecha de fin:</label>
+    <input type="datetime-local" id="fecha_fin" formControlName="fecha_fin" />
+  </div>
+
+  <!-- Categoría -->
+  <div class="form-group">
+    <label for="idCategoria">ID Categoría (opcional):</label>
+    <input type="number" id="idCategoria" formControlName="idCategoria" />
+  </div>
+
+  <!-- Producto -->
+  <div class="form-group">
+    <label for="idproducto">ID Producto (opcional):</label>
+    <input type="number" id="idproducto" formControlName="idproducto" />
+  </div>
+
+  <button type="submit" [disabled]="formPromocion.invalid">
+    Registrar Promoción
+  </button>
+</form>
