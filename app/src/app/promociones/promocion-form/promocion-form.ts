@@ -11,8 +11,9 @@ import { PromocionService } from '../../share/services/promocion.service';
   standalone:false
 })
 export class PromocionForm implements OnInit, OnDestroy {
-  formPromocion!: FormGroup;
+  
   private destroy$ = new Subject<void>();
+  formPromocion!: FormGroup;
 
   constructor(
     private fb: FormBuilder,

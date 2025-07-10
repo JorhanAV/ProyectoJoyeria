@@ -1,5 +1,5 @@
-<form [formGroup]="formPromocion" (ngSubmit)="submitPromocion()" novalidate>
-  <h2>Crear Promoción</h2>
+<form *ngIf="formPromocion" [formGroup]="formPromocion" (ngSubmit)="submitPromocion()" novalidate>
+<h2>Crear Promoción</h2>
 
   <!-- Nombre -->
   <div class="form-group">

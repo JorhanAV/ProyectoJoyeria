@@ -1,8 +1,10 @@
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { PromocionesRoutingModule } from './promociones-routing-module';
 import { PromocionIndex } from './promocion-index/promocion-index';
+import { PromocionDetail } from './promocion-detail/promocion-detail';
 import { PromocionAdmin } from './promocion-admin/promocion-admin';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatInputModule } from '@angular/material/input';
@@ -20,9 +22,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { PromocionDetail } from './promocion-detail/promocion-detail';
 import { ReactiveFormsModule } from '@angular/forms';
-
 
 @NgModule({
   declarations: [
@@ -31,6 +31,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     PromocionDetail
   ],
   imports: [
+    ReactiveFormsModule,
     CommonModule,
     PromocionesRoutingModule,
     MatMenuModule,
@@ -49,7 +50,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatRadioModule,
     MatDividerModule,
     MatTooltipModule,
-    ReactiveFormsModule
+    
   ]
 })
 export class PromocionesModule { }
