@@ -1,1 +1,70 @@
-<p>producto-admin works!</p>
+<div class="admin-container">
+  <h2>Gestión de Productos</h2>
+
+  <table class="tabla-productos">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Precio</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of datos">
+        <td>{{ p.nombre }}</td>
+        <td>{{ p.precio_base | currency: '₡':'symbol' }}</td>
+        <td>
+          <button class="btn-icon" (click)="editar(p.id)">✏️</button>
+          <button class="btn-icon" (click)="mostrarDetalle(p)">ℹ️</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="acciones-admin">
+    <button class="btn-agregar" (click)="crearProducto()">
+      Agregar Producto
+    </button>
+  </div>
+
+  <!-- Modal de detalle -->
+  <div class="modal-backdrop" *ngIf="productoActivo">
+    <div class="modal-detalle">
+      <h3>{{ productoActivo.nombre }}</h3>
+      <p>{{ productoActivo.descripcion }}</p>
+      <p><strong>Etiquetas:</strong></p>
+      <div class="etiquetas-modal">
+        <span *ngFor="let e of productoActivo.etiquetas" class="etiqueta-badge">
+          {{ e.etiqueta.nombre }}
+        </span>
+      </div>
+      <p><strong>Precio base:</strong> {{ productoActivo.precio_base | currency:'₡' }}</p>
+      <p><strong>Categoría:</strong> {{ productoActivo.categoria.nombre || 'Sin categoría' }}</p>
+      
+      <p><strong>Valoración promedio:</strong></p>
+      <div class="estrellas-modal">
+        <ng-container *ngFor="let estrella of [1, 2, 3, 4, 5]">
+          <span
+            class="estrella-modal"
+            [ngClass]="{ activa: estrella <= promedioValoracion }"
+            >★</span
+          >
+        </ng-container>
+        <span class="valor-numerico"
+          >({{ promedioValoracion.toFixed(1) }})</span
+        >
+      </div>
+      <p><strong>Imágenes:</strong></p>
+      <div class="galeria-modal">
+        <img
+          *ngFor="let img of productoActivo.imagenes"
+          [src]="'images/' + img.url"
+          alt="Imagen del producto"
+        />
+      </div>
+      
+
+      <button class="btn-cerrar" (click)="cerrarDetalle()">Cerrar</button>
+    </div>
+  </div>
+</div>

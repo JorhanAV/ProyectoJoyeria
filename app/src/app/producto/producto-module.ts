@@ -23,13 +23,15 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ResenaForm } from '../resenas/resena-form/resena-form';
+import { ProductoForm } from './producto-form/producto-form';
 
 @NgModule({
   declarations: [
     ProductoIndex,
     ProductoDetail,
     ProductoAdmin,
-    ResenaForm
+    ResenaForm,
+    ProductoForm
   ],
   imports: [
     CommonModule,
