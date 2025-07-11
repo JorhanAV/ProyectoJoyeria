@@ -1,1 +1,57 @@
-<p>producto-form works!</p>
+<div class="form-container">
+  <h2>{{ esEdicion ? 'Editar Producto' : 'Crear Producto' }}</h2>
+
+  <form [formGroup]="productoForm" > <!-- <form [formGroup]="productoForm" (ngSubmit)="guardarProducto()"> -->
+    
+    <!-- Nombre -->
+    <label>Nombre del producto</label>
+    <input type="text" formControlName="nombre" />
+
+    <!-- Descripción -->
+    <label>Descripción detallada</label>
+    <textarea formControlName="descripcion"></textarea>
+
+    <!-- Precio -->
+    <label>Precio</label>
+    <input type="number" formControlName="precio_base" />
+
+    <!-- Imágenes -->
+    <label>Imágenes del producto</label>
+    <input type="file" multiple (change)="onImagenesSeleccionadas($event)" />
+    <div class="preview-imagenes">
+      <img *ngFor="let img of imagenesPreview" [src]="img" />
+    </div>
+
+    <!-- Categoría -->
+    <label>Categoría</label>
+    <select formControlName="categoria_id">
+      <option *ngFor="let cat of categorias" [value]="cat.id">{{ cat.nombre }}</option>
+    </select>
+
+    <!-- Etiquetas -->
+    <label>Etiquetas</label>
+    <div class="checkbox-group">
+      <label *ngFor="let etiqueta of etiquetas">
+        <input
+          type="checkbox"
+          [value]="etiqueta.id"
+          (change)="toggleEtiqueta(etiqueta.id, $event)"
+          [checked]="etiquetasSeleccionadas.includes(etiqueta.id)"
+        />
+        {{ etiqueta.nombre }}
+      </label>
+    </div>
+
+    <!-- Promedio (solo lectura) -->
+    <label>Promedio de Valoraciones</label>
+    <div class="valoracion-display">
+      <ng-container *ngFor="let estrella of [1,2,3,4,5]">
+        <span class="estrella" [ngClass]="{ activa: estrella <= promedioValoracion }">★</span>
+      </ng-container>
+      <span class="valor-num">({{ promedioValoracion.toFixed(1) }})</span>
+    </div>
+
+    <!-- Botón de acción -->
+    <button type="submit">{{ esEdicion ? 'Actualizar' : 'Crear' }}</button>
+  </form>
+</div>

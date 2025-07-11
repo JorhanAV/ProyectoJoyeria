@@ -1,0 +1,83 @@
+.form-container {
+  max-width: 600px;
+  margin: auto;
+  padding: 24px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+label {
+  display: block;
+  margin-top: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+input[type="text"],
+input[type="number"],
+textarea,
+select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.preview-imagenes {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.preview-imagenes img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid #aaa;
+}
+
+.valoracion-display {
+  display: flex;
+  align-items: center;
+  margin-top: 6px;
+  gap: 4px;
+}
+
+.estrella {
+  color: #ccc;
+  font-size: 18px;
+}
+
+.estrella.activa {
+  color: #f4b400;
+}
+
+.valor-num {
+  margin-left: 6px;
+  font-size: 14px;
+  color: #666;
+}
+
+button[type="submit"] {
+  margin-top: 24px;
+  padding: 10px 20px;
+  background-color: #a67c52;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #8c693f;
+}
