@@ -23,15 +23,16 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ReactiveFormsModule } from '@angular/forms';
+import { PromocionForm } from './promocion-form/promocion-form';
 
 @NgModule({
   declarations: [
     PromocionIndex,
     PromocionAdmin,
-    PromocionDetail
+    PromocionDetail,
+    PromocionForm
   ],
   imports: [
-    ReactiveFormsModule,
     CommonModule,
     PromocionesRoutingModule,
     MatMenuModule,
@@ -50,7 +51,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatRadioModule,
     MatDividerModule,
     MatTooltipModule,
-    
+    ReactiveFormsModule
   ]
 })
 export class PromocionesModule { }

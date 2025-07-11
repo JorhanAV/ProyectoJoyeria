@@ -1,11 +1,19 @@
-<form *ngIf="formPromocion" [formGroup]="formPromocion" (ngSubmit)="submitPromocion()" novalidate>
-<h2>Crear Promoción</h2>
+<form
+  *ngIf="formPromocion"
+  [formGroup]="formPromocion"
+  (ngSubmit)="submitPromocion()"
+  novalidate
+>
+  <h2>Crear Promoción</h2>
 
   <!-- Nombre -->
   <div class="form-group">
     <label for="nombre">Nombre:</label>
     <input type="text" id="nombre" formControlName="nombre" />
-    <small *ngIf="formPromocion.get('nombre')?.touched && formPromocion.get('nombre')?.invalid" class="error">
+    <small
+      *ngIf="formPromocion.get('nombre')?.touched && formPromocion.get('nombre')?.invalid"
+      class="error"
+    >
       El nombre es obligatorio.
     </small>
   </div>
@@ -18,7 +26,10 @@
       <option value="Porcentaje">Porcentaje</option>
       <option value="CantidadFija">Cantidad fija</option>
     </select>
-    <small *ngIf="formPromocion.get('tipo')?.touched && formPromocion.get('tipo')?.invalid" class="error">
+    <small
+      *ngIf="formPromocion.get('tipo')?.touched && formPromocion.get('tipo')?.invalid"
+      class="error"
+    >
       Seleccione un tipo válido.
     </small>
   </div>
@@ -27,7 +38,10 @@
   <div class="form-group">
     <label for="valor">Valor:</label>
     <input type="number" id="valor" formControlName="valor" />
-    <small *ngIf="formPromocion.get('valor')?.touched && formPromocion.get('valor')?.invalid" class="error">
+    <small
+      *ngIf="formPromocion.get('valor')?.touched && formPromocion.get('valor')?.invalid"
+      class="error"
+    >
       Ingrese un valor válido.
     </small>
   </div>
@@ -35,7 +49,11 @@
   <!-- Fechas -->
   <div class="form-group">
     <label for="fecha_inicio">Fecha de inicio:</label>
-    <input type="datetime-local" id="fecha_inicio" formControlName="fecha_inicio" />
+    <input
+      type="datetime-local"
+      id="fecha_inicio"
+      formControlName="fecha_inicio"
+    />
   </div>
   <div class="form-group">
     <label for="fecha_fin">Fecha de fin:</label>
