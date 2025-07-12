@@ -56,35 +56,33 @@ export class ProductoAdmin {
   }
 
   verDetalle(id: number) {
-    this.router.navigate(['/productos/detalle-admin', id]); // 🧭 Ruta de vista detalle para admins
+    this.router.navigate(['/productos/detalle-admin', id]);
   }
 
   editar(id: number) {
-    this.router.navigate(['/producto/update', id]); // 📝 Reutilizar el formulario con ID
+    this.router.navigate(['/producto/update', id]);
   }
 
   crearProducto() {
-    this.router.navigate(['/producto/create']); // 🆕 Formulario sin ID para creación
+    this.router.navigate(['/producto/create']);
   }
 
   productoActivo: ProductoModel | null = null;
 
-  /*  mostrarDetalle(producto: ProductoModel) {
-   
-    this.productoActivo = this.obtenerProducto(producto.id);
-    console.log('Producto activo:', this.productoActivo);
-  } */
- mostrarDetalle(producto: ProductoModel) {
-  this.prodService.getById(producto.id).subscribe((res: ProductoModel) => {
-    this.productoActivo = res;
-    console.log('Producto activo cargado:', res);
+  mostrarDetalle(producto: ProductoModel) {
+    this.prodService.getById(producto.id).subscribe((res: ProductoModel) => {
+      this.productoActivo = res;
+      console.log('Producto activo cargado:', res);
 
-    const resenas = res.resenas?.filter((r: ResenaModel) => r.visible !== false) || [];
-    const total = resenas.reduce((acc: number, r: ResenaModel) => acc + r.valoracion, 0);
-    this.promedioValoracion = resenas.length ? total / resenas.length : 0;
-  });
-}
-
+      const resenas =
+        res.resenas?.filter((r: ResenaModel) => r.visible !== false) || [];
+      const total = resenas.reduce(
+        (acc: number, r: ResenaModel) => acc + r.valoracion,
+        0
+      );
+      this.promedioValoracion = resenas.length ? total / resenas.length : 0;
+    });
+  }
 
   cerrarDetalle() {
     this.productoActivo = null;
