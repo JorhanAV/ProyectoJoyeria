@@ -5,4 +5,6 @@ export const environment = {
   endPointPedido: 'pedido',
   endPointPromocion: 'promocion',
   endPointUsuario: 'usuario',
+  endPointEtiqueta: 'etiqueta',
+  endPointCategoria: 'categoria',
 };
