@@ -1,17 +1,15 @@
 import { Request, Response, NextFunction } from "express";
-import { AppError } from "../errors/custom.error";
 import { PrismaClient } from "../../generated/prisma";
 
-export class UsuarioController {
+export class EtiquetaController {
   prisma = new PrismaClient();
 
   get = async (request: Request, response: Response, next: NextFunction) => {
     try {
-      //Obtener todas las resenas incluyendo el usuario, 
-      const usuario = await this.prisma.usuario.findMany({
-        
-      });
-      response.json(usuario);
+      //Obtener todas las etiquetas incluyendo el usuario, ordenadas por fecha
+      // de forma descendiente, omitiendo el password del usuario
+      const etiquetas = await this.prisma.etiqueta.findMany({});
+      response.json(etiquetas);
     } catch (error) {
       next(error);
     }
@@ -23,18 +21,15 @@ export class UsuarioController {
     next: NextFunction
   ) => {
     try {
-      let idUsuario = parseInt(request.params.id);
-      const usuario = await this.prisma.usuario.findUnique({
-        where: { id: idUsuario },
+      let idEtiqueta = parseInt(request.params.id);
+      const etiqueta = await this.prisma.etiqueta.findUnique({
+        where: { id: idEtiqueta },
         select: {
           id: true,
-          nombre_usuario: true,
-          correo: true,
-          contraseña: false, // No devolver la contraseña
-          rol: true,
+          nombre: true
         },
       });
-      response.json(usuario);
+      response.json(etiqueta);
     } catch (error: any) {
       next(error);
     }
@@ -42,9 +37,6 @@ export class UsuarioController {
   //Crear
   create = async (request: Request, response: Response, next: NextFunction) => {
     try {
-      
-
-      
     } catch (error) {
       next(error);
     }
