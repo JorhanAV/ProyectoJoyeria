@@ -115,7 +115,7 @@ export class ProductoForm {
         );
 
         // Imágenes (solo preview si vienen URLs)
-        this.imagenesPreview = producto.imagenes.map((i) => 'images/' + i.url);
+        this.imagenesPreview = producto.imagenes.map((i) => 'http://localhost:3000/imagenes/' + i.url);
 
         // Promedio valoración
         const visibles =

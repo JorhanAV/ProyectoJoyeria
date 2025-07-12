@@ -3,7 +3,7 @@
 <div class="detalle-container" *ngIf="datos">
   <div class="detalle-header">
     <div class="imagen-principal">
-      <img [src]="'images/' + imagenActiva" alt="Imagen de producto" />
+      <img [src]="'http://localhost:3000/imagenes/' + imagenActiva" alt="Imagen de producto" />
     </div>
 
     <div class="informacion">
@@ -46,7 +46,7 @@
   <div class="miniaturas">
     <img
       *ngFor="let img of datos.imagenes; let i = index"
-      [src]="'images/' + img.url"
+      [src]="'http://localhost:3000/imagenes/' + img.url"
       (click)="cambiarImagen(img.url)"
       [class.seleccionada]="img.url === imagenActiva"
     />
