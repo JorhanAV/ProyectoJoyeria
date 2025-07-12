@@ -8,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CategoriaService } from '../../share/services/categoria.service';
 import { EtiquetaService } from '../../share/services/etiqueta.service';
 import { NotificationService } from '../../share/notification-service';
+import { FileUploadService } from '../../share/services/images.service';
 
 @Component({
   selector: 'app-producto-form',
@@ -29,11 +30,17 @@ export class ProductoForm {
 
   promedioValoracion: number = 0;
 
+  currentFile?: File;
+  preview: string = '';
+  nameImage: string = 'image-not-found.jpg';
+  previousImage: string | null = null;
+
   constructor(
     private fb: FormBuilder,
     private prodService: ProductoService,
     private catService: CategoriaService,
     private etiqService: EtiquetaService,
+    private fileUploadService: FileUploadService,
     private route: ActivatedRoute,
     private router: Router,
     private noti: NotificationService
@@ -60,6 +67,7 @@ export class ProductoForm {
       categoria_id: [null, Validators.required],
       stock: [0, [Validators.required, Validators.min(0)]],
       activo: [true],
+      imagenes: [[]]
     });
   }
 
@@ -115,7 +123,9 @@ export class ProductoForm {
         );
 
         // Imágenes (solo preview si vienen URLs)
-        this.imagenesPreview = producto.imagenes.map((i) => 'http://localhost:3000/imagenes/' + i.url);
+        this.imagenesPreview = producto.imagenes.map(
+          (i) => 'http://localhost:3000/imagenes/' + i.url
+        );
 
         // Promedio valoración
         const visibles =
@@ -123,6 +133,74 @@ export class ProductoForm {
         const total = visibles.reduce((acc, r) => acc + r.valoracion, 0);
         this.promedioValoracion = visibles.length ? total / visibles.length : 0;
       });
+  }
+
+  selectedFiles: File[] = [];
+  previews: string[] = [];
+  nameImages: string[] = [];
+
+  selectFiles(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    console.log(input.files);
+    if (input.files && input.files.length > 0) {
+      this.selectedFiles = Array.from(input.files);
+      this.nameImages = this.selectedFiles.map((file) => file.name);
+
+      this.previews = [];
+      this.selectedFiles.forEach((file) => {
+        const reader = new FileReader();
+        reader.onload = (e: ProgressEvent<FileReader>) => {
+          if (e.target?.result) {
+            this.previews.push(e.target.result as string);
+          }
+        };
+        reader.readAsDataURL(file);
+      });
+    } else {
+      this.selectedFiles = [];
+      this.nameImages = [];
+      this.previews = [];
+    }
+  }
+
+  submitProducto(): void {
+    this.productoForm.markAllAsTouched();
+    if (this.productoForm.invalid) {
+      this.noti.error(
+        'Formulario Inválido',
+        'Por favor, revise los campos marcados en rojo.',
+        5000
+      );
+      return;
+    }
+
+    if (this.selectedFiles.length > 0) {
+      this.fileUploadService.upload(this.selectedFiles).subscribe({
+        next: (fileNames: string[]) => {
+          this.noti.info(
+            'Mantenimiento Producto',
+            'Imágenes subidas correctamente.',
+            4000
+          );
+
+          this.productoForm.patchValue({
+            imagenes: fileNames, // 👈 campo modificado
+          });
+
+          this.guardarProducto(); // ⬅️ proceder con la creación/actualización
+        },
+        error: (err) => {
+          console.error('Error al subir imágenes:', err);
+          this.noti.error('Error', 'Falló la subida de imágenes');
+        },
+      });
+    } else {
+      this.noti.warning(
+        'Sin imágenes',
+        'Seleccione al menos una imagen.',
+        3000
+      );
+    }
   }
 
   guardarProducto() {

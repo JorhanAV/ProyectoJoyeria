@@ -1,7 +1,7 @@
 <div class="form-container">
   <h2>{{ esEdicion ? 'Editar Producto' : 'Crear Producto' }}</h2>
 
-  <form [formGroup]="productoForm" (ngSubmit)="guardarProducto()">
+  <form [formGroup]="productoForm" (ngSubmit)="submitProducto()">
     <!-- Nombre -->
     <label>Nombre del producto</label>
     <input type="text" formControlName="nombre" />
@@ -16,7 +16,7 @@
 
     <!-- Imágenes -->
     <label>Imágenes del producto</label>
-    <input type="file" multiple (change)="onImagenesSeleccionadas($event)" />
+    <input type="file" multiple (change)="selectFiles($event)" #fileUpload />
     <div class="preview-imagenes">
       <img *ngFor="let img of imagenesPreview" [src]="img" />
     </div>

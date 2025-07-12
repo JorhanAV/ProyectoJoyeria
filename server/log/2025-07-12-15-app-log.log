@@ -1,0 +1,51 @@
+2025-07-12 15:08:06.960 error: 	jorha--Se produjo un error interno del servidor 
+Invalid `this.prisma.producto.create()` invocation in
+D:\UTN\XI Cuatrimestre\Progra\ProyectoJoyeria\server\source\controllers\productoController.ts:148:56
+
+  145 try {
+  146   const body = request.body;
+  147 
+→ 148   const nuevoProducto = await this.prisma.producto.create({
+          data: {
+            nombre: "Collar Ajustable Oro Premium",
+            descripcion: "Collar de plata 925 con diseño ajustable y broche magnético.",
+            stock: 8,
+            activo: true,
+            categoria: {
+              connect: {
+                id: 3
+              }
+            },
+            etiquetas: {
+              create: [
+                {
+                  etiqueta: {
+                    connect: {
+                      id: 1
+                    }
+                  }
+                },
+                {
+                  etiqueta: {
+                    connect: {
+                      id: 3
+                    }
+                  }
+                }
+              ]
+            },
+            imagenes: {
+              create: [
+                {
+                  url: "test1"
+                },
+                {
+                  url: "test2"
+                }
+              ]
+            },
+        +   precio_base: Float
+          }
+        })
+
+Argument `precio_base` is missing.

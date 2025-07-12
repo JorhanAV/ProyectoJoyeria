@@ -58,7 +58,7 @@
       <div class="galeria-modal">
         <img
           *ngFor="let img of productoActivo.imagenes"
-          [src]="'images/' + img.url"
+          [src]="'http://localhost:3000/imagenes/' + img.url"
           alt="Imagen del producto"
         />
       </div>
