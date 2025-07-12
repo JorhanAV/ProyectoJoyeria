@@ -12,7 +12,7 @@
       <img
         *ngIf="resena.producto?.imagenes?.length"
         class="resena-img"
-        [src]="'/images/' + resena.producto.imagenes[0].url"
+        [src]="'http://localhost:3000/imagenes/' + resena.producto.imagenes[0].url"
         [alt]="resena.producto.nombre || 'Imagen del producto'"
       />
       <div class="resena-footer">
