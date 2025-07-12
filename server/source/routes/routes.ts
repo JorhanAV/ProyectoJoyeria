@@ -8,6 +8,7 @@ import { ProductoRoutes } from "./producto.routes";
 import { UsuarioRoutes } from "./usuario.routes";
 import { EtiquetaRoutes } from "./etiqueta.routes";
 import { CategoriaRoutes } from "./categoria.routes";
+import { ImageRoutes } from "./images.routes";
 
 export class AppRoutes {
   static get routes(): Router {
@@ -35,6 +36,10 @@ export class AppRoutes {
 
     // localhost:3000/categoria/
     router.use("/categoria", CategoriaRoutes.routes);
+
+    //localhost:3000/file/
+    router.use("/file/", ImageRoutes.routes);
+
     return router;
   }
 }
