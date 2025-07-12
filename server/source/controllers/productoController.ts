@@ -149,7 +149,7 @@ export class ProductoController {
         data: {
           nombre: body.nombre,
           descripcion: body.descripcion,
-          precio_base: parseFloat(body.precio),
+          precio_base: parseFloat(body.precio_base),
           stock: parseInt(body.stock),
           activo: body.activo,
           categoria: {
@@ -196,7 +196,7 @@ export class ProductoController {
         data: {
           nombre: body.nombre,
           descripcion: body.descripcion,
-          precio_base: parseFloat(body.precio),
+          precio_base: parseFloat(body.precio_base),
           stock: parseInt(body.stock),
           activo: body.activo,
           categoria: {
