@@ -4,5 +4,6 @@ export const environment = {
     endPointResena: 'resena',
     endPointPedido: 'pedido',
     endPointPromocion: 'promocion',
+    endPointCategoria: 'categoria',
 
 };

@@ -1,78 +1,84 @@
 <form
-  *ngIf="formPromocion"
   [formGroup]="formPromocion"
   (ngSubmit)="submitPromocion()"
+  class="admin-form"
   novalidate
 >
-  <h2>Crear Promoción</h2>
+  <h2>{{ titleForm }} Promoción</h2>
 
   <!-- Nombre -->
-  <div class="form-group">
-    <label for="nombre">Nombre:</label>
-    <input type="text" id="nombre" formControlName="nombre" />
-    <small
-      *ngIf="formPromocion.get('nombre')?.touched && formPromocion.get('nombre')?.invalid"
-      class="error"
-    >
+  <div>
+    <label for="nombre">Nombre de la promoción</label>
+    <input id="nombre" type="text" formControlName="nombre" />
+    <div *ngIf="formPromocion.get('nombre')?.touched && formPromocion.get('nombre')?.invalid" class="error">
       El nombre es obligatorio.
-    </small>
+    </div>
   </div>
 
-  <!-- Tipo -->
-  <div class="form-group">
-    <label for="tipo">Tipo de promoción:</label>
-    <select id="tipo" formControlName="tipo">
-      <option value="">Seleccione tipo</option>
-      <option value="Porcentaje">Porcentaje</option>
-      <option value="CantidadFija">Cantidad fija</option>
+  <!-- Tipo de descuento -->
+  <div>
+    <label for="tipoDescuento">Tipo de Descuento</label>
+    <select id="tipoDescuento" formControlName="tipoDescuento" (change)="tipoDescuento = formPromocion.value.tipoDescuento">
+      <option value="Porcentaje">Porcentaje (%)</option>
+      <option value="CantidadFija">Cantidad fija (₡)</option>
     </select>
-    <small
-      *ngIf="formPromocion.get('tipo')?.touched && formPromocion.get('tipo')?.invalid"
-      class="error"
-    >
-      Seleccione un tipo válido.
-    </small>
   </div>
 
-  <!-- Valor -->
-  <div class="form-group">
-    <label for="valor">Valor:</label>
-    <input type="number" id="valor" formControlName="valor" />
-    <small
-      *ngIf="formPromocion.get('valor')?.touched && formPromocion.get('valor')?.invalid"
-      class="error"
-    >
-      Ingrese un valor válido.
-    </small>
+  <!-- Valor con ícono -->
+  <div>
+    <label for="valor">Valor del descuento</label>
+    <div class="input-group">
+      <span *ngIf="tipoDescuento === 'Porcentaje'">%</span>
+      <span *ngIf="tipoDescuento === 'CantidadFija'">₡</span>
+      <input type="number" id="valor" formControlName="valor" />
+    </div>
+    <div *ngIf="formPromocion.get('valor')?.touched && formPromocion.get('valor')?.invalid" class="error">
+      Ingresá un valor válido mayor a 0.
+    </div>
+  </div>
+
+  <!-- Aplica a: Categoría o Producto -->
+  <div>
+    <label for="aplicaA">Aplicar a:</label>
+    <select id="aplicaA" formControlName="aplicaA" (change)="aplicaA = formPromocion.value.aplicaA">
+      <option value="" disabled selected>Seleccione una opción</option>
+      <option value="categoria">Categoría</option>
+      <option value="producto">Producto</option>
+    </select>
+  </div>
+
+  <!-- Lista de Categorías -->
+  <div *ngIf="aplicaA === 'categoria'">
+    <label for="idCategoria">Categoría:</label>
+    <select id="idCategoria" formControlName="idCategoria">
+      <option value="" disabled selected>Seleccione categoría</option>
+      <option *ngFor="let cat of categorias" [value]="cat.id">{{ cat.nombre }}</option>
+    </select>
+  </div>
+
+  <!-- Lista de Productos -->
+  <div *ngIf="aplicaA === 'producto'">
+    <label for="idproducto">Producto:</label>
+    <select id="idproducto" formControlName="idproducto">
+      <option value="" disabled selected>Seleccione producto</option>
+      <option *ngFor="let prod of productos" [value]="prod.id">{{ prod.nombre }}</option>
+    </select>
   </div>
 
   <!-- Fechas -->
-  <div class="form-group">
-    <label for="fecha_inicio">Fecha de inicio:</label>
-    <input
-      type="datetime-local"
-      id="fecha_inicio"
-      formControlName="fecha_inicio"
-    />
-  </div>
-  <div class="form-group">
-    <label for="fecha_fin">Fecha de fin:</label>
-    <input type="datetime-local" id="fecha_fin" formControlName="fecha_fin" />
+  <div class="form-row">
+    <div>
+      <label for="fecha_inicio">Fecha de Inicio</label>
+      <input id="fecha_inicio" type="datetime-local" formControlName="fecha_inicio" />
+    </div>
+    <div>
+      <label for="fecha_fin">Fecha de Fin</label>
+      <input id="fecha_fin" type="datetime-local" formControlName="fecha_fin" />
+    </div>
   </div>
 
-  <!-- Categoría -->
-  <div class="form-group">
-    <label for="idCategoria">ID Categoría (opcional):</label>
-    <input type="number" id="idCategoria" formControlName="idCategoria" />
-  </div>
-
-  <!-- Producto -->
-  <div class="form-group">
-    <label for="idproducto">ID Producto (opcional):</label>
-    <input type="number" id="idproducto" formControlName="idproducto" />
-  </div>
-
+  <!-- Botón -->
   <button type="submit" [disabled]="formPromocion.invalid">
-    Registrar Promoción
+    {{ isCreate ? 'Crear' : 'Actualizar' }} Promoción
   </button>
 </form>
