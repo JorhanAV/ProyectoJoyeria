@@ -3,6 +3,7 @@ import multer, { StorageEngine } from 'multer';
 import util from 'util';
 import path from "path";
 import fs from 'fs'; 
+import { Prisma } from '../../generated/prisma';
 
 // Definición del tamaño máximo del archivo en bytes
 const maxSize: number = 2 * 1024 * 1024;
@@ -28,9 +29,12 @@ const storage: StorageEngine = multer.diskStorage({
         }
       });
     }
+    
+    const timestamp = Date.now();
+    const random = Math.round(Math.random() * 1e6);
 
     // Generar el nombre del nuevo archivo
-    cb(null,'producto_' + Date.now() 
+    cb(null,'producto_' + timestamp + '-' + random
           + path.extname(file.originalname))
   },
 });

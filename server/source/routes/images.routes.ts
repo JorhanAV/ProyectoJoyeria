@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import { ImageController } from '../controllers/imageController'
+import uploadFiles from '../middleware/ImageConfig';
 
 
 export class ImageRoutes {
@@ -8,6 +9,7 @@ export class ImageRoutes {
         const controller=new ImageController()
         
         router.post("/upload", controller.upload);
+        router.patch('/update/:id', controller.updateFile);
         router.get("/files", controller.getListFiles);
         router.get("/files/:name", controller.download);
         return router
