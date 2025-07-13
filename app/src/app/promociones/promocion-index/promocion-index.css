@@ -84,7 +84,6 @@ h2 {
 }
 .promo-aplicado {
   opacity: 0.5;
-  pointer-events: none;
   border: 2px solid #ccc;
 }
 
