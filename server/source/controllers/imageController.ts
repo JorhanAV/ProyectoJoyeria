@@ -108,7 +108,7 @@ export class ImageController {
         }
 
         console.log(archivosSubidos);
-        // 📥 2. Guardar nuevas imágenes en la BD
+        //  Guardar nuevas imágenes en la BD
         if (archivosSubidos.length > 0) {
           const nuevas = archivosSubidos.map((file) => ({
             url: file.filename,
@@ -118,7 +118,7 @@ export class ImageController {
           await this.prisma.imagenProducto.createMany({ data: nuevas });
         }
 
-        // 📦 3. Recuperar estado final
+        // Recuperar estado final
         const imagenesFinales = await this.prisma.imagenProducto.findMany({
           where: { producto_id: productoId },
         });

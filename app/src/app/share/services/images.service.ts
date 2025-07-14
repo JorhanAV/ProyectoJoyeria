@@ -29,4 +29,11 @@ export class FileUploadService {
   getFiles(): Observable<any> {
     return this.http.get(`${this.baseUrl}file/files`);
   }
+
+  updateImagenes(productoId: number, formData: FormData): Observable<any> {
+    return this.http.patch(
+      `${this.baseUrl}/file/update/${productoId}`,
+      formData
+    );
+  }
 }

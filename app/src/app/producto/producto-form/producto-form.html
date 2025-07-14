@@ -14,11 +14,32 @@
     <label>Precio</label>
     <input type="number" formControlName="precio_base" />
 
-    <!-- Imágenes -->
+    <!-- Imágenes del producto -->
     <label>Imágenes del producto</label>
+
+    <!-- Imágenes existentes (solo en edición) -->
+    <div class="galeria-actual" *ngIf="esEdicion && imagenesActuales.length">
+      <div class="img-card" *ngFor="let img of imagenesActuales">
+        <img
+          [src]="'http://localhost:3000/imagenes/' + img"
+          alt="img existente"
+        />
+        <button
+          type="button"
+          class="btn-eliminar"
+          (click)="eliminarImagenActual(img)"
+        >
+          ❌
+        </button>
+      </div>
+    </div>
+
+    <!-- Nuevas imágenes seleccionadas -->
     <input type="file" multiple (change)="selectFiles($event)" #fileUpload />
-    <div class="preview-imagenes">
-      <img *ngFor="let img of imagenesPreview" [src]="img" />
+    <div class="preview-imagenes" *ngIf="previews.length">
+      <div class="img-card" *ngFor="let img of previews">
+        <img [src]="img" alt="preview nueva" />
+      </div>
     </div>
 
     <!-- Categoría -->

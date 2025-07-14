@@ -35,6 +35,9 @@ export class ProductoForm {
   nameImage: string = 'image-not-found.jpg';
   previousImage: string | null = null;
 
+  imagenesActuales: string[] = [];
+  imagenesAEliminar: string[] = [];
+
   constructor(
     private fb: FormBuilder,
     private prodService: ProductoService,
@@ -67,7 +70,7 @@ export class ProductoForm {
       categoria_id: [null, Validators.required],
       stock: [0, [Validators.required, Validators.min(0)]],
       activo: [true],
-      imagenes: [[]]
+      imagenes: [[]],
     });
   }
 
@@ -127,6 +130,8 @@ export class ProductoForm {
           (i) => 'http://localhost:3000/imagenes/' + i.url
         );
 
+        this.imagenesActuales = producto.imagenes.map((i) => i.url);
+
         // Promedio valoración
         const visibles =
           producto.resenas?.filter((r) => r.visible !== false) || [];
@@ -173,33 +178,36 @@ export class ProductoForm {
       );
       return;
     }
-
-    if (this.selectedFiles.length > 0) {
-      this.fileUploadService.upload(this.selectedFiles).subscribe({
-        next: (fileNames: string[]) => {
-          this.noti.info(
-            'Mantenimiento Producto',
-            'Imágenes subidas correctamente.',
-            4000
-          );
-
-          this.productoForm.patchValue({
-            imagenes: fileNames, // 👈 campo modificado
-          });
-
-          this.guardarProducto(); // ⬅️ proceder con la creación/actualización
-        },
-        error: (err) => {
-          console.error('Error al subir imágenes:', err);
-          this.noti.error('Error', 'Falló la subida de imágenes');
-        },
-      });
+    if (this.esEdicion) {
+      this.actualizarImagenesProducto();
     } else {
-      this.noti.warning(
-        'Sin imágenes',
-        'Seleccione al menos una imagen.',
-        3000
-      );
+      if (this.selectedFiles.length > 0) {
+        this.fileUploadService.upload(this.selectedFiles).subscribe({
+          next: (fileNames: string[]) => {
+            this.noti.info(
+              'Mantenimiento Producto',
+              'Imágenes subidas correctamente.',
+              4000
+            );
+
+            this.productoForm.patchValue({
+              imagenes: fileNames,
+            });
+
+            this.guardarProducto(); // ⬅️ proceder con la creación/actualización
+          },
+          error: (err) => {
+            console.error('Error al subir imágenes:', err);
+            this.noti.error('Error', 'Falló la subida de imágenes');
+          },
+        });
+      } else {
+        this.noti.warning(
+          'Sin imágenes',
+          'Seleccione al menos una imagen.',
+          3000
+        );
+      }
     }
   }
 
@@ -237,4 +245,31 @@ export class ProductoForm {
       });
     }
   }
+
+  actualizarImagenesProducto() {
+    const formData = new FormData();
+    formData.append('productoId', this.productoId.toString());
+
+    this.selectedFiles.forEach((file) => formData.append('imagenes', file));
+    this.imagenesAEliminar.forEach((nombre) =>
+      formData.append('imagenesAEliminar', nombre)
+    );
+
+    this.fileUploadService.updateImagenes(this.productoId, formData).subscribe({
+      next: (res) => {
+        this.noti.success('Actualización completa', res.mensaje);
+        this.guardarProducto();
+      },
+      error: (err) => {
+        console.error('Error al actualizar imágenes:', err);
+        this.noti.error('Error', 'No se pudieron actualizar las imágenes');
+      },
+    });
+  }
+
+  eliminarImagenActual(nombre: string) {
+  this.imagenesAEliminar.push(nombre);
+  this.imagenesActuales = this.imagenesActuales.filter(n => n !== nombre);
+}
+
 }
