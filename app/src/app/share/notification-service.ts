@@ -58,7 +58,7 @@ export class NotificationService {
       duration: duration,
       panelClass: [type],
       horizontalPosition: 'end',
-      verticalPosition: 'bottom',
+      verticalPosition: 'top',
     };
 
     const finalMessage = title ? `${title}: ${message}` : message;

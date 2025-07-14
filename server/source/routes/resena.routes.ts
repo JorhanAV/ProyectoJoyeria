@@ -7,7 +7,10 @@ export class ResenaRoutes {
         //localhost:3000/orden/ 
         router.get('/',controller.get) 
         //localhost:3000/orden/6
-        router.get('/:id',controller.getById)  
+        router.get('/:id',controller.getById) 
+
+        //Crear
+        router.post('/',controller.create)
         
         return router 
     } 

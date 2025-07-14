@@ -34,7 +34,7 @@ app.use(AppRoutes.routes)
 app.use(ErrorMiddleware.handleError);
 
 //Acceso a las imágenes
-app.use("/images",express.static(
+app.use("/imagenes",express.static(
   path.join(path.resolve(),"assets/uploads")))
 
 app.listen(port, () => {

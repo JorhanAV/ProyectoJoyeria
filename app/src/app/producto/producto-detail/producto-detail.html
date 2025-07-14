@@ -3,7 +3,7 @@
 <div class="detalle-container" *ngIf="datos">
   <div class="detalle-header">
     <div class="imagen-principal">
-      <img [src]="'images/' + imagenActiva" alt="Imagen de producto" />
+      <img [src]="'http://localhost:3000/imagenes/' + imagenActiva" alt="Imagen de producto" />
     </div>
 
     <div class="informacion">
@@ -46,7 +46,7 @@
   <div class="miniaturas">
     <img
       *ngFor="let img of datos.imagenes; let i = index"
-      [src]="'images/' + img.url"
+      [src]="'http://localhost:3000/imagenes/' + img.url"
       (click)="cambiarImagen(img.url)"
       [class.seleccionada]="img.url === imagenActiva"
     />
@@ -54,7 +54,7 @@
 
   <div class="resenas">
     <h3>Reseñas</h3>
-    <div class="resena" *ngFor="let r of datos.resenas">
+    <div class="resena" *ngFor="let r of datos.resenas; trackBy: trackResenas">
       <div class="resena-info">
         <strong>{{ r.usuario.nombre_usuario }}</strong>
         <span class="fecha">{{ r.fecha | date: 'longDate' }}</span>
@@ -70,4 +70,17 @@
       </div>
     </div>
   </div>
+
+  <button class="btn-resena" (click)="mostrarFormularioResena = !mostrarFormularioResena">
+    {{ mostrarFormularioResena ? 'Ocultar Reseña' : 'Agregar Reseña' }}
+  </button>
+
+  <app-resena-form
+    *ngIf="mostrarFormularioResena"
+    [productoId]="datos.id"
+    [usuarioId]="usuarioAutenticado.id"
+    (resenaGuardada)="resenaRegistrada($event)"
+    (resenaActualizada)="calcularPromedio(datos.resenas)"
+  >
+  </app-resena-form>
 </div>

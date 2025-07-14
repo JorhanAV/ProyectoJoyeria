@@ -4,12 +4,12 @@
     <div class="imagen-container">
       <img
         class="imagen-base"
-        [src]="'images/' + producto.imagenes[0]?.url"
+        [src]="'http://localhost:3000/imagenes/' + producto.imagenes[0]?.url"
         alt="{{ producto.nombre }}"
       />
       <img
         class="imagen-hover"
-        [src]="'images/' + (producto.imagenes[1]?.url || producto.imagenes[0]?.url)"
+        [src]="'http://localhost:3000/imagenes/' + (producto.imagenes[1]?.url || producto.imagenes[0]?.url)"
         alt="{{ producto.nombre }}"
       />
     </div>

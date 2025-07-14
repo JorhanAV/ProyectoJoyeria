@@ -1,0 +1,132 @@
+2025-07-12 11:19:18.411 error: 	jorha--Se produjo un error interno del servidor 
+Invalid `this.prisma.producto.create()` invocation in
+D:\UTN\XI Cuatrimestre\Progra\ProyectoJoyeria\server\source\controllers\productoController.ts:148:56
+
+  145 try {
+  146   const body = request.body;
+  147 
+→ 148   const nuevoProducto = await this.prisma.producto.create({
+          data: {
+            nombre: "test1",
+            descripcion: "Producto de prueba",
+            stock: 5,
+            activo: true,
+            categoria: {
+              connect: {
+                id: "1"
+              }
+            },
+            etiquetas: {
+              create: [
+                {
+                  etiqueta: {
+                    connect: {
+                      id: 1
+                    }
+                  }
+                },
+                {
+                  etiqueta: {
+                    connect: {
+                      id: 2
+                    }
+                  }
+                }
+              ]
+            },
+            imagenes: {
+              create: [
+                {
+                  url: "image-not-found.jpg"
+                }
+              ]
+            },
+        +   precio_base: Float
+          }
+        })
+
+Argument `precio_base` is missing.
+2025-07-12 11:20:37.628 error: 	jorha--Se produjo un error interno del servidor 
+Invalid `this.prisma.producto.create()` invocation in
+D:\UTN\XI Cuatrimestre\Progra\ProyectoJoyeria\server\source\controllers\productoController.ts:148:56
+
+  145 try {
+  146   const body = request.body;
+  147 
+→ 148   const nuevoProducto = await this.prisma.producto.create({
+          data: {
+            nombre: "test1",
+            descripcion: "producto de prueba",
+            precio_base: 5000,
+            stock: 10,
+            activo: true,
+            categoria: {
+              connect: {
+                id: "2"
+                    ~~~
+              }
+            },
+            etiquetas: {
+              create: [
+                {
+                  etiqueta: {
+                    connect: {
+                      id: 1
+                    }
+                  }
+                }
+              ]
+            },
+            imagenes: {
+              create: [
+                {
+                  url: "image-not-found.jpg"
+                }
+              ]
+            }
+          }
+        })
+
+Argument `id`: Invalid value provided. Expected Int, provided String.
+2025-07-12 11:23:49.198 error: 	jorha--Se produjo un error interno del servidor 
+Invalid `this.prisma.producto.create()` invocation in
+D:\UTN\XI Cuatrimestre\Progra\ProyectoJoyeria\server\source\controllers\productoController.ts:148:56
+
+  145 try {
+  146   const body = request.body;
+  147 
+→ 148   const nuevoProducto = await this.prisma.producto.create({
+          data: {
+            nombre: "test1",
+            descripcion: "producto de prueba",
+            precio_base: 5000,
+            stock: 10,
+            activo: true,
+            categoria: {
+              connect: {
+                id: "2"
+                    ~~~
+              }
+            },
+            etiquetas: {
+              create: [
+                {
+                  etiqueta: {
+                    connect: {
+                      id: 1
+                    }
+                  }
+                }
+              ]
+            },
+            imagenes: {
+              create: [
+                {
+                  url: "image-not-found.jpg"
+                }
+              ]
+            }
+          }
+        })
+
+Argument `id`: Invalid value provided. Expected Int, provided String.

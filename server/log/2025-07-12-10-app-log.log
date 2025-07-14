@@ -1,0 +1,188 @@
+2025-07-12 10:50:10.414 error: 	jorha--Se produjo un error interno del servidor 
+Invalid `this.prisma.producto.update()` invocation in
+D:\UTN\XI Cuatrimestre\Progra\ProyectoJoyeria\server\source\controllers\productoController.ts:194:62
+
+  191   : [];
+  192 
+  193 //Actualizar
+→ 194 const productoActualizado = await this.prisma.producto.update({
+        where: {
+          id: NaN
+        },
+        data: {
+          nombre: "Cadena Plata Estándar",
+          descripcion: "Cadena de plata de 45cm, diseño clásico.",
+          stock: NaN,
+          activo: undefined,
+          categoria: {
+            connect: {
+              id: 3
+            }
+          },
+          etiquetas: {
+            deleteMany: {
+              producto_id: NaN
+            },
+            create: [
+              {
+                etiqueta: {
+                  connect: {
+                    id: undefined
+                  }
+                }
+              },
+              {
+                etiqueta: {
+                  connect: {
+                    id: undefined
+                  }
+                }
+              }
+            ]
+          },
+      +   precio_base: Float
+        }
+      })
+
+Argument `precio_base` is missing.
+2025-07-12 10:50:17.418 error: 	jorha--Se produjo un error interno del servidor 
+Invalid `this.prisma.producto.update()` invocation in
+D:\UTN\XI Cuatrimestre\Progra\ProyectoJoyeria\server\source\controllers\productoController.ts:194:62
+
+  191   : [];
+  192 
+  193 //Actualizar
+→ 194 const productoActualizado = await this.prisma.producto.update({
+        where: {
+          id: NaN
+        },
+        data: {
+          nombre: "Cadena Plata Estándar",
+          descripcion: "Cadena de plata de 45cm, diseño clásico.",
+          stock: NaN,
+          activo: undefined,
+          categoria: {
+            connect: {
+              id: 3
+            }
+          },
+          etiquetas: {
+            deleteMany: {
+              producto_id: NaN
+            },
+            create: [
+              {
+                etiqueta: {
+                  connect: {
+                    id: undefined
+                  }
+                }
+              },
+              {
+                etiqueta: {
+                  connect: {
+                    id: undefined
+                  }
+                }
+              }
+            ]
+          },
+      +   precio_base: Float
+        }
+      })
+
+Argument `precio_base` is missing.
+2025-07-12 10:50:59.237 error: 	jorha--Se produjo un error interno del servidor 
+Invalid `this.prisma.producto.update()` invocation in
+D:\UTN\XI Cuatrimestre\Progra\ProyectoJoyeria\server\source\controllers\productoController.ts:194:62
+
+  191   : [];
+  192 
+  193 //Actualizar
+→ 194 const productoActualizado = await this.prisma.producto.update({
+        where: {
+          id: NaN
+        },
+        data: {
+          nombre: "Cadena Plata Estándar",
+          descripcion: "Cadena de plata de 45cm, diseño clásico.",
+          stock: NaN,
+          activo: undefined,
+          categoria: {
+            connect: {
+              id: 3
+            }
+          },
+          etiquetas: {
+            deleteMany: {
+              producto_id: NaN
+            },
+            create: [
+              {
+                etiqueta: {
+                  connect: {
+                    id: undefined
+                  }
+                }
+              },
+              {
+                etiqueta: {
+                  connect: {
+                    id: undefined
+                  }
+                }
+              }
+            ]
+          },
+      +   precio_base: Float
+        }
+      })
+
+Argument `precio_base` is missing.
+2025-07-12 10:59:30.565 error: 	jorha--Se produjo un error interno del servidor 
+Invalid `this.prisma.producto.update()` invocation in
+D:\UTN\XI Cuatrimestre\Progra\ProyectoJoyeria\server\source\controllers\productoController.ts:194:62
+
+  191   : [];
+  192 
+  193 //Actualizar
+→ 194 const productoActualizado = await this.prisma.producto.update({
+        where: {
+          id: 6
+        },
+        data: {
+          nombre: "Collar Ajustable Plata Premium",
+          descripcion: "Collar de plata 925 con diseño ajustable y broche magnético.",
+          stock: 8,
+          activo: true,
+          categoria: {
+            connect: {
+              id: 3
+            }
+          },
+          etiquetas: {
+            deleteMany: {
+              producto_id: 6
+            },
+            create: [
+              {
+                etiqueta: {
+                  connect: {
+                    id: 1
+                  }
+                }
+              },
+              {
+                etiqueta: {
+                  connect: {
+                    id: 3
+                  }
+                }
+              }
+            ]
+          },
+      +   precio_base: Float
+        }
+      })
+
+Argument `precio_base` is missing.

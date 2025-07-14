@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { ProductoService } from '../../share/services/producto.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResenaModel } from '../../share/models/ResenaModel';
+import { ResenaService } from '../../share/services/resena.service';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-producto-detail',
@@ -20,11 +22,20 @@ export class ProductoDetail {
   precioFinal: number = 0;
   tipoDescuento: string | null = null;
   valorDescuento: number | null = null;
+  fechaActual: Date = new Date();
+
+  usuarioAutenticado = { id: 1 }; 
+
+  // --- Relativo al formulario ---
+  resenaForm!: FormGroup;
+  number4digits = /^\d{4}$/;
+  number2decimals = /^[0-9]+[.,]{1,1}[0-9]{2,2}$/;
 
   constructor(
     private prodService: ProductoService,
     private router: Router,
-    private activeRoute: ActivatedRoute
+    private activeRoute: ActivatedRoute,
+    private zone: NgZone
   ) {
     let id = this.activeRoute.snapshot.paramMap.get('id');
     if (!isNaN(Number(id))) this.obtenerProducto(Number(id));
@@ -34,6 +45,7 @@ export class ProductoDetail {
       .getById(id)
       .pipe(takeUntil(this.destroy$)) // Operador de RxJS para desuscribirse automáticamente
       .subscribe((data: any) => {
+        this.datos = { ...data };
         console.log(data);
         const hoy = new Date();
 
@@ -51,7 +63,7 @@ export class ProductoDetail {
           const inicio = new Date(promo.fecha_inicio);
           const fin = new Date(promo.fecha_fin);
           const vigente = hoy >= inicio && hoy <= fin;
-          console.log(promo);
+          // console.log(promo);
           if (!vigente) return;
 
           let descuentoActual = 0;
@@ -65,20 +77,19 @@ export class ProductoDetail {
           if (descuentoActual > mayorDescuento) {
             mayorDescuento = descuentoActual;
             mejorPromocion = promo;
-            console.log('Mejor promoción encontrada:', mejorPromocion);
+            // console.log('Mejor promoción encontrada:', mejorPromocion);
           }
         });
 
-         if (mejorPromocion) {
+        if (mejorPromocion) {
           this.tipoDescuento = mejorPromocion.tipo;
           this.valorDescuento = mejorPromocion.valor;
           this.precioFinal =
             mejorPromocion.tipo === 'Porcentaje'
               ? this.precioAnterior * (1 - mejorPromocion.valor / 100)
               : this.precioAnterior - mejorPromocion.valor;
-        } 
+        }
 
-       
         // Calcular promedio basado en las reseñas visibles
         const resenas =
           this.datos.resenas?.filter((r: ResenaModel) => r.visible !== false) ||
@@ -100,5 +111,28 @@ export class ProductoDetail {
   }
   cambiarImagen(nombre: string) {
     this.imagenActiva = nombre;
+  }
+
+  mostrarFormularioResena = false;
+
+  resenaRegistrada(res: ResenaModel) {
+    // this.datos.resenas.push(res);
+    this.datos.resenas = [...this.datos.resenas, res];
+    // const nuevoPromedio = this.calcularPromedio(this.datos.resenas);
+    console.log('Reseña registrada:', res);
+    this.promedioValoracion = this.calcularPromedio(this.datos.resenas);
+    this.mostrarFormularioResena = false;
+  }
+  trackResenas(index: number, resena: ResenaModel): number {
+    return resena.id;
+  }
+
+  calcularPromedio(resenas: ResenaModel[]): number {
+    const visibles = resenas.filter((r) => r.visible !== false);
+    const total = visibles.reduce(
+      (acc: number, r: ResenaModel) => acc + r.valoracion,
+      0
+    );
+    return visibles.length ? total / visibles.length : 0;
   }
 }
