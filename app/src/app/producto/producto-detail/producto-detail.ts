@@ -24,7 +24,7 @@ export class ProductoDetail {
   valorDescuento: number | null = null;
   fechaActual: Date = new Date();
 
-  usuarioAutenticado = { id: 1 }; 
+  usuarioAutenticado = { id: 1 };
 
   // --- Relativo al formulario ---
   resenaForm!: FormGroup;
@@ -116,23 +116,10 @@ export class ProductoDetail {
   mostrarFormularioResena = false;
 
   resenaRegistrada(res: ResenaModel) {
-    // this.datos.resenas.push(res);
     this.datos.resenas = [...this.datos.resenas, res];
-    // const nuevoPromedio = this.calcularPromedio(this.datos.resenas);
-    console.log('Reseña registrada:', res);
-    this.promedioValoracion = this.calcularPromedio(this.datos.resenas);
-    this.mostrarFormularioResena = false;
-  }
-  trackResenas(index: number, resena: ResenaModel): number {
-    return resena.id;
-  }
 
-  calcularPromedio(resenas: ResenaModel[]): number {
-    const visibles = resenas.filter((r) => r.visible !== false);
-    const total = visibles.reduce(
-      (acc: number, r: ResenaModel) => acc + r.valoracion,
-      0
-    );
-    return visibles.length ? total / visibles.length : 0;
+    console.log('Reseña registrada:', res);
+
+    this.mostrarFormularioResena = false;
   }
 }

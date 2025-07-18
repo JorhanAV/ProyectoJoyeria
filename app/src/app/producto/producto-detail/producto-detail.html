@@ -54,7 +54,7 @@
 
   <div class="resenas">
     <h3>Reseñas</h3>
-    <div class="resena" *ngFor="let r of datos.resenas; trackBy: trackResenas">
+    <div class="resena" *ngFor="let r of datos.resenas;">
       <div class="resena-info">
         <strong>{{ r.usuario.nombre_usuario }}</strong>
         <span class="fecha">{{ r.fecha | date: 'longDate' }}</span>
@@ -80,7 +80,7 @@
     [productoId]="datos.id"
     [usuarioId]="usuarioAutenticado.id"
     (resenaGuardada)="resenaRegistrada($event)"
-    (resenaActualizada)="calcularPromedio(datos.resenas)"
+    
   >
   </app-resena-form>
 </div>
