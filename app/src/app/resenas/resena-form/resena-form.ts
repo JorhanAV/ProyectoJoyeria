@@ -30,7 +30,6 @@ export class ResenaForm implements OnInit, OnDestroy {
   estrellas = [1, 2, 3, 4, 5];
   nombreUsuario: string = '';
 
-
   constructor(
     private fb: FormBuilder,
     private resenaService: ResenaService,
@@ -68,47 +67,32 @@ export class ResenaForm implements OnInit, OnDestroy {
     this.formResena.patchValue({ valoracion: valor });
   }
 
- submitResena() {
-  if (this.formResena.invalid) {
-    this.noti.error(
-      'Reseña inválida',
-      'Escribí un comentario y seleccioná la valoración.',
-      4000
-    );
-    return;
-  }
-
-  this.resenaService
-    .create(this.formResena.value)
-    .pipe(takeUntil(this.destroy$))
-    .subscribe((data: any) => {
-      this.noti.success('Crear Reseña', `Reseña creada: ${data.id}`, 3000);
-      this.resenaGuardada.emit(data); // 👈 EMITIR LA NUEVA RESEÑA
-    });
-}
+  submitResena() {
+    if (this.formResena.invalid) {
+      this.noti.error(
+        'Reseña inválida',
+        'Escribí un comentario y seleccioná la valoración.',
+        4000
+      );
+      return;
+    }
 
     this.resenaService
       .create(this.formResena.value)
       .pipe(takeUntil(this.destroy$))
       .subscribe((data: any) => {
-        this.noti.success(
-          'Crear Reseña',
-          `Reseña creada: ${data.id}`,
-          3000
-          
-        );
-        this.formResena.reset();
-
-        this.formResena.patchValue({
-          producto_id: this.productoId,
-        usuario_id: this.usuarioId,
-        fecha: new Date(),
-        visible: true,
-        valoracion: 0,
-        })
+        this.noti.success('Crear Reseña', `Reseña creada: ${data.id}`, 3000);
+        this.resenaGuardada.emit(data); // 👈 EMITIR LA NUEVA RESEÑA
       });
+    this.formResena.reset();
 
-    
+    this.formResena.patchValue({
+      producto_id: this.productoId,
+      usuario_id: this.usuarioId,
+      fecha: new Date(),
+      visible: true,
+      valoracion: 0,
+    });
   }
 
   ngOnDestroy(): void {
