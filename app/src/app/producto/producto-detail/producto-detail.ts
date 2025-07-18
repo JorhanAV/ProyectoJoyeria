@@ -118,21 +118,8 @@ export class ProductoDetail {
   resenaRegistrada(res: ResenaModel) {
     // this.datos.resenas.push(res);
     this.datos.resenas = [...this.datos.resenas, res];
-    // const nuevoPromedio = this.calcularPromedio(this.datos.resenas);
     console.log('Reseña registrada:', res);
-    this.promedioValoracion = this.calcularPromedio(this.datos.resenas);
+    this.obtenerProducto(this.datos.id); // 👈 vuelve a consultar el producto
     this.mostrarFormularioResena = false;
-  }
-  trackResenas(index: number, resena: ResenaModel): number {
-    return resena.id;
-  }
-
-  calcularPromedio(resenas: ResenaModel[]): number {
-    const visibles = resenas.filter((r) => r.visible !== false);
-    const total = visibles.reduce(
-      (acc: number, r: ResenaModel) => acc + r.valoracion,
-      0
-    );
-    return visibles.length ? total / visibles.length : 0;
   }
 }
