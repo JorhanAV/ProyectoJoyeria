@@ -1,0 +1,119 @@
+2025-07-05 15:14:05.428 error: 	jorha--Se produjo un error interno del servidor Cannot read properties of undefined (reading 'map')
+2025-07-05 15:14:47.190 error: 	jorha--Se produjo un error interno del servidor 
+Invalid `this.prisma.producto.create()` invocation in
+D:\UTN\XI Cuatrimestre\Progra\ProyectoJoyeria\server\source\controllers\productoController.ts:148:56
+
+  145 try {
+  146   const body = request.body;
+  147 
+→ 148   const nuevoProducto = await this.prisma.producto.create({
+          data: {
+            nombre: "Collar Elegante Oro Rosa",
+            descripcion: "Collar de oro rosa 18K con detalles incrustados.",
+            precio_base: 28000,
+            stock: 10,
+            activo: true,
+            categoria: {
+              connect: {
+                id: 2
+              }
+            },
+            etiquetas: {
+              connect: [
+                {
+                  id: 1
+                },
+                {
+                  id: 3
+                }
+              ]
+            }
+          }
+        })
+
+Unknown argument `id`. Did you mean `OR`? Available options are marked with ?.
+2025-07-05 15:17:09.356 error: 	jorha--Se produjo un error interno del servidor 
+Invalid `this.prisma.producto.create()` invocation in
+D:\UTN\XI Cuatrimestre\Progra\ProyectoJoyeria\server\source\controllers\productoController.ts:148:56
+
+  145 try {
+  146   const body = request.body;
+  147 
+→ 148   const nuevoProducto = await this.prisma.producto.create({
+          data: {
+            nombre: "Collar Elegante Oro Rosa",
+            descripcion: "Collar de oro rosa 18K con detalles incrustados.",
+            precio_base: 28000,
+            stock: 10,
+            activo: true,
+            categoria: {
+              connect: {
+                id: 2
+              }
+            },
+            etiquetas: {
+              connect: [
+                {
+                  id: {
+                    id: 1
+                  }
+                },
+                {
+                  id: {
+                    id: 3
+                  }
+                }
+              ]
+            }
+          }
+        })
+
+Unknown argument `id`. Did you mean `OR`? Available options are marked with ?.
+2025-07-05 15:18:56.146 error: 	jorha--Se produjo un error interno del servidor 
+Invalid `this.prisma.producto.create()` invocation in
+D:\UTN\XI Cuatrimestre\Progra\ProyectoJoyeria\server\source\controllers\productoController.ts:148:56
+
+  145 try {
+  146   const body = request.body;
+  147 
+→ 148   const nuevoProducto = await this.prisma.producto.create({
+          data: {
+            nombre: "Collar Elegante Oro Rosa",
+            descripcion: "Collar de oro rosa 18K con detalles incrustados.",
+            precio_base: 28000,
+            stock: 10,
+            activo: true,
+            categoria: {
+              connect: {
+                id: 2
+              }
+            },
+            etiquetas: {
+              create: [
+                {
+                  etiqueta: {
+                    connect: {
+                      id: {
+                        id: 1
+                      }
+                    }
+                  }
+                },
+                {
+                  etiqueta: {
+                    connect: {
+                      id: {
+                        id: 3
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        })
+
+Argument `id`: Invalid value provided. Expected Int, provided Object.
+2025-07-05 15:25:50.709 error: 	jorha--Se produjo un error interno del servidor Cannot read properties of undefined (reading 'map')
+2025-07-05 15:27:51.952 error: 	jorha--Se produjo un error interno del servidor Expected double-quoted property name in JSON at position 220 (line 9 column 1)
+2025-07-05 15:29:54.718 error: 	jorha--Se produjo un error interno del servidor Cannot read properties of undefined (reading 'map')

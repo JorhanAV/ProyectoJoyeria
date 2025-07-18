@@ -20,6 +20,10 @@
       Tienda
       <mat-icon class="arrow-icon">arrow_drop_down</mat-icon>
     </a>
+    <a class="more-link" [matMenuTriggerFor]="moreMenuMant">
+      Mantenimientos
+      <mat-icon class="arrow-icon">arrow_drop_down</mat-icon>
+    </a>
     <a routerLink="/acercade">Acerca de</a>
     <!-- <a routerLink="/contacto">Contacto</a> -->
 
@@ -34,6 +38,22 @@
         <span>Pedidos</span>
       </button>
       <button mat-menu-item routerLink="/promocion">
+        <span>Promociones</span>
+      </button>
+      <!-- agrega más <button mat-menu-item> según necesites -->
+    </mat-menu>
+
+    <mat-menu #moreMenuMant="matMenu" panelClass="white-menu-panel">
+      <button mat-menu-item routerLink="/producto-admin">
+        <span>Productos</span>
+      </button>
+      <!-- <button mat-menu-item routerLink="/resena">
+        <span>Reseñas</span>
+      </button>
+      <button mat-menu-item routerLink="/pedidos">
+        <span>Pedidos</span>
+      </button> -->
+      <button mat-menu-item routerLink="/promocion-admin">
         <span>Promociones</span>
       </button>
       <!-- agrega más <button mat-menu-item> según necesites -->

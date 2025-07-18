@@ -90,7 +90,7 @@ model Producto {
 model ImagenProducto {
   id          Int      @id @default(autoincrement())
   producto_id Int
-  url         String
+  url         String   @default("image-not-found.jpg")
   producto    Producto @relation(fields: [producto_id], references: [id])
 }
 

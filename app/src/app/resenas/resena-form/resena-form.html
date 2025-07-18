@@ -1,0 +1,45 @@
+<form [formGroup]="formResena" (ngSubmit)="submitResena()" novalidate>
+  <h2>Crear Reseña</h2>
+  <p class="nombre-usuario">Usuario: <strong>{{ nombreUsuario }}</strong></p>
+  <!-- Comentario -->
+  <div class="form-group">
+    <label for="comentario">Comentario:</label>
+    <textarea
+      id="comentario"
+      formControlName="comentario"
+      rows="4"
+      placeholder="¿Qué te pareció el producto?"
+    ></textarea>
+    <small
+      *ngIf="formResena.get('comentario')?.touched && formResena.get('comentario')?.invalid"
+      class="error"
+    >
+      El comentario es obligatorio y debe tener al menos 5 caracteres.
+    </small>
+  </div>
+
+  <!-- Valoración -->
+  <div class="form-group estrellas">
+    <label>Valoración:</label>
+    <div class="estrellas-container">
+      <span
+        *ngFor="let estrella of estrellas; let i = index"
+        (click)="seleccionarEstrella(i + 1)"
+        [class.activa]="formResena.get('valoracion')?.value >= (i + 1)"
+      >
+        ★
+      </span>
+    </div>
+    <small
+      *ngIf="formResena.get('valoracion')?.touched && formResena.get('valoracion')?.invalid"
+      class="error"
+    >
+      Seleccioná una valoración entre 1 y 5 estrellas.
+    </small>
+  </div>
+
+  <button type="submit" [disabled]="formResena.invalid">
+    Registrar Reseña
+    
+  </button>
+</form>
