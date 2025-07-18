@@ -88,6 +88,15 @@ export class ResenaForm implements OnInit, OnDestroy {
           3000
           
         );
+        this.formResena.reset();
+
+        this.formResena.patchValue({
+          producto_id: this.productoId,
+        usuario_id: this.usuarioId,
+        fecha: new Date(),
+        visible: true,
+        valoracion: 0,
+        })
       });
 
     
