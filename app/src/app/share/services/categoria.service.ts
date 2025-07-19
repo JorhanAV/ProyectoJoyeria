@@ -5,28 +5,12 @@ import { environment } from '../../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
 import { CategoriaModel } from '../models/CategoriaModel';
 
-
 @Injectable({
-  providedIn: 'root'
-})
-
-
-export class CategoriaService extends BaseAPI<CategoriaModel> {
-
-   constructor(httpClient: HttpClient) { 
-import { ProductoModel } from '../models/ProductoModel';
-import { BaseAPI } from '../base-api';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../environments/environment.development';
-import { CategoriaModel } from '../models/CategoriaModel';
-
-@Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CategoriaService extends BaseAPI<CategoriaModel> {
-
-  constructor(httpClient: HttpClient) { 
-        super(
-          httpClient,
-          environment.endPointCategoria);
+  constructor(httpClient: HttpClient) {
+        super(httpClient, environment.endPointCategoria);
       }
+  }
+
