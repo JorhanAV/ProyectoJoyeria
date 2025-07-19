@@ -21,6 +21,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { ResenaForm } from './resena-form/resena-form';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({

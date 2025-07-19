@@ -23,7 +23,7 @@
 
   <!-- IMAGEN -->
   <div class="img-container">
-    <img [src]="'images/' + getImagenPrincipal(p)" alt="{{ p.nombre }}" />
+    <img [src]="'http://localhost:3000/imagenes/' + getImagenPrincipal(p)" alt="{{ p.nombre }}" />
     <div class="etiqueta-descuento">
       {{
         p.tipo_promocion === 'Porcentaje'

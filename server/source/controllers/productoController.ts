@@ -143,7 +143,82 @@ export class ProductoController {
   //Crear
   create = async (request: Request, response: Response, next: NextFunction) => {
     try {
+      const body = request.body;
+
+      const nuevoProducto = await this.prisma.producto.create({
+        data: {
+          nombre: body.nombre,
+          descripcion: body.descripcion,
+          precio_base: parseFloat(body.precio_base),
+          stock: parseInt(body.stock),
+          activo: body.activo,
+          categoria: {
+            connect: {
+              id: body.categoria_id,
+            },
+          },
+          etiquetas: {
+            create: body.etiquetas.map((item: { etiqueta_id: number }) => ({
+              etiqueta: { connect: { id: item.etiqueta_id } },
+            })),
+          },
+          imagenes: {
+            create: (body.imagenes?.length
+              ? body.imagenes
+              : ["image-not-found.jpg"]
+            ).map((url: string) => ({ url })),
+          },
+        },
+      });
+
+      response.status(201).json(nuevoProducto);
     } catch (error) {
+      next(error);
+    }
+  };
+
+  update = async (request: Request, response: Response, next: NextFunction) => {
+    try {
+      const idProducto = parseInt(request.params.id);
+      const body = request.body;
+
+      const createEtiquetas = body.etiquetas
+        ? await Promise.all(
+            body.etiquetas.map(async (etiqueta: { etiqueta_id: number }) => ({
+              etiqueta: { connect: { id: etiqueta.etiqueta_id } },
+            }))
+          )
+        : [];
+
+      //Actualizar
+      const productoActualizado = await this.prisma.producto.update({
+        where: { id: idProducto },
+        data: {
+          nombre: body.nombre,
+          descripcion: body.descripcion,
+          precio_base: parseFloat(body.precio_base),
+          stock: parseInt(body.stock),
+          activo: body.activo,
+          categoria: {
+            connect: {
+              id: body.categoria_id,
+            },
+          },
+          etiquetas: {
+            deleteMany: { producto_id: idProducto }, // Elimina todas las etiquetas existentes
+            create: createEtiquetas, // Crea las nuevas etiquetas
+          },
+          /* imagenes: {
+            create: (body.imagenes?.length
+              ? body.imagenes
+              : ["image-not-found.jpg"]
+            ).map((url: string) => ({ url })),
+          }, */
+        },
+      });
+
+      response.status(200).json(productoActualizado);
+    } catch (error: any) {
       next(error);
     }
   };
