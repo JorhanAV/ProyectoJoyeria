@@ -29,6 +29,7 @@ export class ResenaForm implements OnInit, OnDestroy {
   formResena!: FormGroup;
   estrellas = [1, 2, 3, 4, 5];
   nombreUsuario: string = '';
+  fechaActual: Date = new Date();
 
   constructor(
     private fb: FormBuilder,
