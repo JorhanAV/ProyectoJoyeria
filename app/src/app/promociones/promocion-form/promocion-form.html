@@ -70,30 +70,55 @@
       <input type="datetime-local" id="fecha_fin" formControlName="fecha_fin" />
     </div>
   </div>
-
-  <!-- Selección de Categoría -->
-  <div class="form-row">
-    <div>
-      <label for="idCategoria">Categoría:</label>
-      <select id="idCategoria" formControlName="idCategoria">
-        <option value="">Seleccione una categoría</option>
-        <option *ngFor="let cat of categorias" [value]="cat.id">
-          {{ cat.nombre }}
-        </option>
-      </select>
-    </div>
-
-    <!-- Selección de Producto -->
-    <div>
-      <label for="idproducto">Producto:</label>
-      <select id="idproducto" formControlName="idproducto">
-        <option value="">Seleccione un producto</option>
-        <option *ngFor="let prod of productos" [value]="prod.id">
-          {{ prod.nombre }}
-        </option>
-      </select>
-    </div>
+<!-- Aplicar a -->
+<div class="form-row">
+  <div>
+    <label>¿Aplica a?</label>
+    <label>
+      <input
+        type="radio"
+        name="aplicaA"
+        value="categoria"
+        [checked]="aplicaA() === 'categoria'"
+        (change)="aplicaA.set('categoria')"
+      />
+      Categoría
+    </label>
+    <label>
+      <input
+        type="radio"
+        name="aplicaA"
+        value="producto"
+        [checked]="aplicaA() === 'producto'"
+        (change)="aplicaA.set('producto')"
+      />
+      Producto
+    </label>
   </div>
+</div>
+
+  <div class="form-row">
+  <div *ngIf="aplicaA() === 'categoria'">
+    <label for="idCategoria">Categoría:</label>
+    <select id="idCategoria" formControlName="idCategoria">
+      <option value="">Seleccione una categoría</option>
+      <option *ngFor="let cat of categorias" [value]="cat.id">
+        {{ cat.nombre }}
+      </option>
+    </select>
+  </div>
+
+  <div *ngIf="aplicaA() === 'producto'">
+    <label for="idproducto">Producto:</label>
+    <select id="idproducto" formControlName="idproducto">
+      <option value="">Seleccione un producto</option>
+      <option *ngFor="let prod of productos" [value]="prod.id">
+        {{ prod.nombre }}
+      </option>
+    </select>
+  </div>
+</div>
+
 
   <!-- Validación: Al menos uno requerido -->
   <div

@@ -1,14 +1,22 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { NotificationService } from '../../share/notification-service';
 import { PromocionService } from '../../share/services/promocion.service';
 import { ProductoService } from '../../share/services/producto.service';
 import { CategoriaService } from '../../share/services/categoria.service';
-import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  ValidationErrors,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
+import { Component, effect, OnDestroy, OnInit, signal } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
-export const alMenosUnaSeleccionValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+export const alMenosUnaSeleccionValidator: ValidatorFn = (
+  control: AbstractControl
+): ValidationErrors | null => {
   const categoria = control.get('idCategoria')?.value;
   const producto = control.get('idproducto')?.value;
 
@@ -32,9 +40,9 @@ export class PromocionForm implements OnInit, OnDestroy {
   productos: any[] = [];
   isCreate: boolean = true;
   idPromocion: number | null = null;
-  aplicaA: 'categoria' | 'producto' | null = null;
   tipoDescuento: 'Porcentaje' | 'CantidadFija' = 'Porcentaje';
   titleForm: string = 'Crear';
+  aplicaA = signal<'categoria' | 'producto' | null>(null);
 
   constructor(
     private fb: FormBuilder,
@@ -44,7 +52,18 @@ export class PromocionForm implements OnInit, OnDestroy {
     private noti: NotificationService,
     private route: ActivatedRoute,
     private router: Router
-  ) {}
+  ) {
+    effect(() => {
+      const tipo = this.aplicaA();
+      if (!this.formPromocion) return;
+
+      if (tipo === 'categoria') {
+        this.formPromocion.get('idproducto')?.setValue(null);
+      } else if (tipo === 'producto') {
+        this.formPromocion.get('idCategoria')?.setValue(null);
+      }
+    });
+  }
 
   ngOnInit(): void {
     this.initForm();
@@ -63,21 +82,23 @@ export class PromocionForm implements OnInit, OnDestroy {
           .subscribe((data: any) => this.patchFormValues(data));
       }
     });
-
   }
 
   private initForm(): void {
-    this.formPromocion = this.fb.group({
-      nombre: ['', Validators.required],
-      tipo: ['Porcentaje', Validators.required],
-      valor: [null, [Validators.required, Validators.min(0.01)]],
-      fecha_inicio: ['', Validators.required],
-      fecha_fin: ['', Validators.required],
-      idCategoria: [null],
-      idproducto: [null],
-    }, {
-    validators: alMenosUnaSeleccionValidator
-  });
+    this.formPromocion = this.fb.group(
+      {
+        nombre: ['', Validators.required],
+        tipo: ['Porcentaje', Validators.required],
+        valor: [null, [Validators.required, Validators.min(0.01)]],
+        fecha_inicio: ['', Validators.required],
+        fecha_fin: ['', Validators.required],
+        idCategoria: [null],
+        idproducto: [null],
+      },
+      {
+        validators: alMenosUnaSeleccionValidator,
+      }
+    );
   }
 
   cargarCategorias(): void {
@@ -95,18 +116,20 @@ export class PromocionForm implements OnInit, OnDestroy {
   }
 
   private patchFormValues(data: any): void {
-    console.log(data)
+    console.log(data);
+    const esCategoria = !!data.referencia_id_categoria;
+     const tipo = esCategoria ? 'categoria' : 'producto';
+    // 2. Establecer la señal aplicaA ANTES de hacer patchValue
+    this.aplicaA.set(tipo);
     this.formPromocion.patchValue({
-      nombre: data.nombre,
-      tipo: data.tipo,
-      aplicaA: data.idCategoria ? 'categoria' : 'producto',
-      valor: data.valor,
-      fecha_inicio: this.formatearParaDatetimeLocal(data.fecha_inicio),
-      fecha_fin: this.formatearParaDatetimeLocal(data.fecha_fin),
-      idCategoria: data.referencia_id_categoria || null,
-      idproducto: data.referencia_id_producto || null,
+        nombre: data.nombre,
+        tipo: data.tipo,
+        valor: data.valor,
+        fecha_inicio: this.formatearParaDatetimeLocal(data.fecha_inicio),
+        fecha_fin: this.formatearParaDatetimeLocal(data.fecha_fin),
+        idCategoria: data.referencia_id_categoria || null,
+        idproducto: data.referencia_id_producto || null,
     });
-    this.aplicaA = data.idCategoria ? 'categoria' : 'producto';
     this.tipoDescuento = data.tipoDescuento;
   }
 

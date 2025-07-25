@@ -6,10 +6,11 @@ import { Router } from '@angular/router';
   selector: 'app-promocion-admin',
   standalone: false,
   templateUrl: './promocion-admin.html',
-  styleUrl: './promocion-admin.css'
+  styleUrl: './promocion-admin.css',
 })
 export class PromocionAdmin {
- promociones: any[] = [];
+  promociones: any[] = [];
+  today = new Date();
 
   constructor(
     private promocionService: PromocionService,
@@ -27,7 +28,7 @@ export class PromocionAdmin {
       },
       error: (err) => {
         console.error('Error al cargar promociones:', err);
-      }
+      },
     });
   }
 
@@ -35,7 +36,12 @@ export class PromocionAdmin {
     this.router.navigate(['/promocion/create']);
   }
 
-  irAEditar(id: number): void {
-    this.router.navigate(['/promocion/update', id]);
+  irAEditar(promo: any): void {
+    this.router.navigate(['/promocion/update', promo.id]);
+  }
+  
+  esEditable(promo: any): boolean {
+    const inicio = new Date(promo.fecha_inicio);
+    return inicio >= this.today;
   }
 }
