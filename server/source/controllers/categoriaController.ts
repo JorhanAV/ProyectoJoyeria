@@ -1,7 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { PrismaClient } from "../../generated/prisma";
 
-import { AppError } from "../errors/custom.error";
 
 export class CategoriaController {
   prisma = new PrismaClient();
@@ -36,3 +35,4 @@ export class CategoriaController {
       next(error);
     }
   };
+}

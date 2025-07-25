@@ -8,11 +8,7 @@ export class CategoriaRoutes {
         //localhost:3000/categoria/ 
         router.get('/',controller.get) 
         //localhost:3000/categoria/6
-        router.get('/:id',controller.getById) 
-
-        //Crear
-        router.post('/',controller.create)
-        
+        router.get('/:id',controller.getById)         
         return router 
     } 
 }
