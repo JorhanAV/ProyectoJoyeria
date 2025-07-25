@@ -7,14 +7,16 @@
     </button>
   </div>
 
-  <div
-    class="promo-card"
-    *ngFor="let promo of promociones"
-    (click)="irAEditar(promo.id)"
-    tabindex="0"
-    role="button"
-    [attr.aria-label]="'Editar promoción ' + promo.nombre"
-  >
+<div
+  class="promo-card"
+  *ngFor="let promo of promociones"
+  (click)="esEditable(promo) && irAEditar(promo)"
+  tabindex="0"
+  role="button"
+  [attr.aria-label]="'Editar promoción ' + promo.nombre"
+  [class.no-editable]="!esEditable(promo)"
+>
+
     <div class="promo-info">
       <div class="columna-id">
         <strong>#{{ promo.id }}</strong>

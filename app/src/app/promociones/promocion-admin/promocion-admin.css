@@ -2,6 +2,11 @@
   padding: 2rem;
   font-family: 'Segoe UI', sans-serif;
 }
+.promo-card.no-editable {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: auto; /* para que aún funcione foco y accesibilidad */
+}
 
 .header {
   display: flex;

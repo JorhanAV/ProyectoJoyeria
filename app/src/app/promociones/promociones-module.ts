@@ -1,7 +1,5 @@
 
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { PromocionesRoutingModule } from './promociones-routing-module';
 import { PromocionIndex } from './promocion-index/promocion-index';
 import { PromocionDetail } from './promocion-detail/promocion-detail';
@@ -21,9 +19,11 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDividerModule } from '@angular/material/divider';
-import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatTooltipModule } from '@angular/material/tooltip'
+import { PromocionForm } from './promocion-form/promocion-form'
+import { effect, NgModule, signal } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { PromocionForm } from './promocion-form/promocion-form';
+
 
 @NgModule({
   declarations: [
