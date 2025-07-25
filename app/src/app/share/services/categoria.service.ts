@@ -10,7 +10,6 @@ import { CategoriaModel } from '../models/CategoriaModel';
   providedIn: 'root'
 })
 
-
 export class CategoriaService extends BaseAPI<CategoriaModel> {
 
    constructor(httpClient: HttpClient) { 
