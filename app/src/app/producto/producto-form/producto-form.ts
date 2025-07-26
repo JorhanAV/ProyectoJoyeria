@@ -281,4 +281,8 @@ export class ProductoForm {
     this.imagenesAEliminar.push(nombre);
     this.imagenesActuales = this.imagenesActuales.filter((n) => n !== nombre);
   }
+  eliminarPreview(index: number) {
+    this.previews.splice(index, 1);
+    this.selectedFiles.splice(index, 1); 
+  }
 }

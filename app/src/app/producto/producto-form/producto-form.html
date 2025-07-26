@@ -66,8 +66,11 @@
     <!-- Nuevas imágenes seleccionadas -->
     <input type="file" multiple (change)="selectFiles($event)" #fileUpload />
     <div class="preview-imagenes" *ngIf="previews.length">
-      <div class="img-card" *ngFor="let img of previews">
+      <div class="img-card" *ngFor="let img of previews; let i = index">
         <img [src]="img" alt="preview nueva" />
+        <button type="button" (click)="eliminarPreview(i)" class="btn-eliminar">
+          ❌
+        </button>
       </div>
     </div>
 
