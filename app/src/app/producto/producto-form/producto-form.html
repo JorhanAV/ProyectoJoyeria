@@ -4,15 +4,44 @@
   <form [formGroup]="productoForm" (ngSubmit)="submitProducto()">
     <!-- Nombre -->
     <label>Nombre del producto</label>
-    <input type="text" formControlName="nombre" />
+    <input
+      type="text"
+      formControlName="nombre"
+      [class.invalid]="productoForm.get('nombre')?.invalid && productoForm.get('nombre')?.touched"
+    />
+    <div
+      class="error-msg"
+      *ngIf="productoForm.get('nombre')?.invalid && productoForm.get('nombre')?.touched"
+    >
+      Este campo es obligatorio.
+    </div>
 
     <!-- Descripción -->
     <label>Descripción detallada</label>
-    <textarea formControlName="descripcion"></textarea>
+    <textarea
+      formControlName="descripcion"
+      [class.invalid]="productoForm.get('descripcion')?.invalid && productoForm.get('descripcion')?.touched"
+    ></textarea>
+    <div
+      class="error-msg"
+      *ngIf="productoForm.get('descripcion')?.invalid && productoForm.get('descripcion')?.touched"
+    >
+      La descripción es requerida.
+    </div>
 
     <!-- Precio -->
     <label>Precio</label>
-    <input type="number" formControlName="precio_base" />
+    <input
+      type="number"
+      formControlName="precio_base"
+      [class.invalid]="productoForm.get('precio_base')?.invalid && productoForm.get('precio_base')?.touched"
+    />
+    <div
+      class="error-msg"
+      *ngIf="productoForm.get('precio_base')?.errors?.['min']"
+    >
+      El precio debe ser mayor a 0.
+    </div>
 
     <!-- Imágenes del producto -->
     <label>Imágenes del producto</label>
@@ -44,11 +73,21 @@
 
     <!-- Categoría -->
     <label>Categoría</label>
-    <select formControlName="categoria_id">
+    <select
+      formControlName="categoria_id"
+      [class.invalid]="productoForm.get('categoria_id')?.invalid && productoForm.get('categoria_id')?.touched"
+    >
+      <option value="">Seleccione una categoría</option>
       <option *ngFor="let cat of categorias" [value]="cat.id">
         {{ cat.nombre }}
       </option>
     </select>
+    <div
+      class="error-msg"
+      *ngIf="productoForm.get('categoria_id')?.errors?.['required']"
+    >
+      Debe seleccionar una categoría.
+    </div>
 
     <!-- Etiquetas -->
     <label>Etiquetas</label>

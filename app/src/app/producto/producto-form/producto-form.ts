@@ -37,6 +37,7 @@ export class ProductoForm {
 
   imagenesActuales: string[] = [];
   imagenesAEliminar: string[] = [];
+  intentadoEnviar: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -67,7 +68,7 @@ export class ProductoForm {
       nombre: ['', Validators.required],
       descripcion: ['', Validators.required],
       precio_base: [0, [Validators.required, Validators.min(0)]],
-      categoria_id: [null, Validators.required],
+      categoria_id: [1, Validators.required],
       stock: [0, [Validators.required, Validators.min(0)]],
       activo: [true],
       imagenes: [[]],
@@ -169,8 +170,17 @@ export class ProductoForm {
   }
 
   submitProducto(): void {
+    this.intentadoEnviar = true;
     this.productoForm.markAllAsTouched();
-    if (this.productoForm.invalid) {
+
+    if (this.etiquetasSeleccionadas.length === 0) {
+      this.noti.error(
+        'Formulario Inválido',
+        'Debe seleccionar al menos una etiqueta.',
+        4000
+      );
+      return;
+    } else if (this.productoForm.invalid) {
       this.noti.error(
         'Formulario Inválido',
         'Por favor, revise los campos marcados en rojo.',
@@ -194,7 +204,7 @@ export class ProductoForm {
               imagenes: fileNames,
             });
 
-            this.guardarProducto(); // ⬅️ proceder con la creación/actualización
+            this.guardarProducto();
           },
           error: (err) => {
             console.error('Error al subir imágenes:', err);
@@ -268,8 +278,7 @@ export class ProductoForm {
   }
 
   eliminarImagenActual(nombre: string) {
-  this.imagenesAEliminar.push(nombre);
-  this.imagenesActuales = this.imagenesActuales.filter(n => n !== nombre);
-}
-
+    this.imagenesAEliminar.push(nombre);
+    this.imagenesActuales = this.imagenesActuales.filter((n) => n !== nombre);
+  }
 }
