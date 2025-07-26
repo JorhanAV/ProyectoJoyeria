@@ -104,7 +104,14 @@
     </div>
 
     <label>Stock disponible</label>
-    <input type="number" formControlName="stock" />
+    <input
+      type="number"
+      formControlName="stock"
+      [class.invalid]="productoForm.get('stock')?.invalid && productoForm.get('stock')?.touched"
+    />
+    <div class="error-msg" *ngIf="productoForm.get('stock')?.errors?.['min']">
+      El stock debe ser mayor o igual a 0.
+    </div>
 
     <label>¿Producto activo?</label>
     <input type="checkbox" formControlName="activo" />
