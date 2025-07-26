@@ -119,6 +119,7 @@ export class ProductoDetail {
     this.datos.resenas = [...this.datos.resenas, res];
 
     console.log('Reseña registrada:', res);
+    this.obtenerProducto(this.datos.id); // 👈 vuelve a consultar el producto
 
     this.mostrarFormularioResena = false;
   }

@@ -1,0 +1,129 @@
+.promo-wrapper {
+  padding: 2rem;
+  font-family: 'Segoe UI', sans-serif;
+}
+.promo-card.no-editable {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: auto; /* para que aún funcione foco y accesibilidad */
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.btn-add {
+  display: flex;
+  align-items: center;
+  background-color: #1e40af;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+  gap: 0.5rem;
+  transition: background-color 0.2s;
+}
+
+.btn-add mat-icon {
+  font-size: 20px;
+}
+
+.btn-add:hover {
+  background-color: #1d4ed8;
+}
+
+.promo-card {
+  position: relative;
+  background: white;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  padding: 1rem 3.5rem 1rem 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.promo-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+  border-color: #94a3b8;
+}
+
+.promo-info {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  gap: 1.5rem;
+}
+
+.columna-id {
+  min-width: 60px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.columna-datos,
+.columna-fechas,
+.columna-valor {
+  flex-grow: 1;
+  min-width: 140px;
+}
+
+.columna-valor {
+  font-weight: 500;
+  color: #111827;
+}
+
+.tag {
+  padding: 0.3rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.tipo-porcentaje {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+.tipo-cantidad {
+  background-color: #fef9c3;
+  color: #92400e;
+}
+
+.editar-icono {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #1e40af;
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+  transition: background-color 0.3s;
+}
+
+.promo-card:hover .editar-icono {
+  background-color: #1e40af;
+  color: white;
+}

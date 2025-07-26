@@ -1,1 +1,52 @@
-<p>promocion-admin works!</p>
+<div class="promo-wrapper">
+  <div class="header">
+    <h2>Listado de Promociones</h2>
+    <button class="btn-add" (click)="irACrear()" aria-label="Agregar promoción">
+      <mat-icon>add_circle_outline</mat-icon>
+      <span>Agregar Promoción</span>
+    </button>
+  </div>
+
+<div
+  class="promo-card"
+  *ngFor="let promo of promociones"
+  (click)="esEditable(promo) && irAEditar(promo)"
+  tabindex="0"
+  role="button"
+  [attr.aria-label]="'Editar promoción ' + promo.nombre"
+  [class.no-editable]="!esEditable(promo)"
+>
+
+    <div class="promo-info">
+      <div class="columna-id">
+        <strong>#{{ promo.id }}</strong>
+      </div>
+
+      <div class="columna-datos">
+        <div><strong>Nombre:</strong> {{ promo.nombre }}</div>
+        <div><strong>Tipo:</strong>
+          <span class="tag" [ngClass]="promo.tipo === 'Porcentaje' ? 'tipo-porcentaje' : 'tipo-cantidad'">
+            {{ promo.tipo }}
+          </span>
+        </div>
+      </div>
+
+      <div class="columna-fechas">
+        <div><strong>Inicio:</strong> {{ promo.fecha_inicio | date: 'shortDate' }}</div>
+        <div><strong>Fin:</strong> {{ promo.fecha_fin | date: 'shortDate' }}</div>
+      </div>
+
+      <div class="columna-valor">
+        <div><strong>Valor:</strong></div>
+        <div>
+          {{ promo.tipo === 'Porcentaje' ? promo.valor + '%' : '₡' + (promo.valor | number: '1.2-2') }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Ícono de edición flotante -->
+    <div class="editar-icono">
+      <mat-icon>edit</mat-icon>
+    </div>
+  </div>
+</div>

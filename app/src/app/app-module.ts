@@ -15,6 +15,7 @@ import { HttpErrorInterceptorService } from './share/http-error-interceptor.serv
 import { PromocionesModule } from './promociones/promociones-module';
 import { PedidosModule } from './pedidos/pedidos-module';
 import { ResenasModule } from './resenas/resenas-module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 //import { provideAnimations } from '@angular/platform-browser/animations';
 
@@ -24,6 +25,7 @@ import { ResenasModule } from './resenas/resenas-module';
     App
   ],
   imports: [
+    ReactiveFormsModule,
     BrowserModule,
     CoreModule,
     ShareModule,

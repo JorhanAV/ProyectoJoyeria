@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { PrismaClient } from "../../generated/prisma";
 
+
 export class CategoriaController {
   prisma = new PrismaClient();
 
@@ -14,7 +15,6 @@ export class CategoriaController {
       next(error);
     }
   };
-  //Obtener por Id
   getById = async (
     request: Request,
     response: Response,
@@ -32,13 +32,6 @@ export class CategoriaController {
       });
       response.json(categoria);
     } catch (error: any) {
-      next(error);
-    }
-  };
-  //Crear
-  create = async (request: Request, response: Response, next: NextFunction) => {
-    try {
-    } catch (error) {
       next(error);
     }
   };
