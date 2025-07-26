@@ -8,6 +8,7 @@ import { CategoriaModel } from '../models/CategoriaModel';
 @Injectable({
   providedIn: 'root',
 })
+
 export class CategoriaService extends BaseAPI<CategoriaModel> {
   constructor(httpClient: HttpClient) {
         super(httpClient, environment.endPointCategoria);

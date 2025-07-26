@@ -30,6 +30,9 @@ export class ResenaForm implements OnInit, OnDestroy {
   estrellas = [1, 2, 3, 4, 5];
   nombreUsuario: string = '';
 
+  fechaActual: Date = new Date();
+
+
   constructor(
     private fb: FormBuilder,
     private resenaService: ResenaService,
@@ -82,6 +85,7 @@ export class ResenaForm implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe((data: any) => {
         this.noti.success('Crear Reseña', `Reseña creada: ${data.id}`, 3000);
+
         this.resenaGuardada.emit(data); // 👈 EMITIR LA NUEVA RESEÑA
       });
     this.formResena.reset();
@@ -93,6 +97,7 @@ export class ResenaForm implements OnInit, OnDestroy {
       visible: true,
       valoracion: 0,
     });
+
   }
 
   ngOnDestroy(): void {

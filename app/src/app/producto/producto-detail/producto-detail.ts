@@ -24,7 +24,7 @@ export class ProductoDetail {
   valorDescuento: number | null = null;
   fechaActual: Date = new Date();
 
-  usuarioAutenticado = { id: 1 }; 
+  usuarioAutenticado = { id: 1 };
 
   // --- Relativo al formulario ---
   resenaForm!: FormGroup;
@@ -116,10 +116,11 @@ export class ProductoDetail {
   mostrarFormularioResena = false;
 
   resenaRegistrada(res: ResenaModel) {
-    // this.datos.resenas.push(res);
     this.datos.resenas = [...this.datos.resenas, res];
+
     console.log('Reseña registrada:', res);
     this.obtenerProducto(this.datos.id); // 👈 vuelve a consultar el producto
+
     this.mostrarFormularioResena = false;
   }
 }

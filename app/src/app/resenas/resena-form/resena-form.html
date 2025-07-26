@@ -1,5 +1,6 @@
 <form [formGroup]="formResena" (ngSubmit)="submitResena()" novalidate>
   <h2>Crear Reseña</h2>
+  <p class="fecha-actual">Fecha: {{ fechaActual | date: 'dd/MM/yyyy' }}</p>
   <p class="nombre-usuario">Usuario: <strong>{{ nombreUsuario }}</strong></p>
   <!-- Comentario -->
   <div class="form-group">
