@@ -177,14 +177,14 @@ export class ProductoForm {
       this.noti.error(
         'Formulario Inválido',
         'Debe seleccionar al menos una etiqueta.',
-        4000
+        2000
       );
       return;
     } else if (this.productoForm.invalid) {
       this.noti.error(
         'Formulario Inválido',
         'Por favor, revise los campos marcados en rojo.',
-        5000
+        3000
       );
       return;
     }
@@ -197,7 +197,7 @@ export class ProductoForm {
             this.noti.info(
               'Mantenimiento Producto',
               'Imágenes subidas correctamente.',
-              4000
+              2000
             );
 
             this.productoForm.patchValue({
@@ -239,7 +239,7 @@ export class ProductoForm {
         this.noti.success(
           'Actualizar Producto',
           `Producto actualizado: ${datos.nombre}`,
-          3000,
+          2000,
           '/producto-admin'
         );
       });
@@ -280,5 +280,9 @@ export class ProductoForm {
   eliminarImagenActual(nombre: string) {
     this.imagenesAEliminar.push(nombre);
     this.imagenesActuales = this.imagenesActuales.filter((n) => n !== nombre);
+  }
+  eliminarPreview(index: number) {
+    this.previews.splice(index, 1);
+    this.selectedFiles.splice(index, 1); 
   }
 }

@@ -66,8 +66,11 @@
     <!-- Nuevas imágenes seleccionadas -->
     <input type="file" multiple (change)="selectFiles($event)" #fileUpload />
     <div class="preview-imagenes" *ngIf="previews.length">
-      <div class="img-card" *ngFor="let img of previews">
+      <div class="img-card" *ngFor="let img of previews; let i = index">
         <img [src]="img" alt="preview nueva" />
+        <button type="button" (click)="eliminarPreview(i)" class="btn-eliminar">
+          ❌
+        </button>
       </div>
     </div>
 
@@ -104,7 +107,14 @@
     </div>
 
     <label>Stock disponible</label>
-    <input type="number" formControlName="stock" />
+    <input
+      type="number"
+      formControlName="stock"
+      [class.invalid]="productoForm.get('stock')?.invalid && productoForm.get('stock')?.touched"
+    />
+    <div class="error-msg" *ngIf="productoForm.get('stock')?.errors?.['min']">
+      El stock debe ser mayor o igual a 0.
+    </div>
 
     <label>¿Producto activo?</label>
     <input type="checkbox" formControlName="activo" />
