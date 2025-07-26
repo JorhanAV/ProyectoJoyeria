@@ -116,3 +116,17 @@ button:hover {
   height: 24px;
   cursor: pointer;
 }
+
+input.invalid,
+select.invalid,
+textarea.invalid {
+  border: 2px solid #ef4444;
+  background-color: #fee2e2;
+}
+
+.error-msg {
+  color: #b91c1c;
+  font-size: 0.85rem;
+  margin-top: 4px;
+  font-weight: 500;
+}
