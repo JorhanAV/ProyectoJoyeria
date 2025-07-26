@@ -14,8 +14,8 @@
         <td>{{ p.nombre }}</td>
         <td>{{ p.precio_base | currency: '₡':'symbol' }}</td>
         <td>
-          <button class="btn-icon" (click)="editar(p.id)">✏️</button>
-          <button class="btn-icon" (click)="mostrarDetalle(p)">ℹ️</button>
+          <button class="btn-icon" (click)="editar(p.id)"><mat-icon class="editar-icono">edit</mat-icon></button>
+          <button class="btn-icon" (click)="mostrarDetalle(p)"><mat-icon class="info-icono">info</mat-icon></button>
         </td>
       </tr>
     </tbody>
