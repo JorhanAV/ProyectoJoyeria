@@ -1,15 +1,15 @@
 <form [formGroup]="formResena" (ngSubmit)="submitResena()" novalidate>
-  <h2>Crear Reseña</h2>
-  <p class="fecha-actual">Fecha: {{ fechaActual | date: 'dd/MM/yyyy' }}</p>
-  <p class="nombre-usuario">Usuario: <strong>{{ nombreUsuario }}</strong></p>
+  <h2>{{ 'CREAR_RESEÑA' | translate }}</h2>
+  <p class="fecha-actual">{{ 'FECHA' | translate }}: {{ fechaActual | date: 'dd/MM/yyyy' }}</p>
+  <p class="nombre-usuario">{{ 'USUARIO' | translate }}: <strong>{{ nombreUsuario }}</strong></p>
   <!-- Comentario -->
   <div class="form-group">
-    <label for="comentario">Comentario:</label>
+    <label for="comentario">{{ 'COMENTARIO' | translate }}:</label>
     <textarea
       id="comentario"
       formControlName="comentario"
       rows="4"
-      placeholder="¿Qué te pareció el producto?"
+      placeholder="¿{{ 'QUE_TE_PARECIO_EL_PRODUCTO' | translate }}?"
     ></textarea>
     <small
       *ngIf="formResena.get('comentario')?.touched && formResena.get('comentario')?.invalid"
@@ -21,7 +21,7 @@
 
   <!-- Valoración -->
   <div class="form-group estrellas">
-    <label>Valoración:</label>
+    <label>{{ 'VALORACION' | translate }}:</label>
     <div class="estrellas-container">
       <span
         *ngFor="let estrella of estrellas; let i = index"
@@ -40,7 +40,6 @@
   </div>
 
   <button type="submit" [disabled]="formResena.invalid">
-    Registrar Reseña
-    
+    {{ 'CREAR_RESEÑA' | translate }}
   </button>
 </form>

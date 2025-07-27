@@ -18,5 +18,20 @@
   "ACTUALIZAR": "Actualizar",
   "CREAR": "Crear",
   "EDITAR_PRODUCTO": "Editar Producto",
-  "CREAR_PRODUCTO": "Crear Producto"
+  "CREAR_PRODUCTO": "Crear Producto",
+  "VER_DETALLES": "Ver Detalles",
+  "RESENAS": "Reseñas",
+  "VOLVER_AL_LISTADO": "Volver al Listado",
+  "OCULTAR_RESEÑA": "Ocultar Reseña",
+  "AGREGAR_RESEÑA": "Agregar Reseña",
+  "COMENTARIO": "Comentario",
+  "CREAR_RESEÑA": "Crear Reseña",
+  "FECHA": "Fecha",
+  "USUARIO": "Usuario",
+  "QUE_TE_PARECIO_EL_PRODUCTO": "Qué te pareció el producto",
+  "VALORACION": "Valoración",
+  "RESENAS_LISTADO": "Listado de Reseñas",
+  "PRODUCTO": "Producto",
+  "VOLVER": "Volver",
+  "DETALLE_RESEÑA": "Detalle de Reseña"
 }

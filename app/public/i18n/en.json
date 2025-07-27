@@ -18,5 +18,20 @@
   "ACTUALIZAR": "Update",
   "CREAR": "Create",
   "EDITAR_PRODUCTO": "Edit Product",
-  "CREAR_PRODUCTO": "Create Product"
+  "CREAR_PRODUCTO": "Create Product",
+  "VER_DETALLES": "View Details",
+  "RESENAS": "Reviews",
+  "VOLVER_AL_LISTADO": "Back to List",
+  "OCULTAR_RESEÑA": "Hide Review",
+  "AGREGAR_RESEÑA": "Add Review",
+  "COMENTARIO": "Comment",
+  "CREAR_RESEÑA": "Create Review",
+  "FECHA": "Date",
+  "USUARIO": "User",
+  "QUE_TE_PARECIO_EL_PRODUCTO": "What did you think of the product",
+  "VALORACION": "Rating",
+  "RESENAS_LISTADO": "Reviews List",
+  "PRODUCTO": "Product",
+  "VOLVER": "Back",
+  "DETALLE_RESEÑA": "Review Detail"
 }

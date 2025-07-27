@@ -1,4 +1,4 @@
-<h2>Detalle de la Reseña #{{ datos.id }}</h2>
+<h2>{{ 'DETALLE_RESEÑA' | translate }} #{{ datos.id }}</h2>
 
 <div class="resena-card" *ngIf="datos">
    
@@ -12,23 +12,23 @@
   <!-- Info a la derecha -->
   <div class="resena-info">
     <div class="resena-row">
-      <span class="label">Usuario:</span>
+      <span class="label">{{ 'USUARIO' | translate }}:</span>
       <span>{{ datos.usuario.nombre_usuario }}</span>
     </div>
     <div class="resena-row">
-      <span class="label">Producto:</span>
+      <span class="label">{{ 'PRODUCTO' | translate }}:</span>
       <span>{{ datos.producto.nombre }}</span>
     </div>
     <div class="resena-row">
-      <span class="label">Fecha:</span>
+      <span class="label">{{ 'FECHA' | translate }}:</span>
       <span>{{ datos.fecha | date:'mediumDate' }}</span>
     </div>
     <div class="resena-row comentario">
-      <span class="label">Comentario:</span>
+      <span class="label">{{ 'COMENTARIO' | translate }}:</span>
       <p>{{ datos.comentario }}</p>
     </div>
     <div class="resena-row valoracion">
-      <span class="label">Valoración:</span>
+      <span class="label">{{ 'VALORACION' | translate }}:</span>
       <span class="stars">
         <ng-container *ngFor="let _ of stars; let i = index">
           <i class="star" [class.filled]="i < datos.valoracion">★</i>
@@ -36,6 +36,6 @@
         <span class="rating">({{ datos.valoracion }}/5)</span>
       </span>
     </div>
-    <button class="back-button" (click)="goback()">← Volver</button>
+    <button class="back-button" (click)="goback()">← {{ 'VOLVER' | translate }}</button>
   </div>
 </div>

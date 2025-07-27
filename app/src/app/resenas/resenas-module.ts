@@ -23,12 +23,14 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ResenaForm } from './resena-form/resena-form';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [ResenaIndex, ResenaDetail, ResenaAdmin],
   imports: [
     CommonModule,
     ResenasRoutingModule,
+    TranslateModule.forChild(),
     MatMenuModule,
     MatInputModule,
     MatSelectModule,
@@ -45,7 +47,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatRadioModule,
     MatDividerModule,
     MatTooltipModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
 })
 export class ResenasModule {}
