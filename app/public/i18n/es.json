@@ -33,5 +33,18 @@
   "RESENAS_LISTADO": "Listado de Reseñas",
   "PRODUCTO": "Producto",
   "VOLVER": "Volver",
-  "DETALLE_RESEÑA": "Detalle de Reseña"
+  "DETALLE_RESEÑA": "Detalle de Reseña",
+  "PEDIDOS_LISTADO": "Listado de Pedidos",
+  "CLIENTE": "Cliente",
+  "TOTAL": "Total",
+  "DETALLE_PEDIDO": "Detalle del Pedido",
+  "DIRECCION_ENVIO": "Dirección de Envío",
+  "METODO_PAGO": "Método de Pago",
+  "ESTADO": "Estado",
+  "TIPO": "Tipo",
+  "DETALLES": "Detalles",
+  "CANTIDAD": "Cantidad",
+  "PRECIO_UNITARIO": "Precio Unitario",
+  "SUBTOTAL": "Subtotal",
+  "IMPUESTOS": "Impuestos"
 }

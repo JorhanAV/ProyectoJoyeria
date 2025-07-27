@@ -33,5 +33,18 @@
   "RESENAS_LISTADO": "Reviews List",
   "PRODUCTO": "Product",
   "VOLVER": "Back",
-  "DETALLE_RESEÑA": "Review Detail"
+  "DETALLE_RESEÑA": "Review Detail",
+  "PEDIDOS_LISTADO": "Orders List",
+  "CLIENTE": "Client",
+  "TOTAL": "Total",
+  "DETALLE_PEDIDO": "Order Detail",
+  "DIRECCION_ENVIO": "Shipping Address",
+  "METODO_PAGO": "Payment Method",
+  "ESTADO": "Status",
+  "TIPO": "Type",
+  "DETALLES": "Details",
+  "CANTIDAD": "Quantity",
+  "PRECIO_UNITARIO": "Unit Price",
+  "SUBTOTAL": "Subtotal",
+  "IMPUESTOS": "Taxes"
 }
