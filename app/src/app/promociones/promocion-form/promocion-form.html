@@ -19,7 +19,7 @@
         *ngIf="formPromocion.get('nombre')?.touched && formPromocion.get('nombre')?.invalid"
         class="error"
       >
-        El nombre es obligatorio.
+        {{ 'CAMPO_OBLIGATORIO' | translate }}
       </div>
     </div>
   </div>
@@ -51,7 +51,7 @@
         *ngIf="formPromocion.get('valor')?.touched && formPromocion.get('valor')?.invalid"
         class="error"
       >
-        Ingrese un valor válido mayor a 0.
+        {{ 'VALOR_DEBE_SER_MAYOR_A_0' | translate }}
       </div>
     </div>
   </div>
@@ -102,7 +102,7 @@
 
   <div class="form-row">
     <div *ngIf="aplicaA() === 'categoria'">
-      <label for="idCategoria">Categoría:</label>
+      <label for="idCategoria">{{ 'CATEGORIA' | translate }}:</label>
       <select id="idCategoria" formControlName="idCategoria">
         <option value="">Seleccione una categoría</option>
         <option *ngFor="let cat of categorias" [value]="cat.id">
@@ -112,7 +112,7 @@
     </div>
 
     <div *ngIf="aplicaA() === 'producto'">
-      <label for="idproducto">Producto:</label>
+      <label for="idproducto">{{ 'PRODUCTO' | translate }}:</label>
       <select id="idproducto" formControlName="idproducto">
         <option value="">Seleccione un producto</option>
         <option *ngFor="let prod of productos" [value]="prod.id">
@@ -127,7 +127,7 @@
     *ngIf="formPromocion.errors?.['requiereUnaSeleccion'] && formPromocion.touched"
     class="error"
   >
-    Debe seleccionar al menos una categoría o un producto.
+    {{ 'DEBE_SELECCIONAR_AL_MENOS_UNA_CATEGORIA_O_UN_PRODUCTO' | translate }}
   </div>
 
   <!-- Botón -->
