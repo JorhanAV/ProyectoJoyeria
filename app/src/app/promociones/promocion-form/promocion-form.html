@@ -5,12 +5,15 @@
   class="admin-form"
   novalidate
 >
-  <h2>{{ titleForm }} Promoción</h2>
+  <h2>
+    {{ isCreate ? ('CREAR_PROMOCION' | translate) : ('EDITAR_PROMOCION' |
+    translate) }}
+  </h2>
 
   <!-- Nombre -->
   <div class="form-row">
     <div>
-      <label for="nombre">Nombre:</label>
+      <label for="nombre">{{ 'NOMBRE' | translate }}:</label>
       <input type="text" id="nombre" formControlName="nombre" />
       <div
         *ngIf="formPromocion.get('nombre')?.touched && formPromocion.get('nombre')?.invalid"
@@ -24,7 +27,7 @@
   <!-- Tipo de Descuento -->
   <div class="form-row">
     <div>
-      <label for="tipoDescuento">Tipo de descuento:</label>
+      <label for="tipoDescuento">{{ 'TIPO_DESCUENTO' | translate }}:</label>
       <select
         id="tipo"
         formControlName="tipo"
@@ -39,7 +42,7 @@
   <!-- Valor con ícono -->
   <div class="form-row">
     <div>
-      <label for="valor">Valor:</label>
+      <label for="valor">{{ 'VALOR' | translate }}:</label>
       <div class="input-group">
         <span>{{ tipoDescuento === 'Porcentaje' ? '%' : '₡' }}</span>
         <input type="number" id="valor" formControlName="valor" />
@@ -56,7 +59,7 @@
   <!-- Fecha de inicio -->
   <div class="form-row">
     <div>
-      <label for="fecha_inicio">Fecha de inicio:</label>
+      <label for="fecha_inicio">{{ 'FECHA_INICIO' | translate }}:</label>
       <input
         type="datetime-local"
         id="fecha_inicio"
@@ -66,59 +69,58 @@
 
     <!-- Fecha de fin -->
     <div>
-      <label for="fecha_fin">Fecha de fin:</label>
+      <label for="fecha_fin">{{ 'FECHA_FIN' | translate }}:</label>
       <input type="datetime-local" id="fecha_fin" formControlName="fecha_fin" />
     </div>
   </div>
-<!-- Aplicar a -->
-<div class="form-row">
-  <div>
-    <label>¿Aplica a?</label>
-    <label>
-      <input
-        type="radio"
-        name="aplicaA"
-        value="categoria"
-        [checked]="aplicaA() === 'categoria'"
-        (change)="aplicaA.set('categoria')"
-      />
-      Categoría
-    </label>
-    <label>
-      <input
-        type="radio"
-        name="aplicaA"
-        value="producto"
-        [checked]="aplicaA() === 'producto'"
-        (change)="aplicaA.set('producto')"
-      />
-      Producto
-    </label>
+  <!-- Aplicar a -->
+  <div class="form-row">
+    <div>
+      <label>¿{{ 'APLICA_A' | translate }}?</label>
+      <label>
+        <input
+          type="radio"
+          name="aplicaA"
+          value="categoria"
+          [checked]="aplicaA() === 'categoria'"
+          (change)="aplicaA.set('categoria')"
+        />
+        {{ 'CATEGORIA' | translate }}
+      </label>
+      <label>
+        <input
+          type="radio"
+          name="aplicaA"
+          value="producto"
+          [checked]="aplicaA() === 'producto'"
+          (change)="aplicaA.set('producto')"
+        />
+        {{ 'PRODUCTO' | translate }}
+      </label>
+    </div>
   </div>
-</div>
 
   <div class="form-row">
-  <div *ngIf="aplicaA() === 'categoria'">
-    <label for="idCategoria">Categoría:</label>
-    <select id="idCategoria" formControlName="idCategoria">
-      <option value="">Seleccione una categoría</option>
-      <option *ngFor="let cat of categorias" [value]="cat.id">
-        {{ cat.nombre }}
-      </option>
-    </select>
-  </div>
+    <div *ngIf="aplicaA() === 'categoria'">
+      <label for="idCategoria">Categoría:</label>
+      <select id="idCategoria" formControlName="idCategoria">
+        <option value="">Seleccione una categoría</option>
+        <option *ngFor="let cat of categorias" [value]="cat.id">
+          {{ cat.nombre }}
+        </option>
+      </select>
+    </div>
 
-  <div *ngIf="aplicaA() === 'producto'">
-    <label for="idproducto">Producto:</label>
-    <select id="idproducto" formControlName="idproducto">
-      <option value="">Seleccione un producto</option>
-      <option *ngFor="let prod of productos" [value]="prod.id">
-        {{ prod.nombre }}
-      </option>
-    </select>
+    <div *ngIf="aplicaA() === 'producto'">
+      <label for="idproducto">Producto:</label>
+      <select id="idproducto" formControlName="idproducto">
+        <option value="">Seleccione un producto</option>
+        <option *ngFor="let prod of productos" [value]="prod.id">
+          {{ prod.nombre }}
+        </option>
+      </select>
+    </div>
   </div>
-</div>
-
 
   <!-- Validación: Al menos uno requerido -->
   <div
@@ -130,6 +132,6 @@
 
   <!-- Botón -->
   <div class="form-row">
-    <button type="submit">Guardar Promoción</button>
+    <button type="submit">{{ 'GUARDAR_PROMOCION' | translate }}</button>
   </div>
 </form>

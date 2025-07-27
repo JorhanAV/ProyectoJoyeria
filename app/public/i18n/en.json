@@ -46,5 +46,21 @@
   "CANTIDAD": "Quantity",
   "PRECIO_UNITARIO": "Unit Price",
   "SUBTOTAL": "Subtotal",
-  "IMPUESTOS": "Taxes"
+  "IMPUESTOS": "Taxes",
+  "LISTADO_PROMOCIONES": "Promotions List",
+  "VALOR": "Value",
+  "VER_MAS": "See More",
+  "VIGENTE_DEL": "Valid from",
+  "AL": "to",
+  "TIPO_DESCUENTO": "Discount Type",
+  "FECHA_INICIO": "Start Date",
+  "FECHA_FIN": "End Date",
+  "APLICA_A": "Does it apply to",
+  "GUARDAR_PROMOCION": "Save Promotion",
+  "CREAR_PROMOCION": "Create Promotion",
+  "EDITAR_PROMOCION": "Edit Promotion",
+  "AGREGAR_PROMOCION": "Add Promotion",
+  "INICIO": "Start",
+  "FIN": "End"
+
 }

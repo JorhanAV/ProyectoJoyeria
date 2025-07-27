@@ -46,5 +46,20 @@
   "CANTIDAD": "Cantidad",
   "PRECIO_UNITARIO": "Precio Unitario",
   "SUBTOTAL": "Subtotal",
-  "IMPUESTOS": "Impuestos"
+  "IMPUESTOS": "Impuestos",
+  "LISTADO_PROMOCIONES": "Listado de Promociones",
+  "VALOR": "Valor",
+  "VER_MAS": "Ver Más",
+  "VIGENTE_DEL": "Vigente del",
+  "AL": "al",
+  "TIPO_DESCUENTO": "Tipo de Descuento",
+  "FECHA_INICIO": "Fecha de Inicio",
+  "FECHA_FIN": "Fecha de Fin",
+  "APLICA_A": "Aplica a",
+  "GUARDAR_PROMOCION": "Guardar Promoción",
+  "CREAR_PROMOCION": "Crear Promoción",
+  "EDITAR_PROMOCION": "Editar Promoción",
+  "AGREGAR_PROMOCION": "Agregar Promoción",
+  "INICIO": "Inicio",
+  "FIN": "Fin"
 }
