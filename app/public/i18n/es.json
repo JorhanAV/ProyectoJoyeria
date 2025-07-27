@@ -75,6 +75,9 @@
   "EN_JOYERIA_BRILLOS_ETERNOS_CREAMOS_JOYAS": "En Joyería Brillos Eternos creemos que cada pieza debe contar una historia única. Desde 2020 creamos joyas artesanales de máxima calidad que combinan tradición y modernidad.",
   "OFRECER_PIEZAS_DE_JOYERIA_DE_LUJO": "Ofrecer piezas de joyería de lujo que realcen la belleza de nuestros clientes, cuidando cada detalle y respetando el medioambiente.",
   "SER_RECONOCIDOS_COMO_REFERENTES": "Ser reconocidos como referentes en innovación y diseño dentro del sector joyero en Latinoamérica.",
-  "DISEÑO_EXCLUSIVO_Y_LUJO_EN_CADA_DETALLE": "Diseño exclusivo y lujo en cada detalle. Nuestra joyería representa la sofisticación y la calidad, creando piezas únicas para cada cliente."
+  "DISEÑO_EXCLUSIVO_Y_LUJO_EN_CADA_DETALLE": "Diseño exclusivo y lujo en cada detalle. Nuestra joyería representa la sofisticación y la calidad, creando piezas únicas para cada cliente.",
+  "CAMPO_OBLIGATORIO": "Este campo es obligatorio.",
+  "PRECIO_DEBE_SER_MAYOR_A_0": "El precio debe ser mayor a 0.",
+  "STOCK_DEBE_SER_MAYOR_O_IGUAL_A_0": "El stock debe ser mayor o igual a 0."
 
 }

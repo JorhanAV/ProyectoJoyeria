@@ -1,0 +1,11 @@
+2025-07-27 15:43:32.237 error: 	jorha--Se produjo un error interno del servidor 
+Invalid `this.prisma.producto.findMany()` invocation in
+D:\UTN\XI Cuatrimestre\ProyectoJoyeria\server\source\controllers\productoController.ts:11:52
+
+   8 get = async (request: Request, response: Response, next: NextFunction) => {
+   9   try {
+  10     // 1. Obtener todos los productos con su categoría e imágenes
+→ 11     const productos = await this.prisma.producto.findMany(
+Can't reach database server at `localhost:3306`
+
+Please make sure your database server is running at `localhost:3306`.

@@ -230,7 +230,6 @@ export class ProductoForm {
       etiquetas: this.etiquetasSeleccionadas.map((id) => ({ etiqueta_id: id })),
       categoria_id: Number(this.productoForm.value.categoria_id),
 
-      //imagenes: this.imagenesArchivos, // suponiendo que el backend las procesa aquí
     };
     console.log('Datos a guardar:', datos);
     if (this.esEdicion) {

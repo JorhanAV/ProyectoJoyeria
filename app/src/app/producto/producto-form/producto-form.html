@@ -16,7 +16,7 @@
       class="error-msg"
       *ngIf="productoForm.get('nombre')?.invalid && productoForm.get('nombre')?.touched"
     >
-      Este campo es obligatorio.
+      {{ 'CAMPO_OBLIGATORIO' | translate }}
     </div>
 
     <!-- Descripción -->
@@ -29,7 +29,7 @@
       class="error-msg"
       *ngIf="productoForm.get('descripcion')?.invalid && productoForm.get('descripcion')?.touched"
     >
-      La descripción es requerida.
+      {{ 'CAMPO_OBLIGATORIO' | translate }}
     </div>
 
     <!-- Precio -->
@@ -43,7 +43,7 @@
       class="error-msg"
       *ngIf="productoForm.get('precio_base')?.errors?.['min']"
     >
-      El precio debe ser mayor a 0.
+      {{ 'PRECIO_DEBE_SER_MAYOR_A_0' | translate }}
     </div>
 
     <!-- Imágenes del producto -->
@@ -92,7 +92,7 @@
       class="error-msg"
       *ngIf="productoForm.get('categoria_id')?.errors?.['required']"
     >
-      Debe seleccionar una categoría.
+      {{ 'CAMPO_OBLIGATORIO' | translate }}
     </div>
 
     <!-- Etiquetas -->
@@ -116,7 +116,7 @@
       [class.invalid]="productoForm.get('stock')?.invalid && productoForm.get('stock')?.touched"
     />
     <div class="error-msg" *ngIf="productoForm.get('stock')?.errors?.['min']">
-      El stock debe ser mayor o igual a 0.
+      {{ 'STOCK_DEBE_SER_MAYOR_O_IGUAL_A_0' | translate }}
     </div>
 
     <label>¿{{ 'PRODUCTO_ACTIVO' | translate }}?</label>
