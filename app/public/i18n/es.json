@@ -61,5 +61,15 @@
   "EDITAR_PROMOCION": "Editar Promoción",
   "AGREGAR_PROMOCION": "Agregar Promoción",
   "INICIO": "Inicio",
-  "FIN": "Fin"
+  "FIN": "Fin",
+  "VISION": "Visión",
+  "MISION": "Misión",
+  "HOME": "Inicio",
+  "TIENDA": "Tienda",
+  "MANTENIMIENTOS": "Mantenimientos",
+  "ACERCA_DE": "Acerca de",
+  "PRODUCTOS": "Productos",
+  "PEDIDOS": "Pedidos",
+  "PROMOCIONES": "Promociones"
+
 }

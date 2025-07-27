@@ -61,6 +61,16 @@
   "EDITAR_PROMOCION": "Edit Promotion",
   "AGREGAR_PROMOCION": "Add Promotion",
   "INICIO": "Start",
-  "FIN": "End"
+  "FIN": "End",
+  "VISION": "Vision",
+  "MISION": "Mission",
+  "HOME": "Home",
+  "TIENDA": "Store",
+  "MANTENIMIENTOS": "Maintenances",
+  "ACERCA_DE": "About Us",
+  "PRODUCTOS": "Products",
+  "PEDIDOS": "Orders",
+  "PROMOCIONES": "Promotions"
+  
 
 }
