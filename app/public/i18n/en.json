@@ -1,0 +1,13 @@
+{
+  "NOMBRE": "Name",
+  "PRECIO": "Price",
+  "ACCIONES": "Actions",
+  "GESTION_PRODUCTOS": "Product Management",
+  "AGREGAR_PRODUCTO": "Add Product",
+  "CATEGORIA": "Category",
+  "ETIQUETAS": "Tags",
+  "VALORACION_PROMEDIO": "Average Rating",
+  "PRECIO_BASE": "Base Price",
+  "IMAGENES": "Images",
+  "CERRAR": "Close"
+}

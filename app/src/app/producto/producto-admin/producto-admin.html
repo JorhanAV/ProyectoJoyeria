@@ -1,12 +1,12 @@
 <div class="admin-container">
-  <h2>Gestión de Productos</h2>
+  <h2>{{ 'GESTION_PRODUCTOS' | translate }}</h2>
 
   <table class="tabla-productos">
     <thead>
       <tr>
-        <th>Nombre</th>
-        <th>Precio</th>
-        <th>Acciones</th>
+        <th>{{ 'NOMBRE' | translate }}</th>
+        <th>{{ 'PRECIO' | translate }}</th>
+        <th>{{ 'ACCIONES' | translate }}</th>
       </tr>
     </thead>
     <tbody>
@@ -14,8 +14,12 @@
         <td>{{ p.nombre }}</td>
         <td>{{ p.precio_base | currency: '₡':'symbol' }}</td>
         <td>
-          <button class="btn-icon" (click)="editar(p.id)"><mat-icon class="editar-icono">edit</mat-icon></button>
-          <button class="btn-icon" (click)="mostrarDetalle(p)"><mat-icon class="info-icono">info</mat-icon></button>
+          <button class="btn-icon" (click)="editar(p.id)">
+            <mat-icon class="editar-icono">edit</mat-icon>
+          </button>
+          <button class="btn-icon" (click)="mostrarDetalle(p)">
+            <mat-icon class="info-icono">info</mat-icon>
+          </button>
         </td>
       </tr>
     </tbody>
@@ -23,7 +27,7 @@
 
   <div class="acciones-admin">
     <button class="btn-agregar" (click)="crearProducto()">
-      Agregar Producto
+      {{ 'AGREGAR_PRODUCTO' | translate }}
     </button>
   </div>
 
@@ -32,16 +36,22 @@
     <div class="modal-detalle">
       <h3>{{ productoActivo.nombre }}</h3>
       <p>{{ productoActivo.descripcion }}</p>
-      <p><strong>Etiquetas:</strong></p>
+      <p><strong>{{ 'ETIQUETAS' | translate }}:</strong></p>
       <div class="etiquetas-modal">
         <span *ngFor="let e of productoActivo.etiquetas" class="etiqueta-badge">
           {{ e.etiqueta.nombre }}
         </span>
       </div>
-      <p><strong>Precio base:</strong> {{ productoActivo.precio_base | currency:'₡' }}</p>
-      <p><strong>Categoría:</strong> {{ productoActivo.categoria.nombre || 'Sin categoría' }}</p>
-      
-      <p><strong>Valoración promedio:</strong></p>
+      <p>
+        <strong>{{ 'PRECIO_BASE' | translate }}:</strong> {{ productoActivo.precio_base |
+        currency:'₡' }}
+      </p>
+      <p>
+        <strong>{{ 'CATEGORIA' | translate }}:</strong> {{ productoActivo.categoria.nombre || 'Sin
+        categoría' }}
+      </p>
+
+      <p><strong>{{ 'VALORACION_PROMEDIO' | translate }}:</strong></p>
       <div class="estrellas-modal">
         <ng-container *ngFor="let estrella of [1, 2, 3, 4, 5]">
           <span
@@ -54,7 +64,7 @@
           >({{ promedioValoracion.toFixed(1) }})</span
         >
       </div>
-      <p><strong>Imágenes:</strong></p>
+      <p><strong>{{ 'IMAGENES' | translate }}:</strong></p>
       <div class="galeria-modal">
         <img
           *ngFor="let img of productoActivo.imagenes"
@@ -62,9 +72,8 @@
           alt="Imagen del producto"
         />
       </div>
-      
 
-      <button class="btn-cerrar" (click)="cerrarDetalle()">Cerrar</button>
+      <button class="btn-cerrar" (click)="cerrarDetalle()">{{ 'CERRAR' | translate }}</button>
     </div>
   </div>
 </div>
