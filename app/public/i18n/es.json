@@ -78,6 +78,8 @@
   "DISEÑO_EXCLUSIVO_Y_LUJO_EN_CADA_DETALLE": "Diseño exclusivo y lujo en cada detalle. Nuestra joyería representa la sofisticación y la calidad, creando piezas únicas para cada cliente.",
   "CAMPO_OBLIGATORIO": "Este campo es obligatorio.",
   "PRECIO_DEBE_SER_MAYOR_A_0": "El precio debe ser mayor a 0.",
-  "STOCK_DEBE_SER_MAYOR_O_IGUAL_A_0": "El stock debe ser mayor o igual a 0."
+  "STOCK_DEBE_SER_MAYOR_O_IGUAL_A_0": "El stock debe ser mayor o igual a 0.",
+  "COMENTARIO_DEBE_TENER_AL_MENOS_5_CARACTERES": "El comentario debe tener al menos 5 caracteres.",
+  "SELECCIONA_UNA_VALORACION_ENTRE_1_Y_5_ESTRELLAS": "Selecciona una valoración entre 1 y 5 estrellas."
 
 }

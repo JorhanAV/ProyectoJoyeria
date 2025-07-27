@@ -15,7 +15,7 @@
       *ngIf="formResena.get('comentario')?.touched && formResena.get('comentario')?.invalid"
       class="error"
     >
-      El comentario es obligatorio y debe tener al menos 5 caracteres.
+      {{ 'CAMPO_OBLIGATORIO' | translate }} y {{ 'COMENTARIO_DEBE_TENER_AL_MENOS_5_CARACTERES' | translate }}.
     </small>
   </div>
 
@@ -35,7 +35,7 @@
       *ngIf="formResena.get('valoracion')?.touched && formResena.get('valoracion')?.invalid"
       class="error"
     >
-      Seleccioná una valoración entre 1 y 5 estrellas.
+      {{ 'SELECCIONA_UNA_VALORACION_ENTRE_1_Y_5_ESTRELLAS' | translate }}
     </small>
   </div>
 
