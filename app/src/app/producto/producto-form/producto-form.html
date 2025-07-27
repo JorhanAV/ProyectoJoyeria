@@ -1,9 +1,12 @@
 <div class="form-container">
-  <h2>{{ esEdicion ? 'Editar Producto' : 'Crear Producto' }}</h2>
+  <h2>
+    {{ esEdicion ? ('EDITAR_PRODUCTO' | translate) : ('CREAR_PRODUCTO' |
+    translate) }}
+  </h2>
 
   <form [formGroup]="productoForm" (ngSubmit)="submitProducto()">
     <!-- Nombre -->
-    <label>Nombre del producto</label>
+    <label>{{ 'NOMBRE' | translate }}</label>
     <input
       type="text"
       formControlName="nombre"
@@ -17,7 +20,7 @@
     </div>
 
     <!-- Descripción -->
-    <label>Descripción detallada</label>
+    <label>{{ 'DESCRIPCION_DETALLADA' | translate }}</label>
     <textarea
       formControlName="descripcion"
       [class.invalid]="productoForm.get('descripcion')?.invalid && productoForm.get('descripcion')?.touched"
@@ -30,7 +33,7 @@
     </div>
 
     <!-- Precio -->
-    <label>Precio</label>
+    <label>{{ 'PRECIO_BASE' | translate }}</label>
     <input
       type="number"
       formControlName="precio_base"
@@ -44,7 +47,7 @@
     </div>
 
     <!-- Imágenes del producto -->
-    <label>Imágenes del producto</label>
+    <label>{{ 'IMAGENES' | translate }}</label>
 
     <!-- Imágenes existentes (solo en edición) -->
     <div class="galeria-actual" *ngIf="esEdicion && imagenesActuales.length">
@@ -75,12 +78,12 @@
     </div>
 
     <!-- Categoría -->
-    <label>Categoría</label>
+    <label>{{ 'CATEGORIA' | translate }}</label>
     <select
       formControlName="categoria_id"
       [class.invalid]="productoForm.get('categoria_id')?.invalid && productoForm.get('categoria_id')?.touched"
     >
-      <option value="">Seleccione una categoría</option>
+      <option value="">{{ 'SELECCIONAR_CATEGORIA' | translate }}</option>
       <option *ngFor="let cat of categorias" [value]="cat.id">
         {{ cat.nombre }}
       </option>
@@ -93,7 +96,7 @@
     </div>
 
     <!-- Etiquetas -->
-    <label>Etiquetas</label>
+    <label>{{ 'ETIQUETAS' | translate }}</label>
     <div class="checkbox-group">
       <label *ngFor="let etiqueta of etiquetas">
         <input
@@ -106,7 +109,7 @@
       </label>
     </div>
 
-    <label>Stock disponible</label>
+    <label>{{ 'STOCK_DISPONIBLE' | translate }}</label>
     <input
       type="number"
       formControlName="stock"
@@ -116,11 +119,11 @@
       El stock debe ser mayor o igual a 0.
     </div>
 
-    <label>¿Producto activo?</label>
+    <label>¿{{ 'PRODUCTO_ACTIVO' | translate }}?</label>
     <input type="checkbox" formControlName="activo" />
 
     <!-- Promedio (solo lectura) -->
-    <label>Promedio de Valoraciones</label>
+    <label>{{ 'PROMEDIO_VALORACIONES' | translate }}</label>
     <div class="valoracion-display">
       <ng-container *ngFor="let estrella of [1,2,3,4,5]">
         <span
@@ -133,6 +136,8 @@
     </div>
 
     <!-- Botón de acción -->
-    <button type="submit">{{ esEdicion ? 'Actualizar' : 'Crear' }}</button>
+    <button type="submit">
+      {{ esEdicion ? ('ACTUALIZAR' | translate) : ('CREAR' | translate) }}
+    </button>
   </form>
 </div>

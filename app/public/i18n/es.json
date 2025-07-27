@@ -9,5 +9,14 @@
   "VALORACION_PROMEDIO": "Valoración Promedio",
   "PRECIO_BASE": "Precio Base",
   "IMAGENES": "Imágenes",
-  "CERRAR": "Cerrar"
+  "CERRAR": "Cerrar",
+  "DESCRIPCION_DETALLADA": "Descripción Detallada",
+  "SELECCIONAR_CATEGORIA": "Seleccionar Categoría",
+  "STOCK_DISPONIBLE": "Stock Disponible",
+  "PRODUCTO_ACTIVO": "Producto Activo",
+  "PROMEDIO_VALORACIONES": "Promedio de Valoraciones",
+  "ACTUALIZAR": "Actualizar",
+  "CREAR": "Crear",
+  "EDITAR_PRODUCTO": "Editar Producto",
+  "CREAR_PRODUCTO": "Crear Producto"
 }

@@ -9,5 +9,14 @@
   "VALORACION_PROMEDIO": "Average Rating",
   "PRECIO_BASE": "Base Price",
   "IMAGENES": "Images",
-  "CERRAR": "Close"
+  "CERRAR": "Close",
+  "DESCRIPCION_DETALLADA": "Detailed Description",
+  "SELECCIONAR_CATEGORIA": "Select Category",
+  "STOCK_DISPONIBLE": "Available Stock",
+  "PRODUCTO_ACTIVO": "Product Active",
+  "PROMEDIO_VALORACIONES": "Average Ratings",
+  "ACTUALIZAR": "Update",
+  "CREAR": "Create",
+  "EDITAR_PRODUCTO": "Edit Product",
+  "CREAR_PRODUCTO": "Create Product"
 }
