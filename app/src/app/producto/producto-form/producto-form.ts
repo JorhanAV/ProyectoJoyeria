@@ -9,6 +9,7 @@ import { CategoriaService } from '../../share/services/categoria.service';
 import { EtiquetaService } from '../../share/services/etiqueta.service';
 import { NotificationService } from '../../share/notification-service';
 import { FileUploadService } from '../../share/services/images.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-producto-form',
@@ -47,7 +48,8 @@ export class ProductoForm {
     private fileUploadService: FileUploadService,
     private route: ActivatedRoute,
     private router: Router,
-    private noti: NotificationService
+    private noti: NotificationService,
+    private translate: TranslateService
   ) {}
 
   ngOnInit(): void {
@@ -175,19 +177,22 @@ export class ProductoForm {
 
     if (this.etiquetasSeleccionadas.length === 0) {
       this.noti.error(
-        'Formulario Inválido',
-        'Debe seleccionar al menos una etiqueta.',
+        this.translate.instant('PRODUCTO_TEXT.FORMULARIO_INVALIDO_TITULO'),
+        this.translate.instant('PRODUCTO_TEXT.ETIQUETA_REQUERIDA'),
         2000
       );
       return;
-    } else if (this.productoForm.invalid) {
+    }
+
+    if (this.productoForm.invalid) {
       this.noti.error(
-        'Formulario Inválido',
-        'Por favor, revise los campos marcados en rojo.',
+        this.translate.instant('PRODUCTO_TEXT.FORMULARIO_INVALIDO_TITULO'),
+        this.translate.instant('PRODUCTO_TEXT.CAMPOS_INVALIDOS'),
         3000
       );
       return;
     }
+
     if (this.esEdicion) {
       this.actualizarImagenesProducto();
     } else {
@@ -195,26 +200,26 @@ export class ProductoForm {
         this.fileUploadService.upload(this.selectedFiles).subscribe({
           next: (fileNames: string[]) => {
             this.noti.info(
-              'Mantenimiento Producto',
-              'Imágenes subidas correctamente.',
+              this.translate.instant('PRODUCTO_TEXT.IMAGENES_OK_TITULO'),
+              this.translate.instant('PRODUCTO_TEXT.IMAGENES_OK_MENSAJE'),
               2000
             );
 
-            this.productoForm.patchValue({
-              imagenes: fileNames,
-            });
-
+            this.productoForm.patchValue({ imagenes: fileNames });
             this.guardarProducto();
           },
           error: (err) => {
             console.error('Error al subir imágenes:', err);
-            this.noti.error('Error', 'Falló la subida de imágenes');
+            this.noti.error(
+              this.translate.instant('PRODUCTO_TEXT.IMAGENES_ERROR_TITULO'),
+              this.translate.instant('PRODUCTO_TEXT.IMAGENES_ERROR_MENSAJE')
+            );
           },
         });
       } else {
         this.noti.warning(
-          'Sin imágenes',
-          'Seleccione al menos una imagen.',
+          this.translate.instant('PRODUCTO_TEXT.IMAGENES_AUSENTES_TITULO'),
+          this.translate.instant('PRODUCTO_TEXT.IMAGENES_AUSENTES_MENSAJE'),
           3000
         );
       }
@@ -229,15 +234,16 @@ export class ProductoForm {
       ...(this.esEdicion && { id: this.productoId }),
       etiquetas: this.etiquetasSeleccionadas.map((id) => ({ etiqueta_id: id })),
       categoria_id: Number(this.productoForm.value.categoria_id),
-
     };
     console.log('Datos a guardar:', datos);
     if (this.esEdicion) {
       this.prodService.update(datos).subscribe(() => {
         this.router.navigate(['/producto-admin']);
         this.noti.success(
-          'Actualizar Producto',
-          `Producto actualizado: ${datos.nombre}`,
+          this.translate.instant('PRODUCTO_TEXT.ACTUALIZAR_PRODUCTO_TITULO'),
+          this.translate.instant('PRODUCTO_TEXT.ACTUALIZAR_PRODUCTO_MENSAJE', {
+            nombre: datos.nombre,
+          }),
           2000,
           '/producto-admin'
         );
@@ -245,8 +251,10 @@ export class ProductoForm {
     } else {
       this.prodService.create(datos).subscribe(() => {
         this.noti.success(
-          'Crear Producto',
-          `Producto creado: ${datos.nombre}`,
+          this.translate.instant('PRODUCTO_TEXT.CREAR_PRODUCTO_TITULO'),
+          this.translate.instant('PRODUCTO_TEXT.CREAR_PRODUCTO_MENSAJE', {
+            nombre: datos.nombre,
+          }),
           3000,
           '/producto-admin'
         );
@@ -266,12 +274,10 @@ export class ProductoForm {
 
     this.fileUploadService.updateImagenes(this.productoId, formData).subscribe({
       next: (res) => {
-        this.noti.success('Actualización completa', res.mensaje);
         this.guardarProducto();
       },
       error: (err) => {
         console.error('Error al actualizar imágenes:', err);
-        this.noti.error('Error', 'No se pudieron actualizar las imágenes');
       },
     });
   }
@@ -282,6 +288,6 @@ export class ProductoForm {
   }
   eliminarPreview(index: number) {
     this.previews.splice(index, 1);
-    this.selectedFiles.splice(index, 1); 
+    this.selectedFiles.splice(index, 1);
   }
 }

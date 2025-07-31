@@ -1,12 +1,12 @@
 <div class="admin-container">
-  <h2>{{ 'GESTION_PRODUCTOS' | translate }}</h2>
+  <h2>{{ 'PRODUCTO_TEXT.GESTION_PRODUCTOS' | translate }}</h2>
 
   <table class="tabla-productos">
     <thead>
       <tr>
-        <th>{{ 'NOMBRE' | translate }}</th>
-        <th>{{ 'PRECIO' | translate }}</th>
-        <th>{{ 'ACCIONES' | translate }}</th>
+        <th>{{ 'PRODUCTO_TEXT.NOMBRE' | translate }}</th>
+        <th>{{ 'PRODUCTO_TEXT.PRECIO' | translate }}</th>
+        <th>{{ 'PRODUCTO_TEXT.ACCIONES' | translate }}</th>
       </tr>
     </thead>
     <tbody>
@@ -27,7 +27,7 @@
 
   <div class="acciones-admin">
     <button class="btn-agregar" (click)="crearProducto()">
-      {{ 'AGREGAR_PRODUCTO' | translate }}
+      {{ 'PRODUCTO_TEXT.AGREGAR_PRODUCTO' | translate }}
     </button>
   </div>
 
@@ -36,22 +36,22 @@
     <div class="modal-detalle">
       <h3>{{ productoActivo.nombre }}</h3>
       <p>{{ productoActivo.descripcion }}</p>
-      <p><strong>{{ 'ETIQUETAS' | translate }}:</strong></p>
+      <p><strong>{{ 'PRODUCTO_TEXT.ETIQUETAS' | translate }}:</strong></p>
       <div class="etiquetas-modal">
         <span *ngFor="let e of productoActivo.etiquetas" class="etiqueta-badge">
           {{ e.etiqueta.nombre }}
         </span>
       </div>
       <p>
-        <strong>{{ 'PRECIO_BASE' | translate }}:</strong> {{ productoActivo.precio_base |
+        <strong>{{ 'PRODUCTO_TEXT.PRECIO_BASE' | translate }}:</strong> {{ productoActivo.precio_base |
         currency:'₡' }}
       </p>
       <p>
-        <strong>{{ 'CATEGORIA' | translate }}:</strong> {{ productoActivo.categoria.nombre || 'Sin
+        <strong>{{ 'PRODUCTO_TEXT.CATEGORIA' | translate }}:</strong> {{ productoActivo.categoria.nombre || 'Sin
         categoría' }}
       </p>
 
-      <p><strong>{{ 'VALORACION_PROMEDIO' | translate }}:</strong></p>
+      <p><strong>{{ 'PRODUCTO_TEXT.VALORACION_PROMEDIO' | translate }}:</strong></p>
       <div class="estrellas-modal">
         <ng-container *ngFor="let estrella of [1, 2, 3, 4, 5]">
           <span
@@ -64,7 +64,7 @@
           >({{ promedioValoracion.toFixed(1) }})</span
         >
       </div>
-      <p><strong>{{ 'IMAGENES' | translate }}:</strong></p>
+      <p><strong>{{ 'PRODUCTO_TEXT.IMAGENES' | translate }}:</strong></p>
       <div class="galeria-modal">
         <img
           *ngFor="let img of productoActivo.imagenes"
@@ -73,7 +73,7 @@
         />
       </div>
 
-      <button class="btn-cerrar" (click)="cerrarDetalle()">{{ 'CERRAR' | translate }}</button>
+      <button class="btn-cerrar" (click)="cerrarDetalle()">{{ 'PRODUCTO_TEXT.CERRAR' | translate }}</button>
     </div>
   </div>
 </div>

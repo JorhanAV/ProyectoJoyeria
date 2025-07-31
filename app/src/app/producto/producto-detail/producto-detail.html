@@ -1,4 +1,4 @@
-<button class="btn-volver" (click)="goBack()">← {{ 'VOLVER_AL_LISTADO' | translate }}</button>
+<button class="btn-volver" (click)="goBack()">← {{ 'PRODUCTO_TEXT.VOLVER_AL_LISTADO' | translate }}</button>
 
 <div class="detalle-container" *ngIf="datos">
   <div class="detalle-header">
@@ -9,7 +9,7 @@
     <div class="informacion">
       <h2>{{ datos.nombre }}</h2>
       <p>{{ datos.descripcion }}</p>
-      <p class="categoria">{{ 'CATEGORIA' | translate }}: {{ datos.categoria.nombre }}</p>
+      <p class="categoria">{{ 'PRODUCTO_TEXT.CATEGORIA' | translate }}: {{ datos.categoria.nombre }}</p>
 
       <div class="etiquetas">
         <span *ngFor="let e of datos.etiquetas" class="etiqueta">
@@ -53,7 +53,7 @@
   </div>
 
   <div class="resenas">
-    <h3>{{ 'RESENAS' | translate }}</h3>
+    <h3>{{ 'PRODUCTO_TEXT.RESENAS' | translate }}</h3>
 
     <div class="resena" *ngFor="let r of datos.resenas;">
 
@@ -74,7 +74,7 @@
   </div>
 
   <button class="btn-resena" (click)="mostrarFormularioResena = !mostrarFormularioResena">
-    {{ mostrarFormularioResena ? ('OCULTAR_RESEÑA' | translate) : ('AGREGAR_RESEÑA' | translate) }}
+    {{ mostrarFormularioResena ? ('PRODUCTO_TEXT.OCULTAR_RESEÑA' | translate) : ('PRODUCTO_TEXT.AGREGAR_RESEÑA' | translate) }}
   </button>
 
   <app-resena-form

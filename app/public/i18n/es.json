@@ -72,6 +72,8 @@
   "STOCK_DEBE_SER_MAYOR_O_IGUAL_A_0": "El stock debe ser mayor o igual a 0.",
   "VALOR_DEBE_SER_MAYOR_A_0": "El valor debe ser mayor a 0.",
   "DEBE_SELECCIONAR_AL_MENOS_UNA_CATEGORIA_O_UN_PRODUCTO": "Debe seleccionar al menos una categoría o un producto.",
+
+
   "RESENAS_TEXT": {
     "INVALIDA_TITULO": "Reseña inválida",
     "INVALIDA_MENSAJE": "Escribí un comentario y seleccioná la valoración.",
@@ -123,5 +125,51 @@
     "ACTUALIZADA_TITULO": "Promoción actualizada",
     "ACTUALIZADA_MENSAJE": "ID: {{id}}",
     "VER_DETALLES": "Ver Detalles"
+  },
+  "PRODUCTO_TEXT":{
+    "GESTION_PRODUCTOS": "Gestión de Productos",
+    "NOMBRE": "Nombre",
+    "PRECIO": "Precio",
+    "ACCIONES": "Acciones",
+    "AGREGAR_PRODUCTO": "Agregar Producto",
+    "CATEGORIA": "Categoría",
+    "ETIQUETAS": "Etiquetas",
+    "VALORACION_PROMEDIO": "Valoración Promedio",
+    "PRECIO_BASE": "Precio Base",
+    "IMAGENES": "Imágenes",
+    "CERRAR": "Cerrar",
+    "VOLVER_AL_LISTADO": "Volver al Listado",
+    "RESENAS": "Reseñas",
+    "AGREGAR_RESEÑA": "Agregar Reseña",
+    "OCULTAR_RESEÑA": "Ocultar Reseña",
+    "CREAR_PRODUCTO": "Crear Producto",
+    "EDITAR_PRODUCTO": "Editar Producto",
+    "CAMPO_OBLIGATORIO": "Este campo es obligatorio.",
+    "DESCRIPCION_DETALLADA": "Descripción Detallada",
+    "PRECIO_DEBE_SER_MAYOR_A_0": "El precio debe ser mayor a 0.",
+    "SELECCIONAR_CATEGORIA": "Seleccionar Categoría",
+    "STOCK_DISPONIBLE": "Stock Disponible",
+    "PRODUCTO_ACTIVO": "Producto Activo",
+    "PROMEDIO_VALORACIONES": "Promedio de Valoraciones",
+    "STOCK_DEBE_SER_MAYOR_O_IGUAL_A_0": "El stock debe ser mayor o igual a 0.",
+    "CREAR": "Crear",
+    "ACTUALIZAR": "Actualizar",
+
+    "FORMULARIO_INVALIDO_TITULO": "Formulario inválido",
+    "ETIQUETA_REQUERIDA": "Debe seleccionar al menos una etiqueta.",
+    "CAMPOS_INVALIDOS": "Por favor, revise los campos marcados en rojo.",
+    "IMAGENES_OK_TITULO": "Mantenimiento Producto",
+    "IMAGENES_OK_MENSAJE": "Imágenes subidas correctamente.",
+    "IMAGENES_ERROR_TITULO": "Error",
+    "IMAGENES_ERROR_MENSAJE": "Falló la subida de imágenes.",
+    "IMAGENES_AUSENTES_TITULO": "Sin imágenes",
+    "IMAGENES_AUSENTES_MENSAJE": "Seleccione al menos una imagen.",
+    "ACTUALIZAR_PRODUCTO_TITULO": "Actualizar Producto",
+    "ACTUALIZAR_PRODUCTO_MENSAJE": "Producto actualizado: {{nombre}}",
+    "CREAR_PRODUCTO_TITULO": "Crear Producto",
+    "CREAR_PRODUCTO_MENSAJE": "Producto creado: {{nombre}}",
+    "VER_DETALLES": "Ver Detalles"
   }
+  
+  
 }
