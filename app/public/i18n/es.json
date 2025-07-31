@@ -73,7 +73,6 @@
   "VALOR_DEBE_SER_MAYOR_A_0": "El valor debe ser mayor a 0.",
   "DEBE_SELECCIONAR_AL_MENOS_UNA_CATEGORIA_O_UN_PRODUCTO": "Debe seleccionar al menos una categoría o un producto.",
 
-
   "RESENAS_TEXT": {
     "INVALIDA_TITULO": "Reseña inválida",
     "INVALIDA_MENSAJE": "Escribí un comentario y seleccioná la valoración.",
@@ -126,7 +125,7 @@
     "ACTUALIZADA_MENSAJE": "ID: {{id}}",
     "VER_DETALLES": "Ver Detalles"
   },
-  "PRODUCTO_TEXT":{
+  "PRODUCTO_TEXT": {
     "GESTION_PRODUCTOS": "Gestión de Productos",
     "NOMBRE": "Nombre",
     "PRECIO": "Precio",
@@ -171,7 +170,7 @@
     "VER_DETALLES": "Ver Detalles"
   },
 
-  "PEDIDO_TEXT":{
+  "PEDIDO_TEXT": {
     "LISTADO_PEDIDOS": "Listado de Pedidos",
     "CLIENTE": "Cliente",
     "TOTAL": "Total",
@@ -188,7 +187,27 @@
     "FECHA": "Fecha",
     "VOLVER": "Volver",
     "PRODUCTO": "Producto"
+  },
+
+  "ACERCA_DE_TEXT": {
+    "ACERCA_DE": "About Us",
+    "VISION": "Visión",
+    "MISION": "Misión",
+    "NUESTRA_PASION_POR_LA_ELEGANCIA": "Nuestra Pasión por la Elegancia",
+    "EN_JOYERIA_BRILLOS_ETERNOS_CREAMOS_JOYAS": "En Joyería Brillos Eternos creemos que cada pieza debe contar una historia única. Desde 2020 creamos joyas artesanales de máxima calidad que combinan tradición y modernidad.",
+    "OFRECER_PIEZAS_DE_JOYERIA_DE_LUJO": "Ofrecer piezas de joyería de lujo que realcen la belleza de nuestros clientes, cuidando cada detalle y respetando el medioambiente.",
+    "SER_RECONOCIDOS_COMO_REFERENTES": "Ser reconocidos como referentes en innovación y diseño dentro del sector joyero en Latinoamérica.",
+    "DISEÑO_EXCLUSIVO_Y_LUJO_EN_CADA_DETALLE": "Diseño exclusivo y lujo en cada detalle. Nuestra joyería representa la sofisticación y la calidad, creando piezas únicas para cada cliente."
+  },
+
+  "MENU_TEXT": {
+    "HOME": "Inicio",
+    "TIENDA": "Tienda",
+    "MANTENIMIENTOS": "Mantenimientos",
+    "ACERCA_DE": "Acerca de",
+    "PRODUCTOS": "Productos",
+    "RESENAS": "Reseñas",
+    "PEDIDOS": "Pedidos",
+    "PROMOCIONES": "Promociones"
   }
-  
-  
 }
