@@ -169,6 +169,25 @@
     "CREAR_PRODUCTO_TITULO": "Crear Producto",
     "CREAR_PRODUCTO_MENSAJE": "Producto creado: {{nombre}}",
     "VER_DETALLES": "Ver Detalles"
+  },
+
+  "PEDIDO_TEXT":{
+    "LISTADO_PEDIDOS": "Listado de Pedidos",
+    "CLIENTE": "Cliente",
+    "TOTAL": "Total",
+    "DETALLE_PEDIDO": "Detalle del Pedido",
+    "DIRECCION_ENVIO": "Dirección de Envío",
+    "METODO_PAGO": "Método de Pago",
+    "ESTADO": "Estado",
+    "TIPO": "Tipo",
+    "DETALLES": "Detalles",
+    "CANTIDAD": "Cantidad",
+    "PRECIO_UNITARIO": "Precio Unitario",
+    "SUBTOTAL": "Subtotal",
+    "IMPUESTOS": "Impuestos",
+    "FECHA": "Fecha",
+    "VOLVER": "Volver",
+    "PRODUCTO": "Producto"
   }
   
   

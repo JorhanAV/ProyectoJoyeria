@@ -74,7 +74,7 @@
   "STOCK_DEBE_SER_MAYOR_O_IGUAL_A_0": "Stock must be greater than or equal to 0.",
   "VALOR_DEBE_SER_MAYOR_A_0": "Value must be greater than 0.",
   "DEBE_SELECCIONAR_AL_MENOS_UNA_CATEGORIA_O_UN_PRODUCTO": "You must select at least one category or one product.",
-  
+
   "RESENAS_TEXT": {
     "INVALIDA_TITULO": "Invalid Review",
     "INVALIDA_MENSAJE": "Please write a comment and select a rating.",
@@ -169,6 +169,27 @@
     "CREAR_PRODUCTO_TITULO": "Create Product",
     "CREAR_PRODUCTO_MENSAJE": "Product created: {{nombre}}",
     "VER_DETALLES": "View Details"
+  },
+
+  "PEDIDO_TEXT":{
+    "PEDIDOS_LISTADO": "Orders List",
+    "CLIENTE": "Client",
+    "TOTAL": "Total",
+    "DETALLE_PEDIDO": "Order Detail",
+    "DIRECCION_ENVIO": "Shipping Address",
+    "METODO_PAGO": "Payment Method",
+    "ESTADO": "Status",
+    "TIPO": "Type",
+    "DETALLES": "Details",
+    "CANTIDAD": "Quantity",
+    "PRECIO_UNITARIO": "Unit Price",
+    "SUBTOTAL": "Subtotal",
+    "IMPUESTOS": "Taxes",
+    "VOLVER": "Back",
+    "DETALLE_RESEÑA": "Review Detail",
+    "PRODUCTO": "Product",
+    "VOLVER_AL_LISTADO": "Back to List",
+    "FECHA": "Date"
   }
   
 }
