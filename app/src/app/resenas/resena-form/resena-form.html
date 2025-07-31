@@ -1,27 +1,27 @@
 <form [formGroup]="formResena" (ngSubmit)="submitResena()" novalidate>
-  <h2>{{ 'CREAR_RESEÑA' | translate }}</h2>
-  <p class="fecha-actual">{{ 'FECHA' | translate }}: {{ fechaActual | date: 'dd/MM/yyyy' }}</p>
-  <p class="nombre-usuario">{{ 'USUARIO' | translate }}: <strong>{{ nombreUsuario }}</strong></p>
+  <h2>{{ 'RESENAS_TEXT.CREAR_RESEÑA' | translate }}</h2>
+  <p class="fecha-actual">{{ 'RESENAS_TEXT.FECHA' | translate }}: {{ fechaActual | date: 'dd/MM/yyyy' }}</p>
+  <p class="nombre-usuario">{{ 'RESENAS_TEXT.USUARIO' | translate }}: <strong>{{ nombreUsuario }}</strong></p>
   <!-- Comentario -->
   <div class="form-group">
-    <label for="comentario">{{ 'COMENTARIO' | translate }}:</label>
+    <label for="comentario">{{ 'RESENAS_TEXT.COMENTARIO' | translate }}:</label>
     <textarea
       id="comentario"
       formControlName="comentario"
       rows="4"
-      placeholder="¿{{ 'QUE_TE_PARECIO_EL_PRODUCTO' | translate }}?"
+      placeholder="¿{{ 'RESENAS_TEXT.QUE_TE_PARECIO_EL_PRODUCTO' | translate }}?"
     ></textarea>
     <small
       *ngIf="formResena.get('comentario')?.touched && formResena.get('comentario')?.invalid"
       class="error"
     >
-      {{ 'CAMPO_OBLIGATORIO' | translate }} y {{ 'COMENTARIO_DEBE_TENER_AL_MENOS_5_CARACTERES' | translate }}.
+      {{ 'RESENAS_TEXT.CAMPO_OBLIGATORIO' | translate }} y {{ 'RESENAS_TEXT.COMENTARIO_DEBE_TENER_AL_MENOS_5_CARACTERES' | translate }}.
     </small>
   </div>
 
   <!-- Valoración -->
   <div class="form-group estrellas">
-    <label>{{ 'VALORACION' | translate }}:</label>
+    <label>{{ 'RESENAS_TEXT.VALORACION' | translate }}:</label>
     <div class="estrellas-container">
       <span
         *ngFor="let estrella of estrellas; let i = index"
@@ -35,11 +35,11 @@
       *ngIf="formResena.get('valoracion')?.touched && formResena.get('valoracion')?.invalid"
       class="error"
     >
-      {{ 'SELECCIONA_UNA_VALORACION_ENTRE_1_Y_5_ESTRELLAS' | translate }}
+      {{ 'RESENAS_TEXT.SELECCIONA_UNA_VALORACION_ENTRE_1_Y_5_ESTRELLAS' | translate }}
     </small>
   </div>
 
   <button type="submit" [disabled]="formResena.invalid">
-    {{ 'CREAR_RESEÑA' | translate }}
+    {{ 'RESENAS_TEXT.CREAR_RESEÑA' | translate }}
   </button>
 </form>
