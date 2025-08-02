@@ -12,7 +12,7 @@
   <!-- Nombre -->
   <div class="form-row">
     <div>
-      <label for="nombre">{{ 'NOMBRE' | translate }}:</label>
+      <label for="nombre">{{ 'PROMOCION_TEXT.NOMBRE' | translate }}:</label>
       <input type="text" id="nombre" formControlName="nombre" />
       <div
         *ngIf="formPromocion.get('nombre')?.touched && formPromocion.get('nombre')?.invalid"
@@ -26,7 +26,7 @@
   <!-- Tipo de Descuento -->
   <div class="form-row">
     <div>
-      <label for="tipoDescuento">{{ 'TIPO_DESCUENTO' | translate }}:</label>
+      <label for="tipoDescuento">{{ 'PROMOCION_TEXT.TIPO_DESCUENTO' | translate }}:</label>
       <select
         id="tipo"
         formControlName="tipo"

@@ -49,7 +49,8 @@
     "CREADA_MENSAJE": "ID: {{id}}",
     "ACTUALIZADA_TITULO": "Promotion updated",
     "ACTUALIZADA_MENSAJE": "ID: {{id}}",
-    "VER_DETALLES": "View Details"
+    "VER_DETALLES": "View Details",
+    "TIPO_DESCUENTO": "Discount Type"
   },
   "PRODUCTO_TEXT": {
     "GESTION_PRODUCTOS": "Product Management",
