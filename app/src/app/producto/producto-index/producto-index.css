@@ -102,5 +102,35 @@
   opacity: 0;
 }
 
+.tarjeta-producto {
+  position: relative;
+  padding-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  transition: box-shadow 0.3s ease;
+}
 
+.tarjeta-producto:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
 
+/* Botón oculto por defecto */
+.boton-carrito-inferior {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Mostrar botón al hacer hover */
+.tarjeta-producto:hover .boton-carrito-inferior {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Cambiar color del ícono al hacer hover sobre el botón */
+.boton-carrito-inferior:hover mat-icon {
+  color: #b37519; 
+}
