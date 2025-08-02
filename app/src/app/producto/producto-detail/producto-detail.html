@@ -1,15 +1,23 @@
-<button class="btn-volver" (click)="goBack()">← {{ 'PRODUCTO_TEXT.VOLVER_AL_LISTADO' | translate }}</button>
+<button class="btn-volver" (click)="goBack()">
+  ← {{ 'PRODUCTO_TEXT.VOLVER_AL_LISTADO' | translate }}
+</button>
 
 <div class="detalle-container" *ngIf="datos">
   <div class="detalle-header">
     <div class="imagen-principal">
-      <img [src]="'http://localhost:3000/imagenes/' + imagenActiva" alt="Imagen de producto" />
+      <img
+        [src]="'http://localhost:3000/imagenes/' + imagenActiva"
+        alt="Imagen de producto"
+      />
     </div>
 
     <div class="informacion">
       <h2>{{ datos.nombre }}</h2>
       <p>{{ datos.descripcion }}</p>
-      <p class="categoria">{{ 'PRODUCTO_TEXT.CATEGORIA' | translate }}: {{ datos.categoria.nombre }}</p>
+      <p class="categoria">
+        {{ 'PRODUCTO_TEXT.CATEGORIA' | translate }}: {{ datos.categoria.nombre
+        }}
+      </p>
 
       <div class="etiquetas">
         <span *ngFor="let e of datos.etiquetas" class="etiqueta">
@@ -20,10 +28,10 @@
       <div class="precio-valoracion">
         <p class="precio">
           <span *ngIf="tipoDescuento" class="precio-anterior">
-            {{ precioAnterior | currency:'₡':'symbol':'1.0-0' }}
+            ₡ {{ precioAnterior }}
           </span>
           <span [ngClass]="{'precio-descuento': tipoDescuento}">
-            {{ precioFinal | currency:'₡':'symbol':'1.0-0' }}
+            ₡ {{ precioFinal }}
           </span>
         </p>
 
@@ -56,7 +64,6 @@
     <h3>{{ 'PRODUCTO_TEXT.RESENAS' | translate }}</h3>
 
     <div class="resena" *ngFor="let r of datos.resenas;">
-
       <div class="resena-info">
         <strong>{{ r.usuario.nombre_usuario }}</strong>
         <span class="fecha">{{ r.fecha | date: 'longDate' }}</span>
@@ -73,8 +80,12 @@
     </div>
   </div>
 
-  <button class="btn-resena" (click)="mostrarFormularioResena = !mostrarFormularioResena">
-    {{ mostrarFormularioResena ? ('PRODUCTO_TEXT.OCULTAR_RESEÑA' | translate) : ('PRODUCTO_TEXT.AGREGAR_RESEÑA' | translate) }}
+  <button
+    class="btn-resena"
+    (click)="mostrarFormularioResena = !mostrarFormularioResena"
+  >
+    {{ mostrarFormularioResena ? ('PRODUCTO_TEXT.OCULTAR_RESEÑA' | translate) :
+    ('PRODUCTO_TEXT.AGREGAR_RESEÑA' | translate) }}
   </button>
 
   <app-resena-form

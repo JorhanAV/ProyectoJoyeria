@@ -12,7 +12,7 @@
     <tbody>
       <tr *ngFor="let p of datos">
         <td>{{ p.nombre }}</td>
-        <td>{{ p.precio_base | currency: '₡':'symbol' }}</td>
+        <td>₡{{ p.precio_base }}</td>
         <td>
           <button class="btn-icon" (click)="editar(p.id)">
             <mat-icon class="editar-icono">edit</mat-icon>

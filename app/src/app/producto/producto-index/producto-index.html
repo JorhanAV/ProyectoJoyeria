@@ -18,10 +18,10 @@
       <h3>{{ producto.nombre }}</h3>
       <p class="precio">
         <span *ngIf="producto.tienePromocion" class="precio-anterior">
-          {{ producto.precio_base | currency: '₡':'symbol':'1.0-0' }}
+          ₡{{ producto.precio_base }}
         </span>
         <span [ngClass]="{'precio-descuento': producto.tienePromocion}">
-          {{ producto.precioFinal | currency: '₡':'symbol':'1.0-0' }}
+          ₡{{ producto.precioFinal }}
         </span>
       </p>
       <p class="categoria">{{ producto.categoria.nombre }}</p>
