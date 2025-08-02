@@ -1,4 +1,8 @@
-import { NgModule, provideBrowserGlobalErrorListeners, LOCALE_ID } from '@angular/core';
+import {
+  NgModule,
+  provideBrowserGlobalErrorListeners,
+  LOCALE_ID,
+} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing-module';
@@ -9,7 +13,11 @@ import { HomeModule } from './home/home-module';
 import { UserModule } from './user/user-module';
 import { ProductoModule } from './producto/producto-module';
 import { OrdenModule } from './orden/orden-module';
-import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  provideHttpClient,
+  HttpClient,
+} from '@angular/common/http';
 import { HttpErrorInterceptorService } from './share/http-error-interceptor.service';
 
 import { PromocionesModule } from './promociones/promociones-module';
@@ -17,16 +25,26 @@ import { PedidosModule } from './pedidos/pedidos-module';
 import { ResenasModule } from './resenas/resenas-module';
 import { ReactiveFormsModule } from '@angular/forms';
 
-//import { provideAnimations } from '@angular/platform-browser/animations';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, '/i18n/', '.json');
+}
 
 @NgModule({
-  declarations: [
-    App
-  ],
+  declarations: [App],
   imports: [
     ReactiveFormsModule,
     BrowserModule,
+    TranslateModule.forRoot({
+      defaultLanguage: 'es',
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+    }),
     CoreModule,
     ShareModule,
     HomeModule,
@@ -38,7 +56,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     PedidosModule,
     ResenasModule,
 
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),
@@ -51,6 +69,6 @@ import { ReactiveFormsModule } from '@angular/forms';
       multi: true,
     },
   ],
-  bootstrap: [App]
+  bootstrap: [App],
 })
-export class AppModule { }
+export class AppModule {}

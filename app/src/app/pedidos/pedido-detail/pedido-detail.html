@@ -1,26 +1,26 @@
 
-<button class="back-button" (click)="goback()">← Volver</button>
+<button class="back-button" (click)="goback()">← {{ 'PEDIDO_TEXT.VOLVER' | translate }}</button>
 
 <div class="factura-contenedor" *ngIf="pedido">
-  <h2 class="factura-titulo">Detalle - Pedido #{{ pedido.id }}</h2>
+  <h2 class="factura-titulo">{{ 'PEDIDO_TEXT.DETALLE_PEDIDO' | translate }} #{{ pedido.id }}</h2>
 
   <div class="factura-datos">
-    <div><strong>Cliente:</strong> {{ pedido.usuario.nombre_usuario }}</div>
-    <div><strong>Fecha:</strong> {{ pedido.fecha_pedido | date: 'longDate' }}</div>
-    <div><strong>Dirección de envío:</strong> {{ pedido.direccion_envio }}</div>
-    <div><strong>Método de Pago:</strong> {{ pedido.metodoPago }}</div>
-    <div><strong>Estado:</strong> {{ pedido.estado }}</div>
+    <div><strong>{{ 'PEDIDO_TEXT.CLIENTE' | translate }}:</strong> {{ pedido.usuario.nombre_usuario }}</div>
+    <div><strong>{{ 'PEDIDO_TEXT.FECHA' | translate }}:</strong> {{ pedido.fecha_pedido | date: 'longDate' }}</div>
+    <div><strong>{{ 'PEDIDO_TEXT.DIRECCION_ENVIO' | translate }}:</strong> {{ pedido.direccion_envio }}</div>
+    <div><strong>{{ 'PEDIDO_TEXT.METODO_PAGO' | translate }}:</strong> {{ pedido.metodoPago }}</div>
+    <div><strong>{{ 'PEDIDO_TEXT.ESTADO' | translate }}:</strong> {{ pedido.estado }}</div>
   </div>
 
   <table class="factura-tabla">
     <thead>
       <tr>
-        <th>Producto</th>
-        <th>Tipo</th>
-        <th>Detalles</th>
-        <th>Cantidad</th>
-        <th>Precio Unitario</th>
-        <th>Subtotal</th>
+        <th>{{ 'PEDIDO_TEXT.PRODUCTO' | translate }}</th>
+        <th>{{ 'PEDIDO_TEXT.TIPO' | translate }}</th>
+        <th>{{ 'PEDIDO_TEXT.DETALLES' | translate }}</th>
+        <th>{{ 'PEDIDO_TEXT.CANTIDAD' | translate }}</th>
+        <th>{{ 'PEDIDO_TEXT.PRECIO_UNITARIO' | translate }}</th>
+        <th>{{ 'PEDIDO_TEXT.SUBTOTAL' | translate }}</th>
       </tr>
     </thead>
     <tbody>
@@ -52,6 +52,6 @@
   </table>
 
   <div class="factura-totales">
-    <div><strong>Subtotal:</strong> ₡{{ pedido.subtotal | number: '1.2-2' }}</div>
-    <div><strong>Impuestos:</strong> ₡{{ pedido.impuestos | number: '1.2-2' }}</div>
-    <div class="total-final"><strong>Total: ₡{{ pedido.total | number: '1.2-2' }}</strong>
+    <div><strong>{{ 'PEDIDO_TEXT.SUBTOTAL' | translate }}:</strong> ₡{{ pedido.subtotal | number: '1.2-2' }}</div>
+    <div><strong>{{ 'PEDIDO_TEXT.IMPUESTOS' | translate }}:</strong> ₡{{ pedido.impuestos | number: '1.2-2' }}</div>
+    <div class="total-final"><strong>{{ 'PEDIDO_TEXT.TOTAL' | translate }}:</strong> ₡{{ pedido.total | number: '1.2-2' }}</div>

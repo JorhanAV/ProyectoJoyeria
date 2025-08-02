@@ -1,5 +1,5 @@
 <div class="promociones-container">
-  <h2>Listado de Promociones</h2>
+  <h2>{{ 'PROMOCION_TEXT.LISTADO_PROMOCIONES' | translate }}</h2>
 
   <div class="promociones-grid">
     <div
@@ -27,17 +27,17 @@
       <div class="promo-contenido">
         <h3>{{ promo.nombre }}</h3>
         <p>
-          <strong>Tipo:</strong> {{ promo.tipo === 'Porcentaje' ? 'Porcentaje' :
+          <strong>{{ 'PROMOCION_TEXT.TIPO' | translate }}:</strong> {{ promo.tipo === 'Porcentaje' ? 'Porcentaje' :
           'Cantidad Fija' }}
         </p>
         <p>
-          <strong>Valor:</strong>
+          <strong>{{ 'PROMOCION_TEXT.VALOR' | translate }}:</strong>
           {{ promo.tipo === 'Porcentaje' ? promo.valor + '%' : '₡' + promo.valor
           }}
         </p>
       </div>
       <a (click)="detalle(promo.id)" class="btn-detalle"
-        >Ver detalles</a
+        >{{ 'PROMOCION_TEXT.VER_DETALLES' | translate }}</a
       >
     </div>
   </div>

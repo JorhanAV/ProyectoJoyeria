@@ -2,9 +2,9 @@
   <h2>{{ datos.nombre }}</h2>
   <p class="descripcion-promo">{{ datos.productos }}</p>
   <p class="rango-fechas">
-    Vigente del {{ datos.fecha_inicio | date: 'dd/MM/yyyy' }} al {{ datos.fecha_fin | date: 'dd/MM/yyyy' }}
+    {{ 'PROMOCION_TEXT.VIGENTE_DEL' | translate }} {{ datos.fecha_inicio | date: 'dd/MM/yyyy' }} {{ 'PROMOCION_TEXT.AL' | translate }} {{ datos.fecha_fin | date: 'dd/MM/yyyy' }}
   </p>
-  <button class="back-button" (click)="goback()">← Volver</button>
+  <button class="back-button" (click)="goback()">← {{ 'PROMOCION_TEXT.VOLVER' | translate }}</button>
   <div class="detalle-grid">
     <div *ngFor="let p of productos" class="detalle-card">
   <!-- ICONOS flotantes -->
@@ -41,7 +41,7 @@
       <span class="precio-original">₡{{ p.precio_base }}</span>
       <span class="precio-descuento">₡{{ p.precio_con_descuento }}</span>
     </div>
-    <button class="btn-detalle" (click)="verDetalleProducto(p.id)">Ver más</button>
+    <button class="btn-detalle" (click)="verDetalleProducto(p.id)">{{ 'PROMOCION_TEXT.VER_MAS' | translate }}</button>
   </div>
 </div>
 

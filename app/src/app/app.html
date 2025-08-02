@@ -5,5 +5,12 @@
 estado actual del enrutador -->
   <router-outlet />
 </div>
+<div class="selector-idioma">
+  <label for="lang">Idioma:</label>
+  <select id="lang" (change)="cambiarIdioma($event)">
+    <option value="es">🇪🇸 Español</option>
+    <option value="en">🇺🇸 English</option>
+  </select>
+</div>
 <!-- Selector Footer definido en el módulo Core -->
 <app-footer></app-footer>

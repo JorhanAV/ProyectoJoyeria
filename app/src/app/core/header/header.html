@@ -15,37 +15,36 @@
 
   <!-- ENLACES DE NAVEGACIÓN -->
   <nav class="nav-links" [class.open]="menuOpen">
-    <a routerLink="/">Inicio</a>
+    <a routerLink="/">{{ 'MENU_TEXT.HOME' | translate }}</a>
     <a class="more-link" [matMenuTriggerFor]="moreMenu">
-      Tienda
+      {{ 'MENU_TEXT.TIENDA' | translate }}
       <mat-icon class="arrow-icon">arrow_drop_down</mat-icon>
     </a>
     <a class="more-link" [matMenuTriggerFor]="moreMenuMant">
-      Mantenimientos
+      {{ 'MENU_TEXT.MANTENIMIENTOS' | translate }}
       <mat-icon class="arrow-icon">arrow_drop_down</mat-icon>
     </a>
-    <a routerLink="/acercade">Acerca de</a>
+    <a routerLink="/acercade">{{ 'MENU_TEXT.ACERCA_DE' | translate }}</a>
     <!-- <a routerLink="/contacto">Contacto</a> -->
 
     <mat-menu #moreMenu="matMenu" panelClass="white-menu-panel">
       <button mat-menu-item routerLink="/productos">
-        <span>Productos</span>
+        <span>{{ 'MENU_TEXT.PRODUCTOS' | translate }}</span>
       </button>
       <button mat-menu-item routerLink="/resena">
-        <span>Reseñas</span>
+        <span>{{ 'MENU_TEXT.RESENAS' | translate }}</span>
       </button>
       <button mat-menu-item routerLink="/pedidos">
-        <span>Pedidos</span>
+        <span>{{ 'MENU_TEXT.PEDIDOS' | translate }}</span>
       </button>
       <button mat-menu-item routerLink="/promocion">
-        <span>Promociones</span>
+        <span>{{ 'MENU_TEXT.PROMOCIONES' | translate }}</span>
       </button>
-      <!-- agrega más <button mat-menu-item> según necesites -->
     </mat-menu>
 
     <mat-menu #moreMenuMant="matMenu" panelClass="white-menu-panel">
       <button mat-menu-item routerLink="/producto-admin">
-        <span>Productos</span>
+        <span>{{ 'MENU_TEXT.PRODUCTOS' | translate }}</span>
       </button>
       <!-- <button mat-menu-item routerLink="/resena">
         <span>Reseñas</span>
@@ -54,7 +53,7 @@
         <span>Pedidos</span>
       </button> -->
       <button mat-menu-item routerLink="/promocion-admin">
-        <span>Promociones</span>
+        <span>{{ 'MENU_TEXT.PROMOCIONES' | translate }}</span>
       </button>
       <!-- agrega más <button mat-menu-item> según necesites -->
     </mat-menu>

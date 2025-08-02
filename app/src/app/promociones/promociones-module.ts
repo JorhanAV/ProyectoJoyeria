@@ -23,6 +23,7 @@ import { MatTooltipModule } from '@angular/material/tooltip'
 import { PromocionForm } from './promocion-form/promocion-form'
 import { effect, NgModule, signal } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     PromocionesRoutingModule,
+    TranslateModule.forChild(),
     MatMenuModule,
     MatInputModule,
     MatSelectModule,

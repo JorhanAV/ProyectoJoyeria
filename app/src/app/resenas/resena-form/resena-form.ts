@@ -12,6 +12,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ResenaService } from '../../share/services/resena.service';
 import { NotificationService } from '../../share/notification-service';
 import { UsuarioService } from '../../share/services/usuario.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-resena-form',
@@ -32,12 +33,12 @@ export class ResenaForm implements OnInit, OnDestroy {
 
   fechaActual: Date = new Date();
 
-
   constructor(
     private fb: FormBuilder,
     private resenaService: ResenaService,
     private usuarioService: UsuarioService,
-    private noti: NotificationService
+    private noti: NotificationService,
+    private translate: TranslateService
   ) {}
 
   ngOnInit(): void {
@@ -73,8 +74,8 @@ export class ResenaForm implements OnInit, OnDestroy {
   submitResena() {
     if (this.formResena.invalid) {
       this.noti.error(
-        'Reseña inválida',
-        'Escribí un comentario y seleccioná la valoración.',
+        this.translate.instant('RESENAS_NOTI.INVALIDA_TITULO'),
+        this.translate.instant('RESENAS_NOTI.INVALIDA_MENSAJE'),
         4000
       );
       return;
@@ -84,7 +85,11 @@ export class ResenaForm implements OnInit, OnDestroy {
       .create(this.formResena.value)
       .pipe(takeUntil(this.destroy$))
       .subscribe((data: any) => {
-        this.noti.success('Crear Reseña', `Reseña creada: ${data.id}`, 3000);
+        this.noti.success(
+          this.translate.instant('RESENAS_TEXT.CREADA_TITULO'),
+          this.translate.instant('RESENAS_TEXT.CREADA_MENSAJE', { id: data.id }),
+          3000
+        );
 
         this.resenaGuardada.emit(data); // 👈 EMITIR LA NUEVA RESEÑA
       });
@@ -97,7 +102,6 @@ export class ResenaForm implements OnInit, OnDestroy {
       visible: true,
       valoracion: 0,
     });
-
   }
 
   ngOnDestroy(): void {

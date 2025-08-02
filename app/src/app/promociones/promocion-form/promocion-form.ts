@@ -13,6 +13,7 @@ import {
 } from '@angular/forms';
 import { Component, effect, OnDestroy, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 export const alMenosUnaSeleccionValidator: ValidatorFn = (
   control: AbstractControl
@@ -51,7 +52,8 @@ export class PromocionForm implements OnInit, OnDestroy {
     private productoService: ProductoService,
     private noti: NotificationService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private translate: TranslateService
   ) {
     effect(() => {
       const tipo = this.aplicaA();
@@ -118,17 +120,17 @@ export class PromocionForm implements OnInit, OnDestroy {
   private patchFormValues(data: any): void {
     console.log(data);
     const esCategoria = !!data.referencia_id_categoria;
-     const tipo = esCategoria ? 'categoria' : 'producto';
+    const tipo = esCategoria ? 'categoria' : 'producto';
     // 2. Establecer la señal aplicaA ANTES de hacer patchValue
     this.aplicaA.set(tipo);
     this.formPromocion.patchValue({
-        nombre: data.nombre,
-        tipo: data.tipo,
-        valor: data.valor,
-        fecha_inicio: this.formatearParaDatetimeLocal(data.fecha_inicio),
-        fecha_fin: this.formatearParaDatetimeLocal(data.fecha_fin),
-        idCategoria: data.referencia_id_categoria || null,
-        idproducto: data.referencia_id_producto || null,
+      nombre: data.nombre,
+      tipo: data.tipo,
+      valor: data.valor,
+      fecha_inicio: this.formatearParaDatetimeLocal(data.fecha_inicio),
+      fecha_fin: this.formatearParaDatetimeLocal(data.fecha_fin),
+      idCategoria: data.referencia_id_categoria || null,
+      idproducto: data.referencia_id_producto || null,
     });
     this.tipoDescuento = data.tipoDescuento;
   }
@@ -139,22 +141,26 @@ export class PromocionForm implements OnInit, OnDestroy {
     const { fecha_inicio, fecha_fin } = this.formPromocion.value;
     if (new Date(fecha_inicio) < new Date()) {
       this.noti.error(
-        'Fecha inválida',
-        'La fecha de inicio no puede ser anterior a hoy.'
+        this.translate.instant('PROMOCION_TEXT.FECHA_INVALIDA_TITULO'),
+        this.translate.instant('PROMOCION_TEXT.FECHA_INVALIDA_INICIO')
       );
       return;
     }
 
     if (new Date(fecha_fin) < new Date(fecha_inicio)) {
       this.noti.error(
-        'Fecha inválida',
-        'La fecha de fin no puede ser anterior a la de inicio.'
+        this.translate.instant('PROMOCION_TEXT.FECHA_INVALIDA_TITULO'),
+        this.translate.instant('PROMOCION_TEXT.FECHA_INVALIDA_FIN')
       );
       return;
     }
 
     if (this.formPromocion.invalid) {
-      this.noti.error('Formulario inválido', 'Revisá los campos.', 4000);
+      this.noti.error(
+        this.translate.instant('PROMOCION_TEXT.FORMULARIO_INVALIDO_TITULO'),
+        this.translate.instant('PROMOCION_TEXT.FORMULARIO_INVALIDO_MENSAJE'),
+        4000
+      );
       return;
     }
 
@@ -170,7 +176,11 @@ export class PromocionForm implements OnInit, OnDestroy {
         .create(data)
         .pipe(takeUntil(this.destroy$))
         .subscribe((res) => {
-          this.noti.success('Promoción creada', `ID: ${res.id}`, 3000);
+          const titulo = this.translate.instant('PROMOCION_TEXT.CREADA_TITULO');
+          const mensaje = this.translate.instant('PROMOCION_TEXT.CREADA_MENSAJE', {
+            id: res.id,
+          });
+          this.noti.success(titulo, mensaje, 3000);
           this.router.navigate(['/promocion-admin']);
         });
     } else if (this.idPromocion !== null) {
@@ -179,7 +189,14 @@ export class PromocionForm implements OnInit, OnDestroy {
         .update(data)
         .pipe(takeUntil(this.destroy$))
         .subscribe(() => {
-          this.noti.success('Promoción actualizada', '', 3000);
+          const titulo = this.translate.instant(
+            'PROMOCION_TEXT.ACTUALIZADA_TITULO'
+          );
+          const mensaje = this.translate.instant(
+            'PROMOCION_TEXT.ACTUALIZADA_MENSAJE',
+            { id: this.idPromocion }
+          );
+          this.noti.success(titulo, mensaje, 3000);
           this.router.navigate(['/promocion-admin']);
         });
     }

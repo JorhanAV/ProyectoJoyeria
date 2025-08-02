@@ -1,5 +1,5 @@
 <div class="resenas-container">
-  <h2>Listado de Reseñas</h2>
+  <h2>{{ 'RESENAS_TEXT.RESENAS_LISTADO' | translate }}</h2>
 
   <div class="resenas-grid">
     <div *ngFor="let resena of datos" class="resena-card">
@@ -17,7 +17,7 @@
       />
       <div class="resena-footer">
         <span class="valoracion">{{ resena.valoracion }}/5</span>
-        <a (click)="detalle(resena.id)" class="detalle-link">Ver detalles</a>
+        <a (click)="detalle(resena.id)" class="detalle-link">{{ 'RESENAS_TEXT.VER_DETALLES' | translate }}</a>
       </div>
     </div>
   </div>

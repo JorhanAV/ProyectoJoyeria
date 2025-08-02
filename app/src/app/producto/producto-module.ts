@@ -24,6 +24,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ResenaForm } from '../resenas/resena-form/resena-form';
 import { ProductoForm } from './producto-form/producto-form';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { ProductoForm } from './producto-form/producto-form';
   imports: [
     CommonModule,
     ProductoRoutingModule,
+    TranslateModule.forChild(),
     MatMenuModule,
     MatInputModule,
     MatSelectModule,

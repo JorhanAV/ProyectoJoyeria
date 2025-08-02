@@ -12,6 +12,7 @@ import {MatBadgeModule} from '@angular/material/badge'
 
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   imports: [
     CommonModule,
     RouterModule,
+    TranslateModule.forChild(),
     MatIconModule,
     MatButtonModule,
     MatToolbarModule,
