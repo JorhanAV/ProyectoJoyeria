@@ -3,6 +3,7 @@ import { NotificationService } from '../../share/notification-service';
 import { ProductoService } from '../../share/services/producto.service';
 import { Router } from '@angular/router';
 import { ProductoModel } from '../../share/models/ProductoModel';
+import { CartService } from '../../share/cart.service';
 
 @Component({
   selector: 'app-producto-index',
@@ -16,7 +17,8 @@ export class ProductoIndex {
   constructor(
     private prodService: ProductoService,
     private noti: NotificationService,
-    private router: Router
+    private router: Router,
+    private cartService: CartService
   ) {
     this.listProductos();
   }
@@ -89,7 +91,9 @@ export class ProductoIndex {
       });
     });
   }
-
+ agregarAlCarrito(producto: ProductoModel): void {
+    this.cartService.addToCart(producto);
+  }
   detalle(id: Number) {
     this.router.navigate(['/producto', id]);
   }

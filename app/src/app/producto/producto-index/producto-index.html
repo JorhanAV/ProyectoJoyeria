@@ -28,7 +28,12 @@
         {{ 'PRODUCTO_TEXT.VER_DETALLES' | translate }}
       </a>
     </div>
-    <button class="boton-carrito-inferior" mat-icon-button color="accent">
+    <button
+      class="boton-carrito-inferior"
+      mat-icon-button
+      color="accent"
+      (click)="agregarAlCarrito(producto)"
+    >
       <mat-icon>shopping_cart</mat-icon>
     </button>
   </div>

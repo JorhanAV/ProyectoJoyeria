@@ -1,10 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { PedidosRoutingModule } from './pedidos-routing-module';
-import { PedidoAdmin } from './pedido-admin/pedido-admin';
-import { PedidoDetail } from './pedido-detail/pedido-detail';
-import { PedidoIndex } from './pedido-index/pedido-index';
+import { CarritoRoutingModule } from './carrito-routing-module';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -19,14 +16,11 @@ import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    PedidoAdmin,
-    PedidoDetail,
-    PedidoIndex,
-    CarritoComponent
+    CarritoComponent,
   ],
   imports: [
     CommonModule,
-    PedidosRoutingModule,
+    CarritoRoutingModule,
     TranslateModule.forChild(),
     MatTableModule,
     MatButtonModule,

@@ -8,7 +8,7 @@ export class PedidoRoutes {
 
     router.get('/', controller.get);
     router.get('/:id', controller.getById);
-
+    router.post('/', controller.create);
     return router;
   }
 }
