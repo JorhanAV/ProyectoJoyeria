@@ -62,7 +62,7 @@ export class PedidoController {
         const productos = ped.items.map((item) => {
           const cantidad = item.cantidad;
 
-          if (!item.producto_personalizado) {
+          /* if (!item.producto_personalizado) {
             const precio_base = item.producto.precio_base;
             const subtotal = +(precio_base * cantidad).toFixed(2);
 
@@ -73,12 +73,12 @@ export class PedidoController {
               cantidad,
               subtotal,
             };
-          }
+          } */
 
-          const precioBase =
+         /*  const precioBase =
             item.producto_personalizado.producto_base.precio_base;
           const nombre = item.producto_personalizado.nombre;
-
+ */
           let criterios = [];
           let totalOpciones = 0;
 
@@ -91,17 +91,17 @@ export class PedidoController {
             totalOpciones += detalle.valor.precio_extra;
           } */
 
-          const totalIndividual = +(precioBase + totalOpciones).toFixed(2);
+          /* const totalIndividual = +(precioBase + totalOpciones).toFixed(2);
           const subtotal = +(totalIndividual * cantidad).toFixed(2);
-
+ */
           return {
             tipo: "Producto personalizado",
-            nombre,
-            precio_base: precioBase,
+           // nombre,
+            //precio_base: precioBase,
             //criterios,
-            total_individual: totalIndividual,
+            //total_individual: totalIndividual,
             cantidad,
-            subtotal,
+            //subtotal,
           };
         });
 
@@ -192,7 +192,7 @@ export class PedidoController {
       const productos = pedido.items.map((item) => {
         const cantidad = item.cantidad;
 
-        if (!item.producto_personalizado) {
+        /* if (!item.producto_personalizado) {
           const { nombre, descripcion, precio_base } = item.producto;
           const subtotal = +(precio_base * cantidad).toFixed(2);
           return {
@@ -203,11 +203,11 @@ export class PedidoController {
             cantidad,
             subtotal,
           };
-        }
+        } */
 
-        const precioBase =
+        /* const precioBase =
           item.producto_personalizado.producto_base.precio_base;
-        const nombre = item.producto_personalizado.nombre;
+        const nombre = item.producto_personalizado.nombre; */
 
         let criterios = [];
         let totalOpciones = 0;
@@ -221,17 +221,17 @@ export class PedidoController {
           totalOpciones += detalle.valor.precio_extra;
         } */
 
-        const totalIndividual = +(precioBase + totalOpciones).toFixed(2);
-        const subtotal = +(totalIndividual * cantidad).toFixed(2);
+       /*  const totalIndividual = +(precioBase + totalOpciones).toFixed(2); */
+       /*  const subtotal = +(totalIndividual * cantidad).toFixed(2); */
 
         return {
           tipo: "Producto personalizado",
-          nombre,
-          precio_base: precioBase,
+          //nombre,
+          //precio_base: precioBase,
           //criterios,
-          total_individual: totalIndividual,
+          //total_individual: totalIndividual,
           cantidad,
-          subtotal,
+          //subtotal,
         };
       });
 
