@@ -9,6 +9,9 @@ import { UsuarioRoutes } from "./usuario.routes";
 import { EtiquetaRoutes } from "./etiqueta.routes";
 import { CategoriaRoutes } from "./categoria.routes";
 import { ImageRoutes } from "./images.routes";
+import { AtributosRoutes } from "./atributos.routes";
+import { ValorAtributosRoutes } from "./valorAtributos.routes";
+import { VarianteDetalleRoutes } from "./varianteDetalle.routes";
 
 export class AppRoutes {
   static get routes(): Router {
@@ -39,6 +42,15 @@ export class AppRoutes {
 
     // localhost:3000/categoria/
     router.use("/categoria", CategoriaRoutes.routes);
+
+    // localhost:3000/atributos/
+    router.use("/atributos", AtributosRoutes.routes);
+
+    // localhost:3000/valorAtributos/
+    router.use("/valorAtributos", ValorAtributosRoutes.routes);
+
+    // localhost:3000/varianteDetalle/
+    router.use("/varianteDetalle", VarianteDetalleRoutes.routes);
 
     //localhost:3000/file/
     router.use("/file/", ImageRoutes.routes);

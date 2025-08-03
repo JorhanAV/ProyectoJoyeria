@@ -1,0 +1,9 @@
+2025-08-03 10:38:35.240 error: 	jorha--Se produjo un error interno del servidor 
+Invalid `this.prisma.varianteDetalle.create()` invocation in
+D:\UTN\XI Cuatrimestre\ProyectoJoyeria\server\source\controllers\varianteDetalleController.ts:20:62
+
+  17 create = async (request: Request, response: Response, next: NextFunction) => {
+  18   try {
+  19     const { id_productoPersonalizable, id_valor } = request.body;
+→ 20     const nuevoDetalle = await this.prisma.varianteDetalle.create(
+Unique constraint failed on the constraint: `PRIMARY`
