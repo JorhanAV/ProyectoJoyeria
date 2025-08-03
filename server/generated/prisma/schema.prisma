@@ -117,38 +117,24 @@ model Resena {
 }
 
 model ProductoPersonalizable {
-  id                  Int                @id @default(autoincrement())
+  id                  Int       @id @default(autoincrement())
   nombre              String
   descripcion_general String
   id_categoria        Int
   id_producto_base    Int
-  activo              Boolean            @default(true)
-  categoria           Categoria          @relation(fields: [id_categoria], references: [id])
-  producto_base       Producto           @relation(fields: [id_producto_base], references: [id])
-  variantes           VarianteProducto[]
-  pedidoItems         PedidoItem[]
-}
+  activo              Boolean   @default(true)
+  categoria           Categoria @relation(fields: [id_categoria], references: [id])
+  producto_base       Producto  @relation(fields: [id_producto_base], references: [id])
 
-model VarianteProducto {
-  id_variante     Int                    @id @default(autoincrement())
-  id_producto     Int
-  sku             String                 @unique
-  precio_final    Float
-  stock           Int
-  imagen_variante String?
-  producto        ProductoPersonalizable @relation(fields: [id_producto], references: [id])
-  detalles        VarianteDetalle[]
-
-  // 🔧 Campo inverso agregado para la relación con PedidoItem
   pedidoItems PedidoItem[]
+  variantes   VarianteDetalle[]
 }
 
 model Atributo {
-  id_atributo Int               @id @default(autoincrement())
+  id_atributo Int             @id @default(autoincrement())
   nombre      String
   tipo        String
   valores     ValorAtributo[]
-  detalles    VarianteDetalle[]
 }
 
 model ValorAtributo {
@@ -162,14 +148,13 @@ model ValorAtributo {
 }
 
 model VarianteDetalle {
-  id_variante Int
-  id_atributo Int
-  id_valor    Int
-  variante    VarianteProducto @relation(fields: [id_variante], references: [id_variante])
-  atributo    Atributo         @relation(fields: [id_atributo], references: [id_atributo])
-  valor       ValorAtributo    @relation("ValorAtributoToVarianteDetalle", fields: [id_valor], references: [id_valor])
+  id_productoPersonalizable Int
+  id_valor                  Int
 
-  @@id([id_variante, id_atributo, id_valor])
+  valor                  ValorAtributo          @relation("ValorAtributoToVarianteDetalle", fields: [id_valor], references: [id_valor])
+  productoPersonalizable ProductoPersonalizable @relation(fields: [id_productoPersonalizable], references: [id])
+
+  @@id([id_productoPersonalizable, id_valor])
 }
 
 model Promocion {
@@ -216,12 +201,10 @@ model PedidoItem {
   producto_id               Int
   cantidad                  Int
   producto_personalizado_id Int?
-  id_variante_producto      Int? // <- NUEVO
 
   pedido                 Pedido                  @relation(fields: [pedido_id], references: [id])
   producto               Producto                @relation(fields: [producto_id], references: [id])
   producto_personalizado ProductoPersonalizable? @relation(fields: [producto_personalizado_id], references: [id])
-  variante_seleccionada  VarianteProducto?       @relation(fields: [id_variante_producto], references: [id_variante])
 
   @@id([pedido_id, producto_id])
 }

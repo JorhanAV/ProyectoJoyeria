@@ -54,11 +54,6 @@ export type Resena = $Result.DefaultSelection<Prisma.$ResenaPayload>
  */
 export type ProductoPersonalizable = $Result.DefaultSelection<Prisma.$ProductoPersonalizablePayload>
 /**
- * Model VarianteProducto
- * 
- */
-export type VarianteProducto = $Result.DefaultSelection<Prisma.$VarianteProductoPayload>
-/**
  * Model Atributo
  * 
  */
@@ -375,16 +370,6 @@ export class PrismaClient<
     * ```
     */
   get productoPersonalizable(): Prisma.ProductoPersonalizableDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.varianteProducto`: Exposes CRUD operations for the **VarianteProducto** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more VarianteProductos
-    * const varianteProductos = await prisma.varianteProducto.findMany()
-    * ```
-    */
-  get varianteProducto(): Prisma.VarianteProductoDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.atributo`: Exposes CRUD operations for the **Atributo** model.
@@ -923,7 +908,6 @@ export namespace Prisma {
     ProductoEtiqueta: 'ProductoEtiqueta',
     Resena: 'Resena',
     ProductoPersonalizable: 'ProductoPersonalizable',
-    VarianteProducto: 'VarianteProducto',
     Atributo: 'Atributo',
     ValorAtributo: 'ValorAtributo',
     VarianteDetalle: 'VarianteDetalle',
@@ -951,7 +935,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "usuario" | "categoria" | "etiqueta" | "producto" | "imagenProducto" | "productoEtiqueta" | "resena" | "productoPersonalizable" | "varianteProducto" | "atributo" | "valorAtributo" | "varianteDetalle" | "promocion" | "historialPromocionAplicada" | "pedido" | "pedidoItem" | "transicionEstadoPedido" | "reporteResena"
+      modelProps: "usuario" | "categoria" | "etiqueta" | "producto" | "imagenProducto" | "productoEtiqueta" | "resena" | "productoPersonalizable" | "atributo" | "valorAtributo" | "varianteDetalle" | "promocion" | "historialPromocionAplicada" | "pedido" | "pedidoItem" | "transicionEstadoPedido" | "reporteResena"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1480,72 +1464,6 @@ export namespace Prisma {
           count: {
             args: Prisma.ProductoPersonalizableCountArgs<ExtArgs>
             result: $Utils.Optional<ProductoPersonalizableCountAggregateOutputType> | number
-          }
-        }
-      }
-      VarianteProducto: {
-        payload: Prisma.$VarianteProductoPayload<ExtArgs>
-        fields: Prisma.VarianteProductoFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.VarianteProductoFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VarianteProductoPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.VarianteProductoFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VarianteProductoPayload>
-          }
-          findFirst: {
-            args: Prisma.VarianteProductoFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VarianteProductoPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.VarianteProductoFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VarianteProductoPayload>
-          }
-          findMany: {
-            args: Prisma.VarianteProductoFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VarianteProductoPayload>[]
-          }
-          create: {
-            args: Prisma.VarianteProductoCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VarianteProductoPayload>
-          }
-          createMany: {
-            args: Prisma.VarianteProductoCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          delete: {
-            args: Prisma.VarianteProductoDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VarianteProductoPayload>
-          }
-          update: {
-            args: Prisma.VarianteProductoUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VarianteProductoPayload>
-          }
-          deleteMany: {
-            args: Prisma.VarianteProductoDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.VarianteProductoUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          upsert: {
-            args: Prisma.VarianteProductoUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VarianteProductoPayload>
-          }
-          aggregate: {
-            args: Prisma.VarianteProductoAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateVarianteProducto>
-          }
-          groupBy: {
-            args: Prisma.VarianteProductoGroupByArgs<ExtArgs>
-            result: $Utils.Optional<VarianteProductoGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.VarianteProductoCountArgs<ExtArgs>
-            result: $Utils.Optional<VarianteProductoCountAggregateOutputType> | number
           }
         }
       }
@@ -2235,7 +2153,6 @@ export namespace Prisma {
     productoEtiqueta?: ProductoEtiquetaOmit
     resena?: ResenaOmit
     productoPersonalizable?: ProductoPersonalizableOmit
-    varianteProducto?: VarianteProductoOmit
     atributo?: AtributoOmit
     valorAtributo?: ValorAtributoOmit
     varianteDetalle?: VarianteDetalleOmit
@@ -2584,13 +2501,13 @@ export namespace Prisma {
    */
 
   export type ProductoPersonalizableCountOutputType = {
-    variantes: number
     pedidoItems: number
+    variantes: number
   }
 
   export type ProductoPersonalizableCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    variantes?: boolean | ProductoPersonalizableCountOutputTypeCountVariantesArgs
     pedidoItems?: boolean | ProductoPersonalizableCountOutputTypeCountPedidoItemsArgs
+    variantes?: boolean | ProductoPersonalizableCountOutputTypeCountVariantesArgs
   }
 
   // Custom InputTypes
@@ -2607,55 +2524,15 @@ export namespace Prisma {
   /**
    * ProductoPersonalizableCountOutputType without action
    */
-  export type ProductoPersonalizableCountOutputTypeCountVariantesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: VarianteProductoWhereInput
+  export type ProductoPersonalizableCountOutputTypeCountPedidoItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PedidoItemWhereInput
   }
 
   /**
    * ProductoPersonalizableCountOutputType without action
    */
-  export type ProductoPersonalizableCountOutputTypeCountPedidoItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PedidoItemWhereInput
-  }
-
-
-  /**
-   * Count Type VarianteProductoCountOutputType
-   */
-
-  export type VarianteProductoCountOutputType = {
-    detalles: number
-    pedidoItems: number
-  }
-
-  export type VarianteProductoCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    detalles?: boolean | VarianteProductoCountOutputTypeCountDetallesArgs
-    pedidoItems?: boolean | VarianteProductoCountOutputTypeCountPedidoItemsArgs
-  }
-
-  // Custom InputTypes
-  /**
-   * VarianteProductoCountOutputType without action
-   */
-  export type VarianteProductoCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the VarianteProductoCountOutputType
-     */
-    select?: VarianteProductoCountOutputTypeSelect<ExtArgs> | null
-  }
-
-  /**
-   * VarianteProductoCountOutputType without action
-   */
-  export type VarianteProductoCountOutputTypeCountDetallesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ProductoPersonalizableCountOutputTypeCountVariantesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: VarianteDetalleWhereInput
-  }
-
-  /**
-   * VarianteProductoCountOutputType without action
-   */
-  export type VarianteProductoCountOutputTypeCountPedidoItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PedidoItemWhereInput
   }
 
 
@@ -2665,12 +2542,10 @@ export namespace Prisma {
 
   export type AtributoCountOutputType = {
     valores: number
-    detalles: number
   }
 
   export type AtributoCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     valores?: boolean | AtributoCountOutputTypeCountValoresArgs
-    detalles?: boolean | AtributoCountOutputTypeCountDetallesArgs
   }
 
   // Custom InputTypes
@@ -2689,13 +2564,6 @@ export namespace Prisma {
    */
   export type AtributoCountOutputTypeCountValoresArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ValorAtributoWhereInput
-  }
-
-  /**
-   * AtributoCountOutputType without action
-   */
-  export type AtributoCountOutputTypeCountDetallesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: VarianteDetalleWhereInput
   }
 
 
@@ -10189,8 +10057,8 @@ export namespace Prisma {
     activo?: boolean
     categoria?: boolean | CategoriaDefaultArgs<ExtArgs>
     producto_base?: boolean | ProductoDefaultArgs<ExtArgs>
-    variantes?: boolean | ProductoPersonalizable$variantesArgs<ExtArgs>
     pedidoItems?: boolean | ProductoPersonalizable$pedidoItemsArgs<ExtArgs>
+    variantes?: boolean | ProductoPersonalizable$variantesArgs<ExtArgs>
     _count?: boolean | ProductoPersonalizableCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["productoPersonalizable"]>
 
@@ -10209,8 +10077,8 @@ export namespace Prisma {
   export type ProductoPersonalizableInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     categoria?: boolean | CategoriaDefaultArgs<ExtArgs>
     producto_base?: boolean | ProductoDefaultArgs<ExtArgs>
-    variantes?: boolean | ProductoPersonalizable$variantesArgs<ExtArgs>
     pedidoItems?: boolean | ProductoPersonalizable$pedidoItemsArgs<ExtArgs>
+    variantes?: boolean | ProductoPersonalizable$variantesArgs<ExtArgs>
     _count?: boolean | ProductoPersonalizableCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -10219,8 +10087,8 @@ export namespace Prisma {
     objects: {
       categoria: Prisma.$CategoriaPayload<ExtArgs>
       producto_base: Prisma.$ProductoPayload<ExtArgs>
-      variantes: Prisma.$VarianteProductoPayload<ExtArgs>[]
       pedidoItems: Prisma.$PedidoItemPayload<ExtArgs>[]
+      variantes: Prisma.$VarianteDetallePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -10571,8 +10439,8 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     categoria<T extends CategoriaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CategoriaDefaultArgs<ExtArgs>>): Prisma__CategoriaClient<$Result.GetResult<Prisma.$CategoriaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     producto_base<T extends ProductoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProductoDefaultArgs<ExtArgs>>): Prisma__ProductoClient<$Result.GetResult<Prisma.$ProductoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    variantes<T extends ProductoPersonalizable$variantesArgs<ExtArgs> = {}>(args?: Subset<T, ProductoPersonalizable$variantesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VarianteProductoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     pedidoItems<T extends ProductoPersonalizable$pedidoItemsArgs<ExtArgs> = {}>(args?: Subset<T, ProductoPersonalizable$pedidoItemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PedidoItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    variantes<T extends ProductoPersonalizable$variantesArgs<ExtArgs> = {}>(args?: Subset<T, ProductoPersonalizable$variantesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VarianteDetallePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -10951,30 +10819,6 @@ export namespace Prisma {
   }
 
   /**
-   * ProductoPersonalizable.variantes
-   */
-  export type ProductoPersonalizable$variantesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the VarianteProducto
-     */
-    select?: VarianteProductoSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the VarianteProducto
-     */
-    omit?: VarianteProductoOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: VarianteProductoInclude<ExtArgs> | null
-    where?: VarianteProductoWhereInput
-    orderBy?: VarianteProductoOrderByWithRelationInput | VarianteProductoOrderByWithRelationInput[]
-    cursor?: VarianteProductoWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: VarianteProductoScalarFieldEnum | VarianteProductoScalarFieldEnum[]
-  }
-
-  /**
    * ProductoPersonalizable.pedidoItems
    */
   export type ProductoPersonalizable$pedidoItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -10999,1005 +10843,9 @@ export namespace Prisma {
   }
 
   /**
-   * ProductoPersonalizable without action
+   * ProductoPersonalizable.variantes
    */
-  export type ProductoPersonalizableDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ProductoPersonalizable
-     */
-    select?: ProductoPersonalizableSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ProductoPersonalizable
-     */
-    omit?: ProductoPersonalizableOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ProductoPersonalizableInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model VarianteProducto
-   */
-
-  export type AggregateVarianteProducto = {
-    _count: VarianteProductoCountAggregateOutputType | null
-    _avg: VarianteProductoAvgAggregateOutputType | null
-    _sum: VarianteProductoSumAggregateOutputType | null
-    _min: VarianteProductoMinAggregateOutputType | null
-    _max: VarianteProductoMaxAggregateOutputType | null
-  }
-
-  export type VarianteProductoAvgAggregateOutputType = {
-    id_variante: number | null
-    id_producto: number | null
-    precio_final: number | null
-    stock: number | null
-  }
-
-  export type VarianteProductoSumAggregateOutputType = {
-    id_variante: number | null
-    id_producto: number | null
-    precio_final: number | null
-    stock: number | null
-  }
-
-  export type VarianteProductoMinAggregateOutputType = {
-    id_variante: number | null
-    id_producto: number | null
-    sku: string | null
-    precio_final: number | null
-    stock: number | null
-    imagen_variante: string | null
-  }
-
-  export type VarianteProductoMaxAggregateOutputType = {
-    id_variante: number | null
-    id_producto: number | null
-    sku: string | null
-    precio_final: number | null
-    stock: number | null
-    imagen_variante: string | null
-  }
-
-  export type VarianteProductoCountAggregateOutputType = {
-    id_variante: number
-    id_producto: number
-    sku: number
-    precio_final: number
-    stock: number
-    imagen_variante: number
-    _all: number
-  }
-
-
-  export type VarianteProductoAvgAggregateInputType = {
-    id_variante?: true
-    id_producto?: true
-    precio_final?: true
-    stock?: true
-  }
-
-  export type VarianteProductoSumAggregateInputType = {
-    id_variante?: true
-    id_producto?: true
-    precio_final?: true
-    stock?: true
-  }
-
-  export type VarianteProductoMinAggregateInputType = {
-    id_variante?: true
-    id_producto?: true
-    sku?: true
-    precio_final?: true
-    stock?: true
-    imagen_variante?: true
-  }
-
-  export type VarianteProductoMaxAggregateInputType = {
-    id_variante?: true
-    id_producto?: true
-    sku?: true
-    precio_final?: true
-    stock?: true
-    imagen_variante?: true
-  }
-
-  export type VarianteProductoCountAggregateInputType = {
-    id_variante?: true
-    id_producto?: true
-    sku?: true
-    precio_final?: true
-    stock?: true
-    imagen_variante?: true
-    _all?: true
-  }
-
-  export type VarianteProductoAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which VarianteProducto to aggregate.
-     */
-    where?: VarianteProductoWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of VarianteProductos to fetch.
-     */
-    orderBy?: VarianteProductoOrderByWithRelationInput | VarianteProductoOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: VarianteProductoWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` VarianteProductos from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` VarianteProductos.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned VarianteProductos
-    **/
-    _count?: true | VarianteProductoCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: VarianteProductoAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: VarianteProductoSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: VarianteProductoMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: VarianteProductoMaxAggregateInputType
-  }
-
-  export type GetVarianteProductoAggregateType<T extends VarianteProductoAggregateArgs> = {
-        [P in keyof T & keyof AggregateVarianteProducto]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateVarianteProducto[P]>
-      : GetScalarType<T[P], AggregateVarianteProducto[P]>
-  }
-
-
-
-
-  export type VarianteProductoGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: VarianteProductoWhereInput
-    orderBy?: VarianteProductoOrderByWithAggregationInput | VarianteProductoOrderByWithAggregationInput[]
-    by: VarianteProductoScalarFieldEnum[] | VarianteProductoScalarFieldEnum
-    having?: VarianteProductoScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: VarianteProductoCountAggregateInputType | true
-    _avg?: VarianteProductoAvgAggregateInputType
-    _sum?: VarianteProductoSumAggregateInputType
-    _min?: VarianteProductoMinAggregateInputType
-    _max?: VarianteProductoMaxAggregateInputType
-  }
-
-  export type VarianteProductoGroupByOutputType = {
-    id_variante: number
-    id_producto: number
-    sku: string
-    precio_final: number
-    stock: number
-    imagen_variante: string | null
-    _count: VarianteProductoCountAggregateOutputType | null
-    _avg: VarianteProductoAvgAggregateOutputType | null
-    _sum: VarianteProductoSumAggregateOutputType | null
-    _min: VarianteProductoMinAggregateOutputType | null
-    _max: VarianteProductoMaxAggregateOutputType | null
-  }
-
-  type GetVarianteProductoGroupByPayload<T extends VarianteProductoGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<VarianteProductoGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof VarianteProductoGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], VarianteProductoGroupByOutputType[P]>
-            : GetScalarType<T[P], VarianteProductoGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type VarianteProductoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id_variante?: boolean
-    id_producto?: boolean
-    sku?: boolean
-    precio_final?: boolean
-    stock?: boolean
-    imagen_variante?: boolean
-    producto?: boolean | ProductoPersonalizableDefaultArgs<ExtArgs>
-    detalles?: boolean | VarianteProducto$detallesArgs<ExtArgs>
-    pedidoItems?: boolean | VarianteProducto$pedidoItemsArgs<ExtArgs>
-    _count?: boolean | VarianteProductoCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["varianteProducto"]>
-
-
-
-  export type VarianteProductoSelectScalar = {
-    id_variante?: boolean
-    id_producto?: boolean
-    sku?: boolean
-    precio_final?: boolean
-    stock?: boolean
-    imagen_variante?: boolean
-  }
-
-  export type VarianteProductoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_variante" | "id_producto" | "sku" | "precio_final" | "stock" | "imagen_variante", ExtArgs["result"]["varianteProducto"]>
-  export type VarianteProductoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    producto?: boolean | ProductoPersonalizableDefaultArgs<ExtArgs>
-    detalles?: boolean | VarianteProducto$detallesArgs<ExtArgs>
-    pedidoItems?: boolean | VarianteProducto$pedidoItemsArgs<ExtArgs>
-    _count?: boolean | VarianteProductoCountOutputTypeDefaultArgs<ExtArgs>
-  }
-
-  export type $VarianteProductoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "VarianteProducto"
-    objects: {
-      producto: Prisma.$ProductoPersonalizablePayload<ExtArgs>
-      detalles: Prisma.$VarianteDetallePayload<ExtArgs>[]
-      pedidoItems: Prisma.$PedidoItemPayload<ExtArgs>[]
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id_variante: number
-      id_producto: number
-      sku: string
-      precio_final: number
-      stock: number
-      imagen_variante: string | null
-    }, ExtArgs["result"]["varianteProducto"]>
-    composites: {}
-  }
-
-  type VarianteProductoGetPayload<S extends boolean | null | undefined | VarianteProductoDefaultArgs> = $Result.GetResult<Prisma.$VarianteProductoPayload, S>
-
-  type VarianteProductoCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<VarianteProductoFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: VarianteProductoCountAggregateInputType | true
-    }
-
-  export interface VarianteProductoDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['VarianteProducto'], meta: { name: 'VarianteProducto' } }
-    /**
-     * Find zero or one VarianteProducto that matches the filter.
-     * @param {VarianteProductoFindUniqueArgs} args - Arguments to find a VarianteProducto
-     * @example
-     * // Get one VarianteProducto
-     * const varianteProducto = await prisma.varianteProducto.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends VarianteProductoFindUniqueArgs>(args: SelectSubset<T, VarianteProductoFindUniqueArgs<ExtArgs>>): Prisma__VarianteProductoClient<$Result.GetResult<Prisma.$VarianteProductoPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one VarianteProducto that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {VarianteProductoFindUniqueOrThrowArgs} args - Arguments to find a VarianteProducto
-     * @example
-     * // Get one VarianteProducto
-     * const varianteProducto = await prisma.varianteProducto.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends VarianteProductoFindUniqueOrThrowArgs>(args: SelectSubset<T, VarianteProductoFindUniqueOrThrowArgs<ExtArgs>>): Prisma__VarianteProductoClient<$Result.GetResult<Prisma.$VarianteProductoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first VarianteProducto that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {VarianteProductoFindFirstArgs} args - Arguments to find a VarianteProducto
-     * @example
-     * // Get one VarianteProducto
-     * const varianteProducto = await prisma.varianteProducto.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends VarianteProductoFindFirstArgs>(args?: SelectSubset<T, VarianteProductoFindFirstArgs<ExtArgs>>): Prisma__VarianteProductoClient<$Result.GetResult<Prisma.$VarianteProductoPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first VarianteProducto that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {VarianteProductoFindFirstOrThrowArgs} args - Arguments to find a VarianteProducto
-     * @example
-     * // Get one VarianteProducto
-     * const varianteProducto = await prisma.varianteProducto.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends VarianteProductoFindFirstOrThrowArgs>(args?: SelectSubset<T, VarianteProductoFindFirstOrThrowArgs<ExtArgs>>): Prisma__VarianteProductoClient<$Result.GetResult<Prisma.$VarianteProductoPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more VarianteProductos that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {VarianteProductoFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all VarianteProductos
-     * const varianteProductos = await prisma.varianteProducto.findMany()
-     * 
-     * // Get first 10 VarianteProductos
-     * const varianteProductos = await prisma.varianteProducto.findMany({ take: 10 })
-     * 
-     * // Only select the `id_variante`
-     * const varianteProductoWithId_varianteOnly = await prisma.varianteProducto.findMany({ select: { id_variante: true } })
-     * 
-     */
-    findMany<T extends VarianteProductoFindManyArgs>(args?: SelectSubset<T, VarianteProductoFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VarianteProductoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a VarianteProducto.
-     * @param {VarianteProductoCreateArgs} args - Arguments to create a VarianteProducto.
-     * @example
-     * // Create one VarianteProducto
-     * const VarianteProducto = await prisma.varianteProducto.create({
-     *   data: {
-     *     // ... data to create a VarianteProducto
-     *   }
-     * })
-     * 
-     */
-    create<T extends VarianteProductoCreateArgs>(args: SelectSubset<T, VarianteProductoCreateArgs<ExtArgs>>): Prisma__VarianteProductoClient<$Result.GetResult<Prisma.$VarianteProductoPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many VarianteProductos.
-     * @param {VarianteProductoCreateManyArgs} args - Arguments to create many VarianteProductos.
-     * @example
-     * // Create many VarianteProductos
-     * const varianteProducto = await prisma.varianteProducto.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends VarianteProductoCreateManyArgs>(args?: SelectSubset<T, VarianteProductoCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Delete a VarianteProducto.
-     * @param {VarianteProductoDeleteArgs} args - Arguments to delete one VarianteProducto.
-     * @example
-     * // Delete one VarianteProducto
-     * const VarianteProducto = await prisma.varianteProducto.delete({
-     *   where: {
-     *     // ... filter to delete one VarianteProducto
-     *   }
-     * })
-     * 
-     */
-    delete<T extends VarianteProductoDeleteArgs>(args: SelectSubset<T, VarianteProductoDeleteArgs<ExtArgs>>): Prisma__VarianteProductoClient<$Result.GetResult<Prisma.$VarianteProductoPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one VarianteProducto.
-     * @param {VarianteProductoUpdateArgs} args - Arguments to update one VarianteProducto.
-     * @example
-     * // Update one VarianteProducto
-     * const varianteProducto = await prisma.varianteProducto.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends VarianteProductoUpdateArgs>(args: SelectSubset<T, VarianteProductoUpdateArgs<ExtArgs>>): Prisma__VarianteProductoClient<$Result.GetResult<Prisma.$VarianteProductoPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more VarianteProductos.
-     * @param {VarianteProductoDeleteManyArgs} args - Arguments to filter VarianteProductos to delete.
-     * @example
-     * // Delete a few VarianteProductos
-     * const { count } = await prisma.varianteProducto.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends VarianteProductoDeleteManyArgs>(args?: SelectSubset<T, VarianteProductoDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more VarianteProductos.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {VarianteProductoUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many VarianteProductos
-     * const varianteProducto = await prisma.varianteProducto.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends VarianteProductoUpdateManyArgs>(args: SelectSubset<T, VarianteProductoUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one VarianteProducto.
-     * @param {VarianteProductoUpsertArgs} args - Arguments to update or create a VarianteProducto.
-     * @example
-     * // Update or create a VarianteProducto
-     * const varianteProducto = await prisma.varianteProducto.upsert({
-     *   create: {
-     *     // ... data to create a VarianteProducto
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the VarianteProducto we want to update
-     *   }
-     * })
-     */
-    upsert<T extends VarianteProductoUpsertArgs>(args: SelectSubset<T, VarianteProductoUpsertArgs<ExtArgs>>): Prisma__VarianteProductoClient<$Result.GetResult<Prisma.$VarianteProductoPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of VarianteProductos.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {VarianteProductoCountArgs} args - Arguments to filter VarianteProductos to count.
-     * @example
-     * // Count the number of VarianteProductos
-     * const count = await prisma.varianteProducto.count({
-     *   where: {
-     *     // ... the filter for the VarianteProductos we want to count
-     *   }
-     * })
-    **/
-    count<T extends VarianteProductoCountArgs>(
-      args?: Subset<T, VarianteProductoCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], VarianteProductoCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a VarianteProducto.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {VarianteProductoAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends VarianteProductoAggregateArgs>(args: Subset<T, VarianteProductoAggregateArgs>): Prisma.PrismaPromise<GetVarianteProductoAggregateType<T>>
-
-    /**
-     * Group by VarianteProducto.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {VarianteProductoGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends VarianteProductoGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: VarianteProductoGroupByArgs['orderBy'] }
-        : { orderBy?: VarianteProductoGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, VarianteProductoGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetVarianteProductoGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the VarianteProducto model
-   */
-  readonly fields: VarianteProductoFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for VarianteProducto.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__VarianteProductoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    producto<T extends ProductoPersonalizableDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProductoPersonalizableDefaultArgs<ExtArgs>>): Prisma__ProductoPersonalizableClient<$Result.GetResult<Prisma.$ProductoPersonalizablePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    detalles<T extends VarianteProducto$detallesArgs<ExtArgs> = {}>(args?: Subset<T, VarianteProducto$detallesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VarianteDetallePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    pedidoItems<T extends VarianteProducto$pedidoItemsArgs<ExtArgs> = {}>(args?: Subset<T, VarianteProducto$pedidoItemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PedidoItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the VarianteProducto model
-   */
-  interface VarianteProductoFieldRefs {
-    readonly id_variante: FieldRef<"VarianteProducto", 'Int'>
-    readonly id_producto: FieldRef<"VarianteProducto", 'Int'>
-    readonly sku: FieldRef<"VarianteProducto", 'String'>
-    readonly precio_final: FieldRef<"VarianteProducto", 'Float'>
-    readonly stock: FieldRef<"VarianteProducto", 'Int'>
-    readonly imagen_variante: FieldRef<"VarianteProducto", 'String'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * VarianteProducto findUnique
-   */
-  export type VarianteProductoFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the VarianteProducto
-     */
-    select?: VarianteProductoSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the VarianteProducto
-     */
-    omit?: VarianteProductoOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: VarianteProductoInclude<ExtArgs> | null
-    /**
-     * Filter, which VarianteProducto to fetch.
-     */
-    where: VarianteProductoWhereUniqueInput
-  }
-
-  /**
-   * VarianteProducto findUniqueOrThrow
-   */
-  export type VarianteProductoFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the VarianteProducto
-     */
-    select?: VarianteProductoSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the VarianteProducto
-     */
-    omit?: VarianteProductoOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: VarianteProductoInclude<ExtArgs> | null
-    /**
-     * Filter, which VarianteProducto to fetch.
-     */
-    where: VarianteProductoWhereUniqueInput
-  }
-
-  /**
-   * VarianteProducto findFirst
-   */
-  export type VarianteProductoFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the VarianteProducto
-     */
-    select?: VarianteProductoSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the VarianteProducto
-     */
-    omit?: VarianteProductoOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: VarianteProductoInclude<ExtArgs> | null
-    /**
-     * Filter, which VarianteProducto to fetch.
-     */
-    where?: VarianteProductoWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of VarianteProductos to fetch.
-     */
-    orderBy?: VarianteProductoOrderByWithRelationInput | VarianteProductoOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for VarianteProductos.
-     */
-    cursor?: VarianteProductoWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` VarianteProductos from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` VarianteProductos.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of VarianteProductos.
-     */
-    distinct?: VarianteProductoScalarFieldEnum | VarianteProductoScalarFieldEnum[]
-  }
-
-  /**
-   * VarianteProducto findFirstOrThrow
-   */
-  export type VarianteProductoFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the VarianteProducto
-     */
-    select?: VarianteProductoSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the VarianteProducto
-     */
-    omit?: VarianteProductoOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: VarianteProductoInclude<ExtArgs> | null
-    /**
-     * Filter, which VarianteProducto to fetch.
-     */
-    where?: VarianteProductoWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of VarianteProductos to fetch.
-     */
-    orderBy?: VarianteProductoOrderByWithRelationInput | VarianteProductoOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for VarianteProductos.
-     */
-    cursor?: VarianteProductoWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` VarianteProductos from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` VarianteProductos.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of VarianteProductos.
-     */
-    distinct?: VarianteProductoScalarFieldEnum | VarianteProductoScalarFieldEnum[]
-  }
-
-  /**
-   * VarianteProducto findMany
-   */
-  export type VarianteProductoFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the VarianteProducto
-     */
-    select?: VarianteProductoSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the VarianteProducto
-     */
-    omit?: VarianteProductoOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: VarianteProductoInclude<ExtArgs> | null
-    /**
-     * Filter, which VarianteProductos to fetch.
-     */
-    where?: VarianteProductoWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of VarianteProductos to fetch.
-     */
-    orderBy?: VarianteProductoOrderByWithRelationInput | VarianteProductoOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing VarianteProductos.
-     */
-    cursor?: VarianteProductoWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` VarianteProductos from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` VarianteProductos.
-     */
-    skip?: number
-    distinct?: VarianteProductoScalarFieldEnum | VarianteProductoScalarFieldEnum[]
-  }
-
-  /**
-   * VarianteProducto create
-   */
-  export type VarianteProductoCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the VarianteProducto
-     */
-    select?: VarianteProductoSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the VarianteProducto
-     */
-    omit?: VarianteProductoOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: VarianteProductoInclude<ExtArgs> | null
-    /**
-     * The data needed to create a VarianteProducto.
-     */
-    data: XOR<VarianteProductoCreateInput, VarianteProductoUncheckedCreateInput>
-  }
-
-  /**
-   * VarianteProducto createMany
-   */
-  export type VarianteProductoCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many VarianteProductos.
-     */
-    data: VarianteProductoCreateManyInput | VarianteProductoCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * VarianteProducto update
-   */
-  export type VarianteProductoUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the VarianteProducto
-     */
-    select?: VarianteProductoSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the VarianteProducto
-     */
-    omit?: VarianteProductoOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: VarianteProductoInclude<ExtArgs> | null
-    /**
-     * The data needed to update a VarianteProducto.
-     */
-    data: XOR<VarianteProductoUpdateInput, VarianteProductoUncheckedUpdateInput>
-    /**
-     * Choose, which VarianteProducto to update.
-     */
-    where: VarianteProductoWhereUniqueInput
-  }
-
-  /**
-   * VarianteProducto updateMany
-   */
-  export type VarianteProductoUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update VarianteProductos.
-     */
-    data: XOR<VarianteProductoUpdateManyMutationInput, VarianteProductoUncheckedUpdateManyInput>
-    /**
-     * Filter which VarianteProductos to update
-     */
-    where?: VarianteProductoWhereInput
-    /**
-     * Limit how many VarianteProductos to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * VarianteProducto upsert
-   */
-  export type VarianteProductoUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the VarianteProducto
-     */
-    select?: VarianteProductoSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the VarianteProducto
-     */
-    omit?: VarianteProductoOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: VarianteProductoInclude<ExtArgs> | null
-    /**
-     * The filter to search for the VarianteProducto to update in case it exists.
-     */
-    where: VarianteProductoWhereUniqueInput
-    /**
-     * In case the VarianteProducto found by the `where` argument doesn't exist, create a new VarianteProducto with this data.
-     */
-    create: XOR<VarianteProductoCreateInput, VarianteProductoUncheckedCreateInput>
-    /**
-     * In case the VarianteProducto was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<VarianteProductoUpdateInput, VarianteProductoUncheckedUpdateInput>
-  }
-
-  /**
-   * VarianteProducto delete
-   */
-  export type VarianteProductoDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the VarianteProducto
-     */
-    select?: VarianteProductoSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the VarianteProducto
-     */
-    omit?: VarianteProductoOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: VarianteProductoInclude<ExtArgs> | null
-    /**
-     * Filter which VarianteProducto to delete.
-     */
-    where: VarianteProductoWhereUniqueInput
-  }
-
-  /**
-   * VarianteProducto deleteMany
-   */
-  export type VarianteProductoDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which VarianteProductos to delete
-     */
-    where?: VarianteProductoWhereInput
-    /**
-     * Limit how many VarianteProductos to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * VarianteProducto.detalles
-   */
-  export type VarianteProducto$detallesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ProductoPersonalizable$variantesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the VarianteDetalle
      */
@@ -12019,45 +10867,21 @@ export namespace Prisma {
   }
 
   /**
-   * VarianteProducto.pedidoItems
+   * ProductoPersonalizable without action
    */
-  export type VarianteProducto$pedidoItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ProductoPersonalizableDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the PedidoItem
+     * Select specific fields to fetch from the ProductoPersonalizable
      */
-    select?: PedidoItemSelect<ExtArgs> | null
+    select?: ProductoPersonalizableSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the PedidoItem
+     * Omit specific fields from the ProductoPersonalizable
      */
-    omit?: PedidoItemOmit<ExtArgs> | null
+    omit?: ProductoPersonalizableOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PedidoItemInclude<ExtArgs> | null
-    where?: PedidoItemWhereInput
-    orderBy?: PedidoItemOrderByWithRelationInput | PedidoItemOrderByWithRelationInput[]
-    cursor?: PedidoItemWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: PedidoItemScalarFieldEnum | PedidoItemScalarFieldEnum[]
-  }
-
-  /**
-   * VarianteProducto without action
-   */
-  export type VarianteProductoDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the VarianteProducto
-     */
-    select?: VarianteProductoSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the VarianteProducto
-     */
-    omit?: VarianteProductoOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: VarianteProductoInclude<ExtArgs> | null
+    include?: ProductoPersonalizableInclude<ExtArgs> | null
   }
 
 
@@ -12244,7 +11068,6 @@ export namespace Prisma {
     nombre?: boolean
     tipo?: boolean
     valores?: boolean | Atributo$valoresArgs<ExtArgs>
-    detalles?: boolean | Atributo$detallesArgs<ExtArgs>
     _count?: boolean | AtributoCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["atributo"]>
 
@@ -12259,7 +11082,6 @@ export namespace Prisma {
   export type AtributoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_atributo" | "nombre" | "tipo", ExtArgs["result"]["atributo"]>
   export type AtributoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     valores?: boolean | Atributo$valoresArgs<ExtArgs>
-    detalles?: boolean | Atributo$detallesArgs<ExtArgs>
     _count?: boolean | AtributoCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -12267,7 +11089,6 @@ export namespace Prisma {
     name: "Atributo"
     objects: {
       valores: Prisma.$ValorAtributoPayload<ExtArgs>[]
-      detalles: Prisma.$VarianteDetallePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id_atributo: number
@@ -12614,7 +11435,6 @@ export namespace Prisma {
   export interface Prisma__AtributoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     valores<T extends Atributo$valoresArgs<ExtArgs> = {}>(args?: Subset<T, Atributo$valoresArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ValorAtributoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    detalles<T extends Atributo$detallesArgs<ExtArgs> = {}>(args?: Subset<T, Atributo$detallesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VarianteDetallePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -13011,30 +11831,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ValorAtributoScalarFieldEnum | ValorAtributoScalarFieldEnum[]
-  }
-
-  /**
-   * Atributo.detalles
-   */
-  export type Atributo$detallesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the VarianteDetalle
-     */
-    select?: VarianteDetalleSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the VarianteDetalle
-     */
-    omit?: VarianteDetalleOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: VarianteDetalleInclude<ExtArgs> | null
-    where?: VarianteDetalleWhereInput
-    orderBy?: VarianteDetalleOrderByWithRelationInput | VarianteDetalleOrderByWithRelationInput[]
-    cursor?: VarianteDetalleWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: VarianteDetalleScalarFieldEnum | VarianteDetalleScalarFieldEnum[]
   }
 
   /**
@@ -14059,64 +12855,54 @@ export namespace Prisma {
   }
 
   export type VarianteDetalleAvgAggregateOutputType = {
-    id_variante: number | null
-    id_atributo: number | null
+    id_productoPersonalizable: number | null
     id_valor: number | null
   }
 
   export type VarianteDetalleSumAggregateOutputType = {
-    id_variante: number | null
-    id_atributo: number | null
+    id_productoPersonalizable: number | null
     id_valor: number | null
   }
 
   export type VarianteDetalleMinAggregateOutputType = {
-    id_variante: number | null
-    id_atributo: number | null
+    id_productoPersonalizable: number | null
     id_valor: number | null
   }
 
   export type VarianteDetalleMaxAggregateOutputType = {
-    id_variante: number | null
-    id_atributo: number | null
+    id_productoPersonalizable: number | null
     id_valor: number | null
   }
 
   export type VarianteDetalleCountAggregateOutputType = {
-    id_variante: number
-    id_atributo: number
+    id_productoPersonalizable: number
     id_valor: number
     _all: number
   }
 
 
   export type VarianteDetalleAvgAggregateInputType = {
-    id_variante?: true
-    id_atributo?: true
+    id_productoPersonalizable?: true
     id_valor?: true
   }
 
   export type VarianteDetalleSumAggregateInputType = {
-    id_variante?: true
-    id_atributo?: true
+    id_productoPersonalizable?: true
     id_valor?: true
   }
 
   export type VarianteDetalleMinAggregateInputType = {
-    id_variante?: true
-    id_atributo?: true
+    id_productoPersonalizable?: true
     id_valor?: true
   }
 
   export type VarianteDetalleMaxAggregateInputType = {
-    id_variante?: true
-    id_atributo?: true
+    id_productoPersonalizable?: true
     id_valor?: true
   }
 
   export type VarianteDetalleCountAggregateInputType = {
-    id_variante?: true
-    id_atributo?: true
+    id_productoPersonalizable?: true
     id_valor?: true
     _all?: true
   }
@@ -14208,8 +12994,7 @@ export namespace Prisma {
   }
 
   export type VarianteDetalleGroupByOutputType = {
-    id_variante: number
-    id_atributo: number
+    id_productoPersonalizable: number
     id_valor: number
     _count: VarianteDetalleCountAggregateOutputType | null
     _avg: VarianteDetalleAvgAggregateOutputType | null
@@ -14233,39 +13018,33 @@ export namespace Prisma {
 
 
   export type VarianteDetalleSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id_variante?: boolean
-    id_atributo?: boolean
+    id_productoPersonalizable?: boolean
     id_valor?: boolean
-    variante?: boolean | VarianteProductoDefaultArgs<ExtArgs>
-    atributo?: boolean | AtributoDefaultArgs<ExtArgs>
     valor?: boolean | ValorAtributoDefaultArgs<ExtArgs>
+    productoPersonalizable?: boolean | ProductoPersonalizableDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["varianteDetalle"]>
 
 
 
   export type VarianteDetalleSelectScalar = {
-    id_variante?: boolean
-    id_atributo?: boolean
+    id_productoPersonalizable?: boolean
     id_valor?: boolean
   }
 
-  export type VarianteDetalleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_variante" | "id_atributo" | "id_valor", ExtArgs["result"]["varianteDetalle"]>
+  export type VarianteDetalleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_productoPersonalizable" | "id_valor", ExtArgs["result"]["varianteDetalle"]>
   export type VarianteDetalleInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    variante?: boolean | VarianteProductoDefaultArgs<ExtArgs>
-    atributo?: boolean | AtributoDefaultArgs<ExtArgs>
     valor?: boolean | ValorAtributoDefaultArgs<ExtArgs>
+    productoPersonalizable?: boolean | ProductoPersonalizableDefaultArgs<ExtArgs>
   }
 
   export type $VarianteDetallePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "VarianteDetalle"
     objects: {
-      variante: Prisma.$VarianteProductoPayload<ExtArgs>
-      atributo: Prisma.$AtributoPayload<ExtArgs>
       valor: Prisma.$ValorAtributoPayload<ExtArgs>
+      productoPersonalizable: Prisma.$ProductoPersonalizablePayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
-      id_variante: number
-      id_atributo: number
+      id_productoPersonalizable: number
       id_valor: number
     }, ExtArgs["result"]["varianteDetalle"]>
     composites: {}
@@ -14350,8 +13129,8 @@ export namespace Prisma {
      * // Get first 10 VarianteDetalles
      * const varianteDetalles = await prisma.varianteDetalle.findMany({ take: 10 })
      * 
-     * // Only select the `id_variante`
-     * const varianteDetalleWithId_varianteOnly = await prisma.varianteDetalle.findMany({ select: { id_variante: true } })
+     * // Only select the `id_productoPersonalizable`
+     * const varianteDetalleWithId_productoPersonalizableOnly = await prisma.varianteDetalle.findMany({ select: { id_productoPersonalizable: true } })
      * 
      */
     findMany<T extends VarianteDetalleFindManyArgs>(args?: SelectSubset<T, VarianteDetalleFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VarianteDetallePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -14607,9 +13386,8 @@ export namespace Prisma {
    */
   export interface Prisma__VarianteDetalleClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    variante<T extends VarianteProductoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, VarianteProductoDefaultArgs<ExtArgs>>): Prisma__VarianteProductoClient<$Result.GetResult<Prisma.$VarianteProductoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    atributo<T extends AtributoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AtributoDefaultArgs<ExtArgs>>): Prisma__AtributoClient<$Result.GetResult<Prisma.$AtributoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     valor<T extends ValorAtributoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ValorAtributoDefaultArgs<ExtArgs>>): Prisma__ValorAtributoClient<$Result.GetResult<Prisma.$ValorAtributoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    productoPersonalizable<T extends ProductoPersonalizableDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProductoPersonalizableDefaultArgs<ExtArgs>>): Prisma__ProductoPersonalizableClient<$Result.GetResult<Prisma.$ProductoPersonalizablePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -14639,8 +13417,7 @@ export namespace Prisma {
    * Fields of the VarianteDetalle model
    */
   interface VarianteDetalleFieldRefs {
-    readonly id_variante: FieldRef<"VarianteDetalle", 'Int'>
-    readonly id_atributo: FieldRef<"VarianteDetalle", 'Int'>
+    readonly id_productoPersonalizable: FieldRef<"VarianteDetalle", 'Int'>
     readonly id_valor: FieldRef<"VarianteDetalle", 'Int'>
   }
     
@@ -18173,7 +16950,6 @@ export namespace Prisma {
     producto_id: number | null
     cantidad: number | null
     producto_personalizado_id: number | null
-    id_variante_producto: number | null
   }
 
   export type PedidoItemSumAggregateOutputType = {
@@ -18181,7 +16957,6 @@ export namespace Prisma {
     producto_id: number | null
     cantidad: number | null
     producto_personalizado_id: number | null
-    id_variante_producto: number | null
   }
 
   export type PedidoItemMinAggregateOutputType = {
@@ -18189,7 +16964,6 @@ export namespace Prisma {
     producto_id: number | null
     cantidad: number | null
     producto_personalizado_id: number | null
-    id_variante_producto: number | null
   }
 
   export type PedidoItemMaxAggregateOutputType = {
@@ -18197,7 +16971,6 @@ export namespace Prisma {
     producto_id: number | null
     cantidad: number | null
     producto_personalizado_id: number | null
-    id_variante_producto: number | null
   }
 
   export type PedidoItemCountAggregateOutputType = {
@@ -18205,7 +16978,6 @@ export namespace Prisma {
     producto_id: number
     cantidad: number
     producto_personalizado_id: number
-    id_variante_producto: number
     _all: number
   }
 
@@ -18215,7 +16987,6 @@ export namespace Prisma {
     producto_id?: true
     cantidad?: true
     producto_personalizado_id?: true
-    id_variante_producto?: true
   }
 
   export type PedidoItemSumAggregateInputType = {
@@ -18223,7 +16994,6 @@ export namespace Prisma {
     producto_id?: true
     cantidad?: true
     producto_personalizado_id?: true
-    id_variante_producto?: true
   }
 
   export type PedidoItemMinAggregateInputType = {
@@ -18231,7 +17001,6 @@ export namespace Prisma {
     producto_id?: true
     cantidad?: true
     producto_personalizado_id?: true
-    id_variante_producto?: true
   }
 
   export type PedidoItemMaxAggregateInputType = {
@@ -18239,7 +17008,6 @@ export namespace Prisma {
     producto_id?: true
     cantidad?: true
     producto_personalizado_id?: true
-    id_variante_producto?: true
   }
 
   export type PedidoItemCountAggregateInputType = {
@@ -18247,7 +17015,6 @@ export namespace Prisma {
     producto_id?: true
     cantidad?: true
     producto_personalizado_id?: true
-    id_variante_producto?: true
     _all?: true
   }
 
@@ -18342,7 +17109,6 @@ export namespace Prisma {
     producto_id: number
     cantidad: number
     producto_personalizado_id: number | null
-    id_variante_producto: number | null
     _count: PedidoItemCountAggregateOutputType | null
     _avg: PedidoItemAvgAggregateOutputType | null
     _sum: PedidoItemSumAggregateOutputType | null
@@ -18369,11 +17135,9 @@ export namespace Prisma {
     producto_id?: boolean
     cantidad?: boolean
     producto_personalizado_id?: boolean
-    id_variante_producto?: boolean
     pedido?: boolean | PedidoDefaultArgs<ExtArgs>
     producto?: boolean | ProductoDefaultArgs<ExtArgs>
     producto_personalizado?: boolean | PedidoItem$producto_personalizadoArgs<ExtArgs>
-    variante_seleccionada?: boolean | PedidoItem$variante_seleccionadaArgs<ExtArgs>
   }, ExtArgs["result"]["pedidoItem"]>
 
 
@@ -18383,15 +17147,13 @@ export namespace Prisma {
     producto_id?: boolean
     cantidad?: boolean
     producto_personalizado_id?: boolean
-    id_variante_producto?: boolean
   }
 
-  export type PedidoItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"pedido_id" | "producto_id" | "cantidad" | "producto_personalizado_id" | "id_variante_producto", ExtArgs["result"]["pedidoItem"]>
+  export type PedidoItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"pedido_id" | "producto_id" | "cantidad" | "producto_personalizado_id", ExtArgs["result"]["pedidoItem"]>
   export type PedidoItemInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     pedido?: boolean | PedidoDefaultArgs<ExtArgs>
     producto?: boolean | ProductoDefaultArgs<ExtArgs>
     producto_personalizado?: boolean | PedidoItem$producto_personalizadoArgs<ExtArgs>
-    variante_seleccionada?: boolean | PedidoItem$variante_seleccionadaArgs<ExtArgs>
   }
 
   export type $PedidoItemPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -18400,14 +17162,12 @@ export namespace Prisma {
       pedido: Prisma.$PedidoPayload<ExtArgs>
       producto: Prisma.$ProductoPayload<ExtArgs>
       producto_personalizado: Prisma.$ProductoPersonalizablePayload<ExtArgs> | null
-      variante_seleccionada: Prisma.$VarianteProductoPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       pedido_id: number
       producto_id: number
       cantidad: number
       producto_personalizado_id: number | null
-      id_variante_producto: number | null
     }, ExtArgs["result"]["pedidoItem"]>
     composites: {}
   }
@@ -18751,7 +17511,6 @@ export namespace Prisma {
     pedido<T extends PedidoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PedidoDefaultArgs<ExtArgs>>): Prisma__PedidoClient<$Result.GetResult<Prisma.$PedidoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     producto<T extends ProductoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProductoDefaultArgs<ExtArgs>>): Prisma__ProductoClient<$Result.GetResult<Prisma.$ProductoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     producto_personalizado<T extends PedidoItem$producto_personalizadoArgs<ExtArgs> = {}>(args?: Subset<T, PedidoItem$producto_personalizadoArgs<ExtArgs>>): Prisma__ProductoPersonalizableClient<$Result.GetResult<Prisma.$ProductoPersonalizablePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    variante_seleccionada<T extends PedidoItem$variante_seleccionadaArgs<ExtArgs> = {}>(args?: Subset<T, PedidoItem$variante_seleccionadaArgs<ExtArgs>>): Prisma__VarianteProductoClient<$Result.GetResult<Prisma.$VarianteProductoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -18785,7 +17544,6 @@ export namespace Prisma {
     readonly producto_id: FieldRef<"PedidoItem", 'Int'>
     readonly cantidad: FieldRef<"PedidoItem", 'Int'>
     readonly producto_personalizado_id: FieldRef<"PedidoItem", 'Int'>
-    readonly id_variante_producto: FieldRef<"PedidoItem", 'Int'>
   }
     
 
@@ -19145,25 +17903,6 @@ export namespace Prisma {
      */
     include?: ProductoPersonalizableInclude<ExtArgs> | null
     where?: ProductoPersonalizableWhereInput
-  }
-
-  /**
-   * PedidoItem.variante_seleccionada
-   */
-  export type PedidoItem$variante_seleccionadaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the VarianteProducto
-     */
-    select?: VarianteProductoSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the VarianteProducto
-     */
-    omit?: VarianteProductoOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: VarianteProductoInclude<ExtArgs> | null
-    where?: VarianteProductoWhereInput
   }
 
   /**
@@ -21223,18 +19962,6 @@ export namespace Prisma {
   export type ProductoPersonalizableScalarFieldEnum = (typeof ProductoPersonalizableScalarFieldEnum)[keyof typeof ProductoPersonalizableScalarFieldEnum]
 
 
-  export const VarianteProductoScalarFieldEnum: {
-    id_variante: 'id_variante',
-    id_producto: 'id_producto',
-    sku: 'sku',
-    precio_final: 'precio_final',
-    stock: 'stock',
-    imagen_variante: 'imagen_variante'
-  };
-
-  export type VarianteProductoScalarFieldEnum = (typeof VarianteProductoScalarFieldEnum)[keyof typeof VarianteProductoScalarFieldEnum]
-
-
   export const AtributoScalarFieldEnum: {
     id_atributo: 'id_atributo',
     nombre: 'nombre',
@@ -21255,8 +19982,7 @@ export namespace Prisma {
 
 
   export const VarianteDetalleScalarFieldEnum: {
-    id_variante: 'id_variante',
-    id_atributo: 'id_atributo',
+    id_productoPersonalizable: 'id_productoPersonalizable',
     id_valor: 'id_valor'
   };
 
@@ -21306,8 +20032,7 @@ export namespace Prisma {
     pedido_id: 'pedido_id',
     producto_id: 'producto_id',
     cantidad: 'cantidad',
-    producto_personalizado_id: 'producto_personalizado_id',
-    id_variante_producto: 'id_variante_producto'
+    producto_personalizado_id: 'producto_personalizado_id'
   };
 
   export type PedidoItemScalarFieldEnum = (typeof PedidoItemScalarFieldEnum)[keyof typeof PedidoItemScalarFieldEnum]
@@ -21402,14 +20127,6 @@ export namespace Prisma {
   };
 
   export type ProductoPersonalizableOrderByRelevanceFieldEnum = (typeof ProductoPersonalizableOrderByRelevanceFieldEnum)[keyof typeof ProductoPersonalizableOrderByRelevanceFieldEnum]
-
-
-  export const VarianteProductoOrderByRelevanceFieldEnum: {
-    sku: 'sku',
-    imagen_variante: 'imagen_variante'
-  };
-
-  export type VarianteProductoOrderByRelevanceFieldEnum = (typeof VarianteProductoOrderByRelevanceFieldEnum)[keyof typeof VarianteProductoOrderByRelevanceFieldEnum]
 
 
   export const AtributoOrderByRelevanceFieldEnum: {
@@ -21959,8 +20676,8 @@ export namespace Prisma {
     activo?: BoolFilter<"ProductoPersonalizable"> | boolean
     categoria?: XOR<CategoriaScalarRelationFilter, CategoriaWhereInput>
     producto_base?: XOR<ProductoScalarRelationFilter, ProductoWhereInput>
-    variantes?: VarianteProductoListRelationFilter
     pedidoItems?: PedidoItemListRelationFilter
+    variantes?: VarianteDetalleListRelationFilter
   }
 
   export type ProductoPersonalizableOrderByWithRelationInput = {
@@ -21972,8 +20689,8 @@ export namespace Prisma {
     activo?: SortOrder
     categoria?: CategoriaOrderByWithRelationInput
     producto_base?: ProductoOrderByWithRelationInput
-    variantes?: VarianteProductoOrderByRelationAggregateInput
     pedidoItems?: PedidoItemOrderByRelationAggregateInput
+    variantes?: VarianteDetalleOrderByRelationAggregateInput
     _relevance?: ProductoPersonalizableOrderByRelevanceInput
   }
 
@@ -21989,8 +20706,8 @@ export namespace Prisma {
     activo?: BoolFilter<"ProductoPersonalizable"> | boolean
     categoria?: XOR<CategoriaScalarRelationFilter, CategoriaWhereInput>
     producto_base?: XOR<ProductoScalarRelationFilter, ProductoWhereInput>
-    variantes?: VarianteProductoListRelationFilter
     pedidoItems?: PedidoItemListRelationFilter
+    variantes?: VarianteDetalleListRelationFilter
   }, "id">
 
   export type ProductoPersonalizableOrderByWithAggregationInput = {
@@ -22019,75 +20736,6 @@ export namespace Prisma {
     activo?: BoolWithAggregatesFilter<"ProductoPersonalizable"> | boolean
   }
 
-  export type VarianteProductoWhereInput = {
-    AND?: VarianteProductoWhereInput | VarianteProductoWhereInput[]
-    OR?: VarianteProductoWhereInput[]
-    NOT?: VarianteProductoWhereInput | VarianteProductoWhereInput[]
-    id_variante?: IntFilter<"VarianteProducto"> | number
-    id_producto?: IntFilter<"VarianteProducto"> | number
-    sku?: StringFilter<"VarianteProducto"> | string
-    precio_final?: FloatFilter<"VarianteProducto"> | number
-    stock?: IntFilter<"VarianteProducto"> | number
-    imagen_variante?: StringNullableFilter<"VarianteProducto"> | string | null
-    producto?: XOR<ProductoPersonalizableScalarRelationFilter, ProductoPersonalizableWhereInput>
-    detalles?: VarianteDetalleListRelationFilter
-    pedidoItems?: PedidoItemListRelationFilter
-  }
-
-  export type VarianteProductoOrderByWithRelationInput = {
-    id_variante?: SortOrder
-    id_producto?: SortOrder
-    sku?: SortOrder
-    precio_final?: SortOrder
-    stock?: SortOrder
-    imagen_variante?: SortOrderInput | SortOrder
-    producto?: ProductoPersonalizableOrderByWithRelationInput
-    detalles?: VarianteDetalleOrderByRelationAggregateInput
-    pedidoItems?: PedidoItemOrderByRelationAggregateInput
-    _relevance?: VarianteProductoOrderByRelevanceInput
-  }
-
-  export type VarianteProductoWhereUniqueInput = Prisma.AtLeast<{
-    id_variante?: number
-    sku?: string
-    AND?: VarianteProductoWhereInput | VarianteProductoWhereInput[]
-    OR?: VarianteProductoWhereInput[]
-    NOT?: VarianteProductoWhereInput | VarianteProductoWhereInput[]
-    id_producto?: IntFilter<"VarianteProducto"> | number
-    precio_final?: FloatFilter<"VarianteProducto"> | number
-    stock?: IntFilter<"VarianteProducto"> | number
-    imagen_variante?: StringNullableFilter<"VarianteProducto"> | string | null
-    producto?: XOR<ProductoPersonalizableScalarRelationFilter, ProductoPersonalizableWhereInput>
-    detalles?: VarianteDetalleListRelationFilter
-    pedidoItems?: PedidoItemListRelationFilter
-  }, "id_variante" | "sku">
-
-  export type VarianteProductoOrderByWithAggregationInput = {
-    id_variante?: SortOrder
-    id_producto?: SortOrder
-    sku?: SortOrder
-    precio_final?: SortOrder
-    stock?: SortOrder
-    imagen_variante?: SortOrderInput | SortOrder
-    _count?: VarianteProductoCountOrderByAggregateInput
-    _avg?: VarianteProductoAvgOrderByAggregateInput
-    _max?: VarianteProductoMaxOrderByAggregateInput
-    _min?: VarianteProductoMinOrderByAggregateInput
-    _sum?: VarianteProductoSumOrderByAggregateInput
-  }
-
-  export type VarianteProductoScalarWhereWithAggregatesInput = {
-    AND?: VarianteProductoScalarWhereWithAggregatesInput | VarianteProductoScalarWhereWithAggregatesInput[]
-    OR?: VarianteProductoScalarWhereWithAggregatesInput[]
-    NOT?: VarianteProductoScalarWhereWithAggregatesInput | VarianteProductoScalarWhereWithAggregatesInput[]
-    id_variante?: IntWithAggregatesFilter<"VarianteProducto"> | number
-    id_producto?: IntWithAggregatesFilter<"VarianteProducto"> | number
-    sku?: StringWithAggregatesFilter<"VarianteProducto"> | string
-    precio_final?: FloatWithAggregatesFilter<"VarianteProducto"> | number
-    stock?: IntWithAggregatesFilter<"VarianteProducto"> | number
-    imagen_variante?: StringNullableWithAggregatesFilter<"VarianteProducto"> | string | null
-  }
-
   export type AtributoWhereInput = {
     AND?: AtributoWhereInput | AtributoWhereInput[]
     OR?: AtributoWhereInput[]
@@ -22096,7 +20744,6 @@ export namespace Prisma {
     nombre?: StringFilter<"Atributo"> | string
     tipo?: StringFilter<"Atributo"> | string
     valores?: ValorAtributoListRelationFilter
-    detalles?: VarianteDetalleListRelationFilter
   }
 
   export type AtributoOrderByWithRelationInput = {
@@ -22104,7 +20751,6 @@ export namespace Prisma {
     nombre?: SortOrder
     tipo?: SortOrder
     valores?: ValorAtributoOrderByRelationAggregateInput
-    detalles?: VarianteDetalleOrderByRelationAggregateInput
     _relevance?: AtributoOrderByRelevanceInput
   }
 
@@ -22116,7 +20762,6 @@ export namespace Prisma {
     nombre?: StringFilter<"Atributo"> | string
     tipo?: StringFilter<"Atributo"> | string
     valores?: ValorAtributoListRelationFilter
-    detalles?: VarianteDetalleListRelationFilter
   }, "id_atributo">
 
   export type AtributoOrderByWithAggregationInput = {
@@ -22199,39 +20844,32 @@ export namespace Prisma {
     AND?: VarianteDetalleWhereInput | VarianteDetalleWhereInput[]
     OR?: VarianteDetalleWhereInput[]
     NOT?: VarianteDetalleWhereInput | VarianteDetalleWhereInput[]
-    id_variante?: IntFilter<"VarianteDetalle"> | number
-    id_atributo?: IntFilter<"VarianteDetalle"> | number
+    id_productoPersonalizable?: IntFilter<"VarianteDetalle"> | number
     id_valor?: IntFilter<"VarianteDetalle"> | number
-    variante?: XOR<VarianteProductoScalarRelationFilter, VarianteProductoWhereInput>
-    atributo?: XOR<AtributoScalarRelationFilter, AtributoWhereInput>
     valor?: XOR<ValorAtributoScalarRelationFilter, ValorAtributoWhereInput>
+    productoPersonalizable?: XOR<ProductoPersonalizableScalarRelationFilter, ProductoPersonalizableWhereInput>
   }
 
   export type VarianteDetalleOrderByWithRelationInput = {
-    id_variante?: SortOrder
-    id_atributo?: SortOrder
+    id_productoPersonalizable?: SortOrder
     id_valor?: SortOrder
-    variante?: VarianteProductoOrderByWithRelationInput
-    atributo?: AtributoOrderByWithRelationInput
     valor?: ValorAtributoOrderByWithRelationInput
+    productoPersonalizable?: ProductoPersonalizableOrderByWithRelationInput
   }
 
   export type VarianteDetalleWhereUniqueInput = Prisma.AtLeast<{
-    id_variante_id_atributo_id_valor?: VarianteDetalleId_varianteId_atributoId_valorCompoundUniqueInput
+    id_productoPersonalizable_id_valor?: VarianteDetalleId_productoPersonalizableId_valorCompoundUniqueInput
     AND?: VarianteDetalleWhereInput | VarianteDetalleWhereInput[]
     OR?: VarianteDetalleWhereInput[]
     NOT?: VarianteDetalleWhereInput | VarianteDetalleWhereInput[]
-    id_variante?: IntFilter<"VarianteDetalle"> | number
-    id_atributo?: IntFilter<"VarianteDetalle"> | number
+    id_productoPersonalizable?: IntFilter<"VarianteDetalle"> | number
     id_valor?: IntFilter<"VarianteDetalle"> | number
-    variante?: XOR<VarianteProductoScalarRelationFilter, VarianteProductoWhereInput>
-    atributo?: XOR<AtributoScalarRelationFilter, AtributoWhereInput>
     valor?: XOR<ValorAtributoScalarRelationFilter, ValorAtributoWhereInput>
-  }, "id_variante_id_atributo_id_valor">
+    productoPersonalizable?: XOR<ProductoPersonalizableScalarRelationFilter, ProductoPersonalizableWhereInput>
+  }, "id_productoPersonalizable_id_valor">
 
   export type VarianteDetalleOrderByWithAggregationInput = {
-    id_variante?: SortOrder
-    id_atributo?: SortOrder
+    id_productoPersonalizable?: SortOrder
     id_valor?: SortOrder
     _count?: VarianteDetalleCountOrderByAggregateInput
     _avg?: VarianteDetalleAvgOrderByAggregateInput
@@ -22244,8 +20882,7 @@ export namespace Prisma {
     AND?: VarianteDetalleScalarWhereWithAggregatesInput | VarianteDetalleScalarWhereWithAggregatesInput[]
     OR?: VarianteDetalleScalarWhereWithAggregatesInput[]
     NOT?: VarianteDetalleScalarWhereWithAggregatesInput | VarianteDetalleScalarWhereWithAggregatesInput[]
-    id_variante?: IntWithAggregatesFilter<"VarianteDetalle"> | number
-    id_atributo?: IntWithAggregatesFilter<"VarianteDetalle"> | number
+    id_productoPersonalizable?: IntWithAggregatesFilter<"VarianteDetalle"> | number
     id_valor?: IntWithAggregatesFilter<"VarianteDetalle"> | number
   }
 
@@ -22478,11 +21115,9 @@ export namespace Prisma {
     producto_id?: IntFilter<"PedidoItem"> | number
     cantidad?: IntFilter<"PedidoItem"> | number
     producto_personalizado_id?: IntNullableFilter<"PedidoItem"> | number | null
-    id_variante_producto?: IntNullableFilter<"PedidoItem"> | number | null
     pedido?: XOR<PedidoScalarRelationFilter, PedidoWhereInput>
     producto?: XOR<ProductoScalarRelationFilter, ProductoWhereInput>
     producto_personalizado?: XOR<ProductoPersonalizableNullableScalarRelationFilter, ProductoPersonalizableWhereInput> | null
-    variante_seleccionada?: XOR<VarianteProductoNullableScalarRelationFilter, VarianteProductoWhereInput> | null
   }
 
   export type PedidoItemOrderByWithRelationInput = {
@@ -22490,11 +21125,9 @@ export namespace Prisma {
     producto_id?: SortOrder
     cantidad?: SortOrder
     producto_personalizado_id?: SortOrderInput | SortOrder
-    id_variante_producto?: SortOrderInput | SortOrder
     pedido?: PedidoOrderByWithRelationInput
     producto?: ProductoOrderByWithRelationInput
     producto_personalizado?: ProductoPersonalizableOrderByWithRelationInput
-    variante_seleccionada?: VarianteProductoOrderByWithRelationInput
   }
 
   export type PedidoItemWhereUniqueInput = Prisma.AtLeast<{
@@ -22506,11 +21139,9 @@ export namespace Prisma {
     producto_id?: IntFilter<"PedidoItem"> | number
     cantidad?: IntFilter<"PedidoItem"> | number
     producto_personalizado_id?: IntNullableFilter<"PedidoItem"> | number | null
-    id_variante_producto?: IntNullableFilter<"PedidoItem"> | number | null
     pedido?: XOR<PedidoScalarRelationFilter, PedidoWhereInput>
     producto?: XOR<ProductoScalarRelationFilter, ProductoWhereInput>
     producto_personalizado?: XOR<ProductoPersonalizableNullableScalarRelationFilter, ProductoPersonalizableWhereInput> | null
-    variante_seleccionada?: XOR<VarianteProductoNullableScalarRelationFilter, VarianteProductoWhereInput> | null
   }, "pedido_id_producto_id">
 
   export type PedidoItemOrderByWithAggregationInput = {
@@ -22518,7 +21149,6 @@ export namespace Prisma {
     producto_id?: SortOrder
     cantidad?: SortOrder
     producto_personalizado_id?: SortOrderInput | SortOrder
-    id_variante_producto?: SortOrderInput | SortOrder
     _count?: PedidoItemCountOrderByAggregateInput
     _avg?: PedidoItemAvgOrderByAggregateInput
     _max?: PedidoItemMaxOrderByAggregateInput
@@ -22534,7 +21164,6 @@ export namespace Prisma {
     producto_id?: IntWithAggregatesFilter<"PedidoItem"> | number
     cantidad?: IntWithAggregatesFilter<"PedidoItem"> | number
     producto_personalizado_id?: IntNullableWithAggregatesFilter<"PedidoItem"> | number | null
-    id_variante_producto?: IntNullableWithAggregatesFilter<"PedidoItem"> | number | null
   }
 
   export type TransicionEstadoPedidoWhereInput = {
@@ -23060,8 +21689,8 @@ export namespace Prisma {
     activo?: boolean
     categoria: CategoriaCreateNestedOneWithoutProductosPersonalizablesInput
     producto_base: ProductoCreateNestedOneWithoutProductosPersonalizablesInput
-    variantes?: VarianteProductoCreateNestedManyWithoutProductoInput
     pedidoItems?: PedidoItemCreateNestedManyWithoutProducto_personalizadoInput
+    variantes?: VarianteDetalleCreateNestedManyWithoutProductoPersonalizableInput
   }
 
   export type ProductoPersonalizableUncheckedCreateInput = {
@@ -23071,8 +21700,8 @@ export namespace Prisma {
     id_categoria: number
     id_producto_base: number
     activo?: boolean
-    variantes?: VarianteProductoUncheckedCreateNestedManyWithoutProductoInput
     pedidoItems?: PedidoItemUncheckedCreateNestedManyWithoutProducto_personalizadoInput
+    variantes?: VarianteDetalleUncheckedCreateNestedManyWithoutProductoPersonalizableInput
   }
 
   export type ProductoPersonalizableUpdateInput = {
@@ -23081,8 +21710,8 @@ export namespace Prisma {
     activo?: BoolFieldUpdateOperationsInput | boolean
     categoria?: CategoriaUpdateOneRequiredWithoutProductosPersonalizablesNestedInput
     producto_base?: ProductoUpdateOneRequiredWithoutProductosPersonalizablesNestedInput
-    variantes?: VarianteProductoUpdateManyWithoutProductoNestedInput
     pedidoItems?: PedidoItemUpdateManyWithoutProducto_personalizadoNestedInput
+    variantes?: VarianteDetalleUpdateManyWithoutProductoPersonalizableNestedInput
   }
 
   export type ProductoPersonalizableUncheckedUpdateInput = {
@@ -23092,8 +21721,8 @@ export namespace Prisma {
     id_categoria?: IntFieldUpdateOperationsInput | number
     id_producto_base?: IntFieldUpdateOperationsInput | number
     activo?: BoolFieldUpdateOperationsInput | boolean
-    variantes?: VarianteProductoUncheckedUpdateManyWithoutProductoNestedInput
     pedidoItems?: PedidoItemUncheckedUpdateManyWithoutProducto_personalizadoNestedInput
+    variantes?: VarianteDetalleUncheckedUpdateManyWithoutProductoPersonalizableNestedInput
   }
 
   export type ProductoPersonalizableCreateManyInput = {
@@ -23120,78 +21749,10 @@ export namespace Prisma {
     activo?: BoolFieldUpdateOperationsInput | boolean
   }
 
-  export type VarianteProductoCreateInput = {
-    sku: string
-    precio_final: number
-    stock: number
-    imagen_variante?: string | null
-    producto: ProductoPersonalizableCreateNestedOneWithoutVariantesInput
-    detalles?: VarianteDetalleCreateNestedManyWithoutVarianteInput
-    pedidoItems?: PedidoItemCreateNestedManyWithoutVariante_seleccionadaInput
-  }
-
-  export type VarianteProductoUncheckedCreateInput = {
-    id_variante?: number
-    id_producto: number
-    sku: string
-    precio_final: number
-    stock: number
-    imagen_variante?: string | null
-    detalles?: VarianteDetalleUncheckedCreateNestedManyWithoutVarianteInput
-    pedidoItems?: PedidoItemUncheckedCreateNestedManyWithoutVariante_seleccionadaInput
-  }
-
-  export type VarianteProductoUpdateInput = {
-    sku?: StringFieldUpdateOperationsInput | string
-    precio_final?: FloatFieldUpdateOperationsInput | number
-    stock?: IntFieldUpdateOperationsInput | number
-    imagen_variante?: NullableStringFieldUpdateOperationsInput | string | null
-    producto?: ProductoPersonalizableUpdateOneRequiredWithoutVariantesNestedInput
-    detalles?: VarianteDetalleUpdateManyWithoutVarianteNestedInput
-    pedidoItems?: PedidoItemUpdateManyWithoutVariante_seleccionadaNestedInput
-  }
-
-  export type VarianteProductoUncheckedUpdateInput = {
-    id_variante?: IntFieldUpdateOperationsInput | number
-    id_producto?: IntFieldUpdateOperationsInput | number
-    sku?: StringFieldUpdateOperationsInput | string
-    precio_final?: FloatFieldUpdateOperationsInput | number
-    stock?: IntFieldUpdateOperationsInput | number
-    imagen_variante?: NullableStringFieldUpdateOperationsInput | string | null
-    detalles?: VarianteDetalleUncheckedUpdateManyWithoutVarianteNestedInput
-    pedidoItems?: PedidoItemUncheckedUpdateManyWithoutVariante_seleccionadaNestedInput
-  }
-
-  export type VarianteProductoCreateManyInput = {
-    id_variante?: number
-    id_producto: number
-    sku: string
-    precio_final: number
-    stock: number
-    imagen_variante?: string | null
-  }
-
-  export type VarianteProductoUpdateManyMutationInput = {
-    sku?: StringFieldUpdateOperationsInput | string
-    precio_final?: FloatFieldUpdateOperationsInput | number
-    stock?: IntFieldUpdateOperationsInput | number
-    imagen_variante?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type VarianteProductoUncheckedUpdateManyInput = {
-    id_variante?: IntFieldUpdateOperationsInput | number
-    id_producto?: IntFieldUpdateOperationsInput | number
-    sku?: StringFieldUpdateOperationsInput | string
-    precio_final?: FloatFieldUpdateOperationsInput | number
-    stock?: IntFieldUpdateOperationsInput | number
-    imagen_variante?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
   export type AtributoCreateInput = {
     nombre: string
     tipo: string
     valores?: ValorAtributoCreateNestedManyWithoutAtributoInput
-    detalles?: VarianteDetalleCreateNestedManyWithoutAtributoInput
   }
 
   export type AtributoUncheckedCreateInput = {
@@ -23199,14 +21760,12 @@ export namespace Prisma {
     nombre: string
     tipo: string
     valores?: ValorAtributoUncheckedCreateNestedManyWithoutAtributoInput
-    detalles?: VarianteDetalleUncheckedCreateNestedManyWithoutAtributoInput
   }
 
   export type AtributoUpdateInput = {
     nombre?: StringFieldUpdateOperationsInput | string
     tipo?: StringFieldUpdateOperationsInput | string
     valores?: ValorAtributoUpdateManyWithoutAtributoNestedInput
-    detalles?: VarianteDetalleUpdateManyWithoutAtributoNestedInput
   }
 
   export type AtributoUncheckedUpdateInput = {
@@ -23214,7 +21773,6 @@ export namespace Prisma {
     nombre?: StringFieldUpdateOperationsInput | string
     tipo?: StringFieldUpdateOperationsInput | string
     valores?: ValorAtributoUncheckedUpdateManyWithoutAtributoNestedInput
-    detalles?: VarianteDetalleUncheckedUpdateManyWithoutAtributoNestedInput
   }
 
   export type AtributoCreateManyInput = {
@@ -23284,32 +21842,27 @@ export namespace Prisma {
   }
 
   export type VarianteDetalleCreateInput = {
-    variante: VarianteProductoCreateNestedOneWithoutDetallesInput
-    atributo: AtributoCreateNestedOneWithoutDetallesInput
     valor: ValorAtributoCreateNestedOneWithoutVarianteDetallesInput
+    productoPersonalizable: ProductoPersonalizableCreateNestedOneWithoutVariantesInput
   }
 
   export type VarianteDetalleUncheckedCreateInput = {
-    id_variante: number
-    id_atributo: number
+    id_productoPersonalizable: number
     id_valor: number
   }
 
   export type VarianteDetalleUpdateInput = {
-    variante?: VarianteProductoUpdateOneRequiredWithoutDetallesNestedInput
-    atributo?: AtributoUpdateOneRequiredWithoutDetallesNestedInput
     valor?: ValorAtributoUpdateOneRequiredWithoutVarianteDetallesNestedInput
+    productoPersonalizable?: ProductoPersonalizableUpdateOneRequiredWithoutVariantesNestedInput
   }
 
   export type VarianteDetalleUncheckedUpdateInput = {
-    id_variante?: IntFieldUpdateOperationsInput | number
-    id_atributo?: IntFieldUpdateOperationsInput | number
+    id_productoPersonalizable?: IntFieldUpdateOperationsInput | number
     id_valor?: IntFieldUpdateOperationsInput | number
   }
 
   export type VarianteDetalleCreateManyInput = {
-    id_variante: number
-    id_atributo: number
+    id_productoPersonalizable: number
     id_valor: number
   }
 
@@ -23318,8 +21871,7 @@ export namespace Prisma {
   }
 
   export type VarianteDetalleUncheckedUpdateManyInput = {
-    id_variante?: IntFieldUpdateOperationsInput | number
-    id_atributo?: IntFieldUpdateOperationsInput | number
+    id_productoPersonalizable?: IntFieldUpdateOperationsInput | number
     id_valor?: IntFieldUpdateOperationsInput | number
   }
 
@@ -23540,7 +22092,6 @@ export namespace Prisma {
     pedido: PedidoCreateNestedOneWithoutItemsInput
     producto: ProductoCreateNestedOneWithoutPedidoItemsInput
     producto_personalizado?: ProductoPersonalizableCreateNestedOneWithoutPedidoItemsInput
-    variante_seleccionada?: VarianteProductoCreateNestedOneWithoutPedidoItemsInput
   }
 
   export type PedidoItemUncheckedCreateInput = {
@@ -23548,7 +22099,6 @@ export namespace Prisma {
     producto_id: number
     cantidad: number
     producto_personalizado_id?: number | null
-    id_variante_producto?: number | null
   }
 
   export type PedidoItemUpdateInput = {
@@ -23556,7 +22106,6 @@ export namespace Prisma {
     pedido?: PedidoUpdateOneRequiredWithoutItemsNestedInput
     producto?: ProductoUpdateOneRequiredWithoutPedidoItemsNestedInput
     producto_personalizado?: ProductoPersonalizableUpdateOneWithoutPedidoItemsNestedInput
-    variante_seleccionada?: VarianteProductoUpdateOneWithoutPedidoItemsNestedInput
   }
 
   export type PedidoItemUncheckedUpdateInput = {
@@ -23564,7 +22113,6 @@ export namespace Prisma {
     producto_id?: IntFieldUpdateOperationsInput | number
     cantidad?: IntFieldUpdateOperationsInput | number
     producto_personalizado_id?: NullableIntFieldUpdateOperationsInput | number | null
-    id_variante_producto?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type PedidoItemCreateManyInput = {
@@ -23572,7 +22120,6 @@ export namespace Prisma {
     producto_id: number
     cantidad: number
     producto_personalizado_id?: number | null
-    id_variante_producto?: number | null
   }
 
   export type PedidoItemUpdateManyMutationInput = {
@@ -23584,7 +22131,6 @@ export namespace Prisma {
     producto_id?: IntFieldUpdateOperationsInput | number
     cantidad?: IntFieldUpdateOperationsInput | number
     producto_personalizado_id?: NullableIntFieldUpdateOperationsInput | number | null
-    id_variante_producto?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type TransicionEstadoPedidoCreateInput = {
@@ -24245,13 +22791,13 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type VarianteProductoListRelationFilter = {
-    every?: VarianteProductoWhereInput
-    some?: VarianteProductoWhereInput
-    none?: VarianteProductoWhereInput
+  export type VarianteDetalleListRelationFilter = {
+    every?: VarianteDetalleWhereInput
+    some?: VarianteDetalleWhereInput
+    none?: VarianteDetalleWhereInput
   }
 
-  export type VarianteProductoOrderByRelationAggregateInput = {
+  export type VarianteDetalleOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -24298,101 +22844,6 @@ export namespace Prisma {
     id?: SortOrder
     id_categoria?: SortOrder
     id_producto_base?: SortOrder
-  }
-
-  export type StringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
-  export type ProductoPersonalizableScalarRelationFilter = {
-    is?: ProductoPersonalizableWhereInput
-    isNot?: ProductoPersonalizableWhereInput
-  }
-
-  export type VarianteDetalleListRelationFilter = {
-    every?: VarianteDetalleWhereInput
-    some?: VarianteDetalleWhereInput
-    none?: VarianteDetalleWhereInput
-  }
-
-  export type VarianteDetalleOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type VarianteProductoOrderByRelevanceInput = {
-    fields: VarianteProductoOrderByRelevanceFieldEnum | VarianteProductoOrderByRelevanceFieldEnum[]
-    sort: SortOrder
-    search: string
-  }
-
-  export type VarianteProductoCountOrderByAggregateInput = {
-    id_variante?: SortOrder
-    id_producto?: SortOrder
-    sku?: SortOrder
-    precio_final?: SortOrder
-    stock?: SortOrder
-    imagen_variante?: SortOrder
-  }
-
-  export type VarianteProductoAvgOrderByAggregateInput = {
-    id_variante?: SortOrder
-    id_producto?: SortOrder
-    precio_final?: SortOrder
-    stock?: SortOrder
-  }
-
-  export type VarianteProductoMaxOrderByAggregateInput = {
-    id_variante?: SortOrder
-    id_producto?: SortOrder
-    sku?: SortOrder
-    precio_final?: SortOrder
-    stock?: SortOrder
-    imagen_variante?: SortOrder
-  }
-
-  export type VarianteProductoMinOrderByAggregateInput = {
-    id_variante?: SortOrder
-    id_producto?: SortOrder
-    sku?: SortOrder
-    precio_final?: SortOrder
-    stock?: SortOrder
-    imagen_variante?: SortOrder
-  }
-
-  export type VarianteProductoSumOrderByAggregateInput = {
-    id_variante?: SortOrder
-    id_producto?: SortOrder
-    precio_final?: SortOrder
-    stock?: SortOrder
-  }
-
-  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type ValorAtributoListRelationFilter = {
@@ -24481,49 +22932,43 @@ export namespace Prisma {
     precio_extra?: SortOrder
   }
 
-  export type VarianteProductoScalarRelationFilter = {
-    is?: VarianteProductoWhereInput
-    isNot?: VarianteProductoWhereInput
-  }
-
   export type ValorAtributoScalarRelationFilter = {
     is?: ValorAtributoWhereInput
     isNot?: ValorAtributoWhereInput
   }
 
-  export type VarianteDetalleId_varianteId_atributoId_valorCompoundUniqueInput = {
-    id_variante: number
-    id_atributo: number
+  export type ProductoPersonalizableScalarRelationFilter = {
+    is?: ProductoPersonalizableWhereInput
+    isNot?: ProductoPersonalizableWhereInput
+  }
+
+  export type VarianteDetalleId_productoPersonalizableId_valorCompoundUniqueInput = {
+    id_productoPersonalizable: number
     id_valor: number
   }
 
   export type VarianteDetalleCountOrderByAggregateInput = {
-    id_variante?: SortOrder
-    id_atributo?: SortOrder
+    id_productoPersonalizable?: SortOrder
     id_valor?: SortOrder
   }
 
   export type VarianteDetalleAvgOrderByAggregateInput = {
-    id_variante?: SortOrder
-    id_atributo?: SortOrder
+    id_productoPersonalizable?: SortOrder
     id_valor?: SortOrder
   }
 
   export type VarianteDetalleMaxOrderByAggregateInput = {
-    id_variante?: SortOrder
-    id_atributo?: SortOrder
+    id_productoPersonalizable?: SortOrder
     id_valor?: SortOrder
   }
 
   export type VarianteDetalleMinOrderByAggregateInput = {
-    id_variante?: SortOrder
-    id_atributo?: SortOrder
+    id_productoPersonalizable?: SortOrder
     id_valor?: SortOrder
   }
 
   export type VarianteDetalleSumOrderByAggregateInput = {
-    id_variante?: SortOrder
-    id_atributo?: SortOrder
+    id_productoPersonalizable?: SortOrder
     id_valor?: SortOrder
   }
 
@@ -24767,11 +23212,6 @@ export namespace Prisma {
     isNot?: ProductoPersonalizableWhereInput | null
   }
 
-  export type VarianteProductoNullableScalarRelationFilter = {
-    is?: VarianteProductoWhereInput | null
-    isNot?: VarianteProductoWhereInput | null
-  }
-
   export type PedidoItemPedido_idProducto_idCompoundUniqueInput = {
     pedido_id: number
     producto_id: number
@@ -24782,7 +23222,6 @@ export namespace Prisma {
     producto_id?: SortOrder
     cantidad?: SortOrder
     producto_personalizado_id?: SortOrder
-    id_variante_producto?: SortOrder
   }
 
   export type PedidoItemAvgOrderByAggregateInput = {
@@ -24790,7 +23229,6 @@ export namespace Prisma {
     producto_id?: SortOrder
     cantidad?: SortOrder
     producto_personalizado_id?: SortOrder
-    id_variante_producto?: SortOrder
   }
 
   export type PedidoItemMaxOrderByAggregateInput = {
@@ -24798,7 +23236,6 @@ export namespace Prisma {
     producto_id?: SortOrder
     cantidad?: SortOrder
     producto_personalizado_id?: SortOrder
-    id_variante_producto?: SortOrder
   }
 
   export type PedidoItemMinOrderByAggregateInput = {
@@ -24806,7 +23243,6 @@ export namespace Prisma {
     producto_id?: SortOrder
     cantidad?: SortOrder
     producto_personalizado_id?: SortOrder
-    id_variante_producto?: SortOrder
   }
 
   export type PedidoItemSumOrderByAggregateInput = {
@@ -24814,7 +23250,6 @@ export namespace Prisma {
     producto_id?: SortOrder
     cantidad?: SortOrder
     producto_personalizado_id?: SortOrder
-    id_variante_producto?: SortOrder
   }
 
   export type EnumEstadoPedidoFilter<$PrismaModel = never> = {
@@ -25676,13 +24111,6 @@ export namespace Prisma {
     connect?: ProductoWhereUniqueInput
   }
 
-  export type VarianteProductoCreateNestedManyWithoutProductoInput = {
-    create?: XOR<VarianteProductoCreateWithoutProductoInput, VarianteProductoUncheckedCreateWithoutProductoInput> | VarianteProductoCreateWithoutProductoInput[] | VarianteProductoUncheckedCreateWithoutProductoInput[]
-    connectOrCreate?: VarianteProductoCreateOrConnectWithoutProductoInput | VarianteProductoCreateOrConnectWithoutProductoInput[]
-    createMany?: VarianteProductoCreateManyProductoInputEnvelope
-    connect?: VarianteProductoWhereUniqueInput | VarianteProductoWhereUniqueInput[]
-  }
-
   export type PedidoItemCreateNestedManyWithoutProducto_personalizadoInput = {
     create?: XOR<PedidoItemCreateWithoutProducto_personalizadoInput, PedidoItemUncheckedCreateWithoutProducto_personalizadoInput> | PedidoItemCreateWithoutProducto_personalizadoInput[] | PedidoItemUncheckedCreateWithoutProducto_personalizadoInput[]
     connectOrCreate?: PedidoItemCreateOrConnectWithoutProducto_personalizadoInput | PedidoItemCreateOrConnectWithoutProducto_personalizadoInput[]
@@ -25690,11 +24118,11 @@ export namespace Prisma {
     connect?: PedidoItemWhereUniqueInput | PedidoItemWhereUniqueInput[]
   }
 
-  export type VarianteProductoUncheckedCreateNestedManyWithoutProductoInput = {
-    create?: XOR<VarianteProductoCreateWithoutProductoInput, VarianteProductoUncheckedCreateWithoutProductoInput> | VarianteProductoCreateWithoutProductoInput[] | VarianteProductoUncheckedCreateWithoutProductoInput[]
-    connectOrCreate?: VarianteProductoCreateOrConnectWithoutProductoInput | VarianteProductoCreateOrConnectWithoutProductoInput[]
-    createMany?: VarianteProductoCreateManyProductoInputEnvelope
-    connect?: VarianteProductoWhereUniqueInput | VarianteProductoWhereUniqueInput[]
+  export type VarianteDetalleCreateNestedManyWithoutProductoPersonalizableInput = {
+    create?: XOR<VarianteDetalleCreateWithoutProductoPersonalizableInput, VarianteDetalleUncheckedCreateWithoutProductoPersonalizableInput> | VarianteDetalleCreateWithoutProductoPersonalizableInput[] | VarianteDetalleUncheckedCreateWithoutProductoPersonalizableInput[]
+    connectOrCreate?: VarianteDetalleCreateOrConnectWithoutProductoPersonalizableInput | VarianteDetalleCreateOrConnectWithoutProductoPersonalizableInput[]
+    createMany?: VarianteDetalleCreateManyProductoPersonalizableInputEnvelope
+    connect?: VarianteDetalleWhereUniqueInput | VarianteDetalleWhereUniqueInput[]
   }
 
   export type PedidoItemUncheckedCreateNestedManyWithoutProducto_personalizadoInput = {
@@ -25702,6 +24130,13 @@ export namespace Prisma {
     connectOrCreate?: PedidoItemCreateOrConnectWithoutProducto_personalizadoInput | PedidoItemCreateOrConnectWithoutProducto_personalizadoInput[]
     createMany?: PedidoItemCreateManyProducto_personalizadoInputEnvelope
     connect?: PedidoItemWhereUniqueInput | PedidoItemWhereUniqueInput[]
+  }
+
+  export type VarianteDetalleUncheckedCreateNestedManyWithoutProductoPersonalizableInput = {
+    create?: XOR<VarianteDetalleCreateWithoutProductoPersonalizableInput, VarianteDetalleUncheckedCreateWithoutProductoPersonalizableInput> | VarianteDetalleCreateWithoutProductoPersonalizableInput[] | VarianteDetalleUncheckedCreateWithoutProductoPersonalizableInput[]
+    connectOrCreate?: VarianteDetalleCreateOrConnectWithoutProductoPersonalizableInput | VarianteDetalleCreateOrConnectWithoutProductoPersonalizableInput[]
+    createMany?: VarianteDetalleCreateManyProductoPersonalizableInputEnvelope
+    connect?: VarianteDetalleWhereUniqueInput | VarianteDetalleWhereUniqueInput[]
   }
 
   export type CategoriaUpdateOneRequiredWithoutProductosPersonalizablesNestedInput = {
@@ -25720,20 +24155,6 @@ export namespace Prisma {
     update?: XOR<XOR<ProductoUpdateToOneWithWhereWithoutProductosPersonalizablesInput, ProductoUpdateWithoutProductosPersonalizablesInput>, ProductoUncheckedUpdateWithoutProductosPersonalizablesInput>
   }
 
-  export type VarianteProductoUpdateManyWithoutProductoNestedInput = {
-    create?: XOR<VarianteProductoCreateWithoutProductoInput, VarianteProductoUncheckedCreateWithoutProductoInput> | VarianteProductoCreateWithoutProductoInput[] | VarianteProductoUncheckedCreateWithoutProductoInput[]
-    connectOrCreate?: VarianteProductoCreateOrConnectWithoutProductoInput | VarianteProductoCreateOrConnectWithoutProductoInput[]
-    upsert?: VarianteProductoUpsertWithWhereUniqueWithoutProductoInput | VarianteProductoUpsertWithWhereUniqueWithoutProductoInput[]
-    createMany?: VarianteProductoCreateManyProductoInputEnvelope
-    set?: VarianteProductoWhereUniqueInput | VarianteProductoWhereUniqueInput[]
-    disconnect?: VarianteProductoWhereUniqueInput | VarianteProductoWhereUniqueInput[]
-    delete?: VarianteProductoWhereUniqueInput | VarianteProductoWhereUniqueInput[]
-    connect?: VarianteProductoWhereUniqueInput | VarianteProductoWhereUniqueInput[]
-    update?: VarianteProductoUpdateWithWhereUniqueWithoutProductoInput | VarianteProductoUpdateWithWhereUniqueWithoutProductoInput[]
-    updateMany?: VarianteProductoUpdateManyWithWhereWithoutProductoInput | VarianteProductoUpdateManyWithWhereWithoutProductoInput[]
-    deleteMany?: VarianteProductoScalarWhereInput | VarianteProductoScalarWhereInput[]
-  }
-
   export type PedidoItemUpdateManyWithoutProducto_personalizadoNestedInput = {
     create?: XOR<PedidoItemCreateWithoutProducto_personalizadoInput, PedidoItemUncheckedCreateWithoutProducto_personalizadoInput> | PedidoItemCreateWithoutProducto_personalizadoInput[] | PedidoItemUncheckedCreateWithoutProducto_personalizadoInput[]
     connectOrCreate?: PedidoItemCreateOrConnectWithoutProducto_personalizadoInput | PedidoItemCreateOrConnectWithoutProducto_personalizadoInput[]
@@ -25748,18 +24169,18 @@ export namespace Prisma {
     deleteMany?: PedidoItemScalarWhereInput | PedidoItemScalarWhereInput[]
   }
 
-  export type VarianteProductoUncheckedUpdateManyWithoutProductoNestedInput = {
-    create?: XOR<VarianteProductoCreateWithoutProductoInput, VarianteProductoUncheckedCreateWithoutProductoInput> | VarianteProductoCreateWithoutProductoInput[] | VarianteProductoUncheckedCreateWithoutProductoInput[]
-    connectOrCreate?: VarianteProductoCreateOrConnectWithoutProductoInput | VarianteProductoCreateOrConnectWithoutProductoInput[]
-    upsert?: VarianteProductoUpsertWithWhereUniqueWithoutProductoInput | VarianteProductoUpsertWithWhereUniqueWithoutProductoInput[]
-    createMany?: VarianteProductoCreateManyProductoInputEnvelope
-    set?: VarianteProductoWhereUniqueInput | VarianteProductoWhereUniqueInput[]
-    disconnect?: VarianteProductoWhereUniqueInput | VarianteProductoWhereUniqueInput[]
-    delete?: VarianteProductoWhereUniqueInput | VarianteProductoWhereUniqueInput[]
-    connect?: VarianteProductoWhereUniqueInput | VarianteProductoWhereUniqueInput[]
-    update?: VarianteProductoUpdateWithWhereUniqueWithoutProductoInput | VarianteProductoUpdateWithWhereUniqueWithoutProductoInput[]
-    updateMany?: VarianteProductoUpdateManyWithWhereWithoutProductoInput | VarianteProductoUpdateManyWithWhereWithoutProductoInput[]
-    deleteMany?: VarianteProductoScalarWhereInput | VarianteProductoScalarWhereInput[]
+  export type VarianteDetalleUpdateManyWithoutProductoPersonalizableNestedInput = {
+    create?: XOR<VarianteDetalleCreateWithoutProductoPersonalizableInput, VarianteDetalleUncheckedCreateWithoutProductoPersonalizableInput> | VarianteDetalleCreateWithoutProductoPersonalizableInput[] | VarianteDetalleUncheckedCreateWithoutProductoPersonalizableInput[]
+    connectOrCreate?: VarianteDetalleCreateOrConnectWithoutProductoPersonalizableInput | VarianteDetalleCreateOrConnectWithoutProductoPersonalizableInput[]
+    upsert?: VarianteDetalleUpsertWithWhereUniqueWithoutProductoPersonalizableInput | VarianteDetalleUpsertWithWhereUniqueWithoutProductoPersonalizableInput[]
+    createMany?: VarianteDetalleCreateManyProductoPersonalizableInputEnvelope
+    set?: VarianteDetalleWhereUniqueInput | VarianteDetalleWhereUniqueInput[]
+    disconnect?: VarianteDetalleWhereUniqueInput | VarianteDetalleWhereUniqueInput[]
+    delete?: VarianteDetalleWhereUniqueInput | VarianteDetalleWhereUniqueInput[]
+    connect?: VarianteDetalleWhereUniqueInput | VarianteDetalleWhereUniqueInput[]
+    update?: VarianteDetalleUpdateWithWhereUniqueWithoutProductoPersonalizableInput | VarianteDetalleUpdateWithWhereUniqueWithoutProductoPersonalizableInput[]
+    updateMany?: VarianteDetalleUpdateManyWithWhereWithoutProductoPersonalizableInput | VarianteDetalleUpdateManyWithWhereWithoutProductoPersonalizableInput[]
+    deleteMany?: VarianteDetalleScalarWhereInput | VarianteDetalleScalarWhereInput[]
   }
 
   export type PedidoItemUncheckedUpdateManyWithoutProducto_personalizadoNestedInput = {
@@ -25776,106 +24197,18 @@ export namespace Prisma {
     deleteMany?: PedidoItemScalarWhereInput | PedidoItemScalarWhereInput[]
   }
 
-  export type ProductoPersonalizableCreateNestedOneWithoutVariantesInput = {
-    create?: XOR<ProductoPersonalizableCreateWithoutVariantesInput, ProductoPersonalizableUncheckedCreateWithoutVariantesInput>
-    connectOrCreate?: ProductoPersonalizableCreateOrConnectWithoutVariantesInput
-    connect?: ProductoPersonalizableWhereUniqueInput
-  }
-
-  export type VarianteDetalleCreateNestedManyWithoutVarianteInput = {
-    create?: XOR<VarianteDetalleCreateWithoutVarianteInput, VarianteDetalleUncheckedCreateWithoutVarianteInput> | VarianteDetalleCreateWithoutVarianteInput[] | VarianteDetalleUncheckedCreateWithoutVarianteInput[]
-    connectOrCreate?: VarianteDetalleCreateOrConnectWithoutVarianteInput | VarianteDetalleCreateOrConnectWithoutVarianteInput[]
-    createMany?: VarianteDetalleCreateManyVarianteInputEnvelope
-    connect?: VarianteDetalleWhereUniqueInput | VarianteDetalleWhereUniqueInput[]
-  }
-
-  export type PedidoItemCreateNestedManyWithoutVariante_seleccionadaInput = {
-    create?: XOR<PedidoItemCreateWithoutVariante_seleccionadaInput, PedidoItemUncheckedCreateWithoutVariante_seleccionadaInput> | PedidoItemCreateWithoutVariante_seleccionadaInput[] | PedidoItemUncheckedCreateWithoutVariante_seleccionadaInput[]
-    connectOrCreate?: PedidoItemCreateOrConnectWithoutVariante_seleccionadaInput | PedidoItemCreateOrConnectWithoutVariante_seleccionadaInput[]
-    createMany?: PedidoItemCreateManyVariante_seleccionadaInputEnvelope
-    connect?: PedidoItemWhereUniqueInput | PedidoItemWhereUniqueInput[]
-  }
-
-  export type VarianteDetalleUncheckedCreateNestedManyWithoutVarianteInput = {
-    create?: XOR<VarianteDetalleCreateWithoutVarianteInput, VarianteDetalleUncheckedCreateWithoutVarianteInput> | VarianteDetalleCreateWithoutVarianteInput[] | VarianteDetalleUncheckedCreateWithoutVarianteInput[]
-    connectOrCreate?: VarianteDetalleCreateOrConnectWithoutVarianteInput | VarianteDetalleCreateOrConnectWithoutVarianteInput[]
-    createMany?: VarianteDetalleCreateManyVarianteInputEnvelope
-    connect?: VarianteDetalleWhereUniqueInput | VarianteDetalleWhereUniqueInput[]
-  }
-
-  export type PedidoItemUncheckedCreateNestedManyWithoutVariante_seleccionadaInput = {
-    create?: XOR<PedidoItemCreateWithoutVariante_seleccionadaInput, PedidoItemUncheckedCreateWithoutVariante_seleccionadaInput> | PedidoItemCreateWithoutVariante_seleccionadaInput[] | PedidoItemUncheckedCreateWithoutVariante_seleccionadaInput[]
-    connectOrCreate?: PedidoItemCreateOrConnectWithoutVariante_seleccionadaInput | PedidoItemCreateOrConnectWithoutVariante_seleccionadaInput[]
-    createMany?: PedidoItemCreateManyVariante_seleccionadaInputEnvelope
-    connect?: PedidoItemWhereUniqueInput | PedidoItemWhereUniqueInput[]
-  }
-
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
-  }
-
-  export type ProductoPersonalizableUpdateOneRequiredWithoutVariantesNestedInput = {
-    create?: XOR<ProductoPersonalizableCreateWithoutVariantesInput, ProductoPersonalizableUncheckedCreateWithoutVariantesInput>
-    connectOrCreate?: ProductoPersonalizableCreateOrConnectWithoutVariantesInput
-    upsert?: ProductoPersonalizableUpsertWithoutVariantesInput
-    connect?: ProductoPersonalizableWhereUniqueInput
-    update?: XOR<XOR<ProductoPersonalizableUpdateToOneWithWhereWithoutVariantesInput, ProductoPersonalizableUpdateWithoutVariantesInput>, ProductoPersonalizableUncheckedUpdateWithoutVariantesInput>
-  }
-
-  export type VarianteDetalleUpdateManyWithoutVarianteNestedInput = {
-    create?: XOR<VarianteDetalleCreateWithoutVarianteInput, VarianteDetalleUncheckedCreateWithoutVarianteInput> | VarianteDetalleCreateWithoutVarianteInput[] | VarianteDetalleUncheckedCreateWithoutVarianteInput[]
-    connectOrCreate?: VarianteDetalleCreateOrConnectWithoutVarianteInput | VarianteDetalleCreateOrConnectWithoutVarianteInput[]
-    upsert?: VarianteDetalleUpsertWithWhereUniqueWithoutVarianteInput | VarianteDetalleUpsertWithWhereUniqueWithoutVarianteInput[]
-    createMany?: VarianteDetalleCreateManyVarianteInputEnvelope
+  export type VarianteDetalleUncheckedUpdateManyWithoutProductoPersonalizableNestedInput = {
+    create?: XOR<VarianteDetalleCreateWithoutProductoPersonalizableInput, VarianteDetalleUncheckedCreateWithoutProductoPersonalizableInput> | VarianteDetalleCreateWithoutProductoPersonalizableInput[] | VarianteDetalleUncheckedCreateWithoutProductoPersonalizableInput[]
+    connectOrCreate?: VarianteDetalleCreateOrConnectWithoutProductoPersonalizableInput | VarianteDetalleCreateOrConnectWithoutProductoPersonalizableInput[]
+    upsert?: VarianteDetalleUpsertWithWhereUniqueWithoutProductoPersonalizableInput | VarianteDetalleUpsertWithWhereUniqueWithoutProductoPersonalizableInput[]
+    createMany?: VarianteDetalleCreateManyProductoPersonalizableInputEnvelope
     set?: VarianteDetalleWhereUniqueInput | VarianteDetalleWhereUniqueInput[]
     disconnect?: VarianteDetalleWhereUniqueInput | VarianteDetalleWhereUniqueInput[]
     delete?: VarianteDetalleWhereUniqueInput | VarianteDetalleWhereUniqueInput[]
     connect?: VarianteDetalleWhereUniqueInput | VarianteDetalleWhereUniqueInput[]
-    update?: VarianteDetalleUpdateWithWhereUniqueWithoutVarianteInput | VarianteDetalleUpdateWithWhereUniqueWithoutVarianteInput[]
-    updateMany?: VarianteDetalleUpdateManyWithWhereWithoutVarianteInput | VarianteDetalleUpdateManyWithWhereWithoutVarianteInput[]
+    update?: VarianteDetalleUpdateWithWhereUniqueWithoutProductoPersonalizableInput | VarianteDetalleUpdateWithWhereUniqueWithoutProductoPersonalizableInput[]
+    updateMany?: VarianteDetalleUpdateManyWithWhereWithoutProductoPersonalizableInput | VarianteDetalleUpdateManyWithWhereWithoutProductoPersonalizableInput[]
     deleteMany?: VarianteDetalleScalarWhereInput | VarianteDetalleScalarWhereInput[]
-  }
-
-  export type PedidoItemUpdateManyWithoutVariante_seleccionadaNestedInput = {
-    create?: XOR<PedidoItemCreateWithoutVariante_seleccionadaInput, PedidoItemUncheckedCreateWithoutVariante_seleccionadaInput> | PedidoItemCreateWithoutVariante_seleccionadaInput[] | PedidoItemUncheckedCreateWithoutVariante_seleccionadaInput[]
-    connectOrCreate?: PedidoItemCreateOrConnectWithoutVariante_seleccionadaInput | PedidoItemCreateOrConnectWithoutVariante_seleccionadaInput[]
-    upsert?: PedidoItemUpsertWithWhereUniqueWithoutVariante_seleccionadaInput | PedidoItemUpsertWithWhereUniqueWithoutVariante_seleccionadaInput[]
-    createMany?: PedidoItemCreateManyVariante_seleccionadaInputEnvelope
-    set?: PedidoItemWhereUniqueInput | PedidoItemWhereUniqueInput[]
-    disconnect?: PedidoItemWhereUniqueInput | PedidoItemWhereUniqueInput[]
-    delete?: PedidoItemWhereUniqueInput | PedidoItemWhereUniqueInput[]
-    connect?: PedidoItemWhereUniqueInput | PedidoItemWhereUniqueInput[]
-    update?: PedidoItemUpdateWithWhereUniqueWithoutVariante_seleccionadaInput | PedidoItemUpdateWithWhereUniqueWithoutVariante_seleccionadaInput[]
-    updateMany?: PedidoItemUpdateManyWithWhereWithoutVariante_seleccionadaInput | PedidoItemUpdateManyWithWhereWithoutVariante_seleccionadaInput[]
-    deleteMany?: PedidoItemScalarWhereInput | PedidoItemScalarWhereInput[]
-  }
-
-  export type VarianteDetalleUncheckedUpdateManyWithoutVarianteNestedInput = {
-    create?: XOR<VarianteDetalleCreateWithoutVarianteInput, VarianteDetalleUncheckedCreateWithoutVarianteInput> | VarianteDetalleCreateWithoutVarianteInput[] | VarianteDetalleUncheckedCreateWithoutVarianteInput[]
-    connectOrCreate?: VarianteDetalleCreateOrConnectWithoutVarianteInput | VarianteDetalleCreateOrConnectWithoutVarianteInput[]
-    upsert?: VarianteDetalleUpsertWithWhereUniqueWithoutVarianteInput | VarianteDetalleUpsertWithWhereUniqueWithoutVarianteInput[]
-    createMany?: VarianteDetalleCreateManyVarianteInputEnvelope
-    set?: VarianteDetalleWhereUniqueInput | VarianteDetalleWhereUniqueInput[]
-    disconnect?: VarianteDetalleWhereUniqueInput | VarianteDetalleWhereUniqueInput[]
-    delete?: VarianteDetalleWhereUniqueInput | VarianteDetalleWhereUniqueInput[]
-    connect?: VarianteDetalleWhereUniqueInput | VarianteDetalleWhereUniqueInput[]
-    update?: VarianteDetalleUpdateWithWhereUniqueWithoutVarianteInput | VarianteDetalleUpdateWithWhereUniqueWithoutVarianteInput[]
-    updateMany?: VarianteDetalleUpdateManyWithWhereWithoutVarianteInput | VarianteDetalleUpdateManyWithWhereWithoutVarianteInput[]
-    deleteMany?: VarianteDetalleScalarWhereInput | VarianteDetalleScalarWhereInput[]
-  }
-
-  export type PedidoItemUncheckedUpdateManyWithoutVariante_seleccionadaNestedInput = {
-    create?: XOR<PedidoItemCreateWithoutVariante_seleccionadaInput, PedidoItemUncheckedCreateWithoutVariante_seleccionadaInput> | PedidoItemCreateWithoutVariante_seleccionadaInput[] | PedidoItemUncheckedCreateWithoutVariante_seleccionadaInput[]
-    connectOrCreate?: PedidoItemCreateOrConnectWithoutVariante_seleccionadaInput | PedidoItemCreateOrConnectWithoutVariante_seleccionadaInput[]
-    upsert?: PedidoItemUpsertWithWhereUniqueWithoutVariante_seleccionadaInput | PedidoItemUpsertWithWhereUniqueWithoutVariante_seleccionadaInput[]
-    createMany?: PedidoItemCreateManyVariante_seleccionadaInputEnvelope
-    set?: PedidoItemWhereUniqueInput | PedidoItemWhereUniqueInput[]
-    disconnect?: PedidoItemWhereUniqueInput | PedidoItemWhereUniqueInput[]
-    delete?: PedidoItemWhereUniqueInput | PedidoItemWhereUniqueInput[]
-    connect?: PedidoItemWhereUniqueInput | PedidoItemWhereUniqueInput[]
-    update?: PedidoItemUpdateWithWhereUniqueWithoutVariante_seleccionadaInput | PedidoItemUpdateWithWhereUniqueWithoutVariante_seleccionadaInput[]
-    updateMany?: PedidoItemUpdateManyWithWhereWithoutVariante_seleccionadaInput | PedidoItemUpdateManyWithWhereWithoutVariante_seleccionadaInput[]
-    deleteMany?: PedidoItemScalarWhereInput | PedidoItemScalarWhereInput[]
   }
 
   export type ValorAtributoCreateNestedManyWithoutAtributoInput = {
@@ -25885,25 +24218,11 @@ export namespace Prisma {
     connect?: ValorAtributoWhereUniqueInput | ValorAtributoWhereUniqueInput[]
   }
 
-  export type VarianteDetalleCreateNestedManyWithoutAtributoInput = {
-    create?: XOR<VarianteDetalleCreateWithoutAtributoInput, VarianteDetalleUncheckedCreateWithoutAtributoInput> | VarianteDetalleCreateWithoutAtributoInput[] | VarianteDetalleUncheckedCreateWithoutAtributoInput[]
-    connectOrCreate?: VarianteDetalleCreateOrConnectWithoutAtributoInput | VarianteDetalleCreateOrConnectWithoutAtributoInput[]
-    createMany?: VarianteDetalleCreateManyAtributoInputEnvelope
-    connect?: VarianteDetalleWhereUniqueInput | VarianteDetalleWhereUniqueInput[]
-  }
-
   export type ValorAtributoUncheckedCreateNestedManyWithoutAtributoInput = {
     create?: XOR<ValorAtributoCreateWithoutAtributoInput, ValorAtributoUncheckedCreateWithoutAtributoInput> | ValorAtributoCreateWithoutAtributoInput[] | ValorAtributoUncheckedCreateWithoutAtributoInput[]
     connectOrCreate?: ValorAtributoCreateOrConnectWithoutAtributoInput | ValorAtributoCreateOrConnectWithoutAtributoInput[]
     createMany?: ValorAtributoCreateManyAtributoInputEnvelope
     connect?: ValorAtributoWhereUniqueInput | ValorAtributoWhereUniqueInput[]
-  }
-
-  export type VarianteDetalleUncheckedCreateNestedManyWithoutAtributoInput = {
-    create?: XOR<VarianteDetalleCreateWithoutAtributoInput, VarianteDetalleUncheckedCreateWithoutAtributoInput> | VarianteDetalleCreateWithoutAtributoInput[] | VarianteDetalleUncheckedCreateWithoutAtributoInput[]
-    connectOrCreate?: VarianteDetalleCreateOrConnectWithoutAtributoInput | VarianteDetalleCreateOrConnectWithoutAtributoInput[]
-    createMany?: VarianteDetalleCreateManyAtributoInputEnvelope
-    connect?: VarianteDetalleWhereUniqueInput | VarianteDetalleWhereUniqueInput[]
   }
 
   export type ValorAtributoUpdateManyWithoutAtributoNestedInput = {
@@ -25920,20 +24239,6 @@ export namespace Prisma {
     deleteMany?: ValorAtributoScalarWhereInput | ValorAtributoScalarWhereInput[]
   }
 
-  export type VarianteDetalleUpdateManyWithoutAtributoNestedInput = {
-    create?: XOR<VarianteDetalleCreateWithoutAtributoInput, VarianteDetalleUncheckedCreateWithoutAtributoInput> | VarianteDetalleCreateWithoutAtributoInput[] | VarianteDetalleUncheckedCreateWithoutAtributoInput[]
-    connectOrCreate?: VarianteDetalleCreateOrConnectWithoutAtributoInput | VarianteDetalleCreateOrConnectWithoutAtributoInput[]
-    upsert?: VarianteDetalleUpsertWithWhereUniqueWithoutAtributoInput | VarianteDetalleUpsertWithWhereUniqueWithoutAtributoInput[]
-    createMany?: VarianteDetalleCreateManyAtributoInputEnvelope
-    set?: VarianteDetalleWhereUniqueInput | VarianteDetalleWhereUniqueInput[]
-    disconnect?: VarianteDetalleWhereUniqueInput | VarianteDetalleWhereUniqueInput[]
-    delete?: VarianteDetalleWhereUniqueInput | VarianteDetalleWhereUniqueInput[]
-    connect?: VarianteDetalleWhereUniqueInput | VarianteDetalleWhereUniqueInput[]
-    update?: VarianteDetalleUpdateWithWhereUniqueWithoutAtributoInput | VarianteDetalleUpdateWithWhereUniqueWithoutAtributoInput[]
-    updateMany?: VarianteDetalleUpdateManyWithWhereWithoutAtributoInput | VarianteDetalleUpdateManyWithWhereWithoutAtributoInput[]
-    deleteMany?: VarianteDetalleScalarWhereInput | VarianteDetalleScalarWhereInput[]
-  }
-
   export type ValorAtributoUncheckedUpdateManyWithoutAtributoNestedInput = {
     create?: XOR<ValorAtributoCreateWithoutAtributoInput, ValorAtributoUncheckedCreateWithoutAtributoInput> | ValorAtributoCreateWithoutAtributoInput[] | ValorAtributoUncheckedCreateWithoutAtributoInput[]
     connectOrCreate?: ValorAtributoCreateOrConnectWithoutAtributoInput | ValorAtributoCreateOrConnectWithoutAtributoInput[]
@@ -25946,20 +24251,6 @@ export namespace Prisma {
     update?: ValorAtributoUpdateWithWhereUniqueWithoutAtributoInput | ValorAtributoUpdateWithWhereUniqueWithoutAtributoInput[]
     updateMany?: ValorAtributoUpdateManyWithWhereWithoutAtributoInput | ValorAtributoUpdateManyWithWhereWithoutAtributoInput[]
     deleteMany?: ValorAtributoScalarWhereInput | ValorAtributoScalarWhereInput[]
-  }
-
-  export type VarianteDetalleUncheckedUpdateManyWithoutAtributoNestedInput = {
-    create?: XOR<VarianteDetalleCreateWithoutAtributoInput, VarianteDetalleUncheckedCreateWithoutAtributoInput> | VarianteDetalleCreateWithoutAtributoInput[] | VarianteDetalleUncheckedCreateWithoutAtributoInput[]
-    connectOrCreate?: VarianteDetalleCreateOrConnectWithoutAtributoInput | VarianteDetalleCreateOrConnectWithoutAtributoInput[]
-    upsert?: VarianteDetalleUpsertWithWhereUniqueWithoutAtributoInput | VarianteDetalleUpsertWithWhereUniqueWithoutAtributoInput[]
-    createMany?: VarianteDetalleCreateManyAtributoInputEnvelope
-    set?: VarianteDetalleWhereUniqueInput | VarianteDetalleWhereUniqueInput[]
-    disconnect?: VarianteDetalleWhereUniqueInput | VarianteDetalleWhereUniqueInput[]
-    delete?: VarianteDetalleWhereUniqueInput | VarianteDetalleWhereUniqueInput[]
-    connect?: VarianteDetalleWhereUniqueInput | VarianteDetalleWhereUniqueInput[]
-    update?: VarianteDetalleUpdateWithWhereUniqueWithoutAtributoInput | VarianteDetalleUpdateWithWhereUniqueWithoutAtributoInput[]
-    updateMany?: VarianteDetalleUpdateManyWithWhereWithoutAtributoInput | VarianteDetalleUpdateManyWithWhereWithoutAtributoInput[]
-    deleteMany?: VarianteDetalleScalarWhereInput | VarianteDetalleScalarWhereInput[]
   }
 
   export type AtributoCreateNestedOneWithoutValoresInput = {
@@ -26018,38 +24309,16 @@ export namespace Prisma {
     deleteMany?: VarianteDetalleScalarWhereInput | VarianteDetalleScalarWhereInput[]
   }
 
-  export type VarianteProductoCreateNestedOneWithoutDetallesInput = {
-    create?: XOR<VarianteProductoCreateWithoutDetallesInput, VarianteProductoUncheckedCreateWithoutDetallesInput>
-    connectOrCreate?: VarianteProductoCreateOrConnectWithoutDetallesInput
-    connect?: VarianteProductoWhereUniqueInput
-  }
-
-  export type AtributoCreateNestedOneWithoutDetallesInput = {
-    create?: XOR<AtributoCreateWithoutDetallesInput, AtributoUncheckedCreateWithoutDetallesInput>
-    connectOrCreate?: AtributoCreateOrConnectWithoutDetallesInput
-    connect?: AtributoWhereUniqueInput
-  }
-
   export type ValorAtributoCreateNestedOneWithoutVarianteDetallesInput = {
     create?: XOR<ValorAtributoCreateWithoutVarianteDetallesInput, ValorAtributoUncheckedCreateWithoutVarianteDetallesInput>
     connectOrCreate?: ValorAtributoCreateOrConnectWithoutVarianteDetallesInput
     connect?: ValorAtributoWhereUniqueInput
   }
 
-  export type VarianteProductoUpdateOneRequiredWithoutDetallesNestedInput = {
-    create?: XOR<VarianteProductoCreateWithoutDetallesInput, VarianteProductoUncheckedCreateWithoutDetallesInput>
-    connectOrCreate?: VarianteProductoCreateOrConnectWithoutDetallesInput
-    upsert?: VarianteProductoUpsertWithoutDetallesInput
-    connect?: VarianteProductoWhereUniqueInput
-    update?: XOR<XOR<VarianteProductoUpdateToOneWithWhereWithoutDetallesInput, VarianteProductoUpdateWithoutDetallesInput>, VarianteProductoUncheckedUpdateWithoutDetallesInput>
-  }
-
-  export type AtributoUpdateOneRequiredWithoutDetallesNestedInput = {
-    create?: XOR<AtributoCreateWithoutDetallesInput, AtributoUncheckedCreateWithoutDetallesInput>
-    connectOrCreate?: AtributoCreateOrConnectWithoutDetallesInput
-    upsert?: AtributoUpsertWithoutDetallesInput
-    connect?: AtributoWhereUniqueInput
-    update?: XOR<XOR<AtributoUpdateToOneWithWhereWithoutDetallesInput, AtributoUpdateWithoutDetallesInput>, AtributoUncheckedUpdateWithoutDetallesInput>
+  export type ProductoPersonalizableCreateNestedOneWithoutVariantesInput = {
+    create?: XOR<ProductoPersonalizableCreateWithoutVariantesInput, ProductoPersonalizableUncheckedCreateWithoutVariantesInput>
+    connectOrCreate?: ProductoPersonalizableCreateOrConnectWithoutVariantesInput
+    connect?: ProductoPersonalizableWhereUniqueInput
   }
 
   export type ValorAtributoUpdateOneRequiredWithoutVarianteDetallesNestedInput = {
@@ -26058,6 +24327,14 @@ export namespace Prisma {
     upsert?: ValorAtributoUpsertWithoutVarianteDetallesInput
     connect?: ValorAtributoWhereUniqueInput
     update?: XOR<XOR<ValorAtributoUpdateToOneWithWhereWithoutVarianteDetallesInput, ValorAtributoUpdateWithoutVarianteDetallesInput>, ValorAtributoUncheckedUpdateWithoutVarianteDetallesInput>
+  }
+
+  export type ProductoPersonalizableUpdateOneRequiredWithoutVariantesNestedInput = {
+    create?: XOR<ProductoPersonalizableCreateWithoutVariantesInput, ProductoPersonalizableUncheckedCreateWithoutVariantesInput>
+    connectOrCreate?: ProductoPersonalizableCreateOrConnectWithoutVariantesInput
+    upsert?: ProductoPersonalizableUpsertWithoutVariantesInput
+    connect?: ProductoPersonalizableWhereUniqueInput
+    update?: XOR<XOR<ProductoPersonalizableUpdateToOneWithWhereWithoutVariantesInput, ProductoPersonalizableUpdateWithoutVariantesInput>, ProductoPersonalizableUncheckedUpdateWithoutVariantesInput>
   }
 
   export type ProductoCreateNestedOneWithoutPromocionesInput = {
@@ -26336,12 +24613,6 @@ export namespace Prisma {
     connect?: ProductoPersonalizableWhereUniqueInput
   }
 
-  export type VarianteProductoCreateNestedOneWithoutPedidoItemsInput = {
-    create?: XOR<VarianteProductoCreateWithoutPedidoItemsInput, VarianteProductoUncheckedCreateWithoutPedidoItemsInput>
-    connectOrCreate?: VarianteProductoCreateOrConnectWithoutPedidoItemsInput
-    connect?: VarianteProductoWhereUniqueInput
-  }
-
   export type PedidoUpdateOneRequiredWithoutItemsNestedInput = {
     create?: XOR<PedidoCreateWithoutItemsInput, PedidoUncheckedCreateWithoutItemsInput>
     connectOrCreate?: PedidoCreateOrConnectWithoutItemsInput
@@ -26366,16 +24637,6 @@ export namespace Prisma {
     delete?: ProductoPersonalizableWhereInput | boolean
     connect?: ProductoPersonalizableWhereUniqueInput
     update?: XOR<XOR<ProductoPersonalizableUpdateToOneWithWhereWithoutPedidoItemsInput, ProductoPersonalizableUpdateWithoutPedidoItemsInput>, ProductoPersonalizableUncheckedUpdateWithoutPedidoItemsInput>
-  }
-
-  export type VarianteProductoUpdateOneWithoutPedidoItemsNestedInput = {
-    create?: XOR<VarianteProductoCreateWithoutPedidoItemsInput, VarianteProductoUncheckedCreateWithoutPedidoItemsInput>
-    connectOrCreate?: VarianteProductoCreateOrConnectWithoutPedidoItemsInput
-    upsert?: VarianteProductoUpsertWithoutPedidoItemsInput
-    disconnect?: VarianteProductoWhereInput | boolean
-    delete?: VarianteProductoWhereInput | boolean
-    connect?: VarianteProductoWhereUniqueInput
-    update?: XOR<XOR<VarianteProductoUpdateToOneWithWhereWithoutPedidoItemsInput, VarianteProductoUpdateWithoutPedidoItemsInput>, VarianteProductoUncheckedUpdateWithoutPedidoItemsInput>
   }
 
   export type PedidoCreateNestedOneWithoutTransicionesInput = {
@@ -26614,39 +24875,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
-  export type NestedStringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
-  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type NestedEnumTipoPromocionFilter<$PrismaModel = never> = {
@@ -27027,8 +25255,8 @@ export namespace Prisma {
     descripcion_general: string
     activo?: boolean
     producto_base: ProductoCreateNestedOneWithoutProductosPersonalizablesInput
-    variantes?: VarianteProductoCreateNestedManyWithoutProductoInput
     pedidoItems?: PedidoItemCreateNestedManyWithoutProducto_personalizadoInput
+    variantes?: VarianteDetalleCreateNestedManyWithoutProductoPersonalizableInput
   }
 
   export type ProductoPersonalizableUncheckedCreateWithoutCategoriaInput = {
@@ -27037,8 +25265,8 @@ export namespace Prisma {
     descripcion_general: string
     id_producto_base: number
     activo?: boolean
-    variantes?: VarianteProductoUncheckedCreateNestedManyWithoutProductoInput
     pedidoItems?: PedidoItemUncheckedCreateNestedManyWithoutProducto_personalizadoInput
+    variantes?: VarianteDetalleUncheckedCreateNestedManyWithoutProductoPersonalizableInput
   }
 
   export type ProductoPersonalizableCreateOrConnectWithoutCategoriaInput = {
@@ -27271,14 +25499,12 @@ export namespace Prisma {
     cantidad: number
     pedido: PedidoCreateNestedOneWithoutItemsInput
     producto_personalizado?: ProductoPersonalizableCreateNestedOneWithoutPedidoItemsInput
-    variante_seleccionada?: VarianteProductoCreateNestedOneWithoutPedidoItemsInput
   }
 
   export type PedidoItemUncheckedCreateWithoutProductoInput = {
     pedido_id: number
     cantidad: number
     producto_personalizado_id?: number | null
-    id_variante_producto?: number | null
   }
 
   export type PedidoItemCreateOrConnectWithoutProductoInput = {
@@ -27327,8 +25553,8 @@ export namespace Prisma {
     descripcion_general: string
     activo?: boolean
     categoria: CategoriaCreateNestedOneWithoutProductosPersonalizablesInput
-    variantes?: VarianteProductoCreateNestedManyWithoutProductoInput
     pedidoItems?: PedidoItemCreateNestedManyWithoutProducto_personalizadoInput
+    variantes?: VarianteDetalleCreateNestedManyWithoutProductoPersonalizableInput
   }
 
   export type ProductoPersonalizableUncheckedCreateWithoutProducto_baseInput = {
@@ -27337,8 +25563,8 @@ export namespace Prisma {
     descripcion_general: string
     id_categoria: number
     activo?: boolean
-    variantes?: VarianteProductoUncheckedCreateNestedManyWithoutProductoInput
     pedidoItems?: PedidoItemUncheckedCreateNestedManyWithoutProducto_personalizadoInput
+    variantes?: VarianteDetalleUncheckedCreateNestedManyWithoutProductoPersonalizableInput
   }
 
   export type ProductoPersonalizableCreateOrConnectWithoutProducto_baseInput = {
@@ -27458,7 +25684,6 @@ export namespace Prisma {
     producto_id?: IntFilter<"PedidoItem"> | number
     cantidad?: IntFilter<"PedidoItem"> | number
     producto_personalizado_id?: IntNullableFilter<"PedidoItem"> | number | null
-    id_variante_producto?: IntNullableFilter<"PedidoItem"> | number | null
   }
 
   export type PromocionUpsertWithWhereUniqueWithoutProductoInput = {
@@ -27916,47 +26141,16 @@ export namespace Prisma {
     create: XOR<ProductoCreateWithoutProductosPersonalizablesInput, ProductoUncheckedCreateWithoutProductosPersonalizablesInput>
   }
 
-  export type VarianteProductoCreateWithoutProductoInput = {
-    sku: string
-    precio_final: number
-    stock: number
-    imagen_variante?: string | null
-    detalles?: VarianteDetalleCreateNestedManyWithoutVarianteInput
-    pedidoItems?: PedidoItemCreateNestedManyWithoutVariante_seleccionadaInput
-  }
-
-  export type VarianteProductoUncheckedCreateWithoutProductoInput = {
-    id_variante?: number
-    sku: string
-    precio_final: number
-    stock: number
-    imagen_variante?: string | null
-    detalles?: VarianteDetalleUncheckedCreateNestedManyWithoutVarianteInput
-    pedidoItems?: PedidoItemUncheckedCreateNestedManyWithoutVariante_seleccionadaInput
-  }
-
-  export type VarianteProductoCreateOrConnectWithoutProductoInput = {
-    where: VarianteProductoWhereUniqueInput
-    create: XOR<VarianteProductoCreateWithoutProductoInput, VarianteProductoUncheckedCreateWithoutProductoInput>
-  }
-
-  export type VarianteProductoCreateManyProductoInputEnvelope = {
-    data: VarianteProductoCreateManyProductoInput | VarianteProductoCreateManyProductoInput[]
-    skipDuplicates?: boolean
-  }
-
   export type PedidoItemCreateWithoutProducto_personalizadoInput = {
     cantidad: number
     pedido: PedidoCreateNestedOneWithoutItemsInput
     producto: ProductoCreateNestedOneWithoutPedidoItemsInput
-    variante_seleccionada?: VarianteProductoCreateNestedOneWithoutPedidoItemsInput
   }
 
   export type PedidoItemUncheckedCreateWithoutProducto_personalizadoInput = {
     pedido_id: number
     producto_id: number
     cantidad: number
-    id_variante_producto?: number | null
   }
 
   export type PedidoItemCreateOrConnectWithoutProducto_personalizadoInput = {
@@ -27966,6 +26160,24 @@ export namespace Prisma {
 
   export type PedidoItemCreateManyProducto_personalizadoInputEnvelope = {
     data: PedidoItemCreateManyProducto_personalizadoInput | PedidoItemCreateManyProducto_personalizadoInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type VarianteDetalleCreateWithoutProductoPersonalizableInput = {
+    valor: ValorAtributoCreateNestedOneWithoutVarianteDetallesInput
+  }
+
+  export type VarianteDetalleUncheckedCreateWithoutProductoPersonalizableInput = {
+    id_valor: number
+  }
+
+  export type VarianteDetalleCreateOrConnectWithoutProductoPersonalizableInput = {
+    where: VarianteDetalleWhereUniqueInput
+    create: XOR<VarianteDetalleCreateWithoutProductoPersonalizableInput, VarianteDetalleUncheckedCreateWithoutProductoPersonalizableInput>
+  }
+
+  export type VarianteDetalleCreateManyProductoPersonalizableInputEnvelope = {
+    data: VarianteDetalleCreateManyProductoPersonalizableInput | VarianteDetalleCreateManyProductoPersonalizableInput[]
     skipDuplicates?: boolean
   }
 
@@ -28037,34 +26249,6 @@ export namespace Prisma {
     promociones?: PromocionUncheckedUpdateManyWithoutProductoNestedInput
   }
 
-  export type VarianteProductoUpsertWithWhereUniqueWithoutProductoInput = {
-    where: VarianteProductoWhereUniqueInput
-    update: XOR<VarianteProductoUpdateWithoutProductoInput, VarianteProductoUncheckedUpdateWithoutProductoInput>
-    create: XOR<VarianteProductoCreateWithoutProductoInput, VarianteProductoUncheckedCreateWithoutProductoInput>
-  }
-
-  export type VarianteProductoUpdateWithWhereUniqueWithoutProductoInput = {
-    where: VarianteProductoWhereUniqueInput
-    data: XOR<VarianteProductoUpdateWithoutProductoInput, VarianteProductoUncheckedUpdateWithoutProductoInput>
-  }
-
-  export type VarianteProductoUpdateManyWithWhereWithoutProductoInput = {
-    where: VarianteProductoScalarWhereInput
-    data: XOR<VarianteProductoUpdateManyMutationInput, VarianteProductoUncheckedUpdateManyWithoutProductoInput>
-  }
-
-  export type VarianteProductoScalarWhereInput = {
-    AND?: VarianteProductoScalarWhereInput | VarianteProductoScalarWhereInput[]
-    OR?: VarianteProductoScalarWhereInput[]
-    NOT?: VarianteProductoScalarWhereInput | VarianteProductoScalarWhereInput[]
-    id_variante?: IntFilter<"VarianteProducto"> | number
-    id_producto?: IntFilter<"VarianteProducto"> | number
-    sku?: StringFilter<"VarianteProducto"> | string
-    precio_final?: FloatFilter<"VarianteProducto"> | number
-    stock?: IntFilter<"VarianteProducto"> | number
-    imagen_variante?: StringNullableFilter<"VarianteProducto"> | string | null
-  }
-
   export type PedidoItemUpsertWithWhereUniqueWithoutProducto_personalizadoInput = {
     where: PedidoItemWhereUniqueInput
     update: XOR<PedidoItemUpdateWithoutProducto_personalizadoInput, PedidoItemUncheckedUpdateWithoutProducto_personalizadoInput>
@@ -28079,6 +26263,169 @@ export namespace Prisma {
   export type PedidoItemUpdateManyWithWhereWithoutProducto_personalizadoInput = {
     where: PedidoItemScalarWhereInput
     data: XOR<PedidoItemUpdateManyMutationInput, PedidoItemUncheckedUpdateManyWithoutProducto_personalizadoInput>
+  }
+
+  export type VarianteDetalleUpsertWithWhereUniqueWithoutProductoPersonalizableInput = {
+    where: VarianteDetalleWhereUniqueInput
+    update: XOR<VarianteDetalleUpdateWithoutProductoPersonalizableInput, VarianteDetalleUncheckedUpdateWithoutProductoPersonalizableInput>
+    create: XOR<VarianteDetalleCreateWithoutProductoPersonalizableInput, VarianteDetalleUncheckedCreateWithoutProductoPersonalizableInput>
+  }
+
+  export type VarianteDetalleUpdateWithWhereUniqueWithoutProductoPersonalizableInput = {
+    where: VarianteDetalleWhereUniqueInput
+    data: XOR<VarianteDetalleUpdateWithoutProductoPersonalizableInput, VarianteDetalleUncheckedUpdateWithoutProductoPersonalizableInput>
+  }
+
+  export type VarianteDetalleUpdateManyWithWhereWithoutProductoPersonalizableInput = {
+    where: VarianteDetalleScalarWhereInput
+    data: XOR<VarianteDetalleUpdateManyMutationInput, VarianteDetalleUncheckedUpdateManyWithoutProductoPersonalizableInput>
+  }
+
+  export type VarianteDetalleScalarWhereInput = {
+    AND?: VarianteDetalleScalarWhereInput | VarianteDetalleScalarWhereInput[]
+    OR?: VarianteDetalleScalarWhereInput[]
+    NOT?: VarianteDetalleScalarWhereInput | VarianteDetalleScalarWhereInput[]
+    id_productoPersonalizable?: IntFilter<"VarianteDetalle"> | number
+    id_valor?: IntFilter<"VarianteDetalle"> | number
+  }
+
+  export type ValorAtributoCreateWithoutAtributoInput = {
+    valor: string
+    precio_extra?: number
+    varianteDetalles?: VarianteDetalleCreateNestedManyWithoutValorInput
+  }
+
+  export type ValorAtributoUncheckedCreateWithoutAtributoInput = {
+    id_valor?: number
+    valor: string
+    precio_extra?: number
+    varianteDetalles?: VarianteDetalleUncheckedCreateNestedManyWithoutValorInput
+  }
+
+  export type ValorAtributoCreateOrConnectWithoutAtributoInput = {
+    where: ValorAtributoWhereUniqueInput
+    create: XOR<ValorAtributoCreateWithoutAtributoInput, ValorAtributoUncheckedCreateWithoutAtributoInput>
+  }
+
+  export type ValorAtributoCreateManyAtributoInputEnvelope = {
+    data: ValorAtributoCreateManyAtributoInput | ValorAtributoCreateManyAtributoInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ValorAtributoUpsertWithWhereUniqueWithoutAtributoInput = {
+    where: ValorAtributoWhereUniqueInput
+    update: XOR<ValorAtributoUpdateWithoutAtributoInput, ValorAtributoUncheckedUpdateWithoutAtributoInput>
+    create: XOR<ValorAtributoCreateWithoutAtributoInput, ValorAtributoUncheckedCreateWithoutAtributoInput>
+  }
+
+  export type ValorAtributoUpdateWithWhereUniqueWithoutAtributoInput = {
+    where: ValorAtributoWhereUniqueInput
+    data: XOR<ValorAtributoUpdateWithoutAtributoInput, ValorAtributoUncheckedUpdateWithoutAtributoInput>
+  }
+
+  export type ValorAtributoUpdateManyWithWhereWithoutAtributoInput = {
+    where: ValorAtributoScalarWhereInput
+    data: XOR<ValorAtributoUpdateManyMutationInput, ValorAtributoUncheckedUpdateManyWithoutAtributoInput>
+  }
+
+  export type ValorAtributoScalarWhereInput = {
+    AND?: ValorAtributoScalarWhereInput | ValorAtributoScalarWhereInput[]
+    OR?: ValorAtributoScalarWhereInput[]
+    NOT?: ValorAtributoScalarWhereInput | ValorAtributoScalarWhereInput[]
+    id_valor?: IntFilter<"ValorAtributo"> | number
+    id_atributo?: IntFilter<"ValorAtributo"> | number
+    valor?: StringFilter<"ValorAtributo"> | string
+    precio_extra?: FloatFilter<"ValorAtributo"> | number
+  }
+
+  export type AtributoCreateWithoutValoresInput = {
+    nombre: string
+    tipo: string
+  }
+
+  export type AtributoUncheckedCreateWithoutValoresInput = {
+    id_atributo?: number
+    nombre: string
+    tipo: string
+  }
+
+  export type AtributoCreateOrConnectWithoutValoresInput = {
+    where: AtributoWhereUniqueInput
+    create: XOR<AtributoCreateWithoutValoresInput, AtributoUncheckedCreateWithoutValoresInput>
+  }
+
+  export type VarianteDetalleCreateWithoutValorInput = {
+    productoPersonalizable: ProductoPersonalizableCreateNestedOneWithoutVariantesInput
+  }
+
+  export type VarianteDetalleUncheckedCreateWithoutValorInput = {
+    id_productoPersonalizable: number
+  }
+
+  export type VarianteDetalleCreateOrConnectWithoutValorInput = {
+    where: VarianteDetalleWhereUniqueInput
+    create: XOR<VarianteDetalleCreateWithoutValorInput, VarianteDetalleUncheckedCreateWithoutValorInput>
+  }
+
+  export type VarianteDetalleCreateManyValorInputEnvelope = {
+    data: VarianteDetalleCreateManyValorInput | VarianteDetalleCreateManyValorInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AtributoUpsertWithoutValoresInput = {
+    update: XOR<AtributoUpdateWithoutValoresInput, AtributoUncheckedUpdateWithoutValoresInput>
+    create: XOR<AtributoCreateWithoutValoresInput, AtributoUncheckedCreateWithoutValoresInput>
+    where?: AtributoWhereInput
+  }
+
+  export type AtributoUpdateToOneWithWhereWithoutValoresInput = {
+    where?: AtributoWhereInput
+    data: XOR<AtributoUpdateWithoutValoresInput, AtributoUncheckedUpdateWithoutValoresInput>
+  }
+
+  export type AtributoUpdateWithoutValoresInput = {
+    nombre?: StringFieldUpdateOperationsInput | string
+    tipo?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type AtributoUncheckedUpdateWithoutValoresInput = {
+    id_atributo?: IntFieldUpdateOperationsInput | number
+    nombre?: StringFieldUpdateOperationsInput | string
+    tipo?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type VarianteDetalleUpsertWithWhereUniqueWithoutValorInput = {
+    where: VarianteDetalleWhereUniqueInput
+    update: XOR<VarianteDetalleUpdateWithoutValorInput, VarianteDetalleUncheckedUpdateWithoutValorInput>
+    create: XOR<VarianteDetalleCreateWithoutValorInput, VarianteDetalleUncheckedCreateWithoutValorInput>
+  }
+
+  export type VarianteDetalleUpdateWithWhereUniqueWithoutValorInput = {
+    where: VarianteDetalleWhereUniqueInput
+    data: XOR<VarianteDetalleUpdateWithoutValorInput, VarianteDetalleUncheckedUpdateWithoutValorInput>
+  }
+
+  export type VarianteDetalleUpdateManyWithWhereWithoutValorInput = {
+    where: VarianteDetalleScalarWhereInput
+    data: XOR<VarianteDetalleUpdateManyMutationInput, VarianteDetalleUncheckedUpdateManyWithoutValorInput>
+  }
+
+  export type ValorAtributoCreateWithoutVarianteDetallesInput = {
+    valor: string
+    precio_extra?: number
+    atributo: AtributoCreateNestedOneWithoutValoresInput
+  }
+
+  export type ValorAtributoUncheckedCreateWithoutVarianteDetallesInput = {
+    id_valor?: number
+    id_atributo: number
+    valor: string
+    precio_extra?: number
+  }
+
+  export type ValorAtributoCreateOrConnectWithoutVarianteDetallesInput = {
+    where: ValorAtributoWhereUniqueInput
+    create: XOR<ValorAtributoCreateWithoutVarianteDetallesInput, ValorAtributoUncheckedCreateWithoutVarianteDetallesInput>
   }
 
   export type ProductoPersonalizableCreateWithoutVariantesInput = {
@@ -28105,48 +26452,28 @@ export namespace Prisma {
     create: XOR<ProductoPersonalizableCreateWithoutVariantesInput, ProductoPersonalizableUncheckedCreateWithoutVariantesInput>
   }
 
-  export type VarianteDetalleCreateWithoutVarianteInput = {
-    atributo: AtributoCreateNestedOneWithoutDetallesInput
-    valor: ValorAtributoCreateNestedOneWithoutVarianteDetallesInput
+  export type ValorAtributoUpsertWithoutVarianteDetallesInput = {
+    update: XOR<ValorAtributoUpdateWithoutVarianteDetallesInput, ValorAtributoUncheckedUpdateWithoutVarianteDetallesInput>
+    create: XOR<ValorAtributoCreateWithoutVarianteDetallesInput, ValorAtributoUncheckedCreateWithoutVarianteDetallesInput>
+    where?: ValorAtributoWhereInput
   }
 
-  export type VarianteDetalleUncheckedCreateWithoutVarianteInput = {
-    id_atributo: number
-    id_valor: number
+  export type ValorAtributoUpdateToOneWithWhereWithoutVarianteDetallesInput = {
+    where?: ValorAtributoWhereInput
+    data: XOR<ValorAtributoUpdateWithoutVarianteDetallesInput, ValorAtributoUncheckedUpdateWithoutVarianteDetallesInput>
   }
 
-  export type VarianteDetalleCreateOrConnectWithoutVarianteInput = {
-    where: VarianteDetalleWhereUniqueInput
-    create: XOR<VarianteDetalleCreateWithoutVarianteInput, VarianteDetalleUncheckedCreateWithoutVarianteInput>
+  export type ValorAtributoUpdateWithoutVarianteDetallesInput = {
+    valor?: StringFieldUpdateOperationsInput | string
+    precio_extra?: FloatFieldUpdateOperationsInput | number
+    atributo?: AtributoUpdateOneRequiredWithoutValoresNestedInput
   }
 
-  export type VarianteDetalleCreateManyVarianteInputEnvelope = {
-    data: VarianteDetalleCreateManyVarianteInput | VarianteDetalleCreateManyVarianteInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type PedidoItemCreateWithoutVariante_seleccionadaInput = {
-    cantidad: number
-    pedido: PedidoCreateNestedOneWithoutItemsInput
-    producto: ProductoCreateNestedOneWithoutPedidoItemsInput
-    producto_personalizado?: ProductoPersonalizableCreateNestedOneWithoutPedidoItemsInput
-  }
-
-  export type PedidoItemUncheckedCreateWithoutVariante_seleccionadaInput = {
-    pedido_id: number
-    producto_id: number
-    cantidad: number
-    producto_personalizado_id?: number | null
-  }
-
-  export type PedidoItemCreateOrConnectWithoutVariante_seleccionadaInput = {
-    where: PedidoItemWhereUniqueInput
-    create: XOR<PedidoItemCreateWithoutVariante_seleccionadaInput, PedidoItemUncheckedCreateWithoutVariante_seleccionadaInput>
-  }
-
-  export type PedidoItemCreateManyVariante_seleccionadaInputEnvelope = {
-    data: PedidoItemCreateManyVariante_seleccionadaInput | PedidoItemCreateManyVariante_seleccionadaInput[]
-    skipDuplicates?: boolean
+  export type ValorAtributoUncheckedUpdateWithoutVarianteDetallesInput = {
+    id_valor?: IntFieldUpdateOperationsInput | number
+    id_atributo?: IntFieldUpdateOperationsInput | number
+    valor?: StringFieldUpdateOperationsInput | string
+    precio_extra?: FloatFieldUpdateOperationsInput | number
   }
 
   export type ProductoPersonalizableUpsertWithoutVariantesInput = {
@@ -28177,348 +26504,6 @@ export namespace Prisma {
     id_producto_base?: IntFieldUpdateOperationsInput | number
     activo?: BoolFieldUpdateOperationsInput | boolean
     pedidoItems?: PedidoItemUncheckedUpdateManyWithoutProducto_personalizadoNestedInput
-  }
-
-  export type VarianteDetalleUpsertWithWhereUniqueWithoutVarianteInput = {
-    where: VarianteDetalleWhereUniqueInput
-    update: XOR<VarianteDetalleUpdateWithoutVarianteInput, VarianteDetalleUncheckedUpdateWithoutVarianteInput>
-    create: XOR<VarianteDetalleCreateWithoutVarianteInput, VarianteDetalleUncheckedCreateWithoutVarianteInput>
-  }
-
-  export type VarianteDetalleUpdateWithWhereUniqueWithoutVarianteInput = {
-    where: VarianteDetalleWhereUniqueInput
-    data: XOR<VarianteDetalleUpdateWithoutVarianteInput, VarianteDetalleUncheckedUpdateWithoutVarianteInput>
-  }
-
-  export type VarianteDetalleUpdateManyWithWhereWithoutVarianteInput = {
-    where: VarianteDetalleScalarWhereInput
-    data: XOR<VarianteDetalleUpdateManyMutationInput, VarianteDetalleUncheckedUpdateManyWithoutVarianteInput>
-  }
-
-  export type VarianteDetalleScalarWhereInput = {
-    AND?: VarianteDetalleScalarWhereInput | VarianteDetalleScalarWhereInput[]
-    OR?: VarianteDetalleScalarWhereInput[]
-    NOT?: VarianteDetalleScalarWhereInput | VarianteDetalleScalarWhereInput[]
-    id_variante?: IntFilter<"VarianteDetalle"> | number
-    id_atributo?: IntFilter<"VarianteDetalle"> | number
-    id_valor?: IntFilter<"VarianteDetalle"> | number
-  }
-
-  export type PedidoItemUpsertWithWhereUniqueWithoutVariante_seleccionadaInput = {
-    where: PedidoItemWhereUniqueInput
-    update: XOR<PedidoItemUpdateWithoutVariante_seleccionadaInput, PedidoItemUncheckedUpdateWithoutVariante_seleccionadaInput>
-    create: XOR<PedidoItemCreateWithoutVariante_seleccionadaInput, PedidoItemUncheckedCreateWithoutVariante_seleccionadaInput>
-  }
-
-  export type PedidoItemUpdateWithWhereUniqueWithoutVariante_seleccionadaInput = {
-    where: PedidoItemWhereUniqueInput
-    data: XOR<PedidoItemUpdateWithoutVariante_seleccionadaInput, PedidoItemUncheckedUpdateWithoutVariante_seleccionadaInput>
-  }
-
-  export type PedidoItemUpdateManyWithWhereWithoutVariante_seleccionadaInput = {
-    where: PedidoItemScalarWhereInput
-    data: XOR<PedidoItemUpdateManyMutationInput, PedidoItemUncheckedUpdateManyWithoutVariante_seleccionadaInput>
-  }
-
-  export type ValorAtributoCreateWithoutAtributoInput = {
-    valor: string
-    precio_extra?: number
-    varianteDetalles?: VarianteDetalleCreateNestedManyWithoutValorInput
-  }
-
-  export type ValorAtributoUncheckedCreateWithoutAtributoInput = {
-    id_valor?: number
-    valor: string
-    precio_extra?: number
-    varianteDetalles?: VarianteDetalleUncheckedCreateNestedManyWithoutValorInput
-  }
-
-  export type ValorAtributoCreateOrConnectWithoutAtributoInput = {
-    where: ValorAtributoWhereUniqueInput
-    create: XOR<ValorAtributoCreateWithoutAtributoInput, ValorAtributoUncheckedCreateWithoutAtributoInput>
-  }
-
-  export type ValorAtributoCreateManyAtributoInputEnvelope = {
-    data: ValorAtributoCreateManyAtributoInput | ValorAtributoCreateManyAtributoInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type VarianteDetalleCreateWithoutAtributoInput = {
-    variante: VarianteProductoCreateNestedOneWithoutDetallesInput
-    valor: ValorAtributoCreateNestedOneWithoutVarianteDetallesInput
-  }
-
-  export type VarianteDetalleUncheckedCreateWithoutAtributoInput = {
-    id_variante: number
-    id_valor: number
-  }
-
-  export type VarianteDetalleCreateOrConnectWithoutAtributoInput = {
-    where: VarianteDetalleWhereUniqueInput
-    create: XOR<VarianteDetalleCreateWithoutAtributoInput, VarianteDetalleUncheckedCreateWithoutAtributoInput>
-  }
-
-  export type VarianteDetalleCreateManyAtributoInputEnvelope = {
-    data: VarianteDetalleCreateManyAtributoInput | VarianteDetalleCreateManyAtributoInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type ValorAtributoUpsertWithWhereUniqueWithoutAtributoInput = {
-    where: ValorAtributoWhereUniqueInput
-    update: XOR<ValorAtributoUpdateWithoutAtributoInput, ValorAtributoUncheckedUpdateWithoutAtributoInput>
-    create: XOR<ValorAtributoCreateWithoutAtributoInput, ValorAtributoUncheckedCreateWithoutAtributoInput>
-  }
-
-  export type ValorAtributoUpdateWithWhereUniqueWithoutAtributoInput = {
-    where: ValorAtributoWhereUniqueInput
-    data: XOR<ValorAtributoUpdateWithoutAtributoInput, ValorAtributoUncheckedUpdateWithoutAtributoInput>
-  }
-
-  export type ValorAtributoUpdateManyWithWhereWithoutAtributoInput = {
-    where: ValorAtributoScalarWhereInput
-    data: XOR<ValorAtributoUpdateManyMutationInput, ValorAtributoUncheckedUpdateManyWithoutAtributoInput>
-  }
-
-  export type ValorAtributoScalarWhereInput = {
-    AND?: ValorAtributoScalarWhereInput | ValorAtributoScalarWhereInput[]
-    OR?: ValorAtributoScalarWhereInput[]
-    NOT?: ValorAtributoScalarWhereInput | ValorAtributoScalarWhereInput[]
-    id_valor?: IntFilter<"ValorAtributo"> | number
-    id_atributo?: IntFilter<"ValorAtributo"> | number
-    valor?: StringFilter<"ValorAtributo"> | string
-    precio_extra?: FloatFilter<"ValorAtributo"> | number
-  }
-
-  export type VarianteDetalleUpsertWithWhereUniqueWithoutAtributoInput = {
-    where: VarianteDetalleWhereUniqueInput
-    update: XOR<VarianteDetalleUpdateWithoutAtributoInput, VarianteDetalleUncheckedUpdateWithoutAtributoInput>
-    create: XOR<VarianteDetalleCreateWithoutAtributoInput, VarianteDetalleUncheckedCreateWithoutAtributoInput>
-  }
-
-  export type VarianteDetalleUpdateWithWhereUniqueWithoutAtributoInput = {
-    where: VarianteDetalleWhereUniqueInput
-    data: XOR<VarianteDetalleUpdateWithoutAtributoInput, VarianteDetalleUncheckedUpdateWithoutAtributoInput>
-  }
-
-  export type VarianteDetalleUpdateManyWithWhereWithoutAtributoInput = {
-    where: VarianteDetalleScalarWhereInput
-    data: XOR<VarianteDetalleUpdateManyMutationInput, VarianteDetalleUncheckedUpdateManyWithoutAtributoInput>
-  }
-
-  export type AtributoCreateWithoutValoresInput = {
-    nombre: string
-    tipo: string
-    detalles?: VarianteDetalleCreateNestedManyWithoutAtributoInput
-  }
-
-  export type AtributoUncheckedCreateWithoutValoresInput = {
-    id_atributo?: number
-    nombre: string
-    tipo: string
-    detalles?: VarianteDetalleUncheckedCreateNestedManyWithoutAtributoInput
-  }
-
-  export type AtributoCreateOrConnectWithoutValoresInput = {
-    where: AtributoWhereUniqueInput
-    create: XOR<AtributoCreateWithoutValoresInput, AtributoUncheckedCreateWithoutValoresInput>
-  }
-
-  export type VarianteDetalleCreateWithoutValorInput = {
-    variante: VarianteProductoCreateNestedOneWithoutDetallesInput
-    atributo: AtributoCreateNestedOneWithoutDetallesInput
-  }
-
-  export type VarianteDetalleUncheckedCreateWithoutValorInput = {
-    id_variante: number
-    id_atributo: number
-  }
-
-  export type VarianteDetalleCreateOrConnectWithoutValorInput = {
-    where: VarianteDetalleWhereUniqueInput
-    create: XOR<VarianteDetalleCreateWithoutValorInput, VarianteDetalleUncheckedCreateWithoutValorInput>
-  }
-
-  export type VarianteDetalleCreateManyValorInputEnvelope = {
-    data: VarianteDetalleCreateManyValorInput | VarianteDetalleCreateManyValorInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type AtributoUpsertWithoutValoresInput = {
-    update: XOR<AtributoUpdateWithoutValoresInput, AtributoUncheckedUpdateWithoutValoresInput>
-    create: XOR<AtributoCreateWithoutValoresInput, AtributoUncheckedCreateWithoutValoresInput>
-    where?: AtributoWhereInput
-  }
-
-  export type AtributoUpdateToOneWithWhereWithoutValoresInput = {
-    where?: AtributoWhereInput
-    data: XOR<AtributoUpdateWithoutValoresInput, AtributoUncheckedUpdateWithoutValoresInput>
-  }
-
-  export type AtributoUpdateWithoutValoresInput = {
-    nombre?: StringFieldUpdateOperationsInput | string
-    tipo?: StringFieldUpdateOperationsInput | string
-    detalles?: VarianteDetalleUpdateManyWithoutAtributoNestedInput
-  }
-
-  export type AtributoUncheckedUpdateWithoutValoresInput = {
-    id_atributo?: IntFieldUpdateOperationsInput | number
-    nombre?: StringFieldUpdateOperationsInput | string
-    tipo?: StringFieldUpdateOperationsInput | string
-    detalles?: VarianteDetalleUncheckedUpdateManyWithoutAtributoNestedInput
-  }
-
-  export type VarianteDetalleUpsertWithWhereUniqueWithoutValorInput = {
-    where: VarianteDetalleWhereUniqueInput
-    update: XOR<VarianteDetalleUpdateWithoutValorInput, VarianteDetalleUncheckedUpdateWithoutValorInput>
-    create: XOR<VarianteDetalleCreateWithoutValorInput, VarianteDetalleUncheckedCreateWithoutValorInput>
-  }
-
-  export type VarianteDetalleUpdateWithWhereUniqueWithoutValorInput = {
-    where: VarianteDetalleWhereUniqueInput
-    data: XOR<VarianteDetalleUpdateWithoutValorInput, VarianteDetalleUncheckedUpdateWithoutValorInput>
-  }
-
-  export type VarianteDetalleUpdateManyWithWhereWithoutValorInput = {
-    where: VarianteDetalleScalarWhereInput
-    data: XOR<VarianteDetalleUpdateManyMutationInput, VarianteDetalleUncheckedUpdateManyWithoutValorInput>
-  }
-
-  export type VarianteProductoCreateWithoutDetallesInput = {
-    sku: string
-    precio_final: number
-    stock: number
-    imagen_variante?: string | null
-    producto: ProductoPersonalizableCreateNestedOneWithoutVariantesInput
-    pedidoItems?: PedidoItemCreateNestedManyWithoutVariante_seleccionadaInput
-  }
-
-  export type VarianteProductoUncheckedCreateWithoutDetallesInput = {
-    id_variante?: number
-    id_producto: number
-    sku: string
-    precio_final: number
-    stock: number
-    imagen_variante?: string | null
-    pedidoItems?: PedidoItemUncheckedCreateNestedManyWithoutVariante_seleccionadaInput
-  }
-
-  export type VarianteProductoCreateOrConnectWithoutDetallesInput = {
-    where: VarianteProductoWhereUniqueInput
-    create: XOR<VarianteProductoCreateWithoutDetallesInput, VarianteProductoUncheckedCreateWithoutDetallesInput>
-  }
-
-  export type AtributoCreateWithoutDetallesInput = {
-    nombre: string
-    tipo: string
-    valores?: ValorAtributoCreateNestedManyWithoutAtributoInput
-  }
-
-  export type AtributoUncheckedCreateWithoutDetallesInput = {
-    id_atributo?: number
-    nombre: string
-    tipo: string
-    valores?: ValorAtributoUncheckedCreateNestedManyWithoutAtributoInput
-  }
-
-  export type AtributoCreateOrConnectWithoutDetallesInput = {
-    where: AtributoWhereUniqueInput
-    create: XOR<AtributoCreateWithoutDetallesInput, AtributoUncheckedCreateWithoutDetallesInput>
-  }
-
-  export type ValorAtributoCreateWithoutVarianteDetallesInput = {
-    valor: string
-    precio_extra?: number
-    atributo: AtributoCreateNestedOneWithoutValoresInput
-  }
-
-  export type ValorAtributoUncheckedCreateWithoutVarianteDetallesInput = {
-    id_valor?: number
-    id_atributo: number
-    valor: string
-    precio_extra?: number
-  }
-
-  export type ValorAtributoCreateOrConnectWithoutVarianteDetallesInput = {
-    where: ValorAtributoWhereUniqueInput
-    create: XOR<ValorAtributoCreateWithoutVarianteDetallesInput, ValorAtributoUncheckedCreateWithoutVarianteDetallesInput>
-  }
-
-  export type VarianteProductoUpsertWithoutDetallesInput = {
-    update: XOR<VarianteProductoUpdateWithoutDetallesInput, VarianteProductoUncheckedUpdateWithoutDetallesInput>
-    create: XOR<VarianteProductoCreateWithoutDetallesInput, VarianteProductoUncheckedCreateWithoutDetallesInput>
-    where?: VarianteProductoWhereInput
-  }
-
-  export type VarianteProductoUpdateToOneWithWhereWithoutDetallesInput = {
-    where?: VarianteProductoWhereInput
-    data: XOR<VarianteProductoUpdateWithoutDetallesInput, VarianteProductoUncheckedUpdateWithoutDetallesInput>
-  }
-
-  export type VarianteProductoUpdateWithoutDetallesInput = {
-    sku?: StringFieldUpdateOperationsInput | string
-    precio_final?: FloatFieldUpdateOperationsInput | number
-    stock?: IntFieldUpdateOperationsInput | number
-    imagen_variante?: NullableStringFieldUpdateOperationsInput | string | null
-    producto?: ProductoPersonalizableUpdateOneRequiredWithoutVariantesNestedInput
-    pedidoItems?: PedidoItemUpdateManyWithoutVariante_seleccionadaNestedInput
-  }
-
-  export type VarianteProductoUncheckedUpdateWithoutDetallesInput = {
-    id_variante?: IntFieldUpdateOperationsInput | number
-    id_producto?: IntFieldUpdateOperationsInput | number
-    sku?: StringFieldUpdateOperationsInput | string
-    precio_final?: FloatFieldUpdateOperationsInput | number
-    stock?: IntFieldUpdateOperationsInput | number
-    imagen_variante?: NullableStringFieldUpdateOperationsInput | string | null
-    pedidoItems?: PedidoItemUncheckedUpdateManyWithoutVariante_seleccionadaNestedInput
-  }
-
-  export type AtributoUpsertWithoutDetallesInput = {
-    update: XOR<AtributoUpdateWithoutDetallesInput, AtributoUncheckedUpdateWithoutDetallesInput>
-    create: XOR<AtributoCreateWithoutDetallesInput, AtributoUncheckedCreateWithoutDetallesInput>
-    where?: AtributoWhereInput
-  }
-
-  export type AtributoUpdateToOneWithWhereWithoutDetallesInput = {
-    where?: AtributoWhereInput
-    data: XOR<AtributoUpdateWithoutDetallesInput, AtributoUncheckedUpdateWithoutDetallesInput>
-  }
-
-  export type AtributoUpdateWithoutDetallesInput = {
-    nombre?: StringFieldUpdateOperationsInput | string
-    tipo?: StringFieldUpdateOperationsInput | string
-    valores?: ValorAtributoUpdateManyWithoutAtributoNestedInput
-  }
-
-  export type AtributoUncheckedUpdateWithoutDetallesInput = {
-    id_atributo?: IntFieldUpdateOperationsInput | number
-    nombre?: StringFieldUpdateOperationsInput | string
-    tipo?: StringFieldUpdateOperationsInput | string
-    valores?: ValorAtributoUncheckedUpdateManyWithoutAtributoNestedInput
-  }
-
-  export type ValorAtributoUpsertWithoutVarianteDetallesInput = {
-    update: XOR<ValorAtributoUpdateWithoutVarianteDetallesInput, ValorAtributoUncheckedUpdateWithoutVarianteDetallesInput>
-    create: XOR<ValorAtributoCreateWithoutVarianteDetallesInput, ValorAtributoUncheckedCreateWithoutVarianteDetallesInput>
-    where?: ValorAtributoWhereInput
-  }
-
-  export type ValorAtributoUpdateToOneWithWhereWithoutVarianteDetallesInput = {
-    where?: ValorAtributoWhereInput
-    data: XOR<ValorAtributoUpdateWithoutVarianteDetallesInput, ValorAtributoUncheckedUpdateWithoutVarianteDetallesInput>
-  }
-
-  export type ValorAtributoUpdateWithoutVarianteDetallesInput = {
-    valor?: StringFieldUpdateOperationsInput | string
-    precio_extra?: FloatFieldUpdateOperationsInput | number
-    atributo?: AtributoUpdateOneRequiredWithoutValoresNestedInput
-  }
-
-  export type ValorAtributoUncheckedUpdateWithoutVarianteDetallesInput = {
-    id_valor?: IntFieldUpdateOperationsInput | number
-    id_atributo?: IntFieldUpdateOperationsInput | number
-    valor?: StringFieldUpdateOperationsInput | string
-    precio_extra?: FloatFieldUpdateOperationsInput | number
   }
 
   export type ProductoCreateWithoutPromocionesInput = {
@@ -28852,14 +26837,12 @@ export namespace Prisma {
     cantidad: number
     producto: ProductoCreateNestedOneWithoutPedidoItemsInput
     producto_personalizado?: ProductoPersonalizableCreateNestedOneWithoutPedidoItemsInput
-    variante_seleccionada?: VarianteProductoCreateNestedOneWithoutPedidoItemsInput
   }
 
   export type PedidoItemUncheckedCreateWithoutPedidoInput = {
     producto_id: number
     cantidad: number
     producto_personalizado_id?: number | null
-    id_variante_producto?: number | null
   }
 
   export type PedidoItemCreateOrConnectWithoutPedidoInput = {
@@ -29072,7 +27055,7 @@ export namespace Prisma {
     activo?: boolean
     categoria: CategoriaCreateNestedOneWithoutProductosPersonalizablesInput
     producto_base: ProductoCreateNestedOneWithoutProductosPersonalizablesInput
-    variantes?: VarianteProductoCreateNestedManyWithoutProductoInput
+    variantes?: VarianteDetalleCreateNestedManyWithoutProductoPersonalizableInput
   }
 
   export type ProductoPersonalizableUncheckedCreateWithoutPedidoItemsInput = {
@@ -29082,36 +27065,12 @@ export namespace Prisma {
     id_categoria: number
     id_producto_base: number
     activo?: boolean
-    variantes?: VarianteProductoUncheckedCreateNestedManyWithoutProductoInput
+    variantes?: VarianteDetalleUncheckedCreateNestedManyWithoutProductoPersonalizableInput
   }
 
   export type ProductoPersonalizableCreateOrConnectWithoutPedidoItemsInput = {
     where: ProductoPersonalizableWhereUniqueInput
     create: XOR<ProductoPersonalizableCreateWithoutPedidoItemsInput, ProductoPersonalizableUncheckedCreateWithoutPedidoItemsInput>
-  }
-
-  export type VarianteProductoCreateWithoutPedidoItemsInput = {
-    sku: string
-    precio_final: number
-    stock: number
-    imagen_variante?: string | null
-    producto: ProductoPersonalizableCreateNestedOneWithoutVariantesInput
-    detalles?: VarianteDetalleCreateNestedManyWithoutVarianteInput
-  }
-
-  export type VarianteProductoUncheckedCreateWithoutPedidoItemsInput = {
-    id_variante?: number
-    id_producto: number
-    sku: string
-    precio_final: number
-    stock: number
-    imagen_variante?: string | null
-    detalles?: VarianteDetalleUncheckedCreateNestedManyWithoutVarianteInput
-  }
-
-  export type VarianteProductoCreateOrConnectWithoutPedidoItemsInput = {
-    where: VarianteProductoWhereUniqueInput
-    create: XOR<VarianteProductoCreateWithoutPedidoItemsInput, VarianteProductoUncheckedCreateWithoutPedidoItemsInput>
   }
 
   export type PedidoUpsertWithoutItemsInput = {
@@ -29211,7 +27170,7 @@ export namespace Prisma {
     activo?: BoolFieldUpdateOperationsInput | boolean
     categoria?: CategoriaUpdateOneRequiredWithoutProductosPersonalizablesNestedInput
     producto_base?: ProductoUpdateOneRequiredWithoutProductosPersonalizablesNestedInput
-    variantes?: VarianteProductoUpdateManyWithoutProductoNestedInput
+    variantes?: VarianteDetalleUpdateManyWithoutProductoPersonalizableNestedInput
   }
 
   export type ProductoPersonalizableUncheckedUpdateWithoutPedidoItemsInput = {
@@ -29221,37 +27180,7 @@ export namespace Prisma {
     id_categoria?: IntFieldUpdateOperationsInput | number
     id_producto_base?: IntFieldUpdateOperationsInput | number
     activo?: BoolFieldUpdateOperationsInput | boolean
-    variantes?: VarianteProductoUncheckedUpdateManyWithoutProductoNestedInput
-  }
-
-  export type VarianteProductoUpsertWithoutPedidoItemsInput = {
-    update: XOR<VarianteProductoUpdateWithoutPedidoItemsInput, VarianteProductoUncheckedUpdateWithoutPedidoItemsInput>
-    create: XOR<VarianteProductoCreateWithoutPedidoItemsInput, VarianteProductoUncheckedCreateWithoutPedidoItemsInput>
-    where?: VarianteProductoWhereInput
-  }
-
-  export type VarianteProductoUpdateToOneWithWhereWithoutPedidoItemsInput = {
-    where?: VarianteProductoWhereInput
-    data: XOR<VarianteProductoUpdateWithoutPedidoItemsInput, VarianteProductoUncheckedUpdateWithoutPedidoItemsInput>
-  }
-
-  export type VarianteProductoUpdateWithoutPedidoItemsInput = {
-    sku?: StringFieldUpdateOperationsInput | string
-    precio_final?: FloatFieldUpdateOperationsInput | number
-    stock?: IntFieldUpdateOperationsInput | number
-    imagen_variante?: NullableStringFieldUpdateOperationsInput | string | null
-    producto?: ProductoPersonalizableUpdateOneRequiredWithoutVariantesNestedInput
-    detalles?: VarianteDetalleUpdateManyWithoutVarianteNestedInput
-  }
-
-  export type VarianteProductoUncheckedUpdateWithoutPedidoItemsInput = {
-    id_variante?: IntFieldUpdateOperationsInput | number
-    id_producto?: IntFieldUpdateOperationsInput | number
-    sku?: StringFieldUpdateOperationsInput | string
-    precio_final?: FloatFieldUpdateOperationsInput | number
-    stock?: IntFieldUpdateOperationsInput | number
-    imagen_variante?: NullableStringFieldUpdateOperationsInput | string | null
-    detalles?: VarianteDetalleUncheckedUpdateManyWithoutVarianteNestedInput
+    variantes?: VarianteDetalleUncheckedUpdateManyWithoutProductoPersonalizableNestedInput
   }
 
   export type PedidoCreateWithoutTransicionesInput = {
@@ -29743,8 +27672,8 @@ export namespace Prisma {
     descripcion_general?: StringFieldUpdateOperationsInput | string
     activo?: BoolFieldUpdateOperationsInput | boolean
     producto_base?: ProductoUpdateOneRequiredWithoutProductosPersonalizablesNestedInput
-    variantes?: VarianteProductoUpdateManyWithoutProductoNestedInput
     pedidoItems?: PedidoItemUpdateManyWithoutProducto_personalizadoNestedInput
+    variantes?: VarianteDetalleUpdateManyWithoutProductoPersonalizableNestedInput
   }
 
   export type ProductoPersonalizableUncheckedUpdateWithoutCategoriaInput = {
@@ -29753,8 +27682,8 @@ export namespace Prisma {
     descripcion_general?: StringFieldUpdateOperationsInput | string
     id_producto_base?: IntFieldUpdateOperationsInput | number
     activo?: BoolFieldUpdateOperationsInput | boolean
-    variantes?: VarianteProductoUncheckedUpdateManyWithoutProductoNestedInput
     pedidoItems?: PedidoItemUncheckedUpdateManyWithoutProducto_personalizadoNestedInput
+    variantes?: VarianteDetalleUncheckedUpdateManyWithoutProductoPersonalizableNestedInput
   }
 
   export type ProductoPersonalizableUncheckedUpdateManyWithoutCategoriaInput = {
@@ -29803,7 +27732,6 @@ export namespace Prisma {
     pedido_id: number
     cantidad: number
     producto_personalizado_id?: number | null
-    id_variante_producto?: number | null
   }
 
   export type PromocionCreateManyProductoInput = {
@@ -29882,21 +27810,18 @@ export namespace Prisma {
     cantidad?: IntFieldUpdateOperationsInput | number
     pedido?: PedidoUpdateOneRequiredWithoutItemsNestedInput
     producto_personalizado?: ProductoPersonalizableUpdateOneWithoutPedidoItemsNestedInput
-    variante_seleccionada?: VarianteProductoUpdateOneWithoutPedidoItemsNestedInput
   }
 
   export type PedidoItemUncheckedUpdateWithoutProductoInput = {
     pedido_id?: IntFieldUpdateOperationsInput | number
     cantidad?: IntFieldUpdateOperationsInput | number
     producto_personalizado_id?: NullableIntFieldUpdateOperationsInput | number | null
-    id_variante_producto?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type PedidoItemUncheckedUpdateManyWithoutProductoInput = {
     pedido_id?: IntFieldUpdateOperationsInput | number
     cantidad?: IntFieldUpdateOperationsInput | number
     producto_personalizado_id?: NullableIntFieldUpdateOperationsInput | number | null
-    id_variante_producto?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type PromocionUpdateWithoutProductoInput = {
@@ -29935,8 +27860,8 @@ export namespace Prisma {
     descripcion_general?: StringFieldUpdateOperationsInput | string
     activo?: BoolFieldUpdateOperationsInput | boolean
     categoria?: CategoriaUpdateOneRequiredWithoutProductosPersonalizablesNestedInput
-    variantes?: VarianteProductoUpdateManyWithoutProductoNestedInput
     pedidoItems?: PedidoItemUpdateManyWithoutProducto_personalizadoNestedInput
+    variantes?: VarianteDetalleUpdateManyWithoutProductoPersonalizableNestedInput
   }
 
   export type ProductoPersonalizableUncheckedUpdateWithoutProducto_baseInput = {
@@ -29945,8 +27870,8 @@ export namespace Prisma {
     descripcion_general?: StringFieldUpdateOperationsInput | string
     id_categoria?: IntFieldUpdateOperationsInput | number
     activo?: BoolFieldUpdateOperationsInput | boolean
-    variantes?: VarianteProductoUncheckedUpdateManyWithoutProductoNestedInput
     pedidoItems?: PedidoItemUncheckedUpdateManyWithoutProducto_personalizadoNestedInput
+    variantes?: VarianteDetalleUncheckedUpdateManyWithoutProductoPersonalizableNestedInput
   }
 
   export type ProductoPersonalizableUncheckedUpdateManyWithoutProducto_baseInput = {
@@ -29980,126 +27905,50 @@ export namespace Prisma {
     comentario?: StringFieldUpdateOperationsInput | string
   }
 
-  export type VarianteProductoCreateManyProductoInput = {
-    id_variante?: number
-    sku: string
-    precio_final: number
-    stock: number
-    imagen_variante?: string | null
-  }
-
   export type PedidoItemCreateManyProducto_personalizadoInput = {
     pedido_id: number
     producto_id: number
     cantidad: number
-    id_variante_producto?: number | null
   }
 
-  export type VarianteProductoUpdateWithoutProductoInput = {
-    sku?: StringFieldUpdateOperationsInput | string
-    precio_final?: FloatFieldUpdateOperationsInput | number
-    stock?: IntFieldUpdateOperationsInput | number
-    imagen_variante?: NullableStringFieldUpdateOperationsInput | string | null
-    detalles?: VarianteDetalleUpdateManyWithoutVarianteNestedInput
-    pedidoItems?: PedidoItemUpdateManyWithoutVariante_seleccionadaNestedInput
-  }
-
-  export type VarianteProductoUncheckedUpdateWithoutProductoInput = {
-    id_variante?: IntFieldUpdateOperationsInput | number
-    sku?: StringFieldUpdateOperationsInput | string
-    precio_final?: FloatFieldUpdateOperationsInput | number
-    stock?: IntFieldUpdateOperationsInput | number
-    imagen_variante?: NullableStringFieldUpdateOperationsInput | string | null
-    detalles?: VarianteDetalleUncheckedUpdateManyWithoutVarianteNestedInput
-    pedidoItems?: PedidoItemUncheckedUpdateManyWithoutVariante_seleccionadaNestedInput
-  }
-
-  export type VarianteProductoUncheckedUpdateManyWithoutProductoInput = {
-    id_variante?: IntFieldUpdateOperationsInput | number
-    sku?: StringFieldUpdateOperationsInput | string
-    precio_final?: FloatFieldUpdateOperationsInput | number
-    stock?: IntFieldUpdateOperationsInput | number
-    imagen_variante?: NullableStringFieldUpdateOperationsInput | string | null
+  export type VarianteDetalleCreateManyProductoPersonalizableInput = {
+    id_valor: number
   }
 
   export type PedidoItemUpdateWithoutProducto_personalizadoInput = {
     cantidad?: IntFieldUpdateOperationsInput | number
     pedido?: PedidoUpdateOneRequiredWithoutItemsNestedInput
     producto?: ProductoUpdateOneRequiredWithoutPedidoItemsNestedInput
-    variante_seleccionada?: VarianteProductoUpdateOneWithoutPedidoItemsNestedInput
   }
 
   export type PedidoItemUncheckedUpdateWithoutProducto_personalizadoInput = {
     pedido_id?: IntFieldUpdateOperationsInput | number
     producto_id?: IntFieldUpdateOperationsInput | number
     cantidad?: IntFieldUpdateOperationsInput | number
-    id_variante_producto?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type PedidoItemUncheckedUpdateManyWithoutProducto_personalizadoInput = {
     pedido_id?: IntFieldUpdateOperationsInput | number
     producto_id?: IntFieldUpdateOperationsInput | number
     cantidad?: IntFieldUpdateOperationsInput | number
-    id_variante_producto?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
-  export type VarianteDetalleCreateManyVarianteInput = {
-    id_atributo: number
-    id_valor: number
-  }
-
-  export type PedidoItemCreateManyVariante_seleccionadaInput = {
-    pedido_id: number
-    producto_id: number
-    cantidad: number
-    producto_personalizado_id?: number | null
-  }
-
-  export type VarianteDetalleUpdateWithoutVarianteInput = {
-    atributo?: AtributoUpdateOneRequiredWithoutDetallesNestedInput
+  export type VarianteDetalleUpdateWithoutProductoPersonalizableInput = {
     valor?: ValorAtributoUpdateOneRequiredWithoutVarianteDetallesNestedInput
   }
 
-  export type VarianteDetalleUncheckedUpdateWithoutVarianteInput = {
-    id_atributo?: IntFieldUpdateOperationsInput | number
+  export type VarianteDetalleUncheckedUpdateWithoutProductoPersonalizableInput = {
     id_valor?: IntFieldUpdateOperationsInput | number
   }
 
-  export type VarianteDetalleUncheckedUpdateManyWithoutVarianteInput = {
-    id_atributo?: IntFieldUpdateOperationsInput | number
+  export type VarianteDetalleUncheckedUpdateManyWithoutProductoPersonalizableInput = {
     id_valor?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type PedidoItemUpdateWithoutVariante_seleccionadaInput = {
-    cantidad?: IntFieldUpdateOperationsInput | number
-    pedido?: PedidoUpdateOneRequiredWithoutItemsNestedInput
-    producto?: ProductoUpdateOneRequiredWithoutPedidoItemsNestedInput
-    producto_personalizado?: ProductoPersonalizableUpdateOneWithoutPedidoItemsNestedInput
-  }
-
-  export type PedidoItemUncheckedUpdateWithoutVariante_seleccionadaInput = {
-    pedido_id?: IntFieldUpdateOperationsInput | number
-    producto_id?: IntFieldUpdateOperationsInput | number
-    cantidad?: IntFieldUpdateOperationsInput | number
-    producto_personalizado_id?: NullableIntFieldUpdateOperationsInput | number | null
-  }
-
-  export type PedidoItemUncheckedUpdateManyWithoutVariante_seleccionadaInput = {
-    pedido_id?: IntFieldUpdateOperationsInput | number
-    producto_id?: IntFieldUpdateOperationsInput | number
-    cantidad?: IntFieldUpdateOperationsInput | number
-    producto_personalizado_id?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type ValorAtributoCreateManyAtributoInput = {
     id_valor?: number
     valor: string
     precio_extra?: number
-  }
-
-  export type VarianteDetalleCreateManyAtributoInput = {
-    id_variante: number
-    id_valor: number
   }
 
   export type ValorAtributoUpdateWithoutAtributoInput = {
@@ -30121,39 +27970,20 @@ export namespace Prisma {
     precio_extra?: FloatFieldUpdateOperationsInput | number
   }
 
-  export type VarianteDetalleUpdateWithoutAtributoInput = {
-    variante?: VarianteProductoUpdateOneRequiredWithoutDetallesNestedInput
-    valor?: ValorAtributoUpdateOneRequiredWithoutVarianteDetallesNestedInput
-  }
-
-  export type VarianteDetalleUncheckedUpdateWithoutAtributoInput = {
-    id_variante?: IntFieldUpdateOperationsInput | number
-    id_valor?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type VarianteDetalleUncheckedUpdateManyWithoutAtributoInput = {
-    id_variante?: IntFieldUpdateOperationsInput | number
-    id_valor?: IntFieldUpdateOperationsInput | number
-  }
-
   export type VarianteDetalleCreateManyValorInput = {
-    id_variante: number
-    id_atributo: number
+    id_productoPersonalizable: number
   }
 
   export type VarianteDetalleUpdateWithoutValorInput = {
-    variante?: VarianteProductoUpdateOneRequiredWithoutDetallesNestedInput
-    atributo?: AtributoUpdateOneRequiredWithoutDetallesNestedInput
+    productoPersonalizable?: ProductoPersonalizableUpdateOneRequiredWithoutVariantesNestedInput
   }
 
   export type VarianteDetalleUncheckedUpdateWithoutValorInput = {
-    id_variante?: IntFieldUpdateOperationsInput | number
-    id_atributo?: IntFieldUpdateOperationsInput | number
+    id_productoPersonalizable?: IntFieldUpdateOperationsInput | number
   }
 
   export type VarianteDetalleUncheckedUpdateManyWithoutValorInput = {
-    id_variante?: IntFieldUpdateOperationsInput | number
-    id_atributo?: IntFieldUpdateOperationsInput | number
+    id_productoPersonalizable?: IntFieldUpdateOperationsInput | number
   }
 
   export type HistorialPromocionAplicadaCreateManyPromocionInput = {
@@ -30183,7 +28013,6 @@ export namespace Prisma {
     producto_id: number
     cantidad: number
     producto_personalizado_id?: number | null
-    id_variante_producto?: number | null
   }
 
   export type TransicionEstadoPedidoCreateManyPedidoInput = {
@@ -30203,21 +28032,18 @@ export namespace Prisma {
     cantidad?: IntFieldUpdateOperationsInput | number
     producto?: ProductoUpdateOneRequiredWithoutPedidoItemsNestedInput
     producto_personalizado?: ProductoPersonalizableUpdateOneWithoutPedidoItemsNestedInput
-    variante_seleccionada?: VarianteProductoUpdateOneWithoutPedidoItemsNestedInput
   }
 
   export type PedidoItemUncheckedUpdateWithoutPedidoInput = {
     producto_id?: IntFieldUpdateOperationsInput | number
     cantidad?: IntFieldUpdateOperationsInput | number
     producto_personalizado_id?: NullableIntFieldUpdateOperationsInput | number | null
-    id_variante_producto?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type PedidoItemUncheckedUpdateManyWithoutPedidoInput = {
     producto_id?: IntFieldUpdateOperationsInput | number
     cantidad?: IntFieldUpdateOperationsInput | number
     producto_personalizado_id?: NullableIntFieldUpdateOperationsInput | number | null
-    id_variante_producto?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type TransicionEstadoPedidoUpdateWithoutPedidoInput = {

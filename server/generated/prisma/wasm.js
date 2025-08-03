@@ -181,15 +181,6 @@ exports.Prisma.ProductoPersonalizableScalarFieldEnum = {
   activo: 'activo'
 };
 
-exports.Prisma.VarianteProductoScalarFieldEnum = {
-  id_variante: 'id_variante',
-  id_producto: 'id_producto',
-  sku: 'sku',
-  precio_final: 'precio_final',
-  stock: 'stock',
-  imagen_variante: 'imagen_variante'
-};
-
 exports.Prisma.AtributoScalarFieldEnum = {
   id_atributo: 'id_atributo',
   nombre: 'nombre',
@@ -204,8 +195,7 @@ exports.Prisma.ValorAtributoScalarFieldEnum = {
 };
 
 exports.Prisma.VarianteDetalleScalarFieldEnum = {
-  id_variante: 'id_variante',
-  id_atributo: 'id_atributo',
+  id_productoPersonalizable: 'id_productoPersonalizable',
   id_valor: 'id_valor'
 };
 
@@ -243,8 +233,7 @@ exports.Prisma.PedidoItemScalarFieldEnum = {
   pedido_id: 'pedido_id',
   producto_id: 'producto_id',
   cantidad: 'cantidad',
-  producto_personalizado_id: 'producto_personalizado_id',
-  id_variante_producto: 'id_variante_producto'
+  producto_personalizado_id: 'producto_personalizado_id'
 };
 
 exports.Prisma.TransicionEstadoPedidoScalarFieldEnum = {
@@ -305,11 +294,6 @@ exports.Prisma.ProductoPersonalizableOrderByRelevanceFieldEnum = {
   descripcion_general: 'descripcion_general'
 };
 
-exports.Prisma.VarianteProductoOrderByRelevanceFieldEnum = {
-  sku: 'sku',
-  imagen_variante: 'imagen_variante'
-};
-
 exports.Prisma.AtributoOrderByRelevanceFieldEnum = {
   nombre: 'nombre',
   tipo: 'tipo'
@@ -361,7 +345,6 @@ exports.Prisma.ModelName = {
   ProductoEtiqueta: 'ProductoEtiqueta',
   Resena: 'Resena',
   ProductoPersonalizable: 'ProductoPersonalizable',
-  VarianteProducto: 'VarianteProducto',
   Atributo: 'Atributo',
   ValorAtributo: 'ValorAtributo',
   VarianteDetalle: 'VarianteDetalle',
