@@ -29,6 +29,7 @@
     "VALOR": "Value",
     "VIGENTE_DEL": "Valid from",
     "AL": "to",
+    "TIPO_DESCUENTO":"Discount Type",
     "VER_MAS": "See More",
     "VOLVER": "Back",
     "CREAR_PROMOCION": "Create Promotion",
@@ -119,8 +120,10 @@
 
   "ACERCA_DE_TEXT": {
     "ACERCA_DE": "About Us",
+
     "VISION": "Vision",
     "MISION": "Mission",
+
     "NUESTRA_PASION_POR_LA_ELEGANCIA": "Our Passion for Elegance",
     "EN_JOYERIA_BRILLOS_ETERNOS_CREAMOS_JOYAS": "At Joyería Brillos Eternos, we create jewelry that tells a unique story. Since 2020, we have crafted artisanal pieces of the highest quality that blend tradition and modernity.",
     "OFRECER_PIEZAS_DE_JOYERIA_DE_LUJO": "To offer luxury jewelry pieces that enhance the beauty of our clients, caring for every detail and respecting the environment.",
