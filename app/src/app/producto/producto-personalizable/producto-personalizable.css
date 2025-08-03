@@ -1,0 +1,53 @@
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+  color: #333;
+  font-weight: 600;
+}
+
+.dialogo-personalizacion {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 24px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.grupo-atributo {
+  margin-bottom: 20px;
+  padding: 0 16px;
+}
+
+label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: #555;
+}
+
+select {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  background-color: #fefefe;
+  box-sizing: border-box;
+}
+select:focus {
+  border-color: #1976d2;
+  outline: none;
+}
+
+.acciones {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+button[mat-button],
+button[mat-raised-button] {
+  min-width: 100px;
+}

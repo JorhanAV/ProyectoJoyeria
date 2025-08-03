@@ -2,7 +2,7 @@ import { ValorAtributoModel } from "./ValorAtributoModel";
 import { VarianteDetalleModel } from "./VarianteDetalleModel";
 
 export interface AtributoModel {
-  id_atributo: number;
+  id: number;
   nombre: string;
   tipo: string;
   valores: ValorAtributoModel[];

@@ -23,7 +23,7 @@ export class VarianteDetalleController {
                 connect: { id: id_productoPersonalizable }
             },
             valor: {
-                connect: { id_valor: id_valor }
+                connect: { id: id_valor }
             }
         }
       });

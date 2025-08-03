@@ -7,4 +7,6 @@ export const environment = {
   endPointUsuario: 'usuario',
   endPointEtiqueta: 'etiqueta',
   endPointCategoria: 'categoria',
+  endPointAtributo: 'atributos',
+  endPointValorAtributo: 'valorAtributos',
 };

@@ -183,20 +183,20 @@ exports.Prisma.ProductoPersonalizableScalarFieldEnum = {
 };
 
 exports.Prisma.AtributoScalarFieldEnum = {
-  id_atributo: 'id_atributo',
+  id: 'id',
   nombre: 'nombre',
   tipo: 'tipo'
 };
 
 exports.Prisma.ValorAtributoScalarFieldEnum = {
-  id_valor: 'id_valor',
+  id: 'id',
   id_atributo: 'id_atributo',
   valor: 'valor',
   precio_extra: 'precio_extra'
 };
 
 exports.Prisma.VarianteDetalleScalarFieldEnum = {
-  id_varianteDetalle: 'id_varianteDetalle',
+  id: 'id',
   id_productoPersonalizable: 'id_productoPersonalizable',
   id_valor: 'id_valor'
 };

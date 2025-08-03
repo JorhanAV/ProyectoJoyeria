@@ -3,6 +3,9 @@ import { NotificationService } from '../../share/notification-service';
 import { ProductoService } from '../../share/services/producto.service';
 import { Router } from '@angular/router';
 import { ProductoModel } from '../../share/models/ProductoModel';
+import { MatDialog } from '@angular/material/dialog';
+import { ProductoPersonalizable } from '../producto-personalizable/producto-personalizable';
+
 
 @Component({
   selector: 'app-producto-index',
@@ -16,7 +19,8 @@ export class ProductoIndex {
   constructor(
     private prodService: ProductoService,
     private noti: NotificationService,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
   ) {
     this.listProductos();
   }
@@ -25,7 +29,7 @@ export class ProductoIndex {
   listProductos() {
     this.prodService.get().subscribe((respuesta: ProductoModel[]) => {
       const hoy = new Date();
-
+      console.log(respuesta);
       this.datos = respuesta.map((producto) => {
         // Establece la imagen por defecto
         producto.imagenActual = producto.imagenes[0]?.url;
@@ -36,7 +40,7 @@ export class ProductoIndex {
           const fin = new Date(promo.fecha_fin);
           return hoy >= inicio && hoy <= fin;
         });
-
+        
         // Aplica la mejor promoción disponible
         let mejorDescuento = 0;
         let tipoDescuento: 'Porcentaje' | 'CantidadFija' | null = null;
@@ -94,8 +98,24 @@ export class ProductoIndex {
     this.router.navigate(['/producto', id]);
   }
   comprar(producto: ProductoModel) {
+  if (producto.personalizable) {
+    const dialogRef = this.dialog.open(ProductoPersonalizable, {
+      width: '400px',
+      data: producto,
+    });
+
+    dialogRef.afterClosed().subscribe((opcionesSeleccionadas) => {
+      if (opcionesSeleccionadas) {
+        // Aquí podrías agregar el producto al carrito con las opciones
+        this.noti.success('Personalización', 'Producto personalizado agregado al carrito', 3000);
+        console.log('Opciones:', opcionesSeleccionadas);
+      }
+    });
+  } else {
     this.noti.success('Compra', 'Producto comprado: ' + producto.nombre, 3000);
   }
+}
+
 
   cambiarImagen(producto: any, hover: boolean) {
     producto.imagenActual = hover

@@ -134,7 +134,7 @@ model ProductoPersonalizable {
 
 
 model Atributo {
-  id_atributo Int               @id @default(autoincrement())
+  id Int               @id @default(autoincrement())
   nombre      String
   tipo        String
   valores     ValorAtributo[]
@@ -142,21 +142,21 @@ model Atributo {
 }
 
 model ValorAtributo {
-  id_valor     Int      @id @default(autoincrement())
+  id     Int      @id @default(autoincrement())
   id_atributo  Int
   valor        String
   precio_extra Float    @default(0)
-  atributo     Atributo @relation(fields: [id_atributo], references: [id_atributo])
+  atributo     Atributo @relation(fields: [id_atributo], references: [id])
 
   varianteDetalles VarianteDetalle[] @relation("ValorAtributoToVarianteDetalle")
 }
 
 model VarianteDetalle {
-  id_varianteDetalle Int @id @default(autoincrement())
+  id       Int @id @default(autoincrement())
   id_productoPersonalizable Int
   id_valor    Int
 
-  valor       ValorAtributo    @relation("ValorAtributoToVarianteDetalle", fields: [id_valor], references: [id_valor])
+  valor       ValorAtributo    @relation("ValorAtributoToVarianteDetalle", fields: [id_valor], references: [id])
   productoPersonalizable ProductoPersonalizable @relation(fields: [id_productoPersonalizable], references: [id])
 
 }
