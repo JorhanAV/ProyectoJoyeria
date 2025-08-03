@@ -24,18 +24,17 @@ export class PedidoController {
                       precio_base: true,
                     },
                   },
-                },
-              },
-              /* variante_seleccionada: {
-                include: {
-                  detalles: {
+                  variantes: {
                     include: {
-                      atributo: true,
-                      valor: true,
+                      valor: {
+                        include: {
+                          atributo: true,
+                        },
+                      },
                     },
                   },
                 },
-              }, */
+              },
             },
           },
           usuario: {
@@ -49,7 +48,7 @@ export class PedidoController {
               fecha_hora: true,
             },
             orderBy: {
-              fecha_hora: 'asc',
+              fecha_hora: "asc",
             },
           },
         },
@@ -62,7 +61,7 @@ export class PedidoController {
         const productos = ped.items.map((item) => {
           const cantidad = item.cantidad;
 
-          if (!item.producto_personalizado) {
+          if (!item.producto_personalizado && item.producto) {
             const precio_base = item.producto.precio_base;
             const subtotal = +(precio_base * cantidad).toFixed(2);
 
@@ -75,41 +74,46 @@ export class PedidoController {
             };
           }
 
-          const precioBase =
-            item.producto_personalizado.producto_base.precio_base;
-          const nombre = item.producto_personalizado.nombre;
+          if (
+            item.producto_personalizado &&
+            item.producto_personalizado.producto_base
+          ) {
+            const precioBase =
+              item.producto_personalizado.producto_base.precio_base;
+            const nombre = item.producto_personalizado.nombre;
 
-          let criterios = [];
-          let totalOpciones = 0;
+            const criterios = item.producto_personalizado.variantes.map(
+              (variante) => ({
+                criterio: variante.valor.atributo.nombre,
+                seleccion: variante.valor.valor,
+                precio_extra: variante.valor.precio_extra,
+              })
+            );
 
-         /*  for (const detalle of item.variante_seleccionada?.detalles || []) {
-            criterios.push({
-              criterio: detalle.atributo.nombre,
-              seleccion: detalle.valor.valor,
-              precio_extra: detalle.valor.precio_extra,
-            });
-            totalOpciones += detalle.valor.precio_extra;
-          } */
+            const totalOpciones = criterios.reduce(
+              (acc, curr) => acc + curr.precio_extra,
+              0
+            );
+            const totalIndividual = +(precioBase + totalOpciones).toFixed(2);
+            const subtotal = +(totalIndividual * cantidad).toFixed(2);
 
-          const totalIndividual = +(precioBase + totalOpciones).toFixed(2);
-          const subtotal = +(totalIndividual * cantidad).toFixed(2);
-
-          return {
-            tipo: "Producto personalizado",
-            nombre,
-            precio_base: precioBase,
-            //criterios,
-            total_individual: totalIndividual,
-            cantidad,
-            subtotal,
-          };
+            return {
+              tipo: "Producto personalizado",
+              nombre,
+              precio_base: precioBase,
+              criterios,
+              total_individual: totalIndividual,
+              cantidad,
+              subtotal,
+            };
+          }
         });
 
         const ultimoEstado = ped.transiciones.length
           ? ped.transiciones[ped.transiciones.length - 1].estado
-          : 'Pendiente';
+          : "Pendiente";
 
-        return { 
+        return {
           pedidoId: ped.id,
           usuario: ped.usuario,
           direccion_envio: ped.direccion_envio,
@@ -153,18 +157,17 @@ export class PedidoController {
                       precio_base: true,
                     },
                   },
-                },
-              },
-              /* variante_seleccionada: {
-                include: {
-                  detalles: {
+                  variantes: {
                     include: {
-                      atributo: true,
-                      valor: true,
+                      valor: {
+                        include: {
+                          atributo: true,
+                        },
+                      },
                     },
                   },
                 },
-              }, */
+              },
             },
           },
           usuario: {
@@ -178,7 +181,7 @@ export class PedidoController {
               fecha_hora: true,
             },
             orderBy: {
-              fecha_hora: 'asc',
+              fecha_hora: "asc",
             },
           },
         },
@@ -192,7 +195,7 @@ export class PedidoController {
       const productos = pedido.items.map((item) => {
         const cantidad = item.cantidad;
 
-        if (!item.producto_personalizado) {
+        if (!item.producto_personalizado && item.producto) {
           const { nombre, descripcion, precio_base } = item.producto;
           const subtotal = +(precio_base * cantidad).toFixed(2);
           return {
@@ -205,39 +208,44 @@ export class PedidoController {
           };
         }
 
-        const precioBase =
-          item.producto_personalizado.producto_base.precio_base;
-        const nombre = item.producto_personalizado.nombre;
+        if (
+          item.producto_personalizado &&
+          item.producto_personalizado.producto_base
+        ) {
+          const precioBase =
+            item.producto_personalizado.producto_base.precio_base;
+          const nombre = item.producto_personalizado.nombre;
 
-        let criterios = [];
-        let totalOpciones = 0;
+          const criterios = item.producto_personalizado.variantes.map(
+            (variante) => ({
+              criterio: variante.valor.atributo.nombre,
+              seleccion: variante.valor.valor,
+              precio_extra: variante.valor.precio_extra,
+            })
+          );
 
-        /* for (const detalle of item.variante_seleccionada?.detalles || []) {
-          criterios.push({
-            criterio: detalle.atributo.nombre,
-            seleccion: detalle.valor.valor,
-            precio_extra: detalle.valor.precio_extra,
-          });
-          totalOpciones += detalle.valor.precio_extra;
-        } */
+          const totalOpciones = criterios.reduce(
+            (acc, curr) => acc + curr.precio_extra,
+            0
+          );
+          const totalIndividual = +(precioBase + totalOpciones).toFixed(2);
+          const subtotal = +(totalIndividual * cantidad).toFixed(2);
 
-        const totalIndividual = +(precioBase + totalOpciones).toFixed(2);
-        const subtotal = +(totalIndividual * cantidad).toFixed(2);
-
-        return {
-          tipo: "Producto personalizado",
-          nombre,
-          precio_base: precioBase,
-          //criterios,
-          total_individual: totalIndividual,
-          cantidad,
-          subtotal,
-        };
+          return {
+            tipo: "Producto personalizado",
+            nombre,
+            precio_base: precioBase,
+            criterios,
+            total_individual: totalIndividual,
+            cantidad,
+            subtotal,
+          };
+        }
       });
 
       const ultimoEstado = pedido.transiciones.length
         ? pedido.transiciones[pedido.transiciones.length - 1].estado
-        : 'Pendiente';
+        : "Pendiente";
 
       const pedidoFormateado = {
         id: pedido.id,
