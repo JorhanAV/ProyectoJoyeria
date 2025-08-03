@@ -21,7 +21,7 @@ export class ProductoController {
               url: true,
             },
           },
-          // No incluyas promociones aquí directamente, las manejaremos aparte
+          
         },
       });
 
@@ -152,6 +152,7 @@ export class ProductoController {
           precio_base: parseFloat(body.precio_base),
           stock: parseInt(body.stock),
           activo: body.activo,
+          personalizable: body.personalizable || false,
           categoria: {
             connect: {
               id: body.categoria_id,
@@ -199,6 +200,7 @@ export class ProductoController {
           precio_base: parseFloat(body.precio_base),
           stock: parseInt(body.stock),
           activo: body.activo,
+          personalizable: body.personalizable || false,
           categoria: {
             connect: {
               id: body.categoria_id,
