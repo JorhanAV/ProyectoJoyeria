@@ -24,6 +24,7 @@
     "AGREGAR_PROMOCION": "Agregar Promoción",
     "NOMBRE": "Nombre",
     "TIPO": "Tipo",
+    "TIPO_DESCUENTO": "Tipo de Descuento",
     "FECHA_INICIO": "Fecha de Inicio",
     "FECHA_FIN": "Fecha de Fin",
     "VALOR": "Valor",
@@ -49,8 +50,7 @@
     "CREADA_MENSAJE": "ID: {{id}}",
     "ACTUALIZADA_TITULO": "Promoción actualizada",
     "ACTUALIZADA_MENSAJE": "ID: {{id}}",
-    "VER_DETALLES": "Ver Detalles",
-    "TIPO_DESCUENTO": "Tipo de Descuento"
+    "VER_DETALLES": "Ver Detalles"
   },
   "PRODUCTO_TEXT": {
     "GESTION_PRODUCTOS": "Gestión de Productos",
