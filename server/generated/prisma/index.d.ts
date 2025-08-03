@@ -12866,26 +12866,31 @@ export namespace Prisma {
   }
 
   export type VarianteDetalleAvgAggregateOutputType = {
+    id_varianteDetalle: number | null
     id_productoPersonalizable: number | null
     id_valor: number | null
   }
 
   export type VarianteDetalleSumAggregateOutputType = {
+    id_varianteDetalle: number | null
     id_productoPersonalizable: number | null
     id_valor: number | null
   }
 
   export type VarianteDetalleMinAggregateOutputType = {
+    id_varianteDetalle: number | null
     id_productoPersonalizable: number | null
     id_valor: number | null
   }
 
   export type VarianteDetalleMaxAggregateOutputType = {
+    id_varianteDetalle: number | null
     id_productoPersonalizable: number | null
     id_valor: number | null
   }
 
   export type VarianteDetalleCountAggregateOutputType = {
+    id_varianteDetalle: number
     id_productoPersonalizable: number
     id_valor: number
     _all: number
@@ -12893,26 +12898,31 @@ export namespace Prisma {
 
 
   export type VarianteDetalleAvgAggregateInputType = {
+    id_varianteDetalle?: true
     id_productoPersonalizable?: true
     id_valor?: true
   }
 
   export type VarianteDetalleSumAggregateInputType = {
+    id_varianteDetalle?: true
     id_productoPersonalizable?: true
     id_valor?: true
   }
 
   export type VarianteDetalleMinAggregateInputType = {
+    id_varianteDetalle?: true
     id_productoPersonalizable?: true
     id_valor?: true
   }
 
   export type VarianteDetalleMaxAggregateInputType = {
+    id_varianteDetalle?: true
     id_productoPersonalizable?: true
     id_valor?: true
   }
 
   export type VarianteDetalleCountAggregateInputType = {
+    id_varianteDetalle?: true
     id_productoPersonalizable?: true
     id_valor?: true
     _all?: true
@@ -13005,6 +13015,7 @@ export namespace Prisma {
   }
 
   export type VarianteDetalleGroupByOutputType = {
+    id_varianteDetalle: number
     id_productoPersonalizable: number
     id_valor: number
     _count: VarianteDetalleCountAggregateOutputType | null
@@ -13029,6 +13040,7 @@ export namespace Prisma {
 
 
   export type VarianteDetalleSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id_varianteDetalle?: boolean
     id_productoPersonalizable?: boolean
     id_valor?: boolean
     valor?: boolean | ValorAtributoDefaultArgs<ExtArgs>
@@ -13038,11 +13050,12 @@ export namespace Prisma {
 
 
   export type VarianteDetalleSelectScalar = {
+    id_varianteDetalle?: boolean
     id_productoPersonalizable?: boolean
     id_valor?: boolean
   }
 
-  export type VarianteDetalleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_productoPersonalizable" | "id_valor", ExtArgs["result"]["varianteDetalle"]>
+  export type VarianteDetalleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_varianteDetalle" | "id_productoPersonalizable" | "id_valor", ExtArgs["result"]["varianteDetalle"]>
   export type VarianteDetalleInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     valor?: boolean | ValorAtributoDefaultArgs<ExtArgs>
     productoPersonalizable?: boolean | ProductoPersonalizableDefaultArgs<ExtArgs>
@@ -13055,6 +13068,7 @@ export namespace Prisma {
       productoPersonalizable: Prisma.$ProductoPersonalizablePayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
+      id_varianteDetalle: number
       id_productoPersonalizable: number
       id_valor: number
     }, ExtArgs["result"]["varianteDetalle"]>
@@ -13140,8 +13154,8 @@ export namespace Prisma {
      * // Get first 10 VarianteDetalles
      * const varianteDetalles = await prisma.varianteDetalle.findMany({ take: 10 })
      * 
-     * // Only select the `id_productoPersonalizable`
-     * const varianteDetalleWithId_productoPersonalizableOnly = await prisma.varianteDetalle.findMany({ select: { id_productoPersonalizable: true } })
+     * // Only select the `id_varianteDetalle`
+     * const varianteDetalleWithId_varianteDetalleOnly = await prisma.varianteDetalle.findMany({ select: { id_varianteDetalle: true } })
      * 
      */
     findMany<T extends VarianteDetalleFindManyArgs>(args?: SelectSubset<T, VarianteDetalleFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VarianteDetallePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -13428,6 +13442,7 @@ export namespace Prisma {
    * Fields of the VarianteDetalle model
    */
   interface VarianteDetalleFieldRefs {
+    readonly id_varianteDetalle: FieldRef<"VarianteDetalle", 'Int'>
     readonly id_productoPersonalizable: FieldRef<"VarianteDetalle", 'Int'>
     readonly id_valor: FieldRef<"VarianteDetalle", 'Int'>
   }
@@ -19994,6 +20009,7 @@ export namespace Prisma {
 
 
   export const VarianteDetalleScalarFieldEnum: {
+    id_varianteDetalle: 'id_varianteDetalle',
     id_productoPersonalizable: 'id_productoPersonalizable',
     id_valor: 'id_valor'
   };
@@ -20861,6 +20877,7 @@ export namespace Prisma {
     AND?: VarianteDetalleWhereInput | VarianteDetalleWhereInput[]
     OR?: VarianteDetalleWhereInput[]
     NOT?: VarianteDetalleWhereInput | VarianteDetalleWhereInput[]
+    id_varianteDetalle?: IntFilter<"VarianteDetalle"> | number
     id_productoPersonalizable?: IntFilter<"VarianteDetalle"> | number
     id_valor?: IntFilter<"VarianteDetalle"> | number
     valor?: XOR<ValorAtributoScalarRelationFilter, ValorAtributoWhereInput>
@@ -20868,6 +20885,7 @@ export namespace Prisma {
   }
 
   export type VarianteDetalleOrderByWithRelationInput = {
+    id_varianteDetalle?: SortOrder
     id_productoPersonalizable?: SortOrder
     id_valor?: SortOrder
     valor?: ValorAtributoOrderByWithRelationInput
@@ -20875,7 +20893,7 @@ export namespace Prisma {
   }
 
   export type VarianteDetalleWhereUniqueInput = Prisma.AtLeast<{
-    id_productoPersonalizable_id_valor?: VarianteDetalleId_productoPersonalizableId_valorCompoundUniqueInput
+    id_varianteDetalle?: number
     AND?: VarianteDetalleWhereInput | VarianteDetalleWhereInput[]
     OR?: VarianteDetalleWhereInput[]
     NOT?: VarianteDetalleWhereInput | VarianteDetalleWhereInput[]
@@ -20883,9 +20901,10 @@ export namespace Prisma {
     id_valor?: IntFilter<"VarianteDetalle"> | number
     valor?: XOR<ValorAtributoScalarRelationFilter, ValorAtributoWhereInput>
     productoPersonalizable?: XOR<ProductoPersonalizableScalarRelationFilter, ProductoPersonalizableWhereInput>
-  }, "id_productoPersonalizable_id_valor">
+  }, "id_varianteDetalle">
 
   export type VarianteDetalleOrderByWithAggregationInput = {
+    id_varianteDetalle?: SortOrder
     id_productoPersonalizable?: SortOrder
     id_valor?: SortOrder
     _count?: VarianteDetalleCountOrderByAggregateInput
@@ -20899,6 +20918,7 @@ export namespace Prisma {
     AND?: VarianteDetalleScalarWhereWithAggregatesInput | VarianteDetalleScalarWhereWithAggregatesInput[]
     OR?: VarianteDetalleScalarWhereWithAggregatesInput[]
     NOT?: VarianteDetalleScalarWhereWithAggregatesInput | VarianteDetalleScalarWhereWithAggregatesInput[]
+    id_varianteDetalle?: IntWithAggregatesFilter<"VarianteDetalle"> | number
     id_productoPersonalizable?: IntWithAggregatesFilter<"VarianteDetalle"> | number
     id_valor?: IntWithAggregatesFilter<"VarianteDetalle"> | number
   }
@@ -21871,6 +21891,7 @@ export namespace Prisma {
   }
 
   export type VarianteDetalleUncheckedCreateInput = {
+    id_varianteDetalle?: number
     id_productoPersonalizable: number
     id_valor: number
   }
@@ -21881,11 +21902,13 @@ export namespace Prisma {
   }
 
   export type VarianteDetalleUncheckedUpdateInput = {
+    id_varianteDetalle?: IntFieldUpdateOperationsInput | number
     id_productoPersonalizable?: IntFieldUpdateOperationsInput | number
     id_valor?: IntFieldUpdateOperationsInput | number
   }
 
   export type VarianteDetalleCreateManyInput = {
+    id_varianteDetalle?: number
     id_productoPersonalizable: number
     id_valor: number
   }
@@ -21895,6 +21918,7 @@ export namespace Prisma {
   }
 
   export type VarianteDetalleUncheckedUpdateManyInput = {
+    id_varianteDetalle?: IntFieldUpdateOperationsInput | number
     id_productoPersonalizable?: IntFieldUpdateOperationsInput | number
     id_valor?: IntFieldUpdateOperationsInput | number
   }
@@ -22969,32 +22993,32 @@ export namespace Prisma {
     isNot?: ProductoPersonalizableWhereInput
   }
 
-  export type VarianteDetalleId_productoPersonalizableId_valorCompoundUniqueInput = {
-    id_productoPersonalizable: number
-    id_valor: number
-  }
-
   export type VarianteDetalleCountOrderByAggregateInput = {
+    id_varianteDetalle?: SortOrder
     id_productoPersonalizable?: SortOrder
     id_valor?: SortOrder
   }
 
   export type VarianteDetalleAvgOrderByAggregateInput = {
+    id_varianteDetalle?: SortOrder
     id_productoPersonalizable?: SortOrder
     id_valor?: SortOrder
   }
 
   export type VarianteDetalleMaxOrderByAggregateInput = {
+    id_varianteDetalle?: SortOrder
     id_productoPersonalizable?: SortOrder
     id_valor?: SortOrder
   }
 
   export type VarianteDetalleMinOrderByAggregateInput = {
+    id_varianteDetalle?: SortOrder
     id_productoPersonalizable?: SortOrder
     id_valor?: SortOrder
   }
 
   export type VarianteDetalleSumOrderByAggregateInput = {
+    id_varianteDetalle?: SortOrder
     id_productoPersonalizable?: SortOrder
     id_valor?: SortOrder
   }
@@ -26212,6 +26236,7 @@ export namespace Prisma {
   }
 
   export type VarianteDetalleUncheckedCreateWithoutProductoPersonalizableInput = {
+    id_varianteDetalle?: number
     id_valor: number
   }
 
@@ -26331,6 +26356,7 @@ export namespace Prisma {
     AND?: VarianteDetalleScalarWhereInput | VarianteDetalleScalarWhereInput[]
     OR?: VarianteDetalleScalarWhereInput[]
     NOT?: VarianteDetalleScalarWhereInput | VarianteDetalleScalarWhereInput[]
+    id_varianteDetalle?: IntFilter<"VarianteDetalle"> | number
     id_productoPersonalizable?: IntFilter<"VarianteDetalle"> | number
     id_valor?: IntFilter<"VarianteDetalle"> | number
   }
@@ -26405,6 +26431,7 @@ export namespace Prisma {
   }
 
   export type VarianteDetalleUncheckedCreateWithoutValorInput = {
+    id_varianteDetalle?: number
     id_productoPersonalizable: number
   }
 
@@ -27970,6 +27997,7 @@ export namespace Prisma {
   }
 
   export type VarianteDetalleCreateManyProductoPersonalizableInput = {
+    id_varianteDetalle?: number
     id_valor: number
   }
 
@@ -27996,10 +28024,12 @@ export namespace Prisma {
   }
 
   export type VarianteDetalleUncheckedUpdateWithoutProductoPersonalizableInput = {
+    id_varianteDetalle?: IntFieldUpdateOperationsInput | number
     id_valor?: IntFieldUpdateOperationsInput | number
   }
 
   export type VarianteDetalleUncheckedUpdateManyWithoutProductoPersonalizableInput = {
+    id_varianteDetalle?: IntFieldUpdateOperationsInput | number
     id_valor?: IntFieldUpdateOperationsInput | number
   }
 
@@ -28029,6 +28059,7 @@ export namespace Prisma {
   }
 
   export type VarianteDetalleCreateManyValorInput = {
+    id_varianteDetalle?: number
     id_productoPersonalizable: number
   }
 
@@ -28037,10 +28068,12 @@ export namespace Prisma {
   }
 
   export type VarianteDetalleUncheckedUpdateWithoutValorInput = {
+    id_varianteDetalle?: IntFieldUpdateOperationsInput | number
     id_productoPersonalizable?: IntFieldUpdateOperationsInput | number
   }
 
   export type VarianteDetalleUncheckedUpdateManyWithoutValorInput = {
+    id_varianteDetalle?: IntFieldUpdateOperationsInput | number
     id_productoPersonalizable?: IntFieldUpdateOperationsInput | number
   }
 

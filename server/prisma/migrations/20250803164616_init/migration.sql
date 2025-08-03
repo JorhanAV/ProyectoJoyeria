@@ -106,10 +106,11 @@ CREATE TABLE `ValorAtributo` (
 
 -- CreateTable
 CREATE TABLE `VarianteDetalle` (
+    `id_varianteDetalle` INTEGER NOT NULL AUTO_INCREMENT,
     `id_productoPersonalizable` INTEGER NOT NULL,
     `id_valor` INTEGER NOT NULL,
 
-    PRIMARY KEY (`id_productoPersonalizable`, `id_valor`)
+    PRIMARY KEY (`id_varianteDetalle`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable

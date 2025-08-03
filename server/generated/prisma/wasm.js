@@ -196,6 +196,7 @@ exports.Prisma.ValorAtributoScalarFieldEnum = {
 };
 
 exports.Prisma.VarianteDetalleScalarFieldEnum = {
+  id_varianteDetalle: 'id_varianteDetalle',
   id_productoPersonalizable: 'id_productoPersonalizable',
   id_valor: 'id_valor'
 };
