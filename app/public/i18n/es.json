@@ -50,7 +50,8 @@
     "CREADA_MENSAJE": "ID: {{id}}",
     "ACTUALIZADA_TITULO": "Promoción actualizada",
     "ACTUALIZADA_MENSAJE": "ID: {{id}}",
-    "VER_DETALLES": "Ver Detalles"
+    "VER_DETALLES": "Ver Detalles",
+    "TIPO_DESCUENTO": "Tipo de Descuento"
   },
   "PRODUCTO_TEXT": {
     "GESTION_PRODUCTOS": "Gestión de Productos",

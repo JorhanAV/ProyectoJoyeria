@@ -50,9 +50,10 @@
     "CREADA_MENSAJE": "ID: {{id}}",
     "ACTUALIZADA_TITULO": "Promotion updated",
     "ACTUALIZADA_MENSAJE": "ID: {{id}}",
-    "VER_DETALLES": "View Details"
+    "VER_DETALLES": "View Details",
+    "TIPO_DESCUENTO": "Discount Type"
   },
-  "PRODUCTO_TEXT":{
+  "PRODUCTO_TEXT": {
     "GESTION_PRODUCTOS": "Product Management",
     "NOMBRE": "Name",
     "PRECIO": "Price",
@@ -80,7 +81,7 @@
     "PROMEDIO_VALORACIONES": "Average Ratings",
     "CREAR": "Create",
     "ACTUALIZAR": "Update",
-     "FORMULARIO_INVALIDO_TITULO": "Invalid Form",
+    "FORMULARIO_INVALIDO_TITULO": "Invalid Form",
     "ETIQUETA_REQUERIDA": "You must select at least one tag.",
     "CAMPOS_INVALIDOS": "Please review the highlighted fields.",
     "IMAGENES_OK_TITULO": "Product Maintenance",
@@ -96,7 +97,7 @@
     "VER_DETALLES": "View Details"
   },
 
-  "PEDIDO_TEXT":{
+  "PEDIDO_TEXT": {
     "LISTADO_PEDIDOS": "Orders List",
     "CLIENTE": "Client",
     "TOTAL": "Total",
@@ -119,8 +120,10 @@
 
   "ACERCA_DE_TEXT": {
     "ACERCA_DE": "About Us",
-    "MISION": "Mission",
+
     "VISION": "Vision",
+    "MISION": "Mission",
+
     "NUESTRA_PASION_POR_LA_ELEGANCIA": "Our Passion for Elegance",
     "EN_JOYERIA_BRILLOS_ETERNOS_CREAMOS_JOYAS": "At Joyería Brillos Eternos, we create jewelry that tells a unique story. Since 2020, we have crafted artisanal pieces of the highest quality that blend tradition and modernity.",
     "OFRECER_PIEZAS_DE_JOYERIA_DE_LUJO": "To offer luxury jewelry pieces that enhance the beauty of our clients, caring for every detail and respecting the environment.",
@@ -138,5 +141,4 @@
     "PEDIDOS": "Orders",
     "PROMOCIONES": "Promotions"
   }
-  
 }

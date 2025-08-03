@@ -26,7 +26,7 @@ export class PedidoController {
                   },
                 },
               },
-              variante_seleccionada: {
+              /* variante_seleccionada: {
                 include: {
                   detalles: {
                     include: {
@@ -35,7 +35,7 @@ export class PedidoController {
                     },
                   },
                 },
-              },
+              }, */
             },
           },
           usuario: {
@@ -82,14 +82,14 @@ export class PedidoController {
           let criterios = [];
           let totalOpciones = 0;
 
-          for (const detalle of item.variante_seleccionada?.detalles || []) {
+         /*  for (const detalle of item.variante_seleccionada?.detalles || []) {
             criterios.push({
               criterio: detalle.atributo.nombre,
               seleccion: detalle.valor.valor,
               precio_extra: detalle.valor.precio_extra,
             });
             totalOpciones += detalle.valor.precio_extra;
-          }
+          } */
 
           const totalIndividual = +(precioBase + totalOpciones).toFixed(2);
           const subtotal = +(totalIndividual * cantidad).toFixed(2);
@@ -98,7 +98,7 @@ export class PedidoController {
             tipo: "Producto personalizado",
             nombre,
             precio_base: precioBase,
-            criterios,
+            //criterios,
             total_individual: totalIndividual,
             cantidad,
             subtotal,
@@ -155,7 +155,7 @@ export class PedidoController {
                   },
                 },
               },
-              variante_seleccionada: {
+              /* variante_seleccionada: {
                 include: {
                   detalles: {
                     include: {
@@ -164,7 +164,7 @@ export class PedidoController {
                     },
                   },
                 },
-              },
+              }, */
             },
           },
           usuario: {
@@ -212,14 +212,14 @@ export class PedidoController {
         let criterios = [];
         let totalOpciones = 0;
 
-        for (const detalle of item.variante_seleccionada?.detalles || []) {
+        /* for (const detalle of item.variante_seleccionada?.detalles || []) {
           criterios.push({
             criterio: detalle.atributo.nombre,
             seleccion: detalle.valor.valor,
             precio_extra: detalle.valor.precio_extra,
           });
           totalOpciones += detalle.valor.precio_extra;
-        }
+        } */
 
         const totalIndividual = +(precioBase + totalOpciones).toFixed(2);
         const subtotal = +(totalIndividual * cantidad).toFixed(2);
@@ -228,7 +228,7 @@ export class PedidoController {
           tipo: "Producto personalizado",
           nombre,
           precio_base: precioBase,
-          criterios,
+          //criterios,
           total_individual: totalIndividual,
           cantidad,
           subtotal,
