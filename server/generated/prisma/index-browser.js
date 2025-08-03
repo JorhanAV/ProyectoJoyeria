@@ -148,7 +148,8 @@ exports.Prisma.ProductoScalarFieldEnum = {
   stock: 'stock',
   categoria_id: 'categoria_id',
   promedio_valoracion: 'promedio_valoracion',
-  activo: 'activo'
+  activo: 'activo',
+  personalizable: 'personalizable'
 };
 
 exports.Prisma.ImagenProductoScalarFieldEnum = {

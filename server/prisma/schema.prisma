@@ -78,6 +78,7 @@ model Producto {
   categoria_id             Int
   promedio_valoracion      Float                    @default(0)
   activo                   Boolean                  @default(true)
+  personalizable           Boolean                  @default(false)
   categoria                Categoria                @relation(fields: [categoria_id], references: [id])
   imagenes                 ImagenProducto[]
   etiquetas                ProductoEtiqueta[]

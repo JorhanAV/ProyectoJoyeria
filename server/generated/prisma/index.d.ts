@@ -5782,6 +5782,7 @@ export namespace Prisma {
     categoria_id: number | null
     promedio_valoracion: number | null
     activo: boolean | null
+    personalizable: boolean | null
   }
 
   export type ProductoMaxAggregateOutputType = {
@@ -5793,6 +5794,7 @@ export namespace Prisma {
     categoria_id: number | null
     promedio_valoracion: number | null
     activo: boolean | null
+    personalizable: boolean | null
   }
 
   export type ProductoCountAggregateOutputType = {
@@ -5804,6 +5806,7 @@ export namespace Prisma {
     categoria_id: number
     promedio_valoracion: number
     activo: number
+    personalizable: number
     _all: number
   }
 
@@ -5833,6 +5836,7 @@ export namespace Prisma {
     categoria_id?: true
     promedio_valoracion?: true
     activo?: true
+    personalizable?: true
   }
 
   export type ProductoMaxAggregateInputType = {
@@ -5844,6 +5848,7 @@ export namespace Prisma {
     categoria_id?: true
     promedio_valoracion?: true
     activo?: true
+    personalizable?: true
   }
 
   export type ProductoCountAggregateInputType = {
@@ -5855,6 +5860,7 @@ export namespace Prisma {
     categoria_id?: true
     promedio_valoracion?: true
     activo?: true
+    personalizable?: true
     _all?: true
   }
 
@@ -5953,6 +5959,7 @@ export namespace Prisma {
     categoria_id: number
     promedio_valoracion: number
     activo: boolean
+    personalizable: boolean
     _count: ProductoCountAggregateOutputType | null
     _avg: ProductoAvgAggregateOutputType | null
     _sum: ProductoSumAggregateOutputType | null
@@ -5983,6 +5990,7 @@ export namespace Prisma {
     categoria_id?: boolean
     promedio_valoracion?: boolean
     activo?: boolean
+    personalizable?: boolean
     categoria?: boolean | CategoriaDefaultArgs<ExtArgs>
     imagenes?: boolean | Producto$imagenesArgs<ExtArgs>
     etiquetas?: boolean | Producto$etiquetasArgs<ExtArgs>
@@ -6004,9 +6012,10 @@ export namespace Prisma {
     categoria_id?: boolean
     promedio_valoracion?: boolean
     activo?: boolean
+    personalizable?: boolean
   }
 
-  export type ProductoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nombre" | "descripcion" | "precio_base" | "stock" | "categoria_id" | "promedio_valoracion" | "activo", ExtArgs["result"]["producto"]>
+  export type ProductoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nombre" | "descripcion" | "precio_base" | "stock" | "categoria_id" | "promedio_valoracion" | "activo" | "personalizable", ExtArgs["result"]["producto"]>
   export type ProductoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     categoria?: boolean | CategoriaDefaultArgs<ExtArgs>
     imagenes?: boolean | Producto$imagenesArgs<ExtArgs>
@@ -6038,6 +6047,7 @@ export namespace Prisma {
       categoria_id: number
       promedio_valoracion: number
       activo: boolean
+      personalizable: boolean
     }, ExtArgs["result"]["producto"]>
     composites: {}
   }
@@ -6422,6 +6432,7 @@ export namespace Prisma {
     readonly categoria_id: FieldRef<"Producto", 'Int'>
     readonly promedio_valoracion: FieldRef<"Producto", 'Float'>
     readonly activo: FieldRef<"Producto", 'Boolean'>
+    readonly personalizable: FieldRef<"Producto", 'Boolean'>
   }
     
 
@@ -19914,7 +19925,8 @@ export namespace Prisma {
     stock: 'stock',
     categoria_id: 'categoria_id',
     promedio_valoracion: 'promedio_valoracion',
-    activo: 'activo'
+    activo: 'activo',
+    personalizable: 'personalizable'
   };
 
   export type ProductoScalarFieldEnum = (typeof ProductoScalarFieldEnum)[keyof typeof ProductoScalarFieldEnum]
@@ -20417,6 +20429,7 @@ export namespace Prisma {
     categoria_id?: IntFilter<"Producto"> | number
     promedio_valoracion?: FloatFilter<"Producto"> | number
     activo?: BoolFilter<"Producto"> | boolean
+    personalizable?: BoolFilter<"Producto"> | boolean
     categoria?: XOR<CategoriaScalarRelationFilter, CategoriaWhereInput>
     imagenes?: ImagenProductoListRelationFilter
     etiquetas?: ProductoEtiquetaListRelationFilter
@@ -20435,6 +20448,7 @@ export namespace Prisma {
     categoria_id?: SortOrder
     promedio_valoracion?: SortOrder
     activo?: SortOrder
+    personalizable?: SortOrder
     categoria?: CategoriaOrderByWithRelationInput
     imagenes?: ImagenProductoOrderByRelationAggregateInput
     etiquetas?: ProductoEtiquetaOrderByRelationAggregateInput
@@ -20457,6 +20471,7 @@ export namespace Prisma {
     categoria_id?: IntFilter<"Producto"> | number
     promedio_valoracion?: FloatFilter<"Producto"> | number
     activo?: BoolFilter<"Producto"> | boolean
+    personalizable?: BoolFilter<"Producto"> | boolean
     categoria?: XOR<CategoriaScalarRelationFilter, CategoriaWhereInput>
     imagenes?: ImagenProductoListRelationFilter
     etiquetas?: ProductoEtiquetaListRelationFilter
@@ -20475,6 +20490,7 @@ export namespace Prisma {
     categoria_id?: SortOrder
     promedio_valoracion?: SortOrder
     activo?: SortOrder
+    personalizable?: SortOrder
     _count?: ProductoCountOrderByAggregateInput
     _avg?: ProductoAvgOrderByAggregateInput
     _max?: ProductoMaxOrderByAggregateInput
@@ -20494,6 +20510,7 @@ export namespace Prisma {
     categoria_id?: IntWithAggregatesFilter<"Producto"> | number
     promedio_valoracion?: FloatWithAggregatesFilter<"Producto"> | number
     activo?: BoolWithAggregatesFilter<"Producto"> | boolean
+    personalizable?: BoolWithAggregatesFilter<"Producto"> | boolean
   }
 
   export type ImagenProductoWhereInput = {
@@ -21452,6 +21469,7 @@ export namespace Prisma {
     stock: number
     promedio_valoracion?: number
     activo?: boolean
+    personalizable?: boolean
     categoria: CategoriaCreateNestedOneWithoutProductosInput
     imagenes?: ImagenProductoCreateNestedManyWithoutProductoInput
     etiquetas?: ProductoEtiquetaCreateNestedManyWithoutProductoInput
@@ -21470,6 +21488,7 @@ export namespace Prisma {
     categoria_id: number
     promedio_valoracion?: number
     activo?: boolean
+    personalizable?: boolean
     imagenes?: ImagenProductoUncheckedCreateNestedManyWithoutProductoInput
     etiquetas?: ProductoEtiquetaUncheckedCreateNestedManyWithoutProductoInput
     resenas?: ResenaUncheckedCreateNestedManyWithoutProductoInput
@@ -21485,6 +21504,7 @@ export namespace Prisma {
     stock?: IntFieldUpdateOperationsInput | number
     promedio_valoracion?: FloatFieldUpdateOperationsInput | number
     activo?: BoolFieldUpdateOperationsInput | boolean
+    personalizable?: BoolFieldUpdateOperationsInput | boolean
     categoria?: CategoriaUpdateOneRequiredWithoutProductosNestedInput
     imagenes?: ImagenProductoUpdateManyWithoutProductoNestedInput
     etiquetas?: ProductoEtiquetaUpdateManyWithoutProductoNestedInput
@@ -21503,6 +21523,7 @@ export namespace Prisma {
     categoria_id?: IntFieldUpdateOperationsInput | number
     promedio_valoracion?: FloatFieldUpdateOperationsInput | number
     activo?: BoolFieldUpdateOperationsInput | boolean
+    personalizable?: BoolFieldUpdateOperationsInput | boolean
     imagenes?: ImagenProductoUncheckedUpdateManyWithoutProductoNestedInput
     etiquetas?: ProductoEtiquetaUncheckedUpdateManyWithoutProductoNestedInput
     resenas?: ResenaUncheckedUpdateManyWithoutProductoNestedInput
@@ -21520,6 +21541,7 @@ export namespace Prisma {
     categoria_id: number
     promedio_valoracion?: number
     activo?: boolean
+    personalizable?: boolean
   }
 
   export type ProductoUpdateManyMutationInput = {
@@ -21529,6 +21551,7 @@ export namespace Prisma {
     stock?: IntFieldUpdateOperationsInput | number
     promedio_valoracion?: FloatFieldUpdateOperationsInput | number
     activo?: BoolFieldUpdateOperationsInput | boolean
+    personalizable?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ProductoUncheckedUpdateManyInput = {
@@ -21540,6 +21563,7 @@ export namespace Prisma {
     categoria_id?: IntFieldUpdateOperationsInput | number
     promedio_valoracion?: FloatFieldUpdateOperationsInput | number
     activo?: BoolFieldUpdateOperationsInput | boolean
+    personalizable?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ImagenProductoCreateInput = {
@@ -22573,6 +22597,7 @@ export namespace Prisma {
     categoria_id?: SortOrder
     promedio_valoracion?: SortOrder
     activo?: SortOrder
+    personalizable?: SortOrder
   }
 
   export type ProductoAvgOrderByAggregateInput = {
@@ -22592,6 +22617,7 @@ export namespace Prisma {
     categoria_id?: SortOrder
     promedio_valoracion?: SortOrder
     activo?: SortOrder
+    personalizable?: SortOrder
   }
 
   export type ProductoMinOrderByAggregateInput = {
@@ -22603,6 +22629,7 @@ export namespace Prisma {
     categoria_id?: SortOrder
     promedio_valoracion?: SortOrder
     activo?: SortOrder
+    personalizable?: SortOrder
   }
 
   export type ProductoSumOrderByAggregateInput = {
@@ -25185,6 +25212,7 @@ export namespace Prisma {
     stock: number
     promedio_valoracion?: number
     activo?: boolean
+    personalizable?: boolean
     imagenes?: ImagenProductoCreateNestedManyWithoutProductoInput
     etiquetas?: ProductoEtiquetaCreateNestedManyWithoutProductoInput
     resenas?: ResenaCreateNestedManyWithoutProductoInput
@@ -25201,6 +25229,7 @@ export namespace Prisma {
     stock: number
     promedio_valoracion?: number
     activo?: boolean
+    personalizable?: boolean
     imagenes?: ImagenProductoUncheckedCreateNestedManyWithoutProductoInput
     etiquetas?: ProductoEtiquetaUncheckedCreateNestedManyWithoutProductoInput
     resenas?: ResenaUncheckedCreateNestedManyWithoutProductoInput
@@ -25307,6 +25336,7 @@ export namespace Prisma {
     categoria_id?: IntFilter<"Producto"> | number
     promedio_valoracion?: FloatFilter<"Producto"> | number
     activo?: BoolFilter<"Producto"> | boolean
+    personalizable?: BoolFilter<"Producto"> | boolean
   }
 
   export type PromocionUpsertWithWhereUniqueWithoutCategoriaInput = {
@@ -25725,6 +25755,7 @@ export namespace Prisma {
     stock: number
     promedio_valoracion?: number
     activo?: boolean
+    personalizable?: boolean
     categoria: CategoriaCreateNestedOneWithoutProductosInput
     etiquetas?: ProductoEtiquetaCreateNestedManyWithoutProductoInput
     resenas?: ResenaCreateNestedManyWithoutProductoInput
@@ -25742,6 +25773,7 @@ export namespace Prisma {
     categoria_id: number
     promedio_valoracion?: number
     activo?: boolean
+    personalizable?: boolean
     etiquetas?: ProductoEtiquetaUncheckedCreateNestedManyWithoutProductoInput
     resenas?: ResenaUncheckedCreateNestedManyWithoutProductoInput
     pedidoItems?: PedidoItemUncheckedCreateNestedManyWithoutProductoInput
@@ -25772,6 +25804,7 @@ export namespace Prisma {
     stock?: IntFieldUpdateOperationsInput | number
     promedio_valoracion?: FloatFieldUpdateOperationsInput | number
     activo?: BoolFieldUpdateOperationsInput | boolean
+    personalizable?: BoolFieldUpdateOperationsInput | boolean
     categoria?: CategoriaUpdateOneRequiredWithoutProductosNestedInput
     etiquetas?: ProductoEtiquetaUpdateManyWithoutProductoNestedInput
     resenas?: ResenaUpdateManyWithoutProductoNestedInput
@@ -25789,6 +25822,7 @@ export namespace Prisma {
     categoria_id?: IntFieldUpdateOperationsInput | number
     promedio_valoracion?: FloatFieldUpdateOperationsInput | number
     activo?: BoolFieldUpdateOperationsInput | boolean
+    personalizable?: BoolFieldUpdateOperationsInput | boolean
     etiquetas?: ProductoEtiquetaUncheckedUpdateManyWithoutProductoNestedInput
     resenas?: ResenaUncheckedUpdateManyWithoutProductoNestedInput
     pedidoItems?: PedidoItemUncheckedUpdateManyWithoutProductoNestedInput
@@ -25803,6 +25837,7 @@ export namespace Prisma {
     stock: number
     promedio_valoracion?: number
     activo?: boolean
+    personalizable?: boolean
     categoria: CategoriaCreateNestedOneWithoutProductosInput
     imagenes?: ImagenProductoCreateNestedManyWithoutProductoInput
     resenas?: ResenaCreateNestedManyWithoutProductoInput
@@ -25820,6 +25855,7 @@ export namespace Prisma {
     categoria_id: number
     promedio_valoracion?: number
     activo?: boolean
+    personalizable?: boolean
     imagenes?: ImagenProductoUncheckedCreateNestedManyWithoutProductoInput
     resenas?: ResenaUncheckedCreateNestedManyWithoutProductoInput
     pedidoItems?: PedidoItemUncheckedCreateNestedManyWithoutProductoInput
@@ -25864,6 +25900,7 @@ export namespace Prisma {
     stock?: IntFieldUpdateOperationsInput | number
     promedio_valoracion?: FloatFieldUpdateOperationsInput | number
     activo?: BoolFieldUpdateOperationsInput | boolean
+    personalizable?: BoolFieldUpdateOperationsInput | boolean
     categoria?: CategoriaUpdateOneRequiredWithoutProductosNestedInput
     imagenes?: ImagenProductoUpdateManyWithoutProductoNestedInput
     resenas?: ResenaUpdateManyWithoutProductoNestedInput
@@ -25881,6 +25918,7 @@ export namespace Prisma {
     categoria_id?: IntFieldUpdateOperationsInput | number
     promedio_valoracion?: FloatFieldUpdateOperationsInput | number
     activo?: BoolFieldUpdateOperationsInput | boolean
+    personalizable?: BoolFieldUpdateOperationsInput | boolean
     imagenes?: ImagenProductoUncheckedUpdateManyWithoutProductoNestedInput
     resenas?: ResenaUncheckedUpdateManyWithoutProductoNestedInput
     pedidoItems?: PedidoItemUncheckedUpdateManyWithoutProductoNestedInput
@@ -25943,6 +25981,7 @@ export namespace Prisma {
     stock: number
     promedio_valoracion?: number
     activo?: boolean
+    personalizable?: boolean
     categoria: CategoriaCreateNestedOneWithoutProductosInput
     imagenes?: ImagenProductoCreateNestedManyWithoutProductoInput
     etiquetas?: ProductoEtiquetaCreateNestedManyWithoutProductoInput
@@ -25960,6 +25999,7 @@ export namespace Prisma {
     categoria_id: number
     promedio_valoracion?: number
     activo?: boolean
+    personalizable?: boolean
     imagenes?: ImagenProductoUncheckedCreateNestedManyWithoutProductoInput
     etiquetas?: ProductoEtiquetaUncheckedCreateNestedManyWithoutProductoInput
     pedidoItems?: PedidoItemUncheckedCreateNestedManyWithoutProductoInput
@@ -26045,6 +26085,7 @@ export namespace Prisma {
     stock?: IntFieldUpdateOperationsInput | number
     promedio_valoracion?: FloatFieldUpdateOperationsInput | number
     activo?: BoolFieldUpdateOperationsInput | boolean
+    personalizable?: BoolFieldUpdateOperationsInput | boolean
     categoria?: CategoriaUpdateOneRequiredWithoutProductosNestedInput
     imagenes?: ImagenProductoUpdateManyWithoutProductoNestedInput
     etiquetas?: ProductoEtiquetaUpdateManyWithoutProductoNestedInput
@@ -26062,6 +26103,7 @@ export namespace Prisma {
     categoria_id?: IntFieldUpdateOperationsInput | number
     promedio_valoracion?: FloatFieldUpdateOperationsInput | number
     activo?: BoolFieldUpdateOperationsInput | boolean
+    personalizable?: BoolFieldUpdateOperationsInput | boolean
     imagenes?: ImagenProductoUncheckedUpdateManyWithoutProductoNestedInput
     etiquetas?: ProductoEtiquetaUncheckedUpdateManyWithoutProductoNestedInput
     pedidoItems?: PedidoItemUncheckedUpdateManyWithoutProductoNestedInput
@@ -26112,6 +26154,7 @@ export namespace Prisma {
     stock: number
     promedio_valoracion?: number
     activo?: boolean
+    personalizable?: boolean
     categoria: CategoriaCreateNestedOneWithoutProductosInput
     imagenes?: ImagenProductoCreateNestedManyWithoutProductoInput
     etiquetas?: ProductoEtiquetaCreateNestedManyWithoutProductoInput
@@ -26129,6 +26172,7 @@ export namespace Prisma {
     categoria_id: number
     promedio_valoracion?: number
     activo?: boolean
+    personalizable?: boolean
     imagenes?: ImagenProductoUncheckedCreateNestedManyWithoutProductoInput
     etiquetas?: ProductoEtiquetaUncheckedCreateNestedManyWithoutProductoInput
     resenas?: ResenaUncheckedCreateNestedManyWithoutProductoInput
@@ -26225,6 +26269,7 @@ export namespace Prisma {
     stock?: IntFieldUpdateOperationsInput | number
     promedio_valoracion?: FloatFieldUpdateOperationsInput | number
     activo?: BoolFieldUpdateOperationsInput | boolean
+    personalizable?: BoolFieldUpdateOperationsInput | boolean
     categoria?: CategoriaUpdateOneRequiredWithoutProductosNestedInput
     imagenes?: ImagenProductoUpdateManyWithoutProductoNestedInput
     etiquetas?: ProductoEtiquetaUpdateManyWithoutProductoNestedInput
@@ -26242,6 +26287,7 @@ export namespace Prisma {
     categoria_id?: IntFieldUpdateOperationsInput | number
     promedio_valoracion?: FloatFieldUpdateOperationsInput | number
     activo?: BoolFieldUpdateOperationsInput | boolean
+    personalizable?: BoolFieldUpdateOperationsInput | boolean
     imagenes?: ImagenProductoUncheckedUpdateManyWithoutProductoNestedInput
     etiquetas?: ProductoEtiquetaUncheckedUpdateManyWithoutProductoNestedInput
     resenas?: ResenaUncheckedUpdateManyWithoutProductoNestedInput
@@ -26513,6 +26559,7 @@ export namespace Prisma {
     stock: number
     promedio_valoracion?: number
     activo?: boolean
+    personalizable?: boolean
     categoria: CategoriaCreateNestedOneWithoutProductosInput
     imagenes?: ImagenProductoCreateNestedManyWithoutProductoInput
     etiquetas?: ProductoEtiquetaCreateNestedManyWithoutProductoInput
@@ -26530,6 +26577,7 @@ export namespace Prisma {
     categoria_id: number
     promedio_valoracion?: number
     activo?: boolean
+    personalizable?: boolean
     imagenes?: ImagenProductoUncheckedCreateNestedManyWithoutProductoInput
     etiquetas?: ProductoEtiquetaUncheckedCreateNestedManyWithoutProductoInput
     resenas?: ResenaUncheckedCreateNestedManyWithoutProductoInput
@@ -26601,6 +26649,7 @@ export namespace Prisma {
     stock?: IntFieldUpdateOperationsInput | number
     promedio_valoracion?: FloatFieldUpdateOperationsInput | number
     activo?: BoolFieldUpdateOperationsInput | boolean
+    personalizable?: BoolFieldUpdateOperationsInput | boolean
     categoria?: CategoriaUpdateOneRequiredWithoutProductosNestedInput
     imagenes?: ImagenProductoUpdateManyWithoutProductoNestedInput
     etiquetas?: ProductoEtiquetaUpdateManyWithoutProductoNestedInput
@@ -26618,6 +26667,7 @@ export namespace Prisma {
     categoria_id?: IntFieldUpdateOperationsInput | number
     promedio_valoracion?: FloatFieldUpdateOperationsInput | number
     activo?: BoolFieldUpdateOperationsInput | boolean
+    personalizable?: BoolFieldUpdateOperationsInput | boolean
     imagenes?: ImagenProductoUncheckedUpdateManyWithoutProductoNestedInput
     etiquetas?: ProductoEtiquetaUncheckedUpdateManyWithoutProductoNestedInput
     resenas?: ResenaUncheckedUpdateManyWithoutProductoNestedInput
@@ -27020,6 +27070,7 @@ export namespace Prisma {
     stock: number
     promedio_valoracion?: number
     activo?: boolean
+    personalizable?: boolean
     categoria: CategoriaCreateNestedOneWithoutProductosInput
     imagenes?: ImagenProductoCreateNestedManyWithoutProductoInput
     etiquetas?: ProductoEtiquetaCreateNestedManyWithoutProductoInput
@@ -27037,6 +27088,7 @@ export namespace Prisma {
     categoria_id: number
     promedio_valoracion?: number
     activo?: boolean
+    personalizable?: boolean
     imagenes?: ImagenProductoUncheckedCreateNestedManyWithoutProductoInput
     etiquetas?: ProductoEtiquetaUncheckedCreateNestedManyWithoutProductoInput
     resenas?: ResenaUncheckedCreateNestedManyWithoutProductoInput
@@ -27129,6 +27181,7 @@ export namespace Prisma {
     stock?: IntFieldUpdateOperationsInput | number
     promedio_valoracion?: FloatFieldUpdateOperationsInput | number
     activo?: BoolFieldUpdateOperationsInput | boolean
+    personalizable?: BoolFieldUpdateOperationsInput | boolean
     categoria?: CategoriaUpdateOneRequiredWithoutProductosNestedInput
     imagenes?: ImagenProductoUpdateManyWithoutProductoNestedInput
     etiquetas?: ProductoEtiquetaUpdateManyWithoutProductoNestedInput
@@ -27146,6 +27199,7 @@ export namespace Prisma {
     categoria_id?: IntFieldUpdateOperationsInput | number
     promedio_valoracion?: FloatFieldUpdateOperationsInput | number
     activo?: BoolFieldUpdateOperationsInput | boolean
+    personalizable?: BoolFieldUpdateOperationsInput | boolean
     imagenes?: ImagenProductoUncheckedUpdateManyWithoutProductoNestedInput
     etiquetas?: ProductoEtiquetaUncheckedUpdateManyWithoutProductoNestedInput
     resenas?: ResenaUncheckedUpdateManyWithoutProductoNestedInput
@@ -27575,6 +27629,7 @@ export namespace Prisma {
     stock: number
     promedio_valoracion?: number
     activo?: boolean
+    personalizable?: boolean
   }
 
   export type PromocionCreateManyCategoriaInput = {
@@ -27602,6 +27657,7 @@ export namespace Prisma {
     stock?: IntFieldUpdateOperationsInput | number
     promedio_valoracion?: FloatFieldUpdateOperationsInput | number
     activo?: BoolFieldUpdateOperationsInput | boolean
+    personalizable?: BoolFieldUpdateOperationsInput | boolean
     imagenes?: ImagenProductoUpdateManyWithoutProductoNestedInput
     etiquetas?: ProductoEtiquetaUpdateManyWithoutProductoNestedInput
     resenas?: ResenaUpdateManyWithoutProductoNestedInput
@@ -27618,6 +27674,7 @@ export namespace Prisma {
     stock?: IntFieldUpdateOperationsInput | number
     promedio_valoracion?: FloatFieldUpdateOperationsInput | number
     activo?: BoolFieldUpdateOperationsInput | boolean
+    personalizable?: BoolFieldUpdateOperationsInput | boolean
     imagenes?: ImagenProductoUncheckedUpdateManyWithoutProductoNestedInput
     etiquetas?: ProductoEtiquetaUncheckedUpdateManyWithoutProductoNestedInput
     resenas?: ResenaUncheckedUpdateManyWithoutProductoNestedInput
@@ -27634,6 +27691,7 @@ export namespace Prisma {
     stock?: IntFieldUpdateOperationsInput | number
     promedio_valoracion?: FloatFieldUpdateOperationsInput | number
     activo?: BoolFieldUpdateOperationsInput | boolean
+    personalizable?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type PromocionUpdateWithoutCategoriaInput = {

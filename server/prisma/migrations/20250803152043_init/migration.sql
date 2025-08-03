@@ -38,6 +38,7 @@ CREATE TABLE `Producto` (
     `categoria_id` INTEGER NOT NULL,
     `promedio_valoracion` DOUBLE NOT NULL DEFAULT 0,
     `activo` BOOLEAN NOT NULL DEFAULT true,
+    `personalizable` BOOLEAN NOT NULL DEFAULT false,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

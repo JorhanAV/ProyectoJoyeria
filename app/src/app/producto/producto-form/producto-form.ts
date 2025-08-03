@@ -74,6 +74,7 @@ export class ProductoForm {
       stock: [0, [Validators.required, Validators.min(0)]],
       activo: [true],
       imagenes: [[]],
+      personalizable: [false],
     });
   }
 
@@ -121,6 +122,7 @@ export class ProductoForm {
           categoria_id: producto.categoria_id,
           stock: producto.stock,
           activo: producto.activo,
+          personalizable: producto.personalizable,
         });
 
         // Etiquetas

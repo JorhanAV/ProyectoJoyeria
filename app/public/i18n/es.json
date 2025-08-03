@@ -50,8 +50,7 @@
     "CREADA_MENSAJE": "ID: {{id}}",
     "ACTUALIZADA_TITULO": "Promoción actualizada",
     "ACTUALIZADA_MENSAJE": "ID: {{id}}",
-    "VER_DETALLES": "Ver Detalles",
-    "TIPO_DESCUENTO": "Tipo de Descuento"
+    "VER_DETALLES": "Ver Detalles"
   },
   "PRODUCTO_TEXT": {
     "GESTION_PRODUCTOS": "Gestión de Productos",
@@ -77,6 +76,7 @@
     "SELECCIONAR_CATEGORIA": "Seleccionar Categoría",
     "STOCK_DISPONIBLE": "Stock Disponible",
     "PRODUCTO_ACTIVO": "Producto Activo",
+    "PRODUCTO_PERSONALIZABLE": "Producto Personalizable",
     "PROMEDIO_VALORACIONES": "Promedio de Valoraciones",
     "STOCK_DEBE_SER_MAYOR_O_IGUAL_A_0": "El stock debe ser mayor o igual a 0.",
     "CREAR": "Crear",

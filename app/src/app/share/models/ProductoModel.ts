@@ -15,6 +15,7 @@ export interface ProductoModel {
   categoria_id: number;
   promedio_valoracion: number;
   activo: boolean;
+  personalizable: boolean;
   categoria: CategoriaModel;
   imagenes: ImagenProductoModel[];
   etiquetas: ProductoEtiquetaModel[];
