@@ -154,12 +154,13 @@ CREATE TABLE `Pedido` (
 
 -- CreateTable
 CREATE TABLE `PedidoItem` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
     `pedido_id` INTEGER NOT NULL,
-    `producto_id` INTEGER NOT NULL,
+    `producto_id` INTEGER NULL,
     `cantidad` INTEGER NOT NULL,
     `producto_personalizado_id` INTEGER NULL,
 
-    PRIMARY KEY (`pedido_id`, `producto_id`)
+    PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
@@ -235,7 +236,7 @@ ALTER TABLE `Pedido` ADD CONSTRAINT `Pedido_usuario_id_fkey` FOREIGN KEY (`usuar
 ALTER TABLE `PedidoItem` ADD CONSTRAINT `PedidoItem_pedido_id_fkey` FOREIGN KEY (`pedido_id`) REFERENCES `Pedido`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `PedidoItem` ADD CONSTRAINT `PedidoItem_producto_id_fkey` FOREIGN KEY (`producto_id`) REFERENCES `Producto`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `PedidoItem` ADD CONSTRAINT `PedidoItem_producto_id_fkey` FOREIGN KEY (`producto_id`) REFERENCES `Producto`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `PedidoItem` ADD CONSTRAINT `PedidoItem_producto_personalizado_id_fkey` FOREIGN KEY (`producto_personalizado_id`) REFERENCES `ProductoPersonalizable`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;

@@ -232,6 +232,7 @@ exports.Prisma.PedidoScalarFieldEnum = {
 };
 
 exports.Prisma.PedidoItemScalarFieldEnum = {
+  id: 'id',
   pedido_id: 'pedido_id',
   producto_id: 'producto_id',
   cantidad: 'cantidad',
