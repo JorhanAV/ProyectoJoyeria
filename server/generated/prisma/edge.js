@@ -346,7 +346,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "D:\\UTN\\XI Cuatrimestre\\ProyectoJoyeria\\server\\generated\\prisma",
+      "value": "C:\\Angular\\ProyectoJoyeria\\server\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -360,7 +360,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "D:\\UTN\\XI Cuatrimestre\\ProyectoJoyeria\\server\\prisma\\schema.prisma",
+    "sourceFilePath": "C:\\Angular\\ProyectoJoyeria\\server\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
