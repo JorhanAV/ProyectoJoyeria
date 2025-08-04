@@ -113,12 +113,12 @@
     "SUBTOTAL": "Subtotal",
     "IMPUESTOS": "Impuestos",
     "FECHA": "Fecha",
-    "VOLVER": "Volver",
+    "VOLVER": "Volver", 
     "PRODUCTO": "Producto"
   },
 
   "ACERCA_DE_TEXT": {
-    "ACERCA_DE": "About Us",
+    "ACERCA_DE": "Sobre Nosotros",
     "VISION": "Visión",
     "MISION": "Misión",
     "NUESTRA_PASION_POR_LA_ELEGANCIA": "Nuestra Pasión por la Elegancia",

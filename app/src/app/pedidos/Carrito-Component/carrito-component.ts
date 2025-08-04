@@ -56,12 +56,6 @@ export class CarritoComponent implements OnInit {
         direccion_envio: this.direccion_envio,
         metodo_pago: this.metodo_pago, // debe ser un string: 'Tarjeta', 'Efectivo', etc.
         items: this.cartService.itemsCart().map((item) => {
-          if (item.producto_personalizado_id) {
-            return {
-              producto_personalizado_id: item.producto_personalizado_id,
-              cantidad: item.cantidad,
-            };
-          }
           return {
             producto_id: item.producto.id,
             cantidad: item.cantidad,
