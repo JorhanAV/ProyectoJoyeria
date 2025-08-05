@@ -9,4 +9,5 @@ export const environment = {
   endPointCategoria: 'categoria',
   endPointAtributo: 'atributos',
   endPointValorAtributo: 'valorAtributos',
+  endPointProductoPersonalizable: 'productoPersonalizable',
 };

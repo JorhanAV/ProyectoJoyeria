@@ -96,6 +96,7 @@
     "CREAR_PRODUCTO_TITULO": "Crear Producto",
     "CREAR_PRODUCTO_MENSAJE": "Producto creado: {{nombre}}",
     "VER_DETALLES": "Ver Detalles"
+
   },
 
   "PEDIDO_TEXT": {
