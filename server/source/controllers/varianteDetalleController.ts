@@ -15,21 +15,28 @@ export class VarianteDetalleController {
   };
 
   create = async (request: Request, response: Response, next: NextFunction) => {
-    try {
-      const { id_productoPersonalizable, id_valor } = request.body;
-      const nuevoDetalle = await this.prisma.varianteDetalle.create({
-        data: {
-            productoPersonalizable:{
-                connect: { id: id_productoPersonalizable }
+  try {
+    const { id_productoPersonalizable, id_valores } = request.body;
+
+    const nuevoDetalle = await this.prisma.$transaction(
+      id_valores.map((id_valor: number) =>
+        this.prisma.varianteDetalle.create({
+          data: {
+            productoPersonalizable: {
+              connect: { id: id_productoPersonalizable },
             },
             valor: {
-                connect: { id: id_valor }
-            }
-        }
-      });
-      response.status(201).json(nuevoDetalle);
-    } catch (error) {
-      next(error);
-    }
-  };
+              connect: { id: id_valor },
+            },
+          },
+        })
+      )
+    );
+
+    response.status(201).json(nuevoDetalle);
+  } catch (error) {
+    next(error);
+  }
+};
+
 }

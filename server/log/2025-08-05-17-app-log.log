@@ -1,0 +1,2 @@
+2025-08-05 17:31:17.699 error: 	jorha--Se produjo un error interno del servidor All elements of the array need to be Prisma Client promises. Hint: Please make sure you are not awaiting the Prisma client calls you intended to pass in the $transaction function.
+2025-08-05 17:33:06.120 error: 	jorha--Se produjo un error interno del servidor All elements of the array need to be Prisma Client promises. Hint: Please make sure you are not awaiting the Prisma client calls you intended to pass in the $transaction function.
