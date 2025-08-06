@@ -192,7 +192,8 @@ exports.Prisma.ValorAtributoScalarFieldEnum = {
   id: 'id',
   id_atributo: 'id_atributo',
   valor: 'valor',
-  precio_extra: 'precio_extra'
+  precio_extra: 'precio_extra',
+  imagen: 'imagen'
 };
 
 exports.Prisma.VarianteDetalleScalarFieldEnum = {
@@ -303,7 +304,8 @@ exports.Prisma.AtributoOrderByRelevanceFieldEnum = {
 };
 
 exports.Prisma.ValorAtributoOrderByRelevanceFieldEnum = {
-  valor: 'valor'
+  valor: 'valor',
+  imagen: 'imagen'
 };
 
 exports.Prisma.PromocionOrderByRelevanceFieldEnum = {

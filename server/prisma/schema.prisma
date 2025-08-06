@@ -146,6 +146,7 @@ model ValorAtributo {
   id_atributo  Int
   valor        String
   precio_extra Float    @default(0)
+  imagen       String?  @default("image-not-found.jpg")
   atributo     Atributo @relation(fields: [id_atributo], references: [id])
 
   varianteDetalles VarianteDetalle[] @relation("ValorAtributoToVarianteDetalle")

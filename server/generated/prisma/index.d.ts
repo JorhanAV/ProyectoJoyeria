@@ -11892,6 +11892,7 @@ export namespace Prisma {
     id_atributo: number | null
     valor: string | null
     precio_extra: number | null
+    imagen: string | null
   }
 
   export type ValorAtributoMaxAggregateOutputType = {
@@ -11899,6 +11900,7 @@ export namespace Prisma {
     id_atributo: number | null
     valor: string | null
     precio_extra: number | null
+    imagen: string | null
   }
 
   export type ValorAtributoCountAggregateOutputType = {
@@ -11906,6 +11908,7 @@ export namespace Prisma {
     id_atributo: number
     valor: number
     precio_extra: number
+    imagen: number
     _all: number
   }
 
@@ -11927,6 +11930,7 @@ export namespace Prisma {
     id_atributo?: true
     valor?: true
     precio_extra?: true
+    imagen?: true
   }
 
   export type ValorAtributoMaxAggregateInputType = {
@@ -11934,6 +11938,7 @@ export namespace Prisma {
     id_atributo?: true
     valor?: true
     precio_extra?: true
+    imagen?: true
   }
 
   export type ValorAtributoCountAggregateInputType = {
@@ -11941,6 +11946,7 @@ export namespace Prisma {
     id_atributo?: true
     valor?: true
     precio_extra?: true
+    imagen?: true
     _all?: true
   }
 
@@ -12035,6 +12041,7 @@ export namespace Prisma {
     id_atributo: number
     valor: string
     precio_extra: number
+    imagen: string | null
     _count: ValorAtributoCountAggregateOutputType | null
     _avg: ValorAtributoAvgAggregateOutputType | null
     _sum: ValorAtributoSumAggregateOutputType | null
@@ -12061,6 +12068,7 @@ export namespace Prisma {
     id_atributo?: boolean
     valor?: boolean
     precio_extra?: boolean
+    imagen?: boolean
     atributo?: boolean | AtributoDefaultArgs<ExtArgs>
     varianteDetalles?: boolean | ValorAtributo$varianteDetallesArgs<ExtArgs>
     _count?: boolean | ValorAtributoCountOutputTypeDefaultArgs<ExtArgs>
@@ -12073,9 +12081,10 @@ export namespace Prisma {
     id_atributo?: boolean
     valor?: boolean
     precio_extra?: boolean
+    imagen?: boolean
   }
 
-  export type ValorAtributoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "id_atributo" | "valor" | "precio_extra", ExtArgs["result"]["valorAtributo"]>
+  export type ValorAtributoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "id_atributo" | "valor" | "precio_extra" | "imagen", ExtArgs["result"]["valorAtributo"]>
   export type ValorAtributoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     atributo?: boolean | AtributoDefaultArgs<ExtArgs>
     varianteDetalles?: boolean | ValorAtributo$varianteDetallesArgs<ExtArgs>
@@ -12093,6 +12102,7 @@ export namespace Prisma {
       id_atributo: number
       valor: string
       precio_extra: number
+      imagen: string | null
     }, ExtArgs["result"]["valorAtributo"]>
     composites: {}
   }
@@ -12468,6 +12478,7 @@ export namespace Prisma {
     readonly id_atributo: FieldRef<"ValorAtributo", 'Int'>
     readonly valor: FieldRef<"ValorAtributo", 'String'>
     readonly precio_extra: FieldRef<"ValorAtributo", 'Float'>
+    readonly imagen: FieldRef<"ValorAtributo", 'String'>
   }
     
 
@@ -20036,7 +20047,8 @@ export namespace Prisma {
     id: 'id',
     id_atributo: 'id_atributo',
     valor: 'valor',
-    precio_extra: 'precio_extra'
+    precio_extra: 'precio_extra',
+    imagen: 'imagen'
   };
 
   export type ValorAtributoScalarFieldEnum = (typeof ValorAtributoScalarFieldEnum)[keyof typeof ValorAtributoScalarFieldEnum]
@@ -20201,7 +20213,8 @@ export namespace Prisma {
 
 
   export const ValorAtributoOrderByRelevanceFieldEnum: {
-    valor: 'valor'
+    valor: 'valor',
+    imagen: 'imagen'
   };
 
   export type ValorAtributoOrderByRelevanceFieldEnum = (typeof ValorAtributoOrderByRelevanceFieldEnum)[keyof typeof ValorAtributoOrderByRelevanceFieldEnum]
@@ -20860,6 +20873,7 @@ export namespace Prisma {
     id_atributo?: IntFilter<"ValorAtributo"> | number
     valor?: StringFilter<"ValorAtributo"> | string
     precio_extra?: FloatFilter<"ValorAtributo"> | number
+    imagen?: StringNullableFilter<"ValorAtributo"> | string | null
     atributo?: XOR<AtributoScalarRelationFilter, AtributoWhereInput>
     varianteDetalles?: VarianteDetalleListRelationFilter
   }
@@ -20869,6 +20883,7 @@ export namespace Prisma {
     id_atributo?: SortOrder
     valor?: SortOrder
     precio_extra?: SortOrder
+    imagen?: SortOrderInput | SortOrder
     atributo?: AtributoOrderByWithRelationInput
     varianteDetalles?: VarianteDetalleOrderByRelationAggregateInput
     _relevance?: ValorAtributoOrderByRelevanceInput
@@ -20882,6 +20897,7 @@ export namespace Prisma {
     id_atributo?: IntFilter<"ValorAtributo"> | number
     valor?: StringFilter<"ValorAtributo"> | string
     precio_extra?: FloatFilter<"ValorAtributo"> | number
+    imagen?: StringNullableFilter<"ValorAtributo"> | string | null
     atributo?: XOR<AtributoScalarRelationFilter, AtributoWhereInput>
     varianteDetalles?: VarianteDetalleListRelationFilter
   }, "id">
@@ -20891,6 +20907,7 @@ export namespace Prisma {
     id_atributo?: SortOrder
     valor?: SortOrder
     precio_extra?: SortOrder
+    imagen?: SortOrderInput | SortOrder
     _count?: ValorAtributoCountOrderByAggregateInput
     _avg?: ValorAtributoAvgOrderByAggregateInput
     _max?: ValorAtributoMaxOrderByAggregateInput
@@ -20906,6 +20923,7 @@ export namespace Prisma {
     id_atributo?: IntWithAggregatesFilter<"ValorAtributo"> | number
     valor?: StringWithAggregatesFilter<"ValorAtributo"> | string
     precio_extra?: FloatWithAggregatesFilter<"ValorAtributo"> | number
+    imagen?: StringNullableWithAggregatesFilter<"ValorAtributo"> | string | null
   }
 
   export type VarianteDetalleWhereInput = {
@@ -21878,6 +21896,7 @@ export namespace Prisma {
   export type ValorAtributoCreateInput = {
     valor: string
     precio_extra?: number
+    imagen?: string | null
     atributo: AtributoCreateNestedOneWithoutValoresInput
     varianteDetalles?: VarianteDetalleCreateNestedManyWithoutValorInput
   }
@@ -21887,12 +21906,14 @@ export namespace Prisma {
     id_atributo: number
     valor: string
     precio_extra?: number
+    imagen?: string | null
     varianteDetalles?: VarianteDetalleUncheckedCreateNestedManyWithoutValorInput
   }
 
   export type ValorAtributoUpdateInput = {
     valor?: StringFieldUpdateOperationsInput | string
     precio_extra?: FloatFieldUpdateOperationsInput | number
+    imagen?: NullableStringFieldUpdateOperationsInput | string | null
     atributo?: AtributoUpdateOneRequiredWithoutValoresNestedInput
     varianteDetalles?: VarianteDetalleUpdateManyWithoutValorNestedInput
   }
@@ -21902,6 +21923,7 @@ export namespace Prisma {
     id_atributo?: IntFieldUpdateOperationsInput | number
     valor?: StringFieldUpdateOperationsInput | string
     precio_extra?: FloatFieldUpdateOperationsInput | number
+    imagen?: NullableStringFieldUpdateOperationsInput | string | null
     varianteDetalles?: VarianteDetalleUncheckedUpdateManyWithoutValorNestedInput
   }
 
@@ -21910,11 +21932,13 @@ export namespace Prisma {
     id_atributo: number
     valor: string
     precio_extra?: number
+    imagen?: string | null
   }
 
   export type ValorAtributoUpdateManyMutationInput = {
     valor?: StringFieldUpdateOperationsInput | string
     precio_extra?: FloatFieldUpdateOperationsInput | number
+    imagen?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ValorAtributoUncheckedUpdateManyInput = {
@@ -21922,6 +21946,7 @@ export namespace Prisma {
     id_atributo?: IntFieldUpdateOperationsInput | number
     valor?: StringFieldUpdateOperationsInput | string
     precio_extra?: FloatFieldUpdateOperationsInput | number
+    imagen?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type VarianteDetalleCreateInput = {
@@ -22982,6 +23007,21 @@ export namespace Prisma {
     id?: SortOrder
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type AtributoScalarRelationFilter = {
     is?: AtributoWhereInput
     isNot?: AtributoWhereInput
@@ -22998,6 +23038,7 @@ export namespace Prisma {
     id_atributo?: SortOrder
     valor?: SortOrder
     precio_extra?: SortOrder
+    imagen?: SortOrder
   }
 
   export type ValorAtributoAvgOrderByAggregateInput = {
@@ -23011,6 +23052,7 @@ export namespace Prisma {
     id_atributo?: SortOrder
     valor?: SortOrder
     precio_extra?: SortOrder
+    imagen?: SortOrder
   }
 
   export type ValorAtributoMinOrderByAggregateInput = {
@@ -23018,12 +23060,31 @@ export namespace Prisma {
     id_atributo?: SortOrder
     valor?: SortOrder
     precio_extra?: SortOrder
+    imagen?: SortOrder
   }
 
   export type ValorAtributoSumOrderByAggregateInput = {
     id?: SortOrder
     id_atributo?: SortOrder
     precio_extra?: SortOrder
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type ValorAtributoScalarRelationFilter = {
@@ -24367,6 +24428,10 @@ export namespace Prisma {
     connect?: VarianteDetalleWhereUniqueInput | VarianteDetalleWhereUniqueInput[]
   }
 
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
   export type AtributoUpdateOneRequiredWithoutValoresNestedInput = {
     create?: XOR<AtributoCreateWithoutValoresInput, AtributoUncheckedCreateWithoutValoresInput>
     connectOrCreate?: AtributoCreateOrConnectWithoutValoresInput
@@ -24971,6 +25036,39 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type NestedEnumTipoPromocionFilter<$PrismaModel = never> = {
@@ -26412,6 +26510,7 @@ export namespace Prisma {
   export type ValorAtributoCreateWithoutAtributoInput = {
     valor: string
     precio_extra?: number
+    imagen?: string | null
     varianteDetalles?: VarianteDetalleCreateNestedManyWithoutValorInput
   }
 
@@ -26419,6 +26518,7 @@ export namespace Prisma {
     id?: number
     valor: string
     precio_extra?: number
+    imagen?: string | null
     varianteDetalles?: VarianteDetalleUncheckedCreateNestedManyWithoutValorInput
   }
 
@@ -26456,6 +26556,7 @@ export namespace Prisma {
     id_atributo?: IntFilter<"ValorAtributo"> | number
     valor?: StringFilter<"ValorAtributo"> | string
     precio_extra?: FloatFilter<"ValorAtributo"> | number
+    imagen?: StringNullableFilter<"ValorAtributo"> | string | null
   }
 
   export type AtributoCreateWithoutValoresInput = {
@@ -26534,6 +26635,7 @@ export namespace Prisma {
   export type ValorAtributoCreateWithoutVarianteDetallesInput = {
     valor: string
     precio_extra?: number
+    imagen?: string | null
     atributo: AtributoCreateNestedOneWithoutValoresInput
   }
 
@@ -26542,6 +26644,7 @@ export namespace Prisma {
     id_atributo: number
     valor: string
     precio_extra?: number
+    imagen?: string | null
   }
 
   export type ValorAtributoCreateOrConnectWithoutVarianteDetallesInput = {
@@ -26587,6 +26690,7 @@ export namespace Prisma {
   export type ValorAtributoUpdateWithoutVarianteDetallesInput = {
     valor?: StringFieldUpdateOperationsInput | string
     precio_extra?: FloatFieldUpdateOperationsInput | number
+    imagen?: NullableStringFieldUpdateOperationsInput | string | null
     atributo?: AtributoUpdateOneRequiredWithoutValoresNestedInput
   }
 
@@ -26595,6 +26699,7 @@ export namespace Prisma {
     id_atributo?: IntFieldUpdateOperationsInput | number
     valor?: StringFieldUpdateOperationsInput | string
     precio_extra?: FloatFieldUpdateOperationsInput | number
+    imagen?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ProductoPersonalizableUpsertWithoutVariantesInput = {
@@ -28092,11 +28197,13 @@ export namespace Prisma {
     id?: number
     valor: string
     precio_extra?: number
+    imagen?: string | null
   }
 
   export type ValorAtributoUpdateWithoutAtributoInput = {
     valor?: StringFieldUpdateOperationsInput | string
     precio_extra?: FloatFieldUpdateOperationsInput | number
+    imagen?: NullableStringFieldUpdateOperationsInput | string | null
     varianteDetalles?: VarianteDetalleUpdateManyWithoutValorNestedInput
   }
 
@@ -28104,6 +28211,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     valor?: StringFieldUpdateOperationsInput | string
     precio_extra?: FloatFieldUpdateOperationsInput | number
+    imagen?: NullableStringFieldUpdateOperationsInput | string | null
     varianteDetalles?: VarianteDetalleUncheckedUpdateManyWithoutValorNestedInput
   }
 
@@ -28111,6 +28219,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     valor?: StringFieldUpdateOperationsInput | string
     precio_extra?: FloatFieldUpdateOperationsInput | number
+    imagen?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type VarianteDetalleCreateManyValorInput = {
