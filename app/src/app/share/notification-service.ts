@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+
 export enum TipoMessage {
   success = 'success',
   info = 'info',
@@ -12,7 +14,8 @@ export enum TipoMessage {
 })
 export class NotificationService {
 
-  constructor(private snackBar: MatSnackBar, private router: Router) { }
+  constructor(private snackBar: MatSnackBar, private router: Router, private translate: TranslateService
+  ) { }
 
   /**
    * Muestra un mensaje de notificación simple

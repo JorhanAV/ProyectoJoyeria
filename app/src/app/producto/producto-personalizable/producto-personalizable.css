@@ -6,12 +6,13 @@ h2 {
 }
 
 .dialogo-personalizacion {
-  max-width: 600px;
+  max-width: 960px;
   margin: 0 auto;
   padding: 24px;
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  overflow-x: hidden;
 }
 
 .grupo-atributo {
@@ -50,4 +51,28 @@ select:focus {
 button[mat-button],
 button[mat-raised-button] {
   min-width: 100px;
+}
+
+.encabezado {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.encabezado h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #333;
+  font-weight: 600;
+}
+
+.cerrar {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+  margin-left: auto;
 }

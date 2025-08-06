@@ -8,8 +8,9 @@ import { ValorAtributoModel } from '../../share/models/ValorAtributoModel';
 import { ProductoPersonalizableService } from '../../share/services/productoPersonalizable.service';
 import { NotificationService } from '../../share/notification-service';
 import { TranslateService } from '@ngx-translate/core';
-import { ProductoPersonalizableModel } from '../../share/models/ProductoPersonalizableModel';
 import { ProductoPersonalizableCreateModel } from '../../share/models/ProductoPersonalizableDTO';
+import { VarianteDetalleService } from '../../share/services/varianteDetalle.service';
+import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-producto-personalizable',
@@ -27,6 +28,7 @@ export class ProductoPersonalizable {
     private atributoService: AtributoService,
     private valorAtributoService: ValorAtributoModelService,
     private productoPersonalizableService: ProductoPersonalizableService,
+    private varianteDetalleService: VarianteDetalleService,
     private noti: NotificationService,
     private translate: TranslateService,
 
@@ -51,7 +53,7 @@ export class ProductoPersonalizable {
 
   obtenerOpciones(id_atributo: number): ValorAtributoModel[] {
     if (id_atributo === undefined) {
-      console.warn('ID de atributo no definido');
+      console.warn('ID de atributo no definido'); 
       return [];
     }
     return this.valoresAtributos.filter(
@@ -69,7 +71,11 @@ export class ProductoPersonalizable {
 
     // Validación: asegurarse de que todos los atributos tengan selección
     if (valoresSeleccionados.length !== this.atributos.length) {
-      alert('Por favor selecciona una opción para cada atributo.');
+      this.noti.error(
+        this.translate.instant('PRODUCTO_TEXT.ATRIBUTO_REQUERIDO_TITULO'),
+        this.translate.instant('PRODUCTO_TEXT.ATRIBUTO_REQUERIDO_MENSAJE'),
+        2000
+      );
       return;
     }
 
@@ -98,13 +104,28 @@ export class ProductoPersonalizable {
 
     this.productoPersonalizableService
       .createProductoPersonalizable(productoPersonalizado)
-      .subscribe((productoCreado) => {
-        const nuevoId = productoCreado.id;
-        console.log('Producto personalizado creado con ID:', nuevoId);
-      });
+      .pipe(
+        switchMap((productoCreado) => {
+          const nuevoId = productoCreado.id;
+          const id_valores = valoresSeleccionados.map((v) => v.id);
+          console.log('Producto personalizado creado con ID:', nuevoId);
+          console.log('IDs de valores seleccionados:', id_valores);
 
-    // Podés enviarlo al servicio si querés persistirlo
-    // this.productoPersonalizableService.create(productoPersonalizado).subscribe(...);
+          // Aquí llamamos al servicio para guardar los detalles
+          return this.varianteDetalleService.createBatch({
+            id_productoPersonalizable: nuevoId,
+            id_valores,
+          });
+        })
+      )
+      .subscribe({
+        next: (detallesCreados) => {
+          console.log('Detalles de variantes creados:', detallesCreados);
+        },
+        error: (err) => {
+          console.error('Error al crear producto o variantes:', err);
+        },
+      });
 
     this.dialogRef.close(productoPersonalizado);
   }

@@ -10,4 +10,5 @@ export const environment = {
   endPointAtributo: 'atributos',
   endPointValorAtributo: 'valorAtributos',
   endPointProductoPersonalizable: 'productoPersonalizable',
+  endPointVarianteDetalle: 'varianteDetalle',
 };

@@ -1,25 +1,38 @@
 <div class="dialogo-personalizacion">
-  <h2>Personalizar {{ producto.nombre }}</h2>
+  <div class="encabezado">
+    <h2>{{ 'PRODUCTO_TEXT.PERSONALIZAR' | translate }} {{ producto.nombre }}</h2>
+    <button class="cerrar" (click)="cancelar()">✕</button>
+  </div>
 
   <div *ngIf="atributos.length > 0 && valoresAtributos.length > 0">
     <div *ngFor="let atributo of atributos" class="grupo-atributo">
       <label>{{ atributo.nombre }}</label>
-      
+
       <select
         [(ngModel)]="seleccionados[atributo.id]"
         (change)="seleccionarValor(atributo.id, seleccionados[atributo.id])"
         [ngModelOptions]="{ standalone: true }"
       >
-        <option [ngValue]="undefined">-- Selecciona una opción --</option>
-        <option *ngFor="let opcion of obtenerOpciones(atributo.id)" [ngValue]="opcion">
-          {{ opcion.valor }} <span *ngIf="opcion.precio_extra > 0">(+₡{{ opcion.precio_extra }})</span>
+        <option [ngValue]="undefined">-- {{ 'PRODUCTO_TEXT.SELECCIONA_UNA_OPCION' | translate }} --</option>
+        <option
+          *ngFor="let opcion of obtenerOpciones(atributo.id)"
+          [ngValue]="opcion"
+        >
+          {{ opcion.valor }}
+          <span *ngIf="opcion.precio_extra > 0"
+            >(+₡{{ opcion.precio_extra }})</span
+          >
         </option>
       </select>
     </div>
   </div>
 
   <div class="acciones">
-    <button mat-button (click)="cancelar()">Cancelar</button>
-    <button mat-raised-button color="primary" (click)="confirmar()">Confirmar</button>
+    <button mat-raised-button color="primary" (click)="confirmar()">
+      {{ 'PRODUCTO_TEXT.CONFIRMAR' | translate }}
+    </button>
+    <button mat-raised-button color="primary" (click)="confirmar()">
+      {{ 'PRODUCTO_TEXT.OMITIR_PERSONALIZACION' | translate }}
+    </button>
   </div>
 </div>

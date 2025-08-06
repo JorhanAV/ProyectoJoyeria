@@ -94,7 +94,13 @@
     "ACTUALIZAR_PRODUCTO_MENSAJE": "Product updated: {{nombre}}",
     "CREAR_PRODUCTO_TITULO": "Create Product",
     "CREAR_PRODUCTO_MENSAJE": "Product created: {{nombre}}",
-    "VER_DETALLES": "View Details"
+    "VER_DETALLES": "View Details",
+    "ATRIBUTO_REQUERIDO_TITULO": "No attributes.",
+    "ATRIBUTO_REQUERIDO_MENSAJE": "You must select at least one attribute.",
+    "CONFIRMAR": "Confirm",
+    "OMITIR_PERSONALIZACION": "Skip Customization",
+    "SELECCIONA_UNA_OPCION": "Select an option",
+    "PERSONALIZAR": "Customize"
   },
 
   "PEDIDO_TEXT": {
