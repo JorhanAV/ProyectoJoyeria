@@ -1,6 +1,8 @@
 <div class="dialogo-personalizacion">
   <div class="encabezado">
-    <h2>{{ 'PRODUCTO_TEXT.PERSONALIZAR' | translate }} {{ producto.nombre }}</h2>
+    <h2>
+      {{ 'PRODUCTO_TEXT.PERSONALIZAR' | translate }} {{ producto.nombre }}
+    </h2>
     <button class="cerrar" (click)="cancelar()">✕</button>
   </div>
 
@@ -13,7 +15,9 @@
         (change)="seleccionarValor(atributo.id, seleccionados[atributo.id])"
         [ngModelOptions]="{ standalone: true }"
       >
-        <option [ngValue]="undefined">-- {{ 'PRODUCTO_TEXT.SELECCIONA_UNA_OPCION' | translate }} --</option>
+        <option [ngValue]="undefined">
+          -- {{ 'PRODUCTO_TEXT.SELECCIONA_UNA_OPCION' | translate }} --
+        </option>
         <option
           *ngFor="let opcion of obtenerOpciones(atributo.id)"
           [ngValue]="opcion"
@@ -24,6 +28,16 @@
           >
         </option>
       </select>
+    </div>
+  </div>
+  <div *ngIf="getImagenesSeleccionadas().length > 0" class="galeria-imagenes">
+    <h3>{{ 'PRODUCTO_TEXT.IMAGENES_REFERENCIA' | translate }}</h3>
+    <div class="contenedor-imagenes">
+      <img
+        *ngFor="let img of getImagenesSeleccionadas()"
+        [src]="img"
+        alt="Imagen de referencia"
+      />
     </div>
   </div>
 

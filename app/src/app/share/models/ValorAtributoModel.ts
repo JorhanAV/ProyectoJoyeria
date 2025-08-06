@@ -6,6 +6,7 @@ export interface ValorAtributoModel {
   id_atributo: number;
   valor: string;
   precio_extra: number;
+  imagen: string;
   atributo: AtributoModel;
   varianteDetalles: VarianteDetalleModel[];
 }

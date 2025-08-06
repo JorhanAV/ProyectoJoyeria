@@ -51,9 +51,15 @@ export class ProductoPersonalizable {
     });
   }
 
+  getImagenesSeleccionadas(): string[] {
+    return Object.values(this.seleccionados)
+      .filter((v) => v?.imagen)
+      .map((v) => `http://localhost:3000/imagenes/${v.imagen}`);
+  }
+
   obtenerOpciones(id_atributo: number): ValorAtributoModel[] {
     if (id_atributo === undefined) {
-      console.warn('ID de atributo no definido'); 
+      console.warn('ID de atributo no definido');
       return [];
     }
     return this.valoresAtributos.filter(
