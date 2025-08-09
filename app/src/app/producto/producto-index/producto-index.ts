@@ -100,7 +100,8 @@ export class ProductoIndex {
   comprar(producto: ProductoModel) {
   if (producto.personalizable) {
     const dialogRef = this.dialog.open(ProductoPersonalizable, {
-      width: '400px',
+      width: '1000px',
+      maxWidth: '95vw',
       data: producto,
     });
 

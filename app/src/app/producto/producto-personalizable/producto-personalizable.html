@@ -10,24 +10,27 @@
     <div *ngFor="let atributo of atributos" class="grupo-atributo">
       <label>{{ atributo.nombre }}</label>
 
-      <select
-        [(ngModel)]="seleccionados[atributo.id]"
-        (change)="seleccionarValor(atributo.id, seleccionados[atributo.id])"
-        [ngModelOptions]="{ standalone: true }"
-      >
-        <option [ngValue]="undefined">
-          -- {{ 'PRODUCTO_TEXT.SELECCIONA_UNA_OPCION' | translate }} --
-        </option>
-        <option
-          *ngFor="let opcion of obtenerOpciones(atributo.id)"
-          [ngValue]="opcion"
+      <div class="selector-con-precio">
+        <select
+          [(ngModel)]="seleccionados[atributo.id]"
+          (change)="seleccionarValor(atributo.id, seleccionados[atributo.id])"
+          [ngModelOptions]="{ standalone: true }"
         >
-          {{ opcion.valor }}
-          <span *ngIf="opcion.precio_extra > 0"
-            >(+₡{{ opcion.precio_extra }})</span
+          <option [ngValue]="undefined">
+            -- {{ 'PRODUCTO_TEXT.SELECCIONA_UNA_OPCION' | translate }} --
+          </option>
+          <option
+            *ngFor="let opcion of obtenerOpciones(atributo.id)"
+            [ngValue]="opcion"
           >
-        </option>
-      </select>
+            {{ opcion.valor }}
+          </option>
+        </select>
+
+        <span class="precio-extra" *ngIf="getPrecioExtra(atributo.id) > 0">
+          +₡{{ getPrecioExtra(atributo.id) }}
+        </span>
+      </div>
     </div>
   </div>
   <div *ngIf="getImagenesSeleccionadas().length > 0" class="galeria-imagenes">
@@ -41,11 +44,25 @@
     </div>
   </div>
 
+  <div class="desglose-precio">
+    <h4>{{ 'PRODUCTO_TEXT.DESGLOSE_PRECIO' | translate }}</h4>
+    <p>₡{{ producto.precio_base }} {{ 'PRODUCTO_TEXT.PRECIO_BASE' | translate }}</p>
+    <p>
+      ₡{{ calcularPrecioExtra() }} {{ 'PRODUCTO_TEXT.PRECIO_PERSONALIZACION' |
+      translate }}
+    </p>
+    <hr />
+    <p>
+      <strong>₡{{ calcularTotal() }}</strong> {{ 'PRODUCTO_TEXT.PRECIO_TOTAL' |
+      translate }}
+    </p>
+  </div>
+
   <div class="acciones">
     <button mat-raised-button color="primary" (click)="confirmar()">
       {{ 'PRODUCTO_TEXT.CONFIRMAR' | translate }}
     </button>
-    <button mat-raised-button color="primary" (click)="confirmar()">
+    <button mat-raised-button color="primary" (click)="cancelar()">
       {{ 'PRODUCTO_TEXT.OMITIR_PERSONALIZACION' | translate }}
     </button>
   </div>

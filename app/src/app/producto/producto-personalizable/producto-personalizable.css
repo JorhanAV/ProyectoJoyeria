@@ -6,6 +6,7 @@ h2 {
 }
 
 .dialogo-personalizacion {
+  width: 100%;
   max-width: 960px;
   margin: 0 auto;
   padding: 24px;
@@ -95,3 +96,8 @@ button[mat-raised-button] {
   object-fit: contain;
 }
 
+.selector-con-precio {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}

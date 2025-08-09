@@ -71,6 +71,26 @@ export class ProductoPersonalizable {
     this.seleccionados[id_atributo] = valor;
   }
 
+  getPrecioExtra(atributoId: number): number {
+    const seleccionado = this.seleccionados[atributoId];
+    return seleccionado?.precio_extra || 0;
+  }
+
+  calcularPrecioExtra(): number {
+    let total = 0;
+    for (const atributoId in this.seleccionados) {
+      const valor = this.seleccionados[atributoId];
+      if (valor?.precio_extra) {
+        total += valor.precio_extra;
+      }
+    }
+    return total;
+  }
+
+  calcularTotal(): number {
+    return -1 //this.producto.precio_base + this.calcularPrecioExtra();
+  }
+
   confirmar() {
     const valoresSeleccionados = Object.values(this.seleccionados);
     console.log('Valores seleccionados:', valoresSeleccionados);
@@ -85,12 +105,21 @@ export class ProductoPersonalizable {
       return;
     }
 
-    // 🧠 Construcción del nombre
+    if(this.calcularTotal() < 0) {
+      this.noti.error(
+        this.translate.instant('PRODUCTO_TEXT.PRECIO_POSITIVO'),
+        this.translate.instant('PRODUCTO_TEXT.PRECIO_TOTAL') + ' no puede ser negativo.',
+        2000
+      );
+      return;
+    }
+
+    // Construcción del nombre
     const nombre = `${this.producto.nombre} - ${valoresSeleccionados
       .map((v) => v.valor)
       .join(', ')}`;
 
-    // 📝 Template de descripción
+    // Template de descripción
     const descripcion_general = `Este producto personalizado incluye: ${valoresSeleccionados
       .map((v) => {
         const atributo = this.atributos.find((a) => a.id === v.id_atributo);
@@ -98,8 +127,9 @@ export class ProductoPersonalizable {
       })
       .join(', ')}.`;
 
-    // 🧱 Construcción del objeto final
+    // Construcción del objeto final
     const productoPersonalizado: ProductoPersonalizableCreateModel = {
+      id: 0,
       nombre,
       descripcion_general,
       id_categoria: this.producto.categoria_id,
@@ -113,10 +143,11 @@ export class ProductoPersonalizable {
       .pipe(
         switchMap((productoCreado) => {
           const nuevoId = productoCreado.id;
+          productoPersonalizado.id = nuevoId;
           const id_valores = valoresSeleccionados.map((v) => v.id);
-          console.log('Producto personalizado creado con ID:', nuevoId);
+          
+          console.log('Producto personalizado creado con ID:', productoPersonalizado.id);
           console.log('IDs de valores seleccionados:', id_valores);
-
           // Aquí llamamos al servicio para guardar los detalles
           return this.varianteDetalleService.createBatch({
             id_productoPersonalizable: nuevoId,
@@ -127,13 +158,13 @@ export class ProductoPersonalizable {
       .subscribe({
         next: (detallesCreados) => {
           console.log('Detalles de variantes creados:', detallesCreados);
+          this.dialogRef.close(productoPersonalizado);
         },
         error: (err) => {
           console.error('Error al crear producto o variantes:', err);
         },
       });
-
-    this.dialogRef.close(productoPersonalizado);
+    
   }
 
   cancelar() {

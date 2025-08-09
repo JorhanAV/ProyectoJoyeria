@@ -95,13 +95,17 @@
     "CREAR_PRODUCTO_TITULO": "Create Product",
     "CREAR_PRODUCTO_MENSAJE": "Product created: {{nombre}}",
     "VER_DETALLES": "View Details",
-    "ATRIBUTO_REQUERIDO_TITULO": "No attributes.",
-    "ATRIBUTO_REQUERIDO_MENSAJE": "You must select at least one attribute.",
+    "ATRIBUTO_REQUERIDO_TITULO": "Missing Attributes.",
+    "ATRIBUTO_REQUERIDO_MENSAJE": "You must select at least one attribute for each criterion.",
     "CONFIRMAR": "Confirm",
     "OMITIR_PERSONALIZACION": "Skip Customization",
     "SELECCIONA_UNA_OPCION": "Select an option",
     "PERSONALIZAR": "Customize",
-    "DETALLES_REFERENCIA": "Reference Details"
+    "DETALLES_REFERENCIA": "Reference Details",
+    "DESGLOSE_PRECIO": "Price Breakdown",
+    "PRECIO_TOTAL": "Total Price",
+    "PRECIO_PERSONALIZACION": "Customization Price",
+    "PRECIO_POSITIVO": "Error with price"
   },
 
   "PEDIDO_TEXT": {

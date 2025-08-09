@@ -1,4 +1,5 @@
 export interface ProductoPersonalizableCreateModel {
+  id:number;
   nombre: string;
   descripcion_general: string;
   id_categoria: number;

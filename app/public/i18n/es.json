@@ -96,13 +96,17 @@
     "CREAR_PRODUCTO_TITULO": "Crear Producto",
     "CREAR_PRODUCTO_MENSAJE": "Producto creado: {{nombre}}",
     "VER_DETALLES": "Ver Detalles",
-    "ATRIBUTO_REQUERIDO_TITULO": "Sin atributos.",
-    "ATRIBUTO_REQUERIDO_MENSAJE": "Debes seleccionar al menos un atributo.",
+    "ATRIBUTO_REQUERIDO_TITULO": "Faltan Atributos.",
+    "ATRIBUTO_REQUERIDO_MENSAJE": "Debes seleccionar al menos un atributo para cada criterio.",
     "CONFIRMAR": "Confirmar",
     "OMITIR_PERSONALIZACION": "Omitir Personalización",
     "SELECCIONA_UNA_OPCION": "Selecciona una opción",
     "PERSONALIZAR": "Personalizar",
-    "REFERENCIA_DETALLES": "Referencia de Detalles"
+    "REFERENCIA_DETALLES": "Referencia de Detalles",
+    "DESGLOSE_PRECIO": "Desglose de Precio",
+    "PRECIO_TOTAL": "Precio Total",
+    "PRECIO_PERSONALIZACION": "Precio de Personalización",
+    "PRECIO_POSITIVO": "Error con el precio"
   },
 
   "PEDIDO_TEXT": {
