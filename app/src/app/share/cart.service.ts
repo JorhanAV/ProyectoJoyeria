@@ -38,7 +38,6 @@ export class CartService {
       const existingItemIndex = listCart.findIndex(
         (item) => item.producto.id === producto.id
       );
-
       if (existingItemIndex !== -1) {
         const existingItem = listCart[existingItemIndex];
         const newQuantity = quantity !== undefined

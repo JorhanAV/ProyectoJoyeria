@@ -20,7 +20,7 @@ export class ProductoIndex {
     private prodService: ProductoService,
     private noti: NotificationService,
     private router: Router,
-    private dialog: MatDialog
+    private dialog: MatDialog,
     private cartService: CartService
   ) {
     this.listProductos();
@@ -116,7 +116,8 @@ export class ProductoIndex {
       }
     });
   } else {
-    this.noti.success('Compra', 'Producto comprado: ' + producto.nombre, 3000);
+    this.noti.success('Compra', 'Producto agregado: ' + producto.nombre, 3000);
+    this.agregarAlCarrito(producto)
   }
 }
 

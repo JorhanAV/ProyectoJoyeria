@@ -88,9 +88,9 @@ export class ProductoPersonalizable {
   }
 
   calcularTotal(): number {
-    return -1 //this.producto.precio_base + this.calcularPrecioExtra();
+    return this.producto.precio_base + this.calcularPrecioExtra();
   }
-
+  
   confirmar() {
     const valoresSeleccionados = Object.values(this.seleccionados);
     console.log('Valores seleccionados:', valoresSeleccionados);
