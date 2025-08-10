@@ -11,29 +11,63 @@
       <label>Fecha:</label>
       <input type="text" [value]="fechaActual" readonly />
     </div>
+    <div class="estado-pedido"><strong>Estado:</strong> {{ estadoPedido }}</div>
   </div>
 
-  <!-- Tabla de productos -->
   <table class="tabla-carrito">
     <thead>
       <tr>
         <th>Producto</th>
         <th>Cantidad</th>
+        <th>Precio Unitario</th>
         <th>Subtotal</th>
         <th>Acciones</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let item of items">
-        <td>{{ item.producto.nombre }}</td>
         <td>
-          <button class="btn-cantidad" (click)="decrementarCantidad(item)">−</button>
-          <span>{{ item.cantidad }}</span>
-          <button class="btn-cantidad" (click)="incrementarCantidad(item)">+</button>
+          <ng-container *ngIf="item.producto; else personalizado">
+            {{ item.producto.nombre }}
+          </ng-container>
+
+          <ng-template #personalizado>
+            <div>
+              <strong>{{ item.productoPersonalizado?.nombre }}</strong><br />
+              Base: ₡{{ item.productoPersonalizado?.precio_base | number:'1.2-2'
+              }}
+              <ul>
+                <li *ngFor="let crit of item.productoPersonalizado?.criterios">
+                  {{ crit.criterio }}: {{ crit.seleccion }} (+₡{{
+                  crit.precio_extra | number:'1.2-2' }})
+                </li>
+              </ul>
+            </div>
+          </ng-template>
         </td>
-        <td>₡{{ item.subtotal | number: '1.2-2' }}</td>
         <td>
-          <button class="btn-eliminar" (click)="eliminarProducto(item.producto.id)">🗑</button>
+          <button class="btn-cantidad" (click)="decrementarCantidad(item)">
+            −
+          </button>
+          <span>{{ item.cantidad }}</span>
+          <button class="btn-cantidad" (click)="incrementarCantidad(item)">
+            +
+          </button>
+        </td>
+        <td>
+          ₡
+          <ng-container *ngIf="item.producto; else precioPersonalizado">
+            {{ item.producto.precio_base | number:'1.2-2' }}
+          </ng-container>
+          <ng-template #precioPersonalizado>
+            {{ getPrecioUnitarioPersonalizado(item) | number:'1.2-2' }}
+          </ng-template>
+        </td>
+        <td>₡{{ item.subtotal | number:'1.2-2' }}</td>
+        <td>
+          <button class="btn-eliminar" (click)="eliminarProducto(item)">
+            🗑
+          </button>
         </td>
       </tr>
     </tbody>
@@ -41,9 +75,13 @@
 
   <!-- Resumen -->
   <div class="resumen-total">
-    <p><strong>Subtotal:</strong> ₡{{ total | number: '1.2-2' }}</p>
-    <p><strong>Impuestos (13%):</strong> ₡{{ (total * 0.13) | number: '1.2-2' }}</p>
-    <p class="total-final"><strong>Total:</strong> ₡{{ (total * 1.13) | number: '1.2-2' }}</p>
+    <p><strong>Subtotal:</strong> ₡{{ total | number:'1.2-2' }}</p>
+    <p>
+      <strong>Impuestos (13%):</strong> ₡{{ (total * 0.13) | number:'1.2-2' }}
+    </p>
+    <p class="total-final">
+      <strong>Total:</strong> ₡{{ (total * 1.13) | number:'1.2-2' }}
+    </p>
   </div>
 
   <!-- Formulario -->
@@ -76,7 +114,9 @@
     </div>
 
     <div class="acciones-carrito">
-      <button type="button" class="btn-vaciar" (click)="vaciarCarrito()">Vaciar Carrito</button>
+      <button type="button" class="btn-vaciar" (click)="vaciarCarrito()">
+        Vaciar Carrito
+      </button>
       <button type="submit" class="btn-confirmar">Confirmar Pedido</button>
     </div>
   </form>

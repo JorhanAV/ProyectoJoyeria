@@ -17,11 +17,11 @@ export class CarritoComponent implements OnInit {
   items: ItemCartModel[] = [];
   total: number = 0;
   direccion_envio: string = '';
-  metodo_pago: string = 'Efectivo'; // valor inicial opcional
+  metodo_pago: string = 'Efectivo';
   usuarioNombre: string = "Juan Pérez"; 
   usuarioCorreo: string = "juanPerez@test.com";
   fechaActual: string = new Date().toLocaleDateString('es-CR');
-
+  estadoPedido: string = 'En carrito';
 
   constructor(
     private cartService: CartService,
@@ -36,19 +36,40 @@ export class CarritoComponent implements OnInit {
   }
 
   incrementarCantidad(item: ItemCartModel): void {
-    this.cartService.addToCart(item.producto, 1);
+    if (item.producto) {
+      this.cartService.addToCart(item.producto, undefined, 1);
+    } else if (item.productoPersonalizado) {
+      this.cartService.addToCart(undefined, item.productoPersonalizado, 1);
+    }
     this.ngOnInit();
   }
 
   decrementarCantidad(item: ItemCartModel): void {
-    this.cartService.addToCart(item.producto, -1);
+    if (item.producto) {
+      this.cartService.addToCart(item.producto, undefined, -1);
+    } else if (item.productoPersonalizado) {
+      this.cartService.addToCart(undefined, item.productoPersonalizado, -1);
+    }
     this.ngOnInit();
   }
 
-  eliminarProducto(id: number): void {
-    this.cartService.removeFromCart(id);
+  eliminarProducto(item: ItemCartModel): void {
+    if (item.producto) {
+      this.cartService.removeFromCartByProductoId(item.producto.id);
+    } else if (item.productoPersonalizado) {
+      this.cartService.removeFromCartByPersonalizadoId(item.productoPersonalizado.id);
+    }
     this.ngOnInit();
   }
+getPrecioUnitarioPersonalizado(item: ItemCartModel): number {
+  if (!item.productoPersonalizado) return 0;
+  const base = item.productoPersonalizado.precio_base || 0;
+  const extras = item.productoPersonalizado.criterios?.reduce(
+    (acc, c) => acc + (c.precio_extra || 0),
+    0
+  ) || 0;
+  return base + extras;
+}
 
   vaciarCarrito(): void {
     this.cartService.deleteCart();
@@ -60,12 +81,19 @@ export class CarritoComponent implements OnInit {
       const pedido = {
         usuario_id: 1,
         direccion_envio: this.direccion_envio,
-        metodo_pago: this.metodo_pago, // debe ser un string: 'Tarjeta', 'Efectivo', etc.
+        metodo_pago: this.metodo_pago,
         items: this.cartService.itemsCart().map((item) => {
-          return {
-            producto_id: item.producto.id,
-            cantidad: item.cantidad,
-          };
+          if (item.producto) {
+            return {
+              producto_id: item.producto.id,
+              cantidad: item.cantidad,
+            };
+          } else {
+            return {
+              producto_personalizado_id: item.productoPersonalizado!.id,
+              cantidad: item.cantidad,
+            };
+          }
         }),
       };
 
@@ -89,3 +117,4 @@ export class CarritoComponent implements OnInit {
     }
   }
 }
+
