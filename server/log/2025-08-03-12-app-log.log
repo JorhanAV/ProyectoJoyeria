@@ -1,0 +1,34 @@
+2025-08-03 12:46:00.584 error: 	jorha--Se produjo un error interno del servidor Cannot read properties of undefined (reading 'nombre')
+2025-08-03 12:49:03.566 error: 	jorha--Se produjo un error interno del servidor 
+Invalid `this.prisma.productoPersonalizable.create()` invocation in
+D:\UTN\XI Cuatrimestre\ProyectoJoyeria\server\source\controllers\productoPersonalizado.ts:19:84
+
+  16 
+  17 create = async (request: Request, response: Response, next: NextFunction) => {
+  18   try {
+→ 19     const nuevoProductoPersonalizable = await this.prisma.productoPersonalizable.create({
+           data: {
+             nombre: "test",
+             descripcion_general: "pruebatest",
+             categoria: {
+               connect: {
+                 id: undefined,
+         ?       AND?: CategoriaWhereInput | CategoriaWhereInput[],
+         ?       OR?: CategoriaWhereInput[],
+         ?       NOT?: CategoriaWhereInput | CategoriaWhereInput[],
+         ?       nombre?: StringFilter | String,
+         ?       descripcion?: StringFilter | String,
+         ?       productos?: ProductoListRelationFilter,
+         ?       promociones?: PromocionListRelationFilter,
+         ?       productosPersonalizables?: ProductoPersonalizableListRelationFilter
+               }
+             },
+             producto_base: {
+               connect: {
+                 id: undefined
+               }
+             }
+           }
+         })
+
+Argument `connect` of type CategoriaWhereUniqueInput needs at least one of `id` arguments. Available options are marked with ?.

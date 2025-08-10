@@ -13,8 +13,8 @@ export class BaseAPI<T extends BaseEntity> {
   urlAPI: string = environment.apiURL;
 
   constructor(
-    private http: HttpClient,
-    @Inject(String) private endpoint: string
+    protected http: HttpClient,
+    @Inject(String) protected endpoint: string
   ) {}
   get(): Observable<T[]> {
     return this.http.get<T[]>(`${this.urlAPI}/${this.endpoint}`);

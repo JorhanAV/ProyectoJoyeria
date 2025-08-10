@@ -1,12 +1,13 @@
+import { ProductoPersonalizable } from "../../producto/producto-personalizable/producto-personalizable";
 import { AtributoModel } from "./AtributoModel";
 import { ValorAtributoModel } from "./ValorAtributoModel";
 import { VarianteProductoModel } from "./VarianteProductoModel";
 
 export interface VarianteDetalleModel {
-  id_variante: number;
-  id_atributo: number;
+  id: number;
+  id_productoPersonalizable: number;
   id_valor: number;
   variante: VarianteProductoModel;
-  atributo: AtributoModel;
+  productoPersonalizable: ProductoPersonalizable;
   valor: ValorAtributoModel;
 }

@@ -1,0 +1,69 @@
+<div class="dialogo-personalizacion">
+  <div class="encabezado">
+    <h2>
+      {{ 'PRODUCTO_TEXT.PERSONALIZAR' | translate }} {{ producto.nombre }}
+    </h2>
+    <button class="cerrar" (click)="cancelar()">✕</button>
+  </div>
+
+  <div *ngIf="atributos.length > 0 && valoresAtributos.length > 0">
+    <div *ngFor="let atributo of atributos" class="grupo-atributo">
+      <label>{{ atributo.nombre }}</label>
+
+      <div class="selector-con-precio">
+        <select
+          [(ngModel)]="seleccionados[atributo.id]"
+          (change)="seleccionarValor(atributo.id, seleccionados[atributo.id])"
+          [ngModelOptions]="{ standalone: true }"
+        >
+          <option [ngValue]="undefined">
+            -- {{ 'PRODUCTO_TEXT.SELECCIONA_UNA_OPCION' | translate }} --
+          </option>
+          <option
+            *ngFor="let opcion of obtenerOpciones(atributo.id)"
+            [ngValue]="opcion"
+          >
+            {{ opcion.valor }}
+          </option>
+        </select>
+
+        <span class="precio-extra" *ngIf="getPrecioExtra(atributo.id) > 0">
+          +₡{{ getPrecioExtra(atributo.id) }}
+        </span>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="getImagenesSeleccionadas().length > 0" class="galeria-imagenes">
+    <h3>{{ 'PRODUCTO_TEXT.REFERENCIA_DETALLES' | translate }}</h3>
+    <div class="contenedor-imagenes">
+      <img
+        *ngFor="let img of getImagenesSeleccionadas()"
+        [src]="img"
+        alt="Imagen de referencia"
+      />
+    </div>
+  </div>
+
+  <div class="desglose-precio">
+    <h4>{{ 'PRODUCTO_TEXT.DESGLOSE_PRECIO' | translate }}</h4>
+    <p>₡{{ producto.precio_base }} {{ 'PRODUCTO_TEXT.PRECIO_BASE' | translate }}</p>
+    <p>
+      ₡{{ calcularPrecioExtra() }} {{ 'PRODUCTO_TEXT.PRECIO_PERSONALIZACION' |
+      translate }}
+    </p>
+    <hr />
+    <p>
+      <strong>₡{{ calcularTotal() }}</strong> {{ 'PRODUCTO_TEXT.PRECIO_TOTAL' |
+      translate }}
+    </p>
+  </div>
+
+  <div class="acciones">
+    <button mat-raised-button color="primary" (click)="confirmar()">
+      {{ 'PRODUCTO_TEXT.CONFIRMAR' | translate }}
+    </button>
+    <button mat-raised-button color="primary" (click)="cancelar()">
+      {{ 'PRODUCTO_TEXT.OMITIR_PERSONALIZACION' | translate }}
+    </button>
+  </div>
+</div>

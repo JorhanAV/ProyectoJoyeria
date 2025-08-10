@@ -87,30 +87,31 @@ CREATE TABLE `ProductoPersonalizable` (
 
 -- CreateTable
 CREATE TABLE `Atributo` (
-    `id_atributo` INTEGER NOT NULL AUTO_INCREMENT,
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
     `nombre` VARCHAR(191) NOT NULL,
     `tipo` VARCHAR(191) NOT NULL,
 
-    PRIMARY KEY (`id_atributo`)
+    PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
 CREATE TABLE `ValorAtributo` (
-    `id_valor` INTEGER NOT NULL AUTO_INCREMENT,
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
     `id_atributo` INTEGER NOT NULL,
     `valor` VARCHAR(191) NOT NULL,
     `precio_extra` DOUBLE NOT NULL DEFAULT 0,
+    `imagen` VARCHAR(191) NULL DEFAULT 'image-not-found.jpg',
 
-    PRIMARY KEY (`id_valor`)
+    PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
 CREATE TABLE `VarianteDetalle` (
-    `id_varianteDetalle` INTEGER NOT NULL AUTO_INCREMENT,
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
     `id_productoPersonalizable` INTEGER NOT NULL,
     `id_valor` INTEGER NOT NULL,
 
-    PRIMARY KEY (`id_varianteDetalle`)
+    PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
@@ -209,10 +210,10 @@ ALTER TABLE `ProductoPersonalizable` ADD CONSTRAINT `ProductoPersonalizable_id_c
 ALTER TABLE `ProductoPersonalizable` ADD CONSTRAINT `ProductoPersonalizable_id_producto_base_fkey` FOREIGN KEY (`id_producto_base`) REFERENCES `Producto`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `ValorAtributo` ADD CONSTRAINT `ValorAtributo_id_atributo_fkey` FOREIGN KEY (`id_atributo`) REFERENCES `Atributo`(`id_atributo`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `ValorAtributo` ADD CONSTRAINT `ValorAtributo_id_atributo_fkey` FOREIGN KEY (`id_atributo`) REFERENCES `Atributo`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `VarianteDetalle` ADD CONSTRAINT `VarianteDetalle_id_valor_fkey` FOREIGN KEY (`id_valor`) REFERENCES `ValorAtributo`(`id_valor`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `VarianteDetalle` ADD CONSTRAINT `VarianteDetalle_id_valor_fkey` FOREIGN KEY (`id_valor`) REFERENCES `ValorAtributo`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `VarianteDetalle` ADD CONSTRAINT `VarianteDetalle_id_productoPersonalizable_fkey` FOREIGN KEY (`id_productoPersonalizable`) REFERENCES `ProductoPersonalizable`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;

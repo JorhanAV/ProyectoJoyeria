@@ -21,10 +21,11 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ResenaForm } from '../resenas/resena-form/resena-form';
 import { ProductoForm } from './producto-form/producto-form';
 import { TranslateModule } from '@ngx-translate/core';
+import { ProductoPersonalizable } from './producto-personalizable/producto-personalizable';
 
 @NgModule({
   declarations: [
@@ -32,10 +33,12 @@ import { TranslateModule } from '@ngx-translate/core';
     ProductoDetail,
     ProductoAdmin,
     ResenaForm,
-    ProductoForm
+    ProductoForm,
+    ProductoPersonalizable
   ],
   imports: [
     CommonModule,
+    FormsModule,
     ProductoRoutingModule,
     TranslateModule.forChild(),
     MatMenuModule,

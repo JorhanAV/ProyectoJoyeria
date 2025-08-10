@@ -4,7 +4,7 @@ import { PrismaClient } from "../../generated/prisma";
 export class PedidoController {
   prisma = new PrismaClient();
 
-  get: RequestHandler = async (req, res, next) => {
+    get: RequestHandler = async (req, res, next) => {
     try {
       const pedidos = await this.prisma.pedido.findMany({
         include: {
