@@ -1,4 +1,19 @@
 <div *ngIf="items.length > 0; else sinItems" class="carrito-container">
+  <!-- Información fija del usuario -->
+  <div class="info-usuario">
+    <div>
+      <label>Cliente:</label>
+      <input type="text" [value]="usuarioNombre" readonly />
+      <label>Correo:</label>
+      <input type="text" [value]="usuarioCorreo" readonly />
+    </div>
+    <div>
+      <label>Fecha:</label>
+      <input type="text" [value]="fechaActual" readonly />
+    </div>
+  </div>
+
+  <!-- Tabla de productos -->
   <table class="tabla-carrito">
     <thead>
       <tr>
@@ -12,24 +27,26 @@
       <tr *ngFor="let item of items">
         <td>{{ item.producto.nombre }}</td>
         <td>
-          <button (click)="decrementarCantidad(item)">−</button>
-          {{ item.cantidad }}
-          <button (click)="incrementarCantidad(item)">+</button>
+          <button class="btn-cantidad" (click)="decrementarCantidad(item)">−</button>
+          <span>{{ item.cantidad }}</span>
+          <button class="btn-cantidad" (click)="incrementarCantidad(item)">+</button>
         </td>
         <td>₡{{ item.subtotal | number: '1.2-2' }}</td>
         <td>
-          <button (click)="eliminarProducto(item.producto.id)">Eliminar</button>
+          <button class="btn-eliminar" (click)="eliminarProducto(item.producto.id)">🗑</button>
         </td>
       </tr>
     </tbody>
   </table>
 
+  <!-- Resumen -->
   <div class="resumen-total">
     <p><strong>Subtotal:</strong> ₡{{ total | number: '1.2-2' }}</p>
     <p><strong>Impuestos (13%):</strong> ₡{{ (total * 0.13) | number: '1.2-2' }}</p>
-    <p><strong>Total:</strong> ₡{{ (total * 1.13) | number: '1.2-2' }}</p>
+    <p class="total-final"><strong>Total:</strong> ₡{{ (total * 1.13) | number: '1.2-2' }}</p>
   </div>
 
+  <!-- Formulario -->
   <form #form="ngForm" (ngSubmit)="registrarPedido()" class="formulario-pedido">
     <label for="direccion">Dirección de envío:</label>
     <input
@@ -59,12 +76,12 @@
     </div>
 
     <div class="acciones-carrito">
-      <button type="button" (click)="vaciarCarrito()">Vaciar Carrito</button>
-      <button type="submit">Confirmar Pedido</button>
+      <button type="button" class="btn-vaciar" (click)="vaciarCarrito()">Vaciar Carrito</button>
+      <button type="submit" class="btn-confirmar">Confirmar Pedido</button>
     </div>
   </form>
 </div>
 
 <ng-template #sinItems>
-  <p>Tu carrito está vacío.</p>
+  <p class="mensaje-vacio">Tu carrito está vacío.</p>
 </ng-template>

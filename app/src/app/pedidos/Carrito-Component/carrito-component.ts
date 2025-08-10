@@ -5,6 +5,7 @@ import { ItemCartModel } from '../../share/models/ItemCartModel';
 import { MetodoPagoModel } from '../../share/models/MetodoPagoModel';
 import { NotificationService } from '../../share/notification-service';
 import { PedidoModel } from '../../share/models/PedidoModel';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-carrito',
@@ -17,11 +18,16 @@ export class CarritoComponent implements OnInit {
   total: number = 0;
   direccion_envio: string = '';
   metodo_pago: string = 'Efectivo'; // valor inicial opcional
+  usuarioNombre: string = "Juan Pérez"; 
+  usuarioCorreo: string = "juanPerez@test.com";
+  fechaActual: string = new Date().toLocaleDateString('es-CR');
+
 
   constructor(
     private cartService: CartService,
     private pedidoService: PedidoService,
-    private noti: NotificationService
+    private noti: NotificationService,
+    private translate: TranslateService
   ) {}
 
   ngOnInit(): void {
