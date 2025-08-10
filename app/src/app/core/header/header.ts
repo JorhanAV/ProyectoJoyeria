@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject, Signal } from '@angular/core';
+
+import { CartService } from '../../share/cart.service';
 
 @Component({
   selector: 'app-header',
@@ -7,8 +9,9 @@ import { Component } from '@angular/core';
   styleUrl: './header.css',
 })
 export class Header {
+  cartService=inject(CartService)
   menuOpen = false;
-  qtyItems: Number = 4;
+  qtyItems: Signal<Number>=this.cartService.qtyItems
   isAuth: boolean = true;
   user: string = 'user@email.com';
   toggleMenu() {

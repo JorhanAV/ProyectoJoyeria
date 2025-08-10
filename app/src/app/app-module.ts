@@ -51,12 +51,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     UserModule,
     ProductoModule,
     OrdenModule,
-
     PromocionesModule,
     PedidosModule,
     ResenasModule,
-
-    AppRoutingModule,
+    AppRoutingModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),

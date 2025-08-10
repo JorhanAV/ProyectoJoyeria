@@ -1,0 +1,141 @@
+.carrito-container {
+  max-width: 900px;
+  margin: auto;
+  padding: 2rem;
+  background: #fffdf9;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Info usuario */
+.info-usuario {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.info-usuario label {
+  font-weight: bold;
+  color: #6a4e2f;
+}
+.info-usuario input {
+  border: none;
+  background: #f7f3ee;
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
+  font-weight: bold;
+  color: #4a3b27;
+}
+
+/* Tabla */
+.tabla-carrito {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+.tabla-carrito th {
+  background-color: #6a4e2f;
+  color: white;
+  padding: 0.75rem;
+}
+.tabla-carrito td {
+  border-bottom: 1px solid #e0d7ce;
+  padding: 0.75rem;
+  text-align: center;
+}
+
+/* Botones de cantidad */
+.btn-cantidad {
+  background: #f7f3ee;
+  border: none;
+  padding: 0.3rem 0.6rem;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #6a4e2f;
+  border-radius: 5px;
+}
+.btn-cantidad:hover {
+  background: #e8dccd;
+}
+
+/* Botón eliminar */
+.btn-eliminar {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  color: #b33a3a;
+}
+.btn-eliminar:hover {
+  color: #ff0000;
+}
+
+/* Resumen */
+.resumen-total {
+  background: #fdf8f2;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+.total-final {
+  font-size: 1.2rem;
+  color: #6a4e2f;
+}
+
+/* Formulario */
+.formulario-pedido label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: bold;
+  color: #6a4e2f;
+}
+.formulario-pedido input,
+.formulario-pedido select {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #e0d7ce;
+  border-radius: 6px;
+  background: #fff;
+  margin-top: 0.25rem;
+}
+
+/* Botones de acciones */
+.acciones-carrito {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+}
+.btn-vaciar {
+  background: #b33a3a;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.btn-vaciar:hover {
+  background: #992f2f;
+}
+.btn-confirmar {
+  background: linear-gradient(135deg, #d4af37, #b8860b);
+  color: white;
+  border: none;
+  padding: 0.6rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.btn-confirmar:hover {
+  background: linear-gradient(135deg, #b8860b, #d4af37);
+}
+
+.error {
+  color: red;
+  font-size: 0.9rem;
+}
+
+.mensaje-vacio {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #6a4e2f;
+}

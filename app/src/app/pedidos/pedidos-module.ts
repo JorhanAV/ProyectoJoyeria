@@ -12,6 +12,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { TranslateModule } from '@ngx-translate/core';
+import { CarritoComponent } from './Carrito-Component/carrito-component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -19,7 +21,8 @@ import { TranslateModule } from '@ngx-translate/core';
   declarations: [
     PedidoAdmin,
     PedidoDetail,
-    PedidoIndex
+    PedidoIndex,
+    CarritoComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +33,8 @@ import { TranslateModule } from '@ngx-translate/core';
     MatCardModule,
     MatIconModule,
     MatToolbarModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    FormsModule
   ]
 })
 export class PedidosModule { }
