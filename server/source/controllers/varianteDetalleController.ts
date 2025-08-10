@@ -15,28 +15,46 @@ export class VarianteDetalleController {
   };
 
   create = async (request: Request, response: Response, next: NextFunction) => {
-  try {
-    const { id_productoPersonalizable, id_valores } = request.body;
+    try {
+      const { id_productoPersonalizable, id_valores } = request.body;
 
-    const nuevoDetalle = await this.prisma.$transaction(
-      id_valores.map((id_valor: number) =>
-        this.prisma.varianteDetalle.create({
-          data: {
-            productoPersonalizable: {
-              connect: { id: id_productoPersonalizable },
+      const nuevoDetalle = await this.prisma.$transaction(
+        id_valores.map((id_valor: number) =>
+          this.prisma.varianteDetalle.create({
+            data: {
+              productoPersonalizable: {
+                connect: { id: id_productoPersonalizable },
+              },
+              valor: {
+                connect: { id: id_valor },
+              },
             },
-            valor: {
-              connect: { id: id_valor },
+          })
+        )
+      );
+
+      const detalles = await this.prisma.varianteDetalle.findMany({
+        where: {
+          id_productoPersonalizable: id_productoPersonalizable,
+        },
+        include: {
+          valor: {
+            include: {
+              atributo: true,
             },
           },
-        })
-      )
-    );
+        },
+      });
 
-    response.status(201).json(nuevoDetalle);
-  } catch (error) {
-    next(error);
-  }
-};
+      const criterios = detalles.map((detalle) => ({
+        criterio: detalle.valor.atributo.nombre,
+        seleccion: detalle.valor.valor,
+        precio_extra: detalle.valor.precio_extra,
+      }));
 
+      response.status(201).json(criterios);
+    } catch (error) {
+      next(error);
+    }
+  };
 }

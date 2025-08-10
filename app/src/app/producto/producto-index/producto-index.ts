@@ -108,11 +108,11 @@ export class ProductoIndex {
       data: producto,
     });
 
-    dialogRef.afterClosed().subscribe((opcionesSeleccionadas) => {
-      if (opcionesSeleccionadas) {
+    dialogRef.afterClosed().subscribe((productoPersonalizado) => {
+      if (productoPersonalizado) {
         // Aquí podrías agregar el producto al carrito con las opciones
         this.noti.success('Personalización', 'Producto personalizado agregado al carrito', 3000);
-        console.log('Opciones:', opcionesSeleccionadas);
+        console.log('Producto Index:', productoPersonalizado);
       }
     });
   } else {

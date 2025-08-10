@@ -90,7 +90,7 @@ export class ProductoPersonalizable {
   calcularTotal(): number {
     return this.producto.precio_base + this.calcularPrecioExtra();
   }
-  
+
   confirmar() {
     const valoresSeleccionados = Object.values(this.seleccionados);
     console.log('Valores seleccionados:', valoresSeleccionados);
@@ -105,10 +105,11 @@ export class ProductoPersonalizable {
       return;
     }
 
-    if(this.calcularTotal() < 0) {
+    if (this.calcularTotal() < 0) {
       this.noti.error(
         this.translate.instant('PRODUCTO_TEXT.PRECIO_POSITIVO'),
-        this.translate.instant('PRODUCTO_TEXT.PRECIO_TOTAL') + ' no puede ser negativo.',
+        this.translate.instant('PRODUCTO_TEXT.PRECIO_TOTAL') +
+          ' no puede ser negativo.',
         2000
       );
       return;
@@ -134,6 +135,7 @@ export class ProductoPersonalizable {
       descripcion_general,
       id_categoria: this.producto.categoria_id,
       id_producto_base: this.producto.id,
+      precio_base: this.producto.precio_base,
     };
 
     console.log('Producto personalizado:', productoPersonalizado);
@@ -145,9 +147,12 @@ export class ProductoPersonalizable {
           const nuevoId = productoCreado.id;
           productoPersonalizado.id = nuevoId;
           const id_valores = valoresSeleccionados.map((v) => v.id);
-          
-          console.log('Producto personalizado creado con ID:', productoPersonalizado.id);
-          console.log('IDs de valores seleccionados:', id_valores);
+
+         /*  console.log(
+            'Producto personalizado creado con ID:',
+            productoPersonalizado.id
+          );
+          console.log('IDs de valores seleccionados:', id_valores); */
           // Aquí llamamos al servicio para guardar los detalles
           return this.varianteDetalleService.createBatch({
             id_productoPersonalizable: nuevoId,
@@ -157,14 +162,19 @@ export class ProductoPersonalizable {
       )
       .subscribe({
         next: (detallesCreados) => {
-          console.log('Detalles de variantes creados:', detallesCreados);
+          //console.log('Detalles de variantes creados:', detallesCreados);
+          // Asignar criterios enriquecidos al modelo
+          productoPersonalizado.criterios = detallesCreados;
+          /* console.log(
+            'Producto personalizado completo:',
+            productoPersonalizado
+          ); */
           this.dialogRef.close(productoPersonalizado);
         },
         error: (err) => {
           console.error('Error al crear producto o variantes:', err);
         },
       });
-    
   }
 
   cancelar() {
