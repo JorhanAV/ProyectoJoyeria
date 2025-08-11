@@ -85,3 +85,22 @@
 .btn-confirmar:hover {
   background: linear-gradient(135deg, #b8860b, #d4af37);
 }
+.input-moneda {
+  position: relative;
+  display: inline-block;
+  width: 90%;
+}
+
+.input-moneda .simbolo {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6a4e2f;
+  font-weight: bold;
+  pointer-events: none;
+}
+
+.input-moneda input {
+  padding-left: 25px; /* deja espacio para el símbolo */
+}

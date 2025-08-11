@@ -15,7 +15,10 @@ export class CartService {
     this.cart().reduce((sum, item) => sum + item.cantidad, 0)
   );
   public total = computed(() =>
-    this.cart().reduce((total, item) => total + item.subtotal, 0)
+    this.cart().reduce((total, item) => (total + item.subtotal)*1.13, 0)
+  );
+  public impuestos = computed(() =>
+    this.cart().reduce((total, item) => (total + item.subtotal)*0.13, 0)
   );
 
   constructor() {
@@ -44,7 +47,6 @@ export class CartService {
 
   addToCart(
     producto?: ProductoModel,
-    productoPersonalizado?: ProductoPersonalizableCreateModel,
     cantidad: number = 1
   ): void {
     this.cart.update((currentCart) => {
@@ -74,32 +76,7 @@ export class CartService {
             subtotal: this.calculateSubtotalProducto(producto, cantidad),
           });
         }
-      } else if (productoPersonalizado) {
-        // Buscamos por producto personalizado id
-        const existingIndex = listCart.findIndex(
-          (item) =>
-            item.productoPersonalizado?.id === productoPersonalizado.id
-        );
-        if (existingIndex !== -1) {
-          const existingItem = listCart[existingIndex];
-          const newQuantity = existingItem.cantidad + cantidad;
-          if (newQuantity <= 0) {
-            listCart.splice(existingIndex, 1);
-          } else {
-            listCart[existingIndex] = {
-              ...existingItem,
-              cantidad: newQuantity,
-              subtotal: this.calculateSubtotalPersonalizado(productoPersonalizado, newQuantity),
-            };
-          }
-        } else if (cantidad > 0) {
-          listCart.push({
-            productoPersonalizado,
-            cantidad,
-            subtotal: this.calculateSubtotalPersonalizado(productoPersonalizado, cantidad),
-          });
-        }
-      }
+      } 
       return listCart;
     });
   }

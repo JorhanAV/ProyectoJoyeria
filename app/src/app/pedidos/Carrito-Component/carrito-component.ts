@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CartService } from '../../share/cart.service';
 import { PedidoService } from '../../share/services/pedido.service';
 import { ItemCartModel } from '../../share/models/ItemCartModel';
@@ -10,6 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { PagoModalComponent } from './ProcesoPago/pago-modal';
 import { timeout } from 'rxjs';
 import { Router } from '@angular/router';
+import { UsuarioService } from '../../share/services/usuario.service';
 
 @Component({
   selector: 'app-carrito',
@@ -20,15 +21,15 @@ import { Router } from '@angular/router';
 export class CarritoComponent implements OnInit {
   items: ItemCartModel[] = [];
   total: number = 0;
+  impuestos: number = 0;
   direccion_envio: string = '';
   metodo_pago: string = 'Efectivo';
-  usuarioNombre: string = 'Juan Pérez';
-  usuarioCorreo: string = 'juanPerez@test.com';
-  usuarioNombre: string = 'Juan Pérez';
-  usuarioCorreo: string = 'juanPerez@test.com';
+  usuarioId: number=1;
   fechaActual: string = new Date().toLocaleDateString('es-CR');
   estadoPedido: string = 'En carrito';
   pedidoId: number = 0;
+  nombreUsuario: string = '';
+  correoUsuario: string = '';
 
   constructor(
     private cartService: CartService,
@@ -37,31 +38,32 @@ export class CarritoComponent implements OnInit {
     private translate: TranslateService,
     private dialog: MatDialog,
     private router: Router,
+    private usuarioService: UsuarioService
   ) {}
 
   ngOnInit(): void {
     this.items = this.cartService.itemsCart();
     this.total = this.cartService.total();
+    this.impuestos = this.cartService.impuestos();
+    this.obtenerUsuario();
   }
-
   incrementarCantidad(item: ItemCartModel): void {
     if (item.producto) {
-      this.cartService.addToCart(item.producto, undefined, 1);
+      this.cartService.addToCart(item.producto);
     } else if (item.productoPersonalizado) {
-      this.cartService.addToCart(undefined, item.productoPersonalizado, 1);
+      if(item.productoPersonalizado)
+      this.cartService.addToCartPersonalized(item.productoPersonalizado);
     }
     this.ngOnInit();
   }
-
   decrementarCantidad(item: ItemCartModel): void {
     if (item.producto) {
-      this.cartService.addToCart(item.producto, undefined, -1);
+      this.cartService.addToCart(item.producto,-1);
     } else if (item.productoPersonalizado) {
-      this.cartService.addToCart(undefined, item.productoPersonalizado, -1);
+      this.cartService.addToCartPersonalized(item.productoPersonalizado,-1);
     }
     this.ngOnInit();
   }
-
   eliminarProducto(item: ItemCartModel): void {
     if (item.producto) {
       this.cartService.removeFromCartByProductoId(item.producto.id);
@@ -85,17 +87,6 @@ export class CarritoComponent implements OnInit {
       ) || 0;
     return base + extras;
   }
-  getPrecioUnitarioPersonalizado(item: ItemCartModel): number {
-    if (!item.productoPersonalizado) return 0;
-    const base = item.productoPersonalizado.precio_base || 0;
-    const extras =
-      item.productoPersonalizado.criterios?.reduce(
-        (acc, c) => acc + (c.precio_extra || 0),
-        0
-      ) || 0;
-    return base + extras;
-  }
-
   vaciarCarrito(): void {
     this.cartService.deleteCart();
     this.ngOnInit();
@@ -122,7 +113,7 @@ export class CarritoComponent implements OnInit {
               this.noti.success(
                 'Pago realizado',
                 'Pedido actualizado',
-                3000,
+                5000,
                 '/pedidos'
               );
             },
@@ -133,11 +124,10 @@ export class CarritoComponent implements OnInit {
         }
       });
   }
-
   registrarPedido() {
     if (this.cartService.itemsCart().length > 0) {
       const pedido = {
-        usuario_id: 1,
+        usuario_id: this.usuarioId,
         direccion_envio: this.direccion_envio,
         metodo_pago: this.metodo_pago,
         items: this.cartService.itemsCart().map((item) => {
@@ -178,7 +168,7 @@ export class CarritoComponent implements OnInit {
           );
           // Abrir modal de pago con método y total
           this.abrirModalPago();
-           this.router.navigate(['/pedidos']);
+          this.router.navigate(['/pedidos']);
         },
         error: (err) => {
           console.error(err);
@@ -188,5 +178,11 @@ export class CarritoComponent implements OnInit {
     } else {
       this.noti.warning('Crear pedido', 'Agregue productos al carrito', 3000);
     }
+  }
+  obtenerUsuario() {
+    this.usuarioService.getById(this.usuarioId).subscribe((usuario) => {
+      this.nombreUsuario = usuario.nombre_usuario;
+      this.correoUsuario = usuario.correo;
+    });
   }
 }

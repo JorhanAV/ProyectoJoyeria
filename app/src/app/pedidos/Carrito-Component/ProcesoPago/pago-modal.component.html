@@ -1,7 +1,5 @@
 <div class="pago-modal-container">
-  <h2 class="dialog-title">
-  Pago con {{ metodo_pago | titlecase }}
-</h2>
+  <h2 class="dialog-title">Pago con {{ metodo_pago | titlecase }}</h2>
 
   <div mat-dialog-content class="dialog-content">
     <!-- Total a pagar -->
@@ -14,17 +12,20 @@
     <ng-container *ngIf="metodo_pago === 'Efectivo'">
       <form class="form-grid">
         <label for="monto">Monto recibido</label>
-        <input
-          id="monto"
-          type="number"
-          [value]="montoRecibido()"
-          (input)="montoRecibido.set($any($event.target).valueAsNumber)"
-          placeholder="{{ total }}"
-        />
+        <div class="input-moneda">
+          <span class="simbolo">₡</span>
+          <input
+            id="monto"
+            type="number"
+            [value]="montoRecibido()"
+            (input)="montoRecibido.set($any($event.target).valueAsNumber)"
+            placeholder="{{ total }}"
+          />
+        </div>
 
         <label for="vuelto">Vuelto</label>
         <div class="vuelto-box">
-          {{ vuelto() | currency : 'CRC' }}
+          {{ vuelto() | currency : "CRC" }}
         </div>
 
         <div *ngIf="error()" class="pago-error">{{ error() }}</div>

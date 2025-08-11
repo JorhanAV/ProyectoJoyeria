@@ -3,9 +3,9 @@
   <div class="info-usuario">
     <div>
       <label>Cliente:</label>
-      <input type="text" [value]="usuarioNombre" readonly />
+      <input type="text" [value]="nombreUsuario" readonly />
       <label>Correo:</label>
-      <input type="text" [value]="usuarioCorreo" readonly />
+      <input type="text" [value]="correoUsuario" readonly />
     </div>
     <div>
       <label>Fecha:</label>
@@ -75,12 +75,12 @@
 
   <!-- Resumen -->
   <div class="resumen-total">
-    <p><strong>Subtotal:</strong> ₡{{ total | number:'1.2-2' }}</p>
+    <p><strong>Subtotal:</strong> ₡{{ total-impuestos | number:'1.2-2' }}</p>
     <p>
-      <strong>Impuestos (13%):</strong> ₡{{ (total * 0.13) | number:'1.2-2' }}
+      <strong>Impuestos (13%):</strong> ₡{{ (impuestos) | number:'1.2-2' }}
     </p>
     <p class="total-final">
-      <strong>Total:</strong> ₡{{ (total * 1.13) | number:'1.2-2' }}
+      <strong>Total:</strong> ₡{{ (total) | number:'1.2-2' }}
     </p>
   </div>
 
@@ -123,5 +123,11 @@
 </div>
 
 <ng-template #sinItems>
-  <p class="mensaje-vacio">Tu carrito está vacío.</p>
+  <div class="carrito-vacio">
+    <div class="icono-vacio">🛒</div>
+    <h2>Tu carrito está vacío</h2>
+    <p>Empieza a agregar productos y verás la magia aquí ✨</p>
+    <button class="btn-ir-compras" routerLink="/productos">Ir a comprar</button>
+  </div>
 </ng-template>
+
