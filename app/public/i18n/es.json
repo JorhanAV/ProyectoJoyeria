@@ -194,6 +194,19 @@
     "TITULOVACIO":"Tu carrito está vacío",
     "DESCRIPCIONVACIO":"Empieza a agregar productos y verás la magia aquí ✨",
     "BOTONVACIO":"Ir a comprar"
+  },
+  "PAGO_TEXT": {
+    "PAGO_TITULO": "Pago con {{metodo_pago}}",
+    "TOTAL_A_PAGAR": "Total a pagar",
+    "MONTO_RECIBIDO": "Monto recibido",
+    "VUELTO": "Vuelto",
+    "ERROR_PAGO": "{{error}}",
+    "NUMERO_TARJETA": "Número de tarjeta",
+    "EXPIRACION": "Fecha de expiración (MM/AA)",
+    "CVV": "CVV",
+    "TITULAR": "Nombre del titular",
+    "CANCELAR": "Cancelar",
+    "CONFIRMAR": "Confirmar"
   }
 
 }

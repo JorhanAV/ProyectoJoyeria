@@ -197,6 +197,20 @@
     "TITULOVACIO": "Your cart is empty",
     "DESCRIPCIONVACIO": "Start adding products and the magic will happen here ✨",
     "BOTONVACIO": "Go Shopping"
+  },
+  "PAGO_TEXT": {
+    "PAGO_TITULO": "Payment with {{metodo_pago}}",
+    "TOTAL_A_PAGAR": "Total to Pay",
+    "MONTO_RECIBIDO": "Amount Received",
+    "VUELTO": "Change",
+    "ERROR_PAGO": "{{error}}",
+    "NUMERO_TARJETA": "Card Number",
+    "EXPIRACION": "Expiration Date (MM/YY)",
+    "CVV": "CVV",
+    "TITULAR": "Cardholder Name",
+    "CANCELAR": "Cancel",
+    "CONFIRMAR": "Confirm"
   }
+
 
 }

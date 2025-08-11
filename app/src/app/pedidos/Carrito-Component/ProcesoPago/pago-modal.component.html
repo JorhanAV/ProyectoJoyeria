@@ -1,17 +1,19 @@
 <div class="pago-modal-container">
-  <h2 class="dialog-title">Pago con {{ metodo_pago | titlecase }}</h2>
+  <h2 class="dialog-title">
+    {{ 'CARRITO_TEXT.PAGO_TITULO' | translate:{ metodo_pago: metodo_pago | titlecase } }}
+  </h2>
 
   <div mat-dialog-content class="dialog-content">
     <!-- Total a pagar -->
     <div class="total-box">
-      <label>Total a pagar:</label>
+      <label>{{ 'CARRITO_TEXT.TOTAL_A_PAGAR' | translate }}:</label>
       <strong>{{ total | currency : "CRC" }}</strong>
     </div>
 
     <!-- Efectivo -->
     <ng-container *ngIf="metodo_pago === 'Efectivo'">
       <form class="form-grid">
-        <label for="monto">Monto recibido</label>
+        <label for="monto">{{ 'CARRITO_TEXT.MONTO_RECIBIDO' | translate }}</label>
         <div class="input-moneda">
           <span class="simbolo">₡</span>
           <input
@@ -19,22 +21,24 @@
             type="number"
             [value]="montoRecibido()"
             (input)="montoRecibido.set($any($event.target).valueAsNumber)"
-            placeholder="{{ total }}"
+            [placeholder]="total"
           />
         </div>
 
-        <label for="vuelto">Vuelto</label>
+        <label for="vuelto">{{ 'CARRITO_TEXT.VUELTO' | translate }}</label>
         <div class="vuelto-box">
           {{ vuelto() | currency : "CRC" }}
         </div>
 
-        <div *ngIf="error()" class="pago-error">{{ error() }}</div>
+        <div *ngIf="error()" class="pago-error">
+          {{ 'CARRITO_TEXT.ERROR_PAGO' | translate:{ error: error() } }}
+        </div>
       </form>
     </ng-container>
 
     <!-- Tarjeta -->
     <ng-container *ngIf="metodo_pago.startsWith('Tarjeta')">
-      <label>Número de tarjeta</label>
+      <label>{{ 'CARRITO_TEXT.NUMERO_TARJETA' | translate }}</label>
       <input
         type="text"
         [(ngModel)]="tarjeta.numero"
@@ -43,7 +47,7 @@
         placeholder="1234123412341234"
       />
 
-      <label>Fecha de expiración (MM/AA)</label>
+      <label>{{ 'CARRITO_TEXT.EXPIRACION' | translate }}</label>
       <input
         type="text"
         [(ngModel)]="tarjeta.expiracion"
@@ -51,7 +55,7 @@
         placeholder="MM/AA"
       />
 
-      <label>CVV</label>
+      <label>{{ 'CARRITO_TEXT.CVV' | translate }}</label>
       <input
         type="text"
         [(ngModel)]="tarjeta.cvv"
@@ -60,19 +64,25 @@
         placeholder="123"
       />
 
-      <label>Nombre del titular</label>
+      <label>{{ 'CARRITO_TEXT.TITULAR' | translate }}</label>
       <input
         type="text"
         [(ngModel)]="tarjeta.titular"
         placeholder="Juan Pérez"
       />
 
-      <div *ngIf="error()" class="pago-error">{{ error() }}</div>
+      <div *ngIf="error()" class="pago-error">
+        {{ 'CARRITO_TEXT.ERROR_PAGO' | translate:{ error: error() } }}
+      </div>
     </ng-container>
   </div>
 
   <div mat-dialog-actions class="pago-botones">
-    <button class="btn-cancelar" (click)="cancelar()">Cancelar</button>
-    <button class="btn-confirmar" (click)="confirmar()">Confirmar</button>
+    <button class="btn-cancelar" (click)="cancelar()">
+      {{ 'CARRITO_TEXT.CANCELAR' | translate }}
+    </button>
+    <button class="btn-confirmar" (click)="confirmar()">
+      {{ 'CARRITO_TEXT.CONFIRMAR' | translate }}
+    </button>
   </div>
 </div>
