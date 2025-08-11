@@ -25,8 +25,8 @@ export class CarritoComponent implements OnInit {
   usuarioCorreo: string = 'juanPerez@test.com';
   fechaActual: string = new Date().toLocaleDateString('es-CR');
   estadoPedido: string = 'En carrito';
-  pedidoId: number=0;
-  
+  pedidoId: number = 0;
+
   constructor(
     private cartService: CartService,
     private pedidoService: PedidoService,
@@ -87,34 +87,34 @@ export class CarritoComponent implements OnInit {
     const metodo = this.metodo_pago; // ya definido
     const total = this.total; // total del pedido a pagar
     this.dialog
-  .open(PagoModalComponent, {
-    data: {
-      metodo_pago: metodo,
-      total: total,
-    },
-  })
-  .afterClosed()
-  .subscribe((resultado) => {
-    if (resultado) {
-      console.log(this.pedidoId)
-      this.pedidoService
-        .pagarpedido(this.pedidoId, 1)
-        .subscribe(
-          () => {
-            this.noti.success(
-              'Pago realizado',
-              'Pedido actualizado',
-              3000,
-              '/pedidos'
-            );
-          },
-          (error) => {
-            this.noti.error('Error en el pago', error.message || '', 3000);
-          }
-        );
-    }
-  });
-
+      .open(PagoModalComponent, {
+        width: '90vw',
+        height: '90vh',
+        panelClass: 'modal-pago-panel',
+        data: {
+          metodo_pago: metodo,
+          total: total,
+        },
+      })
+      .afterClosed()
+      .subscribe((resultado) => {
+        if (resultado) {
+          console.log(this.pedidoId);
+          this.pedidoService.pagarpedido(this.pedidoId, 1).subscribe(
+            () => {
+              this.noti.success(
+                'Pago realizado',
+                'Pedido actualizado',
+                3000,
+                '/pedidos'
+              );
+            },
+            (error) => {
+              this.noti.error('Error en el pago', error.message || '', 3000);
+            }
+          );
+        }
+      });
   }
 
   registrarPedido() {

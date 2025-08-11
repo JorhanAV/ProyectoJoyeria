@@ -1,11 +1,13 @@
-import { Component, computed, Inject, OnInit, signal } from '@angular/core';
+import { Component, computed, Inject, OnInit, signal, ViewEncapsulation } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { NotificationService } from '../../../share/notification-service';
 
 @Component({
   selector: 'app-pago-modal',
   templateUrl: './pago-modal.component.html',
   styleUrls: ['./pago-modal.css'],
   standalone: false,
+  encapsulation: ViewEncapsulation.None
 })
 export class PagoModalComponent implements OnInit {
   metodo_pago = '';
@@ -25,13 +27,10 @@ export class PagoModalComponent implements OnInit {
     titular: '',
   };
 
-  efectivo = {
-    montoRecibido: 0,
-  };
-
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogRef: MatDialogRef<PagoModalComponent>
+    private dialogRef: MatDialogRef<PagoModalComponent>,
+    private noti: NotificationService
   ) {}
 
   ngOnInit() {
@@ -47,28 +46,48 @@ export class PagoModalComponent implements OnInit {
       this.error.set(
         'Número de tarjeta inválido (debe tener 16 dígitos numéricos)'
       );
+      this.noti.error('Error en los datos',
+                this.error(),
+        2000
+      );
       return false;
     }
 
     // Fecha expiración MM/AA y no anterior a hoy
     if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(this.tarjeta.expiracion)) {
       this.error.set('Fecha de expiración inválida (formato MM/AA)');
+      this.noti.error('Error en los datos',
+                this.error(),
+        2000
+      );
       return false;
     }
     if (!this.fechaValida(this.tarjeta.expiracion)) {
       this.error.set('La tarjeta está expirada');
+      this.noti.error('Error en los datos',
+                this.error(),
+        2000
+      );
       return false;
     }
 
     // CVV 3 o 4 dígitos numéricos
     if (!/^\d{3,4}$/.test(this.tarjeta.cvv)) {
       this.error.set('CVV inválido (3 o 4 dígitos numéricos)');
+      this.noti.error('Error en los datos',
+                this.error(),
+        2000
+      );
       return false;
     }
 
     // Titular no vacío
     if (!this.tarjeta.titular.trim()) {
       this.error.set('El nombre del titular es obligatorio');
+      this.noti.error('Error en los datos',
+                this.error(),
+        2000
+      );
       return false;
     }
 
@@ -80,7 +99,14 @@ export class PagoModalComponent implements OnInit {
     const [mesStr, anioStr] = exp.split('/');
     const mes = Number(mesStr);
     const anio = Number('20' + anioStr);
-    if (mes < 1 || mes > 12) return false;
+    if (mes < 1 || mes > 12){
+      this.error.set('Coloque una expiración correcta');
+      this.noti.error('Error en los datos',
+                this.error(),
+        2000
+      );
+      return false;
+    } 
 
     const hoy = new Date();
     const fechaExp = new Date(anio, mes); // primer día del mes siguiente
@@ -90,12 +116,23 @@ export class PagoModalComponent implements OnInit {
 
   validarEfectivo(): boolean {
     this.error.set('');
-    if (isNaN(this.montoRecibido()) || this.efectivo.montoRecibido <= 0) {
+    if (isNaN(this.montoRecibido())) {
       this.error.set('El monto recibido debe ser un número positivo');
+      this.noti.error('Error en los datos',
+                this.error(),
+        2000
+      );
       return false;
     }
+    console.log(this.total )
+    
+    console.log(this.montoRecibido() )
     if (this.montoRecibido() < this.total) {
       this.error.set('El monto recibido no puede ser menor al total');
+      this.noti.error('Error en los datos',
+                this.error(),
+        2000
+      );
       return false;
     }
     return true;
