@@ -1,0 +1,66 @@
+<h2 mat-dialog-title class="dialog-title">
+  Pago con {{ metodo_pago | titlecase }}
+</h2>
+
+<div mat-dialog-content class="dialog-content">
+
+  <!-- Total a pagar -->
+  <div class="total-box">
+    <span>Total a pagar:</span>
+    <strong>{{ total | currency:'CRC' }}</strong>
+  </div>
+
+  <!-- Efectivo -->
+  <ng-container *ngIf="metodo_pago === 'Efectivo'">
+    <form class="form-grid">
+      <mat-form-field appearance="outline" class="wide-field">
+  <mat-label>Monto recibido</mat-label>
+  <input matInput type="number"
+         [value]="montoRecibido()"
+         (input)="montoRecibido.set($any($event.target).valueAsNumber)"
+         placeholder="{{ total }}" />
+</mat-form-field>
+
+<mat-form-field appearance="outline" class="wide-field" disabled>
+  <mat-label>Vuelto</mat-label>
+  <input matInput [value]="vuelto() | currency:'CRC'" disabled />
+</mat-form-field>
+
+<div *ngIf="error()" class="error-text">{{ error() }}</div>
+
+    </form>
+
+    <mat-error *ngIf="error">{{ error() }}</mat-error>
+  </ng-container>
+
+  <!-- Tarjeta (sin cambios aquí, pero puedes aplicar mismo estilo) -->
+</div>
+
+  <!-- Tarjeta -->
+  <ng-container *ngIf="metodo_pago.startsWith('Tarjeta')">
+    <mat-form-field appearance="outline" style="width: 100%;">
+      <mat-label>Número de tarjeta</mat-label>
+      <input matInput [(ngModel)]="tarjeta.numero" maxlength="16" inputmode="numeric" placeholder="1234123412341234" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" style="width: 100%;">
+      <mat-label>Fecha de expiración (MM/AA)</mat-label>
+      <input matInput [(ngModel)]="tarjeta.expiracion" maxlength="5" placeholder="MM/AA" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" style="width: 100%;">
+      <mat-label>CVV</mat-label>
+      <input matInput [(ngModel)]="tarjeta.cvv" maxlength="4" inputmode="numeric" placeholder="123" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" style="width: 100%;">
+      <mat-label>Nombre del titular</mat-label>
+      <input matInput [(ngModel)]="tarjeta.titular" placeholder="Juan Pérez" />
+    </mat-form-field>
+
+    <div *ngIf="error" style="color: red; margin-top: 0.5rem;">{{ error() }}</div>
+  </ng-container>
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="cancelar()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="confirmar()">Confirmar</button>
+</div>

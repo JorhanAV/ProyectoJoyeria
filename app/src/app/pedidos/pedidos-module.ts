@@ -13,16 +13,19 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { TranslateModule } from '@ngx-translate/core';
 import { CarritoComponent } from './Carrito-Component/carrito-component';
-import { FormsModule } from '@angular/forms';
-
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { PagoModalComponent } from './Carrito-Component/ProcesoPago/pago-modal';
 
 @NgModule({
   declarations: [
     PedidoAdmin,
     PedidoDetail,
     PedidoIndex,
-    CarritoComponent
+    CarritoComponent,
+    PagoModalComponent
   ],
   imports: [
     CommonModule,
@@ -34,7 +37,11 @@ import { FormsModule } from '@angular/forms';
     MatIconModule,
     MatToolbarModule,
     MatProgressSpinnerModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule
   ]
 })
 export class PedidosModule { }

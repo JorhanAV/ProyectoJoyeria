@@ -5,14 +5,20 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment.development';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PedidoService extends BaseAPI<PedidoModel> {
+  constructor(httpClient: HttpClient) {
+    super(httpClient, environment.endPointPedido);
+  }
+  pagarpedido(pedidoId: number, adminId: number) {
+    const url = `${environment.apiURL}/${environment.endPointPedido}/${pedidoId}/bitacora`;
 
-  constructor(httpClient: HttpClient) { 
-        super(
-          httpClient,
-          environment.endPointPedido);
-      }
+    const body = {
+      estado: 'Pagado',
+      admin_id: adminId,
+    };
+
+    return this.http.post(url, body);
+  }
 }
-
