@@ -24,6 +24,8 @@ export class CarritoComponent implements OnInit {
   metodo_pago: string = 'Efectivo';
   usuarioNombre: string = 'Juan Pérez';
   usuarioCorreo: string = 'juanPerez@test.com';
+  usuarioNombre: string = 'Juan Pérez';
+  usuarioCorreo: string = 'juanPerez@test.com';
   fechaActual: string = new Date().toLocaleDateString('es-CR');
   estadoPedido: string = 'En carrito';
   pedidoId: number = 0;
@@ -67,8 +69,21 @@ export class CarritoComponent implements OnInit {
       this.cartService.removeFromCartByPersonalizadoId(
         item.productoPersonalizado.id
       );
+      this.cartService.removeFromCartByPersonalizadoId(
+        item.productoPersonalizado.id
+      );
     }
     this.ngOnInit();
+  }
+  getPrecioUnitarioPersonalizado(item: ItemCartModel): number {
+    if (!item.productoPersonalizado) return 0;
+    const base = item.productoPersonalizado.precio_base || 0;
+    const extras =
+      item.productoPersonalizado.criterios?.reduce(
+        (acc, c) => acc + (c.precio_extra || 0),
+        0
+      ) || 0;
+    return base + extras;
   }
   getPrecioUnitarioPersonalizado(item: ItemCartModel): number {
     if (!item.productoPersonalizado) return 0;
@@ -146,7 +161,13 @@ export class CarritoComponent implements OnInit {
           this.pedidoId = respuesta.id;
 
           // Limpias el carrito (puedes decidir si hacer esto aquí o luego de pagar)
+          // Guardas el ID del pedido creado
+          this.pedidoId = respuesta.id;
+
+          // Limpias el carrito (puedes decidir si hacer esto aquí o luego de pagar)
           this.cartService.deleteCart();
+
+          // Muestras la notificación
 
           // Muestras la notificación
           this.noti.success(
