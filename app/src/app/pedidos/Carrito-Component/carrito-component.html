@@ -2,26 +2,29 @@
   <!-- Información fija del usuario -->
   <div class="info-usuario">
     <div>
-      <label>Cliente:</label>
+      <label>{{ 'CARRITO_TEXT.CLIENTE' | translate }}:</label>
       <input type="text" [value]="nombreUsuario" readonly />
-      <label>Correo:</label>
+      <label>{{ 'CARRITO_TEXT.CORREO' | translate }}:</label>
       <input type="text" [value]="correoUsuario" readonly />
     </div>
     <div>
-      <label>Fecha:</label>
+      <label>{{ 'CARRITO_TEXT.FECHA' | translate }}:</label>
       <input type="text" [value]="fechaActual" readonly />
     </div>
-    <div class="estado-pedido"><strong>Estado:</strong> {{ estadoPedido }}</div>
+    <div class="estado-pedido">
+      <strong>{{ 'CARRITO_TEXT.ESTADO' | translate }}:</strong> {{ estadoPedido }}
+    </div>
   </div>
 
   <table class="tabla-carrito">
     <thead>
       <tr>
-        <th>Producto</th>
-        <th>Cantidad</th>
-        <th>Precio Unitario</th>
-        <th>Subtotal</th>
-        <th>Acciones</th>
+        <th>{{ 'CARRITO_TEXT.PRODUCTO' | translate }}</th>
+        <th>{{ 'CARRITO_TEXT.CANTIDAD' | translate }}</th>
+        <th>{{ 'CARRITO_TEXT.PRECIO_UNITARIO' | translate }}</th>
+        <th>{{ 'CARRITO_TEXT.PRECIO_PROMOCION' | translate }}</th>
+        <th>{{ 'CARRITO_TEXT.SUBTOTAL' | translate }}</th>
+        <th>{{ 'CARRITO_TEXT.ACCIONES' | translate }}</th>
       </tr>
     </thead>
     <tbody>
@@ -30,16 +33,13 @@
           <ng-container *ngIf="item.producto; else personalizado">
             {{ item.producto.nombre }}
           </ng-container>
-
           <ng-template #personalizado>
             <div>
               <strong>{{ item.productoPersonalizado?.nombre }}</strong><br />
-              Base: ₡{{ item.productoPersonalizado?.precio_base | number:'1.2-2'
-              }}
+              {{ 'CARRITO_TEXT.BASE' | translate }}: ₡{{ item.productoPersonalizado?.precio_base | number:'1.2-2' }}
               <ul>
                 <li *ngFor="let crit of item.productoPersonalizado?.criterios">
-                  {{ crit.criterio }}: {{ crit.seleccion }} (+₡{{
-                  crit.precio_extra | number:'1.2-2' }})
+                  {{ crit.criterio }}: {{ crit.seleccion }} (+₡{{ crit.precio_extra | number:'1.2-2' }})
                 </li>
               </ul>
             </div>
@@ -47,11 +47,11 @@
         </td>
         <td>
           <button class="btn-cantidad" (click)="decrementarCantidad(item)">
-            −
+            {{ 'CARRITO_TEXT.DECREMENTAR' | translate }}
           </button>
           <span>{{ item.cantidad }}</span>
           <button class="btn-cantidad" (click)="incrementarCantidad(item)">
-            +
+            {{ 'CARRITO_TEXT.INCREMENTAR' | translate }}
           </button>
         </td>
         <td>
@@ -63,10 +63,16 @@
             {{ getPrecioUnitarioPersonalizado(item) | number:'1.2-2' }}
           </ng-template>
         </td>
+        <td>
+          ₡
+          <ng-container *ngIf="item.producto?.tienePromocion;">
+            {{ item.producto?.precioFinal | number:'1.2-2' }}
+          </ng-container>
+        </td>
         <td>₡{{ item.subtotal | number:'1.2-2' }}</td>
         <td>
           <button class="btn-eliminar" (click)="eliminarProducto(item)">
-            🗑
+            {{ 'CARRITO_TEXT.ELIMINAR' | translate }}
           </button>
         </td>
       </tr>
@@ -75,18 +81,16 @@
 
   <!-- Resumen -->
   <div class="resumen-total">
-    <p><strong>Subtotal:</strong> ₡{{ total-impuestos | number:'1.2-2' }}</p>
-    <p>
-      <strong>Impuestos (13%):</strong> ₡{{ (impuestos) | number:'1.2-2' }}
-    </p>
+    <p><strong>{{ 'CARRITO_TEXT.SUBTOTAL_RESUMEN' | translate }}:</strong> ₡{{ total - impuestos | number:'1.2-2' }}</p>
+    <p><strong>{{ 'CARRITO_TEXT.IMPUESTOS' | translate }}:</strong> ₡{{ impuestos | number:'1.2-2' }}</p>
     <p class="total-final">
-      <strong>Total:</strong> ₡{{ (total) | number:'1.2-2' }}
+      <strong>{{ 'CARRITO_TEXT.TOTAL' | translate }}:</strong> ₡{{ total | number:'1.2-2' }}
     </p>
   </div>
 
   <!-- Formulario -->
   <form #form="ngForm" (ngSubmit)="registrarPedido()" class="formulario-pedido">
-    <label for="direccion">Dirección de envío:</label>
+    <label for="direccion">{{ 'CARRITO_TEXT.DIRECCION_ENVIO' | translate }}:</label>
     <input
       type="text"
       id="direccion"
@@ -95,39 +99,39 @@
       required
     />
     <div *ngIf="form.submitted && !direccion_envio" class="error">
-      La dirección de envío es obligatoria.
+      {{ 'CARRITO_TEXT.DIRECCION_OBLIGATORIA' | translate }}
     </div>
 
-    <label for="metodo_pago">Método de pago:</label>
+    <label for="metodo_pago">{{ 'CARRITO_TEXT.METODO_PAGO' | translate }}:</label>
     <select
       id="metodo_pago"
       name="metodo_pago"
       [(ngModel)]="metodo_pago"
       required
     >
-      <option value="" disabled selected>Seleccione un método</option>
-      <option value="Efectivo">Efectivo</option>
-      <option value="Tarjeta">Tarjeta</option>
+      <option value="" disabled selected>{{ 'CARRITO_TEXT.SELECCIONE_METODO' | translate }}</option>
+      <option value="Efectivo">{{ 'CARRITO_TEXT.EFECTIVO' | translate }}</option>
+      <option value="Tarjeta">{{ 'CARRITO_TEXT.TARJETA' | translate }}</option>
     </select>
     <div *ngIf="form.submitted && !metodo_pago" class="error">
-      Debe seleccionar un método de pago.
+      {{ 'CARRITO_TEXT.METODO_OBLIGATORIO' | translate }}
     </div>
 
     <div class="acciones-carrito">
       <button type="button" class="btn-vaciar" (click)="vaciarCarrito()">
-        Vaciar Carrito
+        {{ 'CARRITO_TEXT.VACIAR_CARRITO' | translate }}
       </button>
-      <button type="submit" class="btn-confirmar">Confirmar Pedido</button>
+      <button type="submit" class="btn-confirmar">
+        {{ 'CARRITO_TEXT.CONFIRMAR_PEDIDO' | translate }}
+      </button>
     </div>
   </form>
 </div>
-
 <ng-template #sinItems>
   <div class="carrito-vacio">
     <div class="icono-vacio">🛒</div>
-    <h2>Tu carrito está vacío</h2>
-    <p>Empieza a agregar productos y verás la magia aquí ✨</p>
-    <button class="btn-ir-compras" routerLink="/productos">Ir a comprar</button>
+    <h2>{{ 'CARRITO_TEXT.TITULOVACIO' | translate }}</h2>
+    <p>{{ 'CARRITO_TEXT.DESCRIPCIONVACIO' | translate }}</p>
+    <button class="btn-ir-compras" routerLink="/productos">{{ 'CARRITO_TEXT.BOTONVACIO' | translate }}</button>
   </div>
 </ng-template>
-

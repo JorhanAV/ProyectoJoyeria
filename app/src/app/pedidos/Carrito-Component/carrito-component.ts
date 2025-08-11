@@ -113,7 +113,7 @@ export class CarritoComponent implements OnInit {
               this.noti.success(
                 'Pago realizado',
                 'Pedido actualizado',
-                5000,
+                3000,
                 '/pedidos'
               );
             },
