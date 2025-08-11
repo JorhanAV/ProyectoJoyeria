@@ -9,6 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PagoModalComponent } from './ProcesoPago/pago-modal';
 import { timeout } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-carrito',
@@ -32,7 +33,8 @@ export class CarritoComponent implements OnInit {
     private pedidoService: PedidoService,
     private noti: NotificationService,
     private translate: TranslateService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -155,6 +157,7 @@ export class CarritoComponent implements OnInit {
           );
           // Abrir modal de pago con método y total
           this.abrirModalPago();
+           this.router.navigate(['/pedidos']);
         },
         error: (err) => {
           console.error(err);
