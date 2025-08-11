@@ -1,0 +1,38 @@
+.dialog-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.dialog-content {
+  padding: 1rem;
+  font-size: 1.1rem;
+}
+
+.total-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+}
+
+.form-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.wide-field {
+  width: 100%;
+  font-size: 1.1rem;
+}
+
+mat-error {
+  color: #d32f2f;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}

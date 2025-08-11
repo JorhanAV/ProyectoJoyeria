@@ -6,6 +6,9 @@ import { MetodoPagoModel } from '../../share/models/MetodoPagoModel';
 import { NotificationService } from '../../share/notification-service';
 import { PedidoModel } from '../../share/models/PedidoModel';
 import { TranslateService } from '@ngx-translate/core';
+import { MatDialog } from '@angular/material/dialog';
+import { PagoModalComponent } from './ProcesoPago/pago-modal';
+import { timeout } from 'rxjs';
 
 @Component({
   selector: 'app-carrito',
@@ -18,16 +21,18 @@ export class CarritoComponent implements OnInit {
   total: number = 0;
   direccion_envio: string = '';
   metodo_pago: string = 'Efectivo';
-  usuarioNombre: string = "Juan Pérez"; 
-  usuarioCorreo: string = "juanPerez@test.com";
+  usuarioNombre: string = 'Juan Pérez';
+  usuarioCorreo: string = 'juanPerez@test.com';
   fechaActual: string = new Date().toLocaleDateString('es-CR');
   estadoPedido: string = 'En carrito';
-
+  pedidoId: number=0;
+  
   constructor(
     private cartService: CartService,
     private pedidoService: PedidoService,
     private noti: NotificationService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -57,23 +62,59 @@ export class CarritoComponent implements OnInit {
     if (item.producto) {
       this.cartService.removeFromCartByProductoId(item.producto.id);
     } else if (item.productoPersonalizado) {
-      this.cartService.removeFromCartByPersonalizadoId(item.productoPersonalizado.id);
+      this.cartService.removeFromCartByPersonalizadoId(
+        item.productoPersonalizado.id
+      );
     }
     this.ngOnInit();
   }
-getPrecioUnitarioPersonalizado(item: ItemCartModel): number {
-  if (!item.productoPersonalizado) return 0;
-  const base = item.productoPersonalizado.precio_base || 0;
-  const extras = item.productoPersonalizado.criterios?.reduce(
-    (acc, c) => acc + (c.precio_extra || 0),
-    0
-  ) || 0;
-  return base + extras;
-}
+  getPrecioUnitarioPersonalizado(item: ItemCartModel): number {
+    if (!item.productoPersonalizado) return 0;
+    const base = item.productoPersonalizado.precio_base || 0;
+    const extras =
+      item.productoPersonalizado.criterios?.reduce(
+        (acc, c) => acc + (c.precio_extra || 0),
+        0
+      ) || 0;
+    return base + extras;
+  }
 
   vaciarCarrito(): void {
     this.cartService.deleteCart();
     this.ngOnInit();
+  }
+  abrirModalPago() {
+    const metodo = this.metodo_pago; // ya definido
+    const total = this.total; // total del pedido a pagar
+    this.dialog
+  .open(PagoModalComponent, {
+    data: {
+      metodo_pago: metodo,
+      total: total,
+    },
+  })
+  .afterClosed()
+  .subscribe((resultado) => {
+    if (resultado) {
+      console.log(this.pedidoId)
+      this.pedidoService
+        .pagarpedido(this.pedidoId, 1)
+        .subscribe(
+          () => {
+            this.noti.success(
+              'Pago realizado',
+              'Pedido actualizado',
+              3000,
+              '/pedidos'
+            );
+          },
+          (error) => {
+            this.noti.error('Error en el pago', error.message || '', 3000);
+          }
+        );
+    }
+  });
+
   }
 
   registrarPedido() {
@@ -99,13 +140,21 @@ getPrecioUnitarioPersonalizado(item: ItemCartModel): number {
 
       this.pedidoService.create(pedido as any).subscribe({
         next: (respuesta) => {
+          // Guardas el ID del pedido creado
+          this.pedidoId = respuesta.id;
+
+          // Limpias el carrito (puedes decidir si hacer esto aquí o luego de pagar)
           this.cartService.deleteCart();
+
+          // Muestras la notificación
           this.noti.success(
             'Pedido creado',
             'Pedido #' + respuesta.id,
             3000,
             '/pedidos'
           );
+          // Abrir modal de pago con método y total
+          this.abrirModalPago();
         },
         error: (err) => {
           console.error(err);
@@ -117,4 +166,3 @@ getPrecioUnitarioPersonalizado(item: ItemCartModel): number {
     }
   }
 }
-
