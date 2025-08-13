@@ -14,16 +14,16 @@ const jwtOptions = {
 passport.use(
   new LocalStrategy(
     {
-      usernameField: "email",
-      passwordField: "password",
+      usernameField: "correo",
+      passwordField: "contraseña",
     },
-    async (email, password, done) => {
+    async (correo, contraseña, done) => {
       try {
-        const user = await prisma.usuario.findUnique({ where: { email } });
+        const user = await prisma.usuario.findUnique({ where: { correo } });
         if (!user)
           return done(null, false, { message: "Usuario no registrado" });
 
-        const isMatch = await bcrypt.compare(password, user.password);
+        const isMatch = await bcrypt.compare(contraseña, user.contraseña);
         if (!isMatch)
           return done(null, false, { message: "Contraseña incorrecta" });
 

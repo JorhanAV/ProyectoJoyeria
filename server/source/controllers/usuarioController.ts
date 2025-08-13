@@ -1,6 +1,9 @@
 import { Request, Response, NextFunction } from "express";
 import { AppError } from "../errors/custom.error";
-import { PrismaClient } from "../../generated/prisma";
+import { PrismaClient, Rol, Usuario } from "../../generated/prisma";
+import bcrypt from "bcryptjs";
+import passport from "passport";
+import { generateToken } from "../config/authUtils";
 
 export class UsuarioController {
   prisma = new PrismaClient();
@@ -39,12 +42,60 @@ export class UsuarioController {
       next(error);
     }
   };
-  //Crear
-  create = async (request: Request, response: Response, next: NextFunction) => {
+  register = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      
+      const { nombre_usuario, correo, contraseña, rol } = req.body;
 
-      
+      const salt = await bcrypt.genSalt(10);
+      const hash = await bcrypt.hash(contraseña, salt);
+
+      const user = await this.prisma.usuario.create({
+        data: {
+          nombre_usuario,
+          correo,
+          contraseña: hash,
+          rol: Rol[rol as keyof typeof Rol],
+        },
+      });
+
+      res.status(201).json({
+        success: true,
+        message: "Usuario creado",
+        data: user,
+      });
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  login = (req: Request, res: Response, next: NextFunction) => {
+    passport.authenticate(
+      "local",
+      { session: false },
+      (
+        err: Error | null,
+        user: Express.User | false | null,
+        info: { message?: string }
+      ) => {
+        if (err) return next(err);
+        if (!user) {
+          return res
+            .status(401)
+            .json({ success: false, message: info.message });
+        }
+        const token = generateToken(user as Usuario);
+        return res.json({
+          success: true,
+          message: "Inicio de sesión exitoso",
+          token,
+        });
+      }
+    )(req, res, next);
+  };
+  userAuth = (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const usuario = req.user as Usuario;
+      res.json(usuario);
     } catch (error) {
       next(error);
     }

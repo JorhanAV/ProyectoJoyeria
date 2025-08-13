@@ -1,10 +1,10 @@
 import { sign, Secret, SignOptions } from "jsonwebtoken";
-import { Role } from "../../generated/prisma";
+import { Rol } from "../../generated/prisma";
 
 export function generateToken(user: {
   id: number;
-  email: string;
-  role: Role;
+  correo: string;
+  rol: Rol;
 }): string {
   const secretKey = process.env.SECRET_KEY;
 
@@ -18,8 +18,8 @@ export function generateToken(user: {
 
   const payload = {
     id: user.id,
-    email: user.email,
-    role: user.role,
+    correo: user.correo,
+    rol: user.rol,
   };
   try {
     return sign(payload, jwtSecret, jwtOptions);

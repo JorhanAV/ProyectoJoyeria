@@ -20,6 +20,8 @@ export class AppRoutes {
 
     // ----Agregar las rutas----
 
+    // localhost:3000/usuario/
+    router.use("/usuario", UsuarioRoutes.routes);
     // localhost:3000/resena/
     router.use("/resena", ResenaRoutes.routes);
 
@@ -31,12 +33,9 @@ export class AppRoutes {
 
     // localhost:3000/producto/
     router.use("/producto", ProductoRoutes.routes);
-    
+
     // localhost:3000/categoria/
     router.use("/categoria", CategoriaRoutes.routes);
-
-    // localhost:3000/usuario/
-    router.use("/usuario", UsuarioRoutes.routes);
 
     // localhost:3000/etiqueta/
     router.use("/etiqueta", EtiquetaRoutes.routes);
