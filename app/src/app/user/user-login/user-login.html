@@ -1,0 +1,16 @@
+<div class="page-wrapper">
+  <div class="login-container">
+    <h2>{{ "USER_TEXT.INICIAR_SESION" | translate }}</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <label for="email">{{ "USER_TEXT.CORREO_ELECTRONICO" | translate }}</label>
+      <input id="email" formControlName="email" type="email" required />
+
+      <label for="password">{{ "USER_TEXT.CONTRASENA" | translate }}</label>
+      <input id="password" formControlName="password" type="password" required />
+
+      <button type="submit" [disabled]="loginForm.invalid">{{ "USER_TEXT.INICIAR_SESION" | translate }}</button>
+    </form>
+
+    <p>{{ "USER_TEXT.NO_TIENES_CUENTA" | translate }} <a routerLink="/user-create">{{ "USER_TEXT.CREAR_CUENTA" | translate }}</a></p>
+  </div>
+</div>

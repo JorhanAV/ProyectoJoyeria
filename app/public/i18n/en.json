@@ -151,5 +151,16 @@
     "RESENAS": "Reviews",
     "PEDIDOS": "Orders",
     "PROMOCIONES": "Promotions"
+  },
+
+  "USER_TEXT": {
+    "INICIAR_SESION": "Log In",
+    "CREAR_CUENTA": "Create Account",
+    "CORREO_ELECTRONICO": "Email Address",
+    "CONTRASENA": "Password",
+    "OLVIDO_CONTRASENA": "Forgot Password?",
+    "REGISTRARSE": "Sign Up",
+    "NO_TIENES_CUENTA": "Don't have an account?",
+    "CONFIRMAR_CONTRASENA": "Confirm Password"
   }
 }

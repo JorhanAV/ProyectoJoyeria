@@ -148,5 +148,17 @@
     "RESENAS": "Reseñas",
     "PEDIDOS": "Pedidos",
     "PROMOCIONES": "Promociones"
+  },
+
+  "USER_TEXT": {
+    "INICIAR_SESION": "Iniciar Sesión",
+    "CREAR_CUENTA": "Crear Cuenta",
+    "CORREO_ELECTRONICO": "Correo Electrónico",
+    "CONTRASENA": "Contraseña",
+    "OLVIDO_CONTRASENA": "Olvidó su Contraseña?",
+    "REGISTRARSE": "Regístrate",
+    "NO_TIENES_CUENTA": "¿No tienes cuenta?",
+    "CONFIRMAR_CONTRASENA": "Confirmar Contraseña"
+
   }
 }

@@ -12,7 +12,7 @@ export class Header {
   cartService=inject(CartService)
   menuOpen = false;
   qtyItems: Signal<Number>=this.cartService.qtyItems
-  isAuth: boolean = true;
+  isAuth: boolean = false;
   user: string = 'user@email.com';
   toggleMenu() {
     this.menuOpen = !this.menuOpen;
