@@ -8,6 +8,11 @@ import {
 import { AuthenticationService } from '../../share/authentication.service';
 import { NotificationService } from '../../share/notification-service';
 import { TranslateService } from '@ngx-translate/core';
+import {
+  passwordStrengthValidator,
+  customEmailValidator,
+} from '../../share/custom-validators';
+
 
 @Component({
   selector: 'app-user-create',
@@ -28,8 +33,8 @@ export class UserCreate {
     this.registerForm = this.fb.group(
       {
         nombre_usuario: ['', [Validators.required, Validators.minLength(3)]],
-        correo: ['', [Validators.required, Validators.email]],
-        contraseña: ['', [Validators.required, Validators.minLength(6)]],
+        correo: ['', [Validators.required, Validators.email, customEmailValidator]],
+        contraseña: ['', [Validators.required, Validators.minLength(6), passwordStrengthValidator]],
         confirmarContraseña: ['', Validators.required],
         rol: ['CLIENTE', Validators.required],
       },

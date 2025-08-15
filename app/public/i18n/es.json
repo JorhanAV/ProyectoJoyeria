@@ -162,7 +162,17 @@
     "NOMBRE_USUARIO": "Nombre de Usuario",
     "CREAR_USUARIO_TITULO": "Usuario Creado",
     "CREAR_USUARIO_MENSAJE": "Usuario creado exitosamente",
-    "YA_TIENES_CUENTA": "¿Ya tienes cuenta?"
+    "YA_TIENES_CUENTA": "¿Ya tienes cuenta?",
+    "NOMBRE_USUARIO_OBLIGATORIO": "El nombre de usuario es obligatorio.",
+    "NOMBRE_USUARIO_MIN_LENGTH": "El nombre de usuario debe tener al menos 3 caracteres.",
+    "CORREO_OBLIGATORIO": "El correo electrónico es obligatorio.",
+    "CORREO_INVALIDO": "El formato del correo electrónico no es válido.",
+    "CORREO_INVALIDO_FORMATO": "El correo no cumple con el formato requerido.",
+    "CONTRASENA_OBLIGATORIA": "La contraseña es obligatoria.",
+    "CONTRASENA_MIN_LENGTH": "La contraseña debe tener al menos 6 caracteres.",
+    "CONTRASENA_DEBE_INCLUIR": "La contraseña debe incluir mayúsculas, minúsculas, números y un carácter especial.",
+    "CONFIRMAR_CONTRASENA_OBLIGATORIA": "Debes confirmar la contraseña.",
+    "CONTRASENA_NO_COINCIDEN": "Las contraseñas no coinciden."
 
   }
 }

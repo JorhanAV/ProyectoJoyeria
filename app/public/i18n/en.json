@@ -165,7 +165,17 @@
     "NOMBRE_USUARIO": "Username",
     "CREAR_USUARIO_TITULO": "User Created",
     "CREAR_USUARIO_MENSAJE": "User created successfully",
-    "YA_TIENES_CUENTA": "Already have an account?"
+    "YA_TIENES_CUENTA": "Already have an account?",
+    "NOMBRE_USUARIO_OBLIGATORIO": "Username is required.",
+    "NOMBRE_USUARIO_MIN_LENGTH": "Username must be at least 3 characters long.",
+    "CORREO_OBLIGATORIO": "Email address is required.",
+    "CORREO_INVALIDO": "Email format is invalid.",
+    "CORREO_INVALIDO_FORMATO": "Email does not meet the required format.",
+    "CONTRASENA_OBLIGATORIA": "Password is required.",
+    "CONTRASENA_MIN_LENGTH": "Password must be at least 6 characters long.",
+    "CONTRASENA_DEBE_INCLUIR": "Password must include uppercase, lowercase, numbers, and a special character.",
+    "CONFIRMAR_CONTRASENA_OBLIGATORIA": "Confirm Password is required.",
+    "CONTRASENA_NO_COINCIDEN": "Passwords do not match."
 
   }
 }
