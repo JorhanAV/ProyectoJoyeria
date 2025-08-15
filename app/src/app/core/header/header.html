@@ -16,16 +16,20 @@
   <!-- ENLACES DE NAVEGACIÓN -->
   <nav class="nav-links" [class.open]="menuOpen">
     <a routerLink="/">{{ 'MENU_TEXT.HOME' | translate }}</a>
+
     <a class="more-link" [matMenuTriggerFor]="moreMenu">
       {{ 'MENU_TEXT.TIENDA' | translate }}
       <mat-icon class="arrow-icon">arrow_drop_down</mat-icon>
     </a>
+
+    @if (currentUser()?.rol === 'ADMIN') {
     <a class="more-link" [matMenuTriggerFor]="moreMenuMant">
       {{ 'MENU_TEXT.MANTENIMIENTOS' | translate }}
       <mat-icon class="arrow-icon">arrow_drop_down</mat-icon>
     </a>
+    }
+
     <a routerLink="/acercade">{{ 'MENU_TEXT.ACERCA_DE' | translate }}</a>
-    <!-- <a routerLink="/contacto">Contacto</a> -->
 
     <mat-menu #moreMenu="matMenu" panelClass="white-menu-panel">
       <button mat-menu-item routerLink="/productos">
@@ -46,12 +50,7 @@
       <button mat-menu-item routerLink="/producto-admin">
         <span>{{ 'MENU_TEXT.PRODUCTOS' | translate }}</span>
       </button>
-      <!-- <button mat-menu-item routerLink="/resena">
-        <span>Reseñas</span>
-      </button>
-      <button mat-menu-item routerLink="/pedidos">
-        <span>Pedidos</span>
-      </button> -->
+
       <button mat-menu-item routerLink="/promocion-admin">
         <span>{{ 'MENU_TEXT.PROMOCIONES' | translate }}</span>
       </button>
@@ -60,7 +59,7 @@
   </nav>
 
   <!-- ICONOS DE USUARIO -->
-  <div class="user-actions" >
+  <div class="user-actions">
     <button
       mat-icon-button
       matTooltip="Carrito"

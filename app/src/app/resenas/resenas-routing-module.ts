@@ -3,11 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { ResenaIndex } from './resena-index/resena-index';
 import { ResenaDetail } from './resena-detail/resena-detail';
 import { ResenaAdmin } from './resena-admin/resena-admin';
+import { authGuard } from '../share/auth.guard';
 
 const routes: Routes = [
-  {path: 'resena', component: ResenaIndex},
-  {path: 'resena-admin',component: ResenaAdmin},
-  {path:'resena/:id',component:ResenaDetail}
+  {path: 'resena', component: ResenaIndex, canActivate: [authGuard], data: { roles: ['USER', 'ADMIN'] }},
+  {path: 'resena-admin', component: ResenaAdmin, canActivate: [authGuard], data: { roles: ['ADMIN'] }},
+  {path:'resena/:id', component:ResenaDetail, canActivate: [authGuard], data: { roles: ['USER', 'ADMIN'] }}
 ];
 
 @NgModule({
