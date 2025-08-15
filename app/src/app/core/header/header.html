@@ -60,7 +60,7 @@
   </nav>
 
   <!-- ICONOS DE USUARIO -->
-  <div class="user-actions">
+  <div class="user-actions" >
     <button
       mat-icon-button
       matTooltip="Carrito"
@@ -71,9 +71,7 @@
       <mat-icon>shopping_cart</mat-icon>
     </button>
 
-    <span class="user-email">{{currentUser()?.correo}}</span>
-
-    <span class="user-email">Email</span>
+    <span class="user-email">{{currentUser()?.nombre_usuario}}</span>
 
     <button mat-icon-button [matMenuTriggerFor]="menu3">
       <mat-icon>person</mat-icon>

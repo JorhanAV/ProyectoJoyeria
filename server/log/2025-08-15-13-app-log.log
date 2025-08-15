@@ -1,0 +1,17 @@
+2025-08-15 13:58:51.808 error: 	jorha--Se produjo un error interno del servidor 
+Invalid `this.prisma.usuario.create()` invocation in
+D:\UTN\XI Cuatrimestre\ProyectoJoyeria\server\source\controllers\usuarioController.ts:52:46
+
+  49 const salt = await bcrypt.genSalt(10);
+  50 const hash = await bcrypt.hash(contraseña, salt);
+  51 
+→ 52 const user = await this.prisma.usuario.create({
+       data: {
+         nombre_usuario: "Administrador 4",
+         correo: "usuario-admin4@prueba.com",
+         contraseña: "$2b$10$i5V1j53kYE04LjDf8e.puuidvnnYz0uTH7l44ZMHqnHoCL3CN29xa",
+     +   rol: Rol
+       }
+     })
+
+Argument `rol` is missing.

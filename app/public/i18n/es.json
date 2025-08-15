@@ -158,7 +158,11 @@
     "OLVIDO_CONTRASENA": "Olvidó su Contraseña?",
     "REGISTRARSE": "Regístrate",
     "NO_TIENES_CUENTA": "¿No tienes cuenta?",
-    "CONFIRMAR_CONTRASENA": "Confirmar Contraseña"
+    "CONFIRMAR_CONTRASENA": "Confirmar Contraseña",
+    "NOMBRE_USUARIO": "Nombre de Usuario",
+    "CREAR_USUARIO_TITULO": "Usuario Creado",
+    "CREAR_USUARIO_MENSAJE": "Usuario creado exitosamente",
+    "YA_TIENES_CUENTA": "¿Ya tienes cuenta?"
 
   }
 }

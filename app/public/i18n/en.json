@@ -161,6 +161,11 @@
     "OLVIDO_CONTRASENA": "Forgot Password?",
     "REGISTRARSE": "Sign Up",
     "NO_TIENES_CUENTA": "Don't have an account?",
-    "CONFIRMAR_CONTRASENA": "Confirm Password"
+    "CONFIRMAR_CONTRASENA": "Confirm Password",
+    "NOMBRE_USUARIO": "Username",
+    "CREAR_USUARIO_TITULO": "User Created",
+    "CREAR_USUARIO_MENSAJE": "User created successfully",
+    "YA_TIENES_CUENTA": "Already have an account?"
+
   }
 }
