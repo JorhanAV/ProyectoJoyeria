@@ -70,22 +70,22 @@
     >
       <mat-icon>shopping_cart</mat-icon>
     </button>
-    @if (isAuth) {
-    <span class="user-email">{{user}}</span>
-    } @else {
+
+    <span class="user-email">{{currentUser()?.correo}}</span>
+
     <span class="user-email">Email</span>
-    }
+
     <button mat-icon-button [matMenuTriggerFor]="menu3">
       <mat-icon>person</mat-icon>
     </button>
     <mat-menu #menu3="matMenu">
-      @if (!isAuth) {
+      @if (!isAuthenticated()) {
       <button mat-menu-item routerLink="/user-login">
         <mat-icon>login</mat-icon>
         <span>Login</span>
       </button>
       } @else {
-      <button mat-menu-item>
+      <button mat-menu-item (click)="logout()">
         <mat-icon>logout</mat-icon>
         <span>Logout</span>
       </button>
