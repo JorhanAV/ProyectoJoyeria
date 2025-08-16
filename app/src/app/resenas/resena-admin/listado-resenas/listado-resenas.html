@@ -1,0 +1,52 @@
+<div class="listado-resenas">
+  <h3 class="titulo-seccion">Todas las reseñas</h3>
+
+  @if (resenas.length === 0) {
+  <p class="mensaje-vacio">No hay reseñas disponibles.</p>
+  } @else {
+  <table
+    mat-table
+    [dataSource]="resenas"
+    class="mat-elevation-z2 tabla-resenas"
+  >
+    <!-- Usuario -->
+    <ng-container matColumnDef="usuario">
+      <th mat-header-cell *matHeaderCellDef>Usuario</th>
+      <td mat-cell *matCellDef="let resena">
+        {{ resena.usuario.nombre_usuario }}
+      </td>
+    </ng-container>
+
+    <!-- Comentario -->
+    <ng-container matColumnDef="comentario">
+      <th mat-header-cell *matHeaderCellDef>Comentario</th>
+      <td mat-cell *matCellDef="let resena">{{ resena.comentario }}</td>
+    </ng-container>
+
+    <!-- Valoración -->
+    <ng-container matColumnDef="valoracion">
+      <th mat-header-cell *matHeaderCellDef>Valoración</th>
+      <td mat-cell *matCellDef="let resena">⭐ {{ resena.valoracion }} / 5</td>
+    </ng-container>
+
+    <!-- Acciones -->
+    <ng-container matColumnDef="acciones">
+      <th mat-header-cell *matHeaderCellDef>Estado</th>
+      <td mat-cell *matCellDef="let resena">
+        <button
+          mat-icon-button
+          [color]="resena.visible ? 'primary' : 'warn'"
+          (click)="actualizarVisibilidad(resena)"
+        >
+          <mat-icon>
+            {{ resena.visible ? 'visibility' : 'visibility_off' }}
+          </mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+  </table>
+  }
+</div>

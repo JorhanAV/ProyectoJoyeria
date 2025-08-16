@@ -1,0 +1,44 @@
+.resenas-admin {
+  padding: 2rem;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.resenas-admin h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 0.5rem;
+}
+
+.tabs {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.tabs button {
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #e0e0e0;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.tabs button:hover {
+  background-color: #d5d5d5;
+  transform: scale(1.02);
+}
+
+.tabs button.active {
+  background-color: #1976d2;
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.3);
+}

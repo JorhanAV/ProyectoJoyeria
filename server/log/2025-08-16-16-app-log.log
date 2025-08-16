@@ -1,0 +1,34 @@
+2025-08-16 16:10:18.177 error: 	jorha--Se produjo un error interno del servidor 
+Invalid `this.prisma.resena.update()` invocation in
+D:\UTN\XI Cuatrimestre\ProyectoJoyeria\server\source\controllers\resenaController.ts:98:47
+
+  95 const body = request.body;
+  96 const idResena = parseInt(request.params.id);
+  97 
+→ 98 const resena = await this.prisma.resena.update({
+       where: {
+     +   id: Int
+       },
+       data: {
+         visible: true
+       }
+     })
+
+Argument `id` is missing.
+2025-08-16 16:19:00.908 error: 	jorha--Se produjo un error interno del servidor 
+Invalid `this.prisma.resena.update()` invocation in
+D:\UTN\XI Cuatrimestre\ProyectoJoyeria\server\source\controllers\resenaController.ts:98:47
+
+  95 const body = request.body;
+  96 const idResena = parseInt(request.params.id);
+  97 
+→ 98 const resena = await this.prisma.resena.update({
+       where: {
+     +   id: Int
+       },
+       data: {
+         visible: false
+       }
+     })
+
+Argument `id` is missing.

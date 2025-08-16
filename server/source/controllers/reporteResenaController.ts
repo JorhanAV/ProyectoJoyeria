@@ -11,15 +11,22 @@ export class ReporteResenaController {
         include: {
           resena: {
             select: {
+              id:true,
               comentario: true,
               valoracion: true,
               fecha: true,
+              visible: true,
               usuario: {
                 select: {
                   id: true,
                   nombre_usuario: true,
                 },
               },
+              producto: {
+                select:{
+                  nombre: true
+                }
+              }
             },
           },
           usuario: {

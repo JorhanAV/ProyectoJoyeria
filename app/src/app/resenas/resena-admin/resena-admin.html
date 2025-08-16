@@ -1,1 +1,19 @@
-<p>resena-admin works!</p>
+<div class="resenas-admin">
+  <h2>Gestión de Reseñas</h2>
+
+  <div class="tabs">
+    <button (click)="setVista('todas')" [class.active]="vista === 'todas'">Todas las reseñas</button>
+    <button (click)="setVista('reportadas')" [class.active]="vista === 'reportadas'">Reseñas reportadas</button>
+  </div>
+
+  <!-- Ambos componentes están en el DOM, se ocultan según la vista -->
+  <app-listado-resenas
+    [resenas]="resenas"
+    [hidden]="vista !== 'todas'">
+  </app-listado-resenas>
+
+  <app-listado-reportes
+    [resenasReportadas]="resenasReportadas"
+    [hidden]="vista !== 'reportadas'">
+  </app-listado-reportes>
+</div>
