@@ -224,4 +224,48 @@ export class ProductoController {
       next(error);
     }
   };
+  // En ProductoController
+
+updateStock = async (request: Request, response: Response, next: NextFunction) => {
+  try {
+    const idProducto = parseInt(request.params.id);
+    const { cantidad } = request.body;
+
+    if (!cantidad || cantidad <= 0) {
+      throw AppError.badRequest("Cantidad inválida");
+    }
+
+    // Buscar producto
+    const producto = await this.prisma.producto.findUnique({
+      where: { id: idProducto },
+      select: { stock: true },
+    });
+
+    if (!producto) {
+      throw AppError.badRequest("Producto no encontrado");
+    }
+
+    if (producto.stock < cantidad) {
+      throw AppError.badRequest("Stock insuficiente");
+    }
+
+    // Actualizar stock (restar)
+    const productoActualizado = await this.prisma.producto.update({
+      where: { id: idProducto },
+      data: {
+        stock: {
+          decrement: cantidad, // Prisma permite decrement directo
+        },
+      },
+    });
+
+    response.status(200).json({
+      message: "Stock actualizado correctamente",
+      producto: productoActualizado,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 }

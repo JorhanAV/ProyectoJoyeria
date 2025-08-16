@@ -5,10 +5,10 @@ import { ItemCartModel } from '../../share/models/ItemCartModel';
 import { MetodoPagoModel } from '../../share/models/MetodoPagoModel';
 import { NotificationService } from '../../share/notification-service';
 import { PedidoModel } from '../../share/models/PedidoModel';
-import { TranslateService } from '@ngx-translate/core';
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PagoModalComponent } from './ProcesoPago/pago-modal';
-import { timeout } from 'rxjs';
+import { Subscription, timeout } from 'rxjs';
 import { Router } from '@angular/router';
 import { UsuarioService } from '../../share/services/usuario.service';
 
@@ -25,11 +25,12 @@ export class CarritoComponent implements OnInit {
   direccion_envio: string = '';
   metodo_pago: string = 'Efectivo';
   usuarioId: number=1;
-  fechaActual: string = new Date().toLocaleDateString('es-CR');
   estadoPedido: string = 'En carrito';
   pedidoId: number = 0;
   nombreUsuario: string = '';
   correoUsuario: string = '';
+  fechaActual: string = '';
+  private langSub!: Subscription;
 
   constructor(
     private cartService: CartService,
@@ -39,13 +40,35 @@ export class CarritoComponent implements OnInit {
     private dialog: MatDialog,
     private router: Router,
     private usuarioService: UsuarioService
-  ) {}
+  ) {
+
+  }
 
   ngOnInit(): void {
     this.items = this.cartService.itemsCart();
     this.total = this.cartService.total();
     this.impuestos = this.cartService.impuestos();
-    this.obtenerUsuario();
+    this.obtenerUsuario(); 
+    
+    // 👉 inicializa con el idioma actual
+    this.setFecha(this.translate.currentLang || this.translate.getDefaultLang());
+
+    // 👉 escucha cambios de idioma
+    this.langSub = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+      this.setFecha(event.lang);
+    });
+  }
+    ngOnDestroy(): void {
+    if (this.langSub) {
+      this.langSub.unsubscribe();
+    }
+  }
+
+   private setFecha(lang: string) {
+    this.fechaActual =
+      lang === 'es'
+        ? new Date().toLocaleDateString('es-CR')
+        : new Date().toLocaleDateString('en-US');
   }
   incrementarCantidad(item: ItemCartModel): void {
     if (item.producto) {
