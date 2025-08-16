@@ -20,6 +20,7 @@
     <thead>
       <tr>
         <th>{{ 'CARRITO_TEXT.PRODUCTO' | translate }}</th>
+        <th>Stock</th>
         <th>{{ 'CARRITO_TEXT.CANTIDAD' | translate }}</th>
         <th>{{ 'CARRITO_TEXT.PRECIO_UNITARIO' | translate }}</th>
         <th>{{ 'CARRITO_TEXT.PRECIO_PROMOCION' | translate }}</th>
@@ -45,6 +46,12 @@
             </div>
           </ng-template>
         </td>
+        <td>
+  <ng-container *ngIf="item.producto">
+    {{ item.producto.stock }}
+  </ng-container>
+</td>
+
         <td>
           <button class="btn-cantidad" (click)="decrementarCantidad(item)">
             {{ 'CARRITO_TEXT.DECREMENTAR' | translate }}

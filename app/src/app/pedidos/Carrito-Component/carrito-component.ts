@@ -50,10 +50,10 @@ export class CarritoComponent implements OnInit {
     this.impuestos = this.cartService.impuestos();
     this.obtenerUsuario(); 
     
-    // 👉 inicializa con el idioma actual
+    // inicializa con el idioma actual
     this.setFecha(this.translate.currentLang || this.translate.getDefaultLang());
 
-    // 👉 escucha cambios de idioma
+    // escucha cambios de idioma
     this.langSub = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
       this.setFecha(event.lang);
     });
@@ -70,15 +70,23 @@ export class CarritoComponent implements OnInit {
         ? new Date().toLocaleDateString('es-CR')
         : new Date().toLocaleDateString('en-US');
   }
-  incrementarCantidad(item: ItemCartModel): void {
-    if (item.producto) {
+incrementarCantidad(item: ItemCartModel): void {
+  if (item.producto) {
+    if (item.cantidad < (item.producto.stock ?? 0)) {
       this.cartService.addToCart(item.producto);
-    } else if (item.productoPersonalizado) {
-      if(item.productoPersonalizado)
-      this.cartService.addToCartPersonalized(item.productoPersonalizado);
+    } else {
+      this.noti.warning(
+        'Stock insuficiente',
+        `Solo hay ${item.producto.stock} unidades disponibles`,
+        3000
+      );
     }
-    this.ngOnInit();
+  } else if (item.productoPersonalizado) {
+    this.cartService.addToCartPersonalized(item.productoPersonalizado);
   }
+  this.ngOnInit();
+}
+
   decrementarCantidad(item: ItemCartModel): void {
     if (item.producto) {
       this.cartService.addToCart(item.producto,-1);

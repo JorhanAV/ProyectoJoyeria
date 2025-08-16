@@ -15,7 +15,6 @@ export class ProductoRoutes {
         //Actualizar
         router.put('/:id',controller.update)
 
-        router.patch("/:id/stock", controller.updateStock);
         return router 
     } 
 }
