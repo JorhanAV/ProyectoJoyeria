@@ -20,7 +20,6 @@ export class HttpErrorInterceptorService implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    console.log('Request URL: ' + request.url);
 
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {

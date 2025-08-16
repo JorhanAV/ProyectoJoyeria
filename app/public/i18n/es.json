@@ -17,7 +17,9 @@
     "VER_DETALLES": "Ver Detalles",
     "DETALLE_RESEÑA": "Detalle de Reseña",
     "PRODUCTO": "Producto",
-    "VOLVER": "Volver"
+    "VOLVER": "Volver",
+    "NO_COMPRO_TITULO": "Producto no comprado",
+    "NO_COMPRO_MENSAJE": "Debes comprar el producto antes de dejar una reseña."
   },
   "PROMOCION_TEXT": {
     "LISTADO_PROMOCIONES": "Listado de Promociones",

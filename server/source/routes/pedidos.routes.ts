@@ -17,6 +17,12 @@ export class PedidoRoutes {
       authenticateJWT,
       authorizeRoles(Rol.ADMIN, Rol.CLIENTE),
       controller.getById);
+
+    router.get('/usuario/:id', 
+      authenticateJWT,
+      authorizeRoles(Rol.ADMIN, Rol.CLIENTE),
+      controller.getByProductId);
+
     router.post('/', 
       authenticateJWT,
       authorizeRoles(Rol.ADMIN, Rol.CLIENTE),

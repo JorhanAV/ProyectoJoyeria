@@ -16,8 +16,6 @@ export class HttpAuthInterceptorService implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
     const token = localStorage.getItem(this.tokenKey);
-    console.log('Interceptando:', request.url);
-    console.log('Token:', token);
     if (token) {
       // Clona la solicitud y añade el encabezado de autorización
       request = request.clone({
