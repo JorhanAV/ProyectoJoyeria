@@ -53,6 +53,7 @@
     "ACTUALIZADA_TITULO": "Promoción actualizada",
     "ACTUALIZADA_MENSAJE": "ID: {{id}}",
     "VER_DETALLES": "Ver Detalles"
+    
   },
   "PRODUCTO_TEXT": {
     "GESTION_PRODUCTOS": "Gestión de Productos",
@@ -108,7 +109,8 @@
     "DESGLOSE_PRECIO": "Desglose de Precio",
     "PRECIO_TOTAL": "Precio Total",
     "PRECIO_PERSONALIZACION": "Precio de Personalización",
-    "PRECIO_POSITIVO": "Error con el precio"
+    "PRECIO_POSITIVO": "Error con el precio",
+    "REPORTAR": "Reportar"
   },
 
   "PEDIDO_TEXT": {

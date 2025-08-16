@@ -167,3 +167,18 @@
   transform: scale(0.98);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
+
+.reportar-btn {
+  background: none;
+  border: none;
+  color: #c00;
+  font-size: 0.85rem;
+  cursor: pointer;
+  margin-left: 1rem;
+  padding: 0;
+  text-decoration: underline;
+}
+
+.reportar-btn:hover {
+  color: #900;
+}

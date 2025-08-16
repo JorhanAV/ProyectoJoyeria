@@ -67,6 +67,10 @@
       <div class="resena-info">
         <strong>{{ r.usuario.nombre_usuario }}</strong>
         <span class="fecha">{{ r.fecha | date: 'longDate' }}</span>
+
+        <button class="reportar-btn" (click)="reportarResena(r)">
+          🏴 {{ 'PRODUCTO_TEXT.REPORTAR' | translate }}
+        </button>
       </div>
       <p class="comentario">“{{ r.comentario }}”</p>
       <div class="estrellas">
@@ -91,7 +95,7 @@
   <app-resena-form
     *ngIf="mostrarFormularioResena"
     [productoId]="datos.id"
-    [usuarioId]="usuarioAutenticado.id"
+    [usuarioId]="usuarioAutenticado()?.id!"
     (resenaGuardada)="resenaRegistrada($event)"
   >
   </app-resena-form>

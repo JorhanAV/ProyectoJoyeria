@@ -1,10 +1,11 @@
-import { Component, NgZone } from '@angular/core';
+import { Component, inject, NgZone } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { ProductoService } from '../../share/services/producto.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResenaModel } from '../../share/models/ResenaModel';
 import { ResenaService } from '../../share/services/resena.service';
 import { FormGroup } from '@angular/forms';
+import { AuthenticationService } from '../../share/authentication.service';
 
 @Component({
   selector: 'app-producto-detail',
@@ -23,8 +24,9 @@ export class ProductoDetail {
   tipoDescuento: string | null = null;
   valorDescuento: number | null = null;
   fechaActual: Date = new Date();
+  private authService = inject(AuthenticationService);
 
-  usuarioAutenticado = { id: 1 };
+  usuarioAutenticado = this.authService.currentUserSignal;
 
   // --- Relativo al formulario ---
   resenaForm!: FormGroup;
@@ -122,5 +124,9 @@ export class ProductoDetail {
     this.obtenerProducto(this.datos.id); // 👈 vuelve a consultar el producto
 
     this.mostrarFormularioResena = false;
+  }
+
+  reportarResena(resena: ResenaModel) {
+    console.log('Reseña reportada:', resena);
   }
 }
