@@ -10,7 +10,7 @@ const routes: Routes = [
   {path: 'pedidos', 
     component: PedidoIndex,
     canActivate: [authGuard],
-    data: { roles: ['USER', 'ADMIN'] }
+    data: { roles: ['CLIENTE', 'ADMIN'] }
   },
   {path: 'pedido-admin', 
     component: PedidoAdmin,
@@ -20,12 +20,12 @@ const routes: Routes = [
   {path: 'pedido/:id', 
     component: PedidoDetail,
     canActivate: [authGuard],
-    data: { roles: ['USER', 'ADMIN'] }
+    data: { roles: ['CLIENTE', 'ADMIN'] }
   },
   {path: 'carrito', 
     component: CarritoComponent,
     canActivate: [authGuard],
-    data: { roles: ['USER', 'ADMIN'] }
+    data: { roles: ['CLIENTE', 'ADMIN'] }
   }
 ];
 

@@ -1,6 +1,7 @@
 import {
   Component,
   EventEmitter,
+  inject,
   Input,
   OnDestroy,
   OnInit,
@@ -13,6 +14,7 @@ import { ResenaService } from '../../share/services/resena.service';
 import { NotificationService } from '../../share/notification-service';
 import { UsuarioService } from '../../share/services/usuario.service';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthenticationService } from '../../share/authentication.service';
 
 @Component({
   selector: 'app-resena-form',
@@ -26,10 +28,11 @@ export class ResenaForm implements OnInit, OnDestroy {
   @Input() productoId!: number;
   @Input() usuarioId!: number;
   @Output() resenaGuardada = new EventEmitter<ResenaModel>();
+  private authService = inject(AuthenticationService);
 
   formResena!: FormGroup;
   estrellas = [1, 2, 3, 4, 5];
-  nombreUsuario: string = '';
+  nombreUsuario = this.authService.currentUserSignal;
 
   fechaActual: Date = new Date();
 
@@ -43,7 +46,7 @@ export class ResenaForm implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.initForm();
-    this.obtenerUsuario();
+    //this.obtenerUsuario();
   }
 
   private initForm() {
@@ -61,11 +64,11 @@ export class ResenaForm implements OnInit, OnDestroy {
     });
   }
 
-  obtenerUsuario() {
+/*   obtenerUsuario() {
     this.usuarioService.getById(this.usuarioId).subscribe((usuario) => {
       this.nombreUsuario = usuario.nombre_usuario;
     });
-  }
+  } */
 
   seleccionarEstrella(valor: number): void {
     this.formResena.patchValue({ valoracion: valor });
@@ -87,7 +90,9 @@ export class ResenaForm implements OnInit, OnDestroy {
       .subscribe((data: any) => {
         this.noti.success(
           this.translate.instant('RESENAS_TEXT.CREADA_TITULO'),
-          this.translate.instant('RESENAS_TEXT.CREADA_MENSAJE', { id: data.id }),
+          this.translate.instant('RESENAS_TEXT.CREADA_MENSAJE', {
+            id: data.id,
+          }),
           3000
         );
 

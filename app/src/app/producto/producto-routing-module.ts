@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'productos', 
     component: ProductoIndex,
     canActivate: [authGuard],
-    data: { roles: ['USER', 'ADMIN'] }
+    data: { roles: ['CLIENTE', 'ADMIN'] }
   },
 
   { path: 'producto-admin', 
@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: 'producto/:id', 
     component: ProductoDetail,
     canActivate: [authGuard],
-    data: { roles: ['USER', 'ADMIN'] }
+    data: { roles: ['CLIENTE', 'ADMIN'] }
   },
   { path: 'producto/update/:id', 
     component: ProductoForm,

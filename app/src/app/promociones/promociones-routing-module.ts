@@ -10,7 +10,7 @@ const routes: Routes = [
   {path: 'promocion', 
     component: PromocionIndex,
     canActivate: [authGuard],
-    data: { roles: ['USER', 'ADMIN'] }
+    data: { roles: ['CLIENTE', 'ADMIN'] }
   },
   {path: 'promocion-admin',
     component: PromocionAdmin,
@@ -25,7 +25,7 @@ const routes: Routes = [
   {path:'promocion/:id',
     component:PromocionDetail,
     canActivate: [authGuard],
-    data: { roles: ['USER', 'ADMIN'] }
+    data: { roles: ['CLIENTE', 'ADMIN'] }
   },
   {path:'promocion/update/:id',
     component:PromocionForm,
