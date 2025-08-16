@@ -99,4 +99,13 @@
     (resenaGuardada)="resenaRegistrada($event)"
   >
   </app-resena-form>
+
+  <app-reporte-resenas-create
+    *ngIf="modalVisible"
+    [resena]="resenaSeleccionada"
+    [usuarioId]="usuarioAutenticado()?.id!"
+    (reporteCreado)="crearReporte($event)"
+    (cerrarModal)="modalVisible = false"
+  ></app-reporte-resenas-create>
+  
 </div>

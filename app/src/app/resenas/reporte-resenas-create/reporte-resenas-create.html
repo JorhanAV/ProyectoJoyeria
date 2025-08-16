@@ -1,0 +1,17 @@
+<div class="modal-overlay" (click)="cerrar()"></div>
+<div class="modal-contenido">
+  <h2>Reportar reseña</h2>
+  <p><strong>Usuario:</strong> {{ resena?.usuario.nombre_usuario }}</p>
+  <p><strong>Comentario:</strong> “{{ resena?.comentario }}”</p>
+
+  <textarea
+    [(ngModel)]="comentario"
+    placeholder="Escribe el motivo del reporte"
+    rows="4"
+  ></textarea>
+
+  <div class="acciones">
+    <button (click)="enviarReporte()" class="boton">Enviar</button>
+    <button class="cancelar" (click)="cerrar()" class="boton">Cancelar</button>
+  </div>
+</div>

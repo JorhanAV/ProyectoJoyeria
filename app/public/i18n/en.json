@@ -19,8 +19,9 @@
     "PRODUCTO": "Product",
     "VOLVER": "Back",
     "NO_COMPRO_TITULO": "Product Not Purchased",
-    "NO_COMPRO_MENSAJE": "You must purchase the product before leaving a review."
-
+    "NO_COMPRO_MENSAJE": "You must purchase the product before leaving a review.",
+    "CREAR_REPORTE_TITULO": "Review reported",
+    "CREAR_REPORTE_MENSAJE": "The review has been successfully reported"
   },
   "PROMOCION_TEXT": {
     "LISTADO_PROMOCIONES": "Promotions List",
@@ -32,7 +33,7 @@
     "VALOR": "Value",
     "VIGENTE_DEL": "Valid from",
     "AL": "to",
-    "TIPO_DESCUENTO":"Discount Type",
+    "TIPO_DESCUENTO": "Discount Type",
     "VER_MAS": "See More",
     "VOLVER": "Back",
     "CREAR_PROMOCION": "Create Promotion",
@@ -179,6 +180,5 @@
     "CONTRASENA_DEBE_INCLUIR": "Password must include uppercase, lowercase, numbers, and a special character.",
     "CONFIRMAR_CONTRASENA_OBLIGATORIA": "Confirm Password is required.",
     "CONTRASENA_NO_COINCIDEN": "Passwords do not match."
-
   }
 }

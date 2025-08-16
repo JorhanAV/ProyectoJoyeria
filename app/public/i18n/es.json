@@ -19,7 +19,9 @@
     "PRODUCTO": "Producto",
     "VOLVER": "Volver",
     "NO_COMPRO_TITULO": "Producto no comprado",
-    "NO_COMPRO_MENSAJE": "Debes comprar el producto antes de dejar una reseña."
+    "NO_COMPRO_MENSAJE": "Debes comprar el producto antes de dejar una reseña.",
+    "CREAR_REPORTE_TITULO":"Reseña reportada",
+    "CREAR_REPORTE_MENSAJE": "Se ha reportado con éxito la reseña"
   },
   "PROMOCION_TEXT": {
     "LISTADO_PROMOCIONES": "Listado de Promociones",
