@@ -1,0 +1,150 @@
+<div >
+
+  <!-- SECCIÓN DE FILTROS -->
+  <section class="filtros">
+    <!-- Filtro por rango de días -->
+    <div class="filtro-card">
+      <h4>Rango de días</h4>
+      <div class="row">
+        <label>Desde</label>
+        <input type="date" [(ngModel)]="fechaInicio">
+      </div>
+      <div class="row">
+        <label>Hasta</label>
+        <input type="date" [(ngModel)]="fechaFin">
+      </div>
+      <button class="btn" (click)="onAplicarFiltrosRango()">Aplicar</button>
+    </div>
+
+    <!-- Filtro por mes/año/estado -->
+    <div class="filtro-card">
+      <h4>Mes / Año / Estado</h4>
+      <div class="row">
+        <label>Año</label>
+        <input type="number" [(ngModel)]="anio" min="2000" max="2100">
+      </div>
+      <div class="row">
+        <label>Mes</label>
+        <select [(ngModel)]="mes">
+          <option *ngFor="let m of meses" [value]="m.value">{{ m.label }}</option>
+        </select>
+      </div>
+      <div class="row">
+        <label>Estado</label>
+        <select [(ngModel)]="estado">
+          <option *ngFor="let e of estados" [value]="e">{{ e }}</option>
+        </select>
+      </div>
+      <button class="btn" (click)="onAplicarFiltrosMes()">Aplicar</button>
+    </div>
+  </section>
+<br><br><br><br><br><br>
+  <!-- SECCIÓN DE KPIs -->
+  <section class="kpis">
+    <div class="kpi">
+      <div class="kpi-title">Items vendidos (rango días)</div>
+      <div class="kpi-value">{{ kpi.totalItemsEnRango | number }}</div>
+      <div class="kpi-sub">Promedio diario: {{ kpi.promedioDiario | number:'1.0-2' }}</div>
+    </div>
+
+    <div class="kpi">
+      <div class="kpi-title">Items vendidos (mes)</div>
+      <div class="kpi-value">{{ kpi.totalMensual | number }}</div>
+      <div class="kpi-sub">Mes: {{ mes }}/{{ anio }}</div>
+    </div>
+
+    <div class="kpi">
+      <div class="kpi-title">Pedidos: {{ estado }}</div>
+      <div class="kpi-value">{{ kpi.estadoSeleccionadoTotal | number }}%</div>
+      <div class="kpi-sub">% sobre total: {{ kpi.porcentajeEstadoVsTotal | number:'1.0-2' }}%</div>
+    </div>
+
+    <div class="kpi">
+      <div class="kpi-title">Total pedidos (mes)</div>
+      <div class="kpi-value">{{ kpi.totalPedidos | number }}</div>
+      <div class="kpi-sub">Distribución por estado</div>
+    </div>
+  </section>
+<br><br><br><br>
+  <!-- SECCIÓN DE GRÁFICOS -->
+  <section class="charts">
+
+    <mat-card class="chart-card">
+      <mat-card-header>
+        <mat-card-title>Ventas por día</mat-card-title>
+        <mat-card-subtitle>Visualización de ventas diarias.</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content class="content-graph">
+        <div class="chart-container">
+          <ag-charts *ngIf="chartVentasDia" [options]="chartVentasDia"></ag-charts>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="chart-card">
+      <mat-card-header>
+        <mat-card-title>Ventas por mes</mat-card-title>
+        <mat-card-subtitle>Visualización de ventas mensuales.</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content class="content-graph">
+        <div class="chart-container">
+          <ag-charts *ngIf="chartVentasMes" [options]="chartVentasMes"></ag-charts>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="chart-card">
+      <mat-card-header>
+        <mat-card-title>Pedidos por estado</mat-card-title>
+        <mat-card-subtitle>Distribución de pedidos según estado.</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content class="content-graph">
+        <div class="chart-container">
+          <ag-charts *ngIf="chartPedidosEstado" [options]="chartPedidosEstado"></ag-charts>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+  </section>
+<br><br><br><br>
+  <!-- SECCIÓN DE LISTAS: Top productos + Últimas reseñas -->
+  <section class="lists">
+
+    <!-- Top Productos -->
+    <div class="card">
+      <h3>Top 3 productos ({{ mes }}/{{ anio }})</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>% sobre top</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of topProductos">
+            <td>{{ p.name }}</td>
+            <td>{{ p.value }}</td>
+            <td>{{ getPorcentajeProducto(p) | number:'1.0-2' }}%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Últimas reseñas -->
+    <div class="card">
+      <h3>Últimas 3 reseñas</h3>
+      <div class="resena" *ngFor="let r of ultimasResenas">
+        <div class="resena-head">
+          <strong>{{ r.usuario?.nombre_usuario }}</strong>
+          <span class="pill">{{ r.producto?.nombre }}</span>
+          <span class="stars">★ {{ r.valoracion }}</span>
+        </div>
+        <div class="resena-body">{{ r.comentario }}</div>
+        <div class="resena-foot">{{ r.fecha | date:'yyyy-MM-dd HH:mm' }}</div>
+      </div>
+    </div>
+
+  </section>
+
+</div>
