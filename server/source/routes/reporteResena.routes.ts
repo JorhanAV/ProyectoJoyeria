@@ -2,10 +2,11 @@ import { Router } from 'express'
 import { ResenaController } from '../controllers/resenaController'
 import { authenticateJWT, authorizeRoles } from '../middleware/authMiddleware'
 import { Rol } from '../../generated/prisma'
-export class ResenaRoutes { 
+import { ReporteResenaController } from '../controllers/reporteResenaController'
+export class ReporteResenaRoutes { 
     static get routes(): Router { 
         const router= Router() 
-        const controller=new ResenaController() 
+        const controller=new ReporteResenaController() 
         //localhost:3000/orden/ 
         router.get('/',
             authenticateJWT,
@@ -22,12 +23,6 @@ export class ResenaRoutes {
             authenticateJWT,
             authorizeRoles(Rol.ADMIN, Rol.CLIENTE),
             controller.create)
-
-        //Actualizar
-        router.put('/:id',
-            authenticateJWT,
-            authorizeRoles(Rol.ADMIN),
-            controller.update)
 
         return router 
     } 

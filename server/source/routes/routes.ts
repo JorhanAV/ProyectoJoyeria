@@ -13,6 +13,7 @@ import { AtributosRoutes } from "./atributos.routes";
 import { ValorAtributosRoutes } from "./valorAtributos.routes";
 import { VarianteDetalleRoutes } from "./varianteDetalle.routes";
 import { ProductoPersonalizableRoutes } from "./productoPersonalizable.routes";
+import { ReporteResenaRoutes } from "./reporteResena.routes";
 
 export class AppRoutes {
   static get routes(): Router {
@@ -54,6 +55,9 @@ export class AppRoutes {
 
     // localhost:3000/productoPersonalizable/
     router.use("/productoPersonalizable", ProductoPersonalizableRoutes.routes);
+
+    // localhost:3000/reporteResena/
+    router.use("/reporteResena", ReporteResenaRoutes.routes);
 
     //localhost:3000/file/
     router.use("/file/", ImageRoutes.routes);
