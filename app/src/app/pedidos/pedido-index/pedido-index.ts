@@ -33,7 +33,7 @@ export class PedidoIndex {
   getIconoEstado(estado: string): string {
     const normalizado = estado?.toUpperCase().replace(/\s|-/g, '');
     switch (normalizado) {
-      case 'PENDIENTE':
+      case 'PENDIENTEDEPAGO':
         return 'hourglass_empty';
       case 'PAGADO':
         return 'check_circle';
@@ -49,7 +49,7 @@ export class PedidoIndex {
   getIconoEstadoClase(estado: string): string {
     const normalizado = estado?.toUpperCase().replace(/\s|-/g, '');
     switch (normalizado) {
-      case 'PENDIENTE':
+      case 'PENDIENTEDEPAGO':
         return 'estado-pendiente';
       case 'PAGADO':
         return 'estado-pagado';

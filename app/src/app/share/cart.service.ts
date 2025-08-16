@@ -2,6 +2,7 @@ import { Injectable, signal, computed, effect } from '@angular/core';
 import { ItemCartModel } from './models/ItemCartModel';
 import { ProductoModel } from './models/ProductoModel'; // Suponemos que lo tenés
 import { ProductoPersonalizableModel } from './models/ProductoPersonalizableModel';
+import { ProductoPersonalizableCreateModel } from './models/ProductoPersonalizableDTO';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +15,10 @@ export class CartService {
     this.cart().reduce((sum, item) => sum + item.cantidad, 0)
   );
   public total = computed(() =>
-    this.cart().reduce((total, item) => total + item.subtotal, 0)
+    this.cart().reduce((total, item) => (total + item.subtotal) * 1.13, 0)
+  );
+  public impuestos = computed(() =>
+    this.cart().reduce((total, item) => (total + item.subtotal) * 0.13, 0)
   );
 
   constructor() {
@@ -28,46 +32,119 @@ export class CartService {
     return cartData ? JSON.parse(cartData) : [];
   }
 
-  private calculateSubtotal(producto: ProductoModel, cantidad: number): number {
-    return producto.precio_base * cantidad;
+  private calculateSubtotalProducto(
+    producto: ProductoModel,
+    cantidad: number
+  ): number {
+    if (!producto.tienePromocion) {
+      return producto.precio_base * cantidad;
+    } else {
+      if (producto.precioFinal) return producto.precioFinal * cantidad;
+    }
+    return 0;
   }
 
-  addToCart(producto: ProductoModel, quantity?: number): void {
+  private calculateSubtotalPersonalizado(
+    itemPersonalizado: ProductoPersonalizableCreateModel,
+    cantidad: number
+  ): number {
+    const totalExtras = itemPersonalizado?.criterios?.reduce(
+      (acc, c) => acc + c.precio_extra,
+      0
+    );
+    if (itemPersonalizado && totalExtras) {
+      return (itemPersonalizado.precio_base + totalExtras) * cantidad;
+    } else {
+      return 0;
+    }
+  }
+
+  addToCart(producto?: ProductoModel, cantidad: number = 1): void {
     this.cart.update((currentCart) => {
       const listCart = [...currentCart];
-      const existingItemIndex = listCart.findIndex(
-        (item) => item.producto.id === producto.id
-      );
-      if (existingItemIndex !== -1) {
-        const existingItem = listCart[existingItemIndex];
-        const newQuantity = quantity !== undefined
-          ? existingItem.cantidad + Number(quantity)
-          : existingItem.cantidad + 1;
 
-        if (newQuantity <= 0) {
-          listCart.splice(existingItemIndex, 1);
-        } else {
-          listCart[existingItemIndex] = {
-            ...existingItem,
-            cantidad: newQuantity,
-            subtotal: this.calculateSubtotal(existingItem.producto, newQuantity),
-          };
+      if (producto) {
+        // Buscamos por producto estándar
+        const existingIndex = listCart.findIndex(
+          (item) =>
+            item.producto?.id === producto.id && !item.productoPersonalizado
+        );
+        if (existingIndex !== -1) {
+          const existingItem = listCart[existingIndex];
+          const newQuantity = existingItem.cantidad + cantidad;
+          if (newQuantity <= 0) {
+            listCart.splice(existingIndex, 1);
+          } else {
+            listCart[existingIndex] = {
+              ...existingItem,
+              cantidad: newQuantity,
+              subtotal: this.calculateSubtotalProducto(producto, newQuantity),
+            };
+          }
+        } else if (cantidad > 0) {
+          listCart.push({
+            producto,
+            cantidad,
+            subtotal: this.calculateSubtotalProducto(producto, cantidad),
+          });
         }
-      } else {
-        listCart.push({
-          producto,
-          cantidad: quantity ? Number(quantity) : 1,
-          subtotal: this.calculateSubtotal(producto, quantity ? Number(quantity) : 1),
-        });
       }
+      return listCart;
+    });
+  }
+  addToCartPersonalized(
+    productoPersonalizado?: ProductoPersonalizableCreateModel,
+    cantidad: number = 1
+  ): void {
+    this.cart.update((currentCart) => {
+      const listCart = [...currentCart];
 
+      // Buscamos por producto personalizado id
+      const existingIndex = listCart.findIndex(
+        (item) => item.productoPersonalizado?.id === productoPersonalizado?.id
+      );
+      if (existingIndex !== -1) {
+        const existingItem = listCart[existingIndex];
+        const newQuantity = existingItem.cantidad + cantidad;
+        if (newQuantity <= 0) {
+          listCart.splice(existingIndex, 1);
+        } else {
+          if (productoPersonalizado)
+            listCart[existingIndex] = {
+              ...existingItem,
+              cantidad: newQuantity,
+              subtotal: this.calculateSubtotalPersonalizado(
+                productoPersonalizado,
+                newQuantity
+              ),
+            };
+        }
+      } else if (cantidad > 0) {
+        if (productoPersonalizado)
+          listCart.push({
+            productoPersonalizado,
+            cantidad,
+            subtotal: this.calculateSubtotalPersonalizado(
+              productoPersonalizado,
+              cantidad
+            ),
+          });
+      }
       return listCart;
     });
   }
 
-  removeFromCart(productId: number): void {
+  removeFromCartByProductoId(productId: number): void {
     this.cart.update((currentCart) =>
-      currentCart.filter((item) => item.producto.id !== productId)
+      currentCart.filter((item) => item.producto?.id !== productId)
+    );
+  }
+
+  removeFromCartByPersonalizadoId(personalizadoId: number): void {
+    this.cart.update((currentCart) =>
+      currentCart.filter(
+        (item) => item.productoPersonalizado?.id !== personalizadoId
+      )
     );
   }
 
