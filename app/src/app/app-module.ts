@@ -28,6 +28,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { PagoModalComponent } from './pedidos/Carrito-Component/ProcesoPago/pago-modal';
+import { ReporteRoutingModule } from './Reportes/reporte-routing-module';
+import { ReporteModule } from './Reportes/reporte-module';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, '/i18n/', '.json');
@@ -55,6 +57,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     PromocionesModule,
     PedidosModule,
     ResenasModule,
+    ReporteModule,
     AppRoutingModule,
   ],
   providers: [
