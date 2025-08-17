@@ -35,7 +35,7 @@ export class ResenaForm implements OnInit, OnDestroy {
   estrellas = [1, 2, 3, 4, 5];
   nombreUsuario = this.authService.currentUserSignal;
   yaComprado: boolean = false;
-
+  existeResena: boolean = false;
   fechaActual: Date = new Date();
 
   constructor(
@@ -79,52 +79,69 @@ export class ResenaForm implements OnInit, OnDestroy {
       );
       return;
     }
-    // Verificar si el usuario ya ha realizado un pedido del producto
-    this.pedidoService
-      .verificarProductoComprado(this.usuarioId, this.productoId)
-      .subscribe({
-        next: (res) => {
-          this.yaComprado = res;
-          console.log('Producto comprado:', this.yaComprado);
-          console.log(this.formResena.value);
-          if (this.yaComprado) {
-            this.resenaService
-              .create(this.formResena.value)
-              .pipe(takeUntil(this.destroy$))
-              .subscribe((data: any) => {
-                this.noti.success(
-                  this.translate.instant('RESENAS_TEXT.CREADA_TITULO'),
-                  this.translate.instant('RESENAS_TEXT.CREADA_MENSAJE', {
-                    id: data.id,
-                  }),
-                  3000
+
+    this.resenaService.existeResena(this.usuarioId, this.productoId).subscribe({
+      next: (res) => {
+        this.existeResena = res.existe;
+        console.log('Existe: ', this.existeResena);
+        if (this.existeResena) {
+          this.noti.error(
+            this.translate.instant('RESENAS_TEXT.YA_RESEÑO_TITULO'),
+            this.translate.instant('RESENAS_TEXT.YA_RESEÑO_MENSAJE'),
+            2000
+          );
+        } else {
+          this.pedidoService
+            .verificarProductoComprado(this.usuarioId, this.productoId)
+            .subscribe({
+              next: (res) => {
+                this.yaComprado = res;
+                console.log('Producto comprado:', this.yaComprado);
+                console.log(this.formResena.value);
+                if (this.yaComprado) {
+                  this.resenaService
+                    .create(this.formResena.value)
+                    .pipe(takeUntil(this.destroy$))
+                    .subscribe((data: any) => {
+                      this.noti.success(
+                        this.translate.instant('RESENAS_TEXT.CREADA_TITULO'),
+                        this.translate.instant('RESENAS_TEXT.CREADA_MENSAJE', {
+                          id: data.id,
+                        }),
+                        3000
+                      );
+                      this.resenaGuardada.emit(data);
+
+                      this.formResena.patchValue({
+                        producto_id: this.productoId,
+                        usuario_id: this.nombreUsuario()?.id,
+                        fecha: new Date(),
+                        visible: true,
+                        valoracion: 0,
+                      });
+                      this.formResena.reset();
+                    });
+                } else {
+                  this.noti.error(
+                    this.translate.instant('RESENAS_TEXT.NO_COMPRO_TITULO'),
+                    this.translate.instant('RESENAS_TEXT.NO_COMPRO_MENSAJE'),
+                    2000
+                  );
+                  return;
+                }
+              },
+              error: (err) => {
+                console.error(
+                  'Error al verificar si el producto fue comprado',
+                  err
                 );
-                this.resenaGuardada.emit(data);
+              },
+            });
+        }
+      },
+    });
 
-                this.formResena.patchValue({
-                  producto_id: this.productoId,
-                  usuario_id: this.nombreUsuario()?.id,
-                  fecha: new Date(),
-                  visible: true,
-                  valoracion: 0,
-                });
-                this.formResena.reset();
-              });
-          } else {
-            this.noti.error(
-              this.translate.instant('RESENAS_TEXT.NO_COMPRO_TITULO'),
-              this.translate.instant('RESENAS_TEXT.NO_COMPRO_MENSAJE'),
-              2000
-            );
-            return;
-          }
-        },
-        error: (err) => {
-          console.error('Error al verificar si el producto fue comprado', err);
-        },
-      });
-
-      
+    // Verificar si el usuario ya ha realizado un pedido del producto
   }
 
   ngOnDestroy(): void {

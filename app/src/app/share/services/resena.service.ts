@@ -12,4 +12,10 @@ export class ResenaService extends BaseAPI<ResenaModel> {
   constructor(httpClient: HttpClient) {
     super(httpClient, environment.endPointResena);
   }
+
+  existeResena(usuarioId:number, productoId:number){
+    return this.http.get<{existe:boolean}>(
+      `${environment.apiURL}/${environment.endPointResena}/existe?usuarioId=${usuarioId}&productoId=${productoId}`
+    );
+  }
 }

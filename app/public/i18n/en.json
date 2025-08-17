@@ -31,7 +31,9 @@
     "GESTION_RESENAS": "Review Management",
     "ESTADO": "Status",
     "RAZON_REPORTE": "Reason for the report",
-    "COMENTARIO_RESENA": "Review Comment"
+    "COMENTARIO_RESENA": "Review Comment",
+    "YA_RESEÑO_TITULO": "Review already created",
+  "YA_RESEÑO_MENSAJE": "You can only leave one review per product."
   },
   "PROMOCION_TEXT": {
     "LISTADO_PROMOCIONES": "Promotions List",
