@@ -21,7 +21,11 @@ export class ProductoController {
               url: true,
             },
           },
-          
+          etiquetas: {
+            select: {
+              etiqueta: true,
+            },
+          },
         },
       });
 
