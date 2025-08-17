@@ -252,6 +252,11 @@
     "TITULAR": "Nombre del titular",
     "CANCELAR": "Cancelar",
     "CONFIRMAR": "Confirmar"
+  },
+  "PERSONALIZACION_TEXT":{
+    "ATRIBUTOS_PERSONALIZACION" : "Atributos Personalización",
+    "ACTUALIZAR_TITULO": "Actualizado.",
+    "ACTUALIZAR_MENSAJE": "El atributo ha sido actualizado correctamente."
   }
 
 }

@@ -9,6 +9,8 @@ export class ValorAtributosRoutes {
         router.get('/',controller.get) 
         //localhost:3000/atributos/6
         //router.get('/:id',controller.getById)         
+
+        router.put('/:id',controller.update)
         return router 
     } 
 }

@@ -251,6 +251,11 @@
     "TITULAR": "Cardholder Name",
     "CANCELAR": "Cancel",
     "CONFIRMAR": "Confirm"
+  },
+    "PERSONALIZACION_TEXT":{
+    "ATRIBUTOS_PERSONALIZACION" : "Customization Attributes",
+    "ACTUALIZAR_TITULO": "Updated.",
+    "ACTUALIZAR_MENSAJE": "The attribute has been updated successfully."
   }
 
 

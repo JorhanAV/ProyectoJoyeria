@@ -1,0 +1,38 @@
+<div class="customization-list">
+  <h2>Atributos de Personalización</h2>
+
+  @for (grupo of agrupadasPorAtributo; track grupo.nombre) {
+    <div class="attribute-group">
+      <h3>{{ grupo.nombre }}</h3>
+
+      @for (opcion of grupo.opciones; track opcion.id) {
+        <div class="attribute-row">
+          <div class="attribute-image">
+            <img [src]="'http://localhost:3000/imagenes/' + opcion.imagen" alt="{{ opcion.valor }}" />
+          </div>
+
+          <div class="attribute-value">
+            <strong>{{ opcion.valor }}</strong>
+          </div>
+
+          <div class="attribute-price">
+            <label for="precio-{{ opcion.id }}">Precio extra:</label>
+            <input
+              id="precio-{{ opcion.id }}"
+              type="number"
+              [(ngModel)]="opcion.precio_extra"
+              class="price-input"
+              min="0"
+            />
+          </div>
+
+          <div class="attribute-action">
+            <button (click)="update(opcion)" class="update-button">
+              Actualizar
+            </button>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>
