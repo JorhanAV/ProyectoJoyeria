@@ -123,6 +123,8 @@ export class ResenaForm implements OnInit, OnDestroy {
           console.error('Error al verificar si el producto fue comprado', err);
         },
       });
+
+      
   }
 
   ngOnDestroy(): void {

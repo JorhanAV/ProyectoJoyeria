@@ -11,11 +11,15 @@ export class ResenaRoutes {
             authenticateJWT,
             authorizeRoles(Rol.ADMIN, Rol.CLIENTE),
             controller.get) 
+        
+        router.get('/existe',controller.existeResena)
+
         //localhost:3000/orden/6
         router.get('/:id',
             authenticateJWT,
             authorizeRoles(Rol.ADMIN, Rol.CLIENTE),
             controller.getById) 
+        
 
         //Crear
         router.post('/',
