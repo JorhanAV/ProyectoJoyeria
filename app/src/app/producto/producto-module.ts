@@ -27,6 +27,7 @@ import { ProductoForm } from './producto-form/producto-form';
 import { TranslateModule } from '@ngx-translate/core';
 import { ProductoPersonalizable } from './producto-personalizable/producto-personalizable';
 import { ReporteResenasCreate } from '../resenas/reporte-resenas-create/reporte-resenas-create';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
