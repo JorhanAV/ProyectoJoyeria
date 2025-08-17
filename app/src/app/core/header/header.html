@@ -27,10 +27,10 @@
       {{ 'MENU_TEXT.MANTENIMIENTOS' | translate }}
       <mat-icon class="arrow-icon">arrow_drop_down</mat-icon>
     </a>
-    }
-
-
+    } @if(currentUser()?.rol === 'ADMIN'){
     <a routerLink="/reporte-ventas">Reportes</a>
+
+    }
     <a routerLink="/acercade">{{ 'MENU_TEXT.ACERCA_DE' | translate }}</a>
 
     <mat-menu #moreMenu="matMenu" panelClass="white-menu-panel">

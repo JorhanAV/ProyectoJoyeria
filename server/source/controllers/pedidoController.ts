@@ -1,8 +1,5 @@
-import { NextFunction, RequestHandler } from "express";
-import { PrismaClient } from "../../generated/prisma";
-
+import { RequestHandler } from "express";
 import { EstadoPedido, PrismaClient } from "../../generated/prisma";
-
 
 export class PedidoController {
   prisma = new PrismaClient();
@@ -269,7 +266,7 @@ export class PedidoController {
     }
   };
 
-  getByProductId: RequestHandler = async (req, res, next) => {
+   getByProductId: RequestHandler = async (req, res, next) => {
     try {
       const productoIdBuscado = parseInt(req.params.id);
       const pedidosConProducto = await this.prisma.pedidoItem.findMany({
@@ -293,6 +290,8 @@ export class PedidoController {
       res.json(usuarios);
     } catch (error) {
       next(error);
+    }
+  }
 
   create: RequestHandler = async (req, res, next) => {
     try {
@@ -300,6 +299,7 @@ export class PedidoController {
 
       if (!usuario_id || !direccion_envio || !metodo_pago || !items?.length) {
         res.status(400).json({ mensaje: "Faltan campos obligatorios" });
+        return;
       }
 
       let subtotal = 0;
@@ -311,13 +311,19 @@ export class PedidoController {
           if (item.producto_id) {
             const producto = await this.prisma.producto.findUnique({
               where: { id: item.producto_id },
-              select: { precio_base: true },
+              select: { precio_base: true, stock: true },
             });
 
             if (!producto) throw new Error("Producto estándar no encontrado");
 
-            const precio = producto.precio_base;
-            subtotal += precio * cantidad;
+            if (producto.stock < cantidad) {
+              throw new Error(
+                `Stock insuficiente para el producto con ID ${item.producto_id}`
+              );
+            }
+
+            // 💡 acumula subtotal
+            subtotal += producto.precio_base * cantidad;
 
             return {
               cantidad,
@@ -368,6 +374,7 @@ export class PedidoController {
       const impuestos = +(subtotal * 0.13).toFixed(2); // 13% IVA
       const total = +(subtotal + impuestos).toFixed(2);
 
+      // 💡 Crear pedido
       const nuevoPedido = await this.prisma.pedido.create({
         data: {
           usuario: { connect: { id: usuario_id } },
@@ -380,11 +387,12 @@ export class PedidoController {
           items: {
             create: itemsPreparados,
           },
+          estado_carrito: false,
           transiciones: {
             create: {
               estado: "PendienteDePago",
               fecha_hora: new Date(),
-              admin: { connect: { id: 1 } }, // ← ⚠️ temporalmente fijo
+              admin: { connect: { id: 1 } }, // ← ⚠️ temporal
             },
           },
         },
@@ -394,171 +402,61 @@ export class PedidoController {
         },
       });
 
+      // 💡 Descontar stock SOLO de productos estándar
+      await Promise.all(
+        items.map(async (item: any) => {
+          if (item.producto_id) {
+            await this.prisma.producto.update({
+              where: { id: item.producto_id },
+              data: {
+                stock: { decrement: item.cantidad },
+              },
+            });
+          }
+        })
+      );
+
       res.status(201).json(nuevoPedido);
     } catch (error: any) {
       console.error(error);
-      res
+      res 
         .status(500)
         .json({ mensaje: error.message || "Error al crear pedido" });
     }
   };
 
-    const itemsPreparados = await Promise.all(
-      items.map(async (item: any) => {
-        const cantidad = item.cantidad;
-
-        if (item.producto_id) {
-          const producto = await this.prisma.producto.findUnique({
-            where: { id: item.producto_id },
-            select: { precio_base: true, stock: true },
-          });
-
-          if (!producto) throw new Error("Producto estándar no encontrado");
-
-          if (producto.stock < cantidad) {
-            throw new Error(
-              `Stock insuficiente para el producto con ID ${item.producto_id}`
-            );
-          }
-
-          // 💡 acumula subtotal
-          subtotal += producto.precio_base * cantidad;
-
-          return {
-            cantidad,
-            producto: { connect: { id: item.producto_id } },
-          };
-        }
-
-        if (item.producto_personalizado_id) {
-          const personalizado =
-            await this.prisma.productoPersonalizable.findUnique({
-              where: { id: item.producto_personalizado_id },
-              include: {
-                producto_base: true,
-                variantes: {
-                  include: {
-                    valor: true,
-                  },
-                },
-              },
-            });
-
-          if (!personalizado)
-            throw new Error("Producto personalizado no encontrado");
-
-          const precioBase = personalizado.producto_base.precio_base;
-          const extra = personalizado.variantes.reduce(
-            (acc, v) => acc + v.valor.precio_extra,
-            0
-          );
-          const totalIndividual = precioBase + extra;
-
-          subtotal += totalIndividual * cantidad;
-
-          return {
-            cantidad,
-            producto_personalizado: {
-              connect: { id: item.producto_personalizado_id },
-            },
-          };
-        }
-
-        throw new Error(
-          "Debe incluir producto_id o producto_personalizado_id"
-        );
-      })
-    );
-
-    const impuestos = +(subtotal * 0.13).toFixed(2); // 13% IVA
-    const total = +(subtotal + impuestos).toFixed(2);
-
-    // 💡 Crear pedido
-    const nuevoPedido = await this.prisma.pedido.create({
-      data: {
-        usuario: { connect: { id: usuario_id } },
-        direccion_envio,
-        metodo_pago,
-        subtotal,
-        impuestos,
-        total,
-        fecha_pedido: new Date(),
-        items: {
-          create: itemsPreparados,
-        },
-        estado_carrito: false,
-        transiciones: {
-          create: {
-            estado: "PendienteDePago",
-            fecha_hora: new Date(),
-            admin: { connect: { id: 1 } }, // ← ⚠️ temporal
-          },
-        },
-      },
-      include: {
-        items: true,
-        transiciones: true,
-      },
-    });
-
-    // 💡 Descontar stock SOLO de productos estándar
-    await Promise.all(
-      items.map(async (item: any) => {
-        if (item.producto_id) {
-          await this.prisma.producto.update({
-            where: { id: item.producto_id },
-            data: {
-              stock: { decrement: item.cantidad },
-            },
-          });
-        }
-      })
-    );
-
-    res.status(201).json(nuevoPedido);
-  } catch (error: any) {
-    console.error(error);
-    res
-      .status(500)
-      .json({ mensaje: error.message || "Error al crear pedido" });
-  }
-};
-
-
   addBitacora: RequestHandler = async (req, res, next) => {
-  try {
-    const pedido_id = parseInt(req.params.id);
-    const { estado, admin_id } = req.body;
-    if (!pedido_id || !estado || !admin_id) {
-      res.status(400).json({ mensaje: "Faltan campos obligatorios" });
-      return;
+    try {
+      const pedido_id = parseInt(req.params.id);
+      const { estado, admin_id } = req.body;
+      if (!pedido_id || !estado || !admin_id) {
+        res.status(400).json({ mensaje: "Faltan campos obligatorios" });
+        return;
+      }
+      const estadoRaw = req.body.estado;
+
+      if (!Object.values(EstadoPedido).includes(estadoRaw)) {
+        res.status(400).json({ mensaje: "Estado inválido" });
+        return;
+      }
+
+      const estado2 = estadoRaw as EstadoPedido;
+
+      const nuevaTransicion = await this.prisma.transicionEstadoPedido.create({
+        data: {
+          pedido: { connect: { id: pedido_id } },
+          estado,
+          fecha_hora: new Date(),
+          admin: { connect: { id: admin_id } },
+        },
+      });
+
+      res.status(201).json(nuevaTransicion);
+    } catch (error: any) {
+      console.error(error);
+      res
+        .status(500)
+        .json({ mensaje: error.message || "Error al agregar a la bitácora" });
     }
-    const estadoRaw = req.body.estado;
-
-if (!Object.values(EstadoPedido).includes(estadoRaw)) {
-  res.status(400).json({ mensaje: "Estado inválido" });
-  return;
-}
-
-const estado2 = estadoRaw as EstadoPedido;
-
-
-    const nuevaTransicion = await this.prisma.transicionEstadoPedido.create({
-      data: {
-        pedido: { connect: { id: pedido_id } },
-        estado,
-        fecha_hora: new Date(),
-        admin: { connect: { id: admin_id } },
-      },
-    });
-
-    res.status(201).json(nuevaTransicion);
-  } catch (error: any) {
-    console.error(error);
-    res.status(500).json({ mensaje: error.message || "Error al agregar a la bitácora" });
-  }
-};
-
-
-
+  };
 }
