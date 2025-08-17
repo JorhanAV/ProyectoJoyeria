@@ -192,7 +192,7 @@
     "CONTRASENA_DEBE_INCLUIR": "Password must include uppercase, lowercase, numbers, and a special character.",
     "CONFIRMAR_CONTRASENA_OBLIGATORIA": "Confirm Password is required.",
     "CONTRASENA_NO_COINCIDEN": "Passwords do not match."
-
+  },
   "CARRITO_TEXT": {
     "CLIENTE": "Customer",
     "CORREO": "Email",
