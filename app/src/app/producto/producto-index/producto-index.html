@@ -1,14 +1,44 @@
+<div class="filtros-superior">
+  <h4> {{ 'PRODUCTO_TEXT.FILTRO_CATEGORIA' | translate }}</h4>
+   <mat-chip
+    *ngFor="let categoria of categorias"
+    color="primary"
+    selected
+    class="chip-filtro"
+    [ngClass]="{ 'chip-activo': filtros.categoria === categoria }"
+    (click)="toggleCategoria(categoria)"
+  >
+    {{ categoria }}
+  </mat-chip>
+
+ <h4> {{ 'PRODUCTO_TEXT.FILTRO_ETIQUETA' | translate }}</h4>
+  <mat-chip
+    *ngFor="let etiqueta of etiquetas"
+    color="accent"
+    selected
+    class="chip-filtro"
+    [ngClass]="{ 'chip-activo': filtros.etiqueta.includes(etiqueta) }"
+    (click)="toggleEtiqueta(etiqueta)"
+  >
+    {{ etiqueta }}
+  </mat-chip> 
+
+  <button mat-button color="warn" (click)="limpiarFiltros()">
+   {{'PRODUCTO_TEXT.LIMPIAR_FILTROS'| translate}}
+  </button>
+</div>
 <div class="contenedor-productos">
-  <div class="tarjeta-producto" *ngFor="let producto of datos">
+  
+  <div class="tarjeta-producto" *ngFor="let producto of productosFiltrados">
     <div class="imagen-container">
       <img
         class="imagen-base"
-        [src]="'http://localhost:3000/imagenes/' + producto.imagenes[0]?.url"
+        [src]="'http://localhost:3000/imagenes/' + producto.imagenes[0].url"
         alt="{{ producto.nombre }}"
       />
       <img
         class="imagen-hover"
-        [src]="'http://localhost:3000/imagenes/' + (producto.imagenes[1]?.url || producto.imagenes[0]?.url)"
+        [src]="'http://localhost:3000/imagenes/' + (producto.imagenes[1].url || producto.imagenes[0].url)"
         alt="{{ producto.nombre }}"
       />
     </div>
@@ -28,7 +58,12 @@
         {{ 'PRODUCTO_TEXT.VER_DETALLES' | translate }}
       </a>
     </div>
-    <button class="boton-carrito-inferior" mat-icon-button color="accent" (click)="comprar(producto)">
+    <button
+      class="boton-carrito-inferior"
+      mat-icon-button
+      color="accent"
+      (click)="comprar(producto)"
+    >
       <mat-icon>shopping_cart</mat-icon>
     </button>
   </div>

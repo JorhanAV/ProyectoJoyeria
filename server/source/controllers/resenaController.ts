@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response, NextFunction, RequestHandler } from "express";
 import { AppError } from "../errors/custom.error";
 import { PrismaClient } from "../../generated/prisma";
 
@@ -59,6 +59,30 @@ export class ResenaController {
       next(error);
     }
   };
+
+  existeResena: RequestHandler = async (request, response, next) => {
+    try {
+      const usuarioId = parseInt(request.query.usuarioId as string);
+      const productoId = parseInt(request.query.productoId as string);
+
+      if (isNaN(usuarioId) || isNaN(productoId)) {
+        response.status(400).json({ message: "Parámetros inválidos" });
+        return;
+      }
+
+      const resenaExistente = await this.prisma.resena.findFirst({
+        where: {
+          usuario_id: usuarioId,
+          producto_id: productoId,
+        },
+      });
+
+      response.json({ existe: !!resenaExistente });
+    } catch (error) {
+      next(error);
+    }
+  };
+
   //Crear
   create = async (request: Request, response: Response, next: NextFunction) => {
     try {
@@ -69,10 +93,10 @@ export class ResenaController {
           visible: body.visible,
           comentario: body.comentario,
           valoracion: body.valoracion,
-          fecha: new Date(body.fecha), 
+          fecha: new Date(body.fecha),
           usuario: {
             connect: {
-              id: body.usuario_id, 
+              id: body.usuario_id,
             },
           },
           producto: {

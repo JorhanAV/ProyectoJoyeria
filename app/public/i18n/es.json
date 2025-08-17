@@ -20,19 +20,20 @@
     "VOLVER": "Volver",
     "NO_COMPRO_TITULO": "Producto no comprado",
     "NO_COMPRO_MENSAJE": "Debes comprar el producto antes de dejar una reseña.",
-    "CREAR_REPORTE_TITULO":"Reseña reportada",
+    "CREAR_REPORTE_TITULO": "Reseña reportada",
     "CREAR_REPORTE_MENSAJE": "Se ha reportado con éxito la reseña",
     "REPORTAR_RESENA": "Reportar Reseña",
     "ENVIAR": "Enviar",
-    "CANCELAR":"Cancelar",
+    "CANCELAR": "Cancelar",
     "MOTIVO_REPORTE": "Escriba el motivo del reporte",
     "TODAS_LAS_RESENAS": "Todas las reseñas",
     "RESENAS_REPORTADAS": "Reseñas reportadas",
     "GESTION_RESENAS": "Gestión de reseñas",
     "ESTADO": "Estado",
     "RAZON_REPORTE": "Razón del reporte",
-    "COMENTARIO_RESENA": "Comentario de la Reseña"
-
+    "COMENTARIO_RESENA": "Comentario de la Reseña",
+    "YA_RESEÑO_TITULO": "Reseña ya enviada",
+    "YA_RESEÑO_MENSAJE": "Solo puedes dejar una reseña por producto."
   },
   "PROMOCION_TEXT": {
     "LISTADO_PROMOCIONES": "Listado de Promociones",
@@ -66,7 +67,6 @@
     "ACTUALIZADA_TITULO": "Promoción actualizada",
     "ACTUALIZADA_MENSAJE": "ID: {{id}}",
     "VER_DETALLES": "Ver Detalles"
-    
   },
   "PRODUCTO_TEXT": {
     "GESTION_PRODUCTOS": "Gestión de Productos",
@@ -123,7 +123,10 @@
     "PRECIO_TOTAL": "Precio Total",
     "PRECIO_PERSONALIZACION": "Precio de Personalización",
     "PRECIO_POSITIVO": "Error con el precio",
-    "REPORTAR": "Reportar"
+    "REPORTAR": "Reportar",
+    "FILTRO_CATEGORIA": "Filtrar por categoria",
+    "FILTRO_ETIQUETA": "Filtrar por etiquetas",
+    "LIMPIAR_FILTROS":"Limpiar filtros"
   },
 
   "PEDIDO_TEXT": {
@@ -141,7 +144,7 @@
     "SUBTOTAL": "Subtotal",
     "IMPUESTOS": "Impuestos",
     "FECHA": "Fecha",
-    "VOLVER": "Volver", 
+    "VOLVER": "Volver",
     "PRODUCTO": "Producto"
   },
 
@@ -167,7 +170,6 @@
     "PROMOCIONES": "Promociones"
   },
 
-
   "USER_TEXT": {
     "INICIAR_SESION": "Iniciar Sesión",
     "CREAR_CUENTA": "Crear Cuenta",
@@ -191,7 +193,6 @@
     "CONTRASENA_DEBE_INCLUIR": "La contraseña debe incluir mayúsculas, minúsculas, números y un carácter especial.",
     "CONFIRMAR_CONTRASENA_OBLIGATORIA": "Debes confirmar la contraseña.",
     "CONTRASENA_NO_COINCIDEN": "Las contraseñas no coinciden."
-
   },
 
   "CARRITO_TEXT": {
@@ -236,9 +237,9 @@
     "TITULAR": "Nombre del titular",
     "CANCELAR": "Cancelar",
     "CONFIRMAR": "Confirmar",
-    "TITULOVACIO":"Tu carrito está vacío",
-    "DESCRIPCIONVACIO":"Empieza a agregar productos y verás la magia aquí ✨",
-    "BOTONVACIO":"Ir a comprar"
+    "TITULOVACIO": "Tu carrito está vacío",
+    "DESCRIPCIONVACIO": "Empieza a agregar productos y verás la magia aquí ✨",
+    "BOTONVACIO": "Ir a comprar"
   },
   "PAGO_TEXT": {
     "PAGO_TITULO": "Pago con {{metodo_pago}}",
@@ -252,6 +253,12 @@
     "TITULAR": "Nombre del titular",
     "CANCELAR": "Cancelar",
     "CONFIRMAR": "Confirmar"
+  },
+  "PERSONALIZACION_TEXT": {
+    "ATRIBUTOS_PERSONALIZACION": "Atributos Personalización",
+    "ACTUALIZAR_TITULO": "Actualizado.",
+    "ACTUALIZAR_MENSAJE": "El atributo ha sido actualizado correctamente.",
+    "UPDATE": "Actualizar",
+    "PRECIO_EXTRA": "Precio Extra"
   }
-
 }

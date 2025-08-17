@@ -34,6 +34,10 @@ import { HttpAuthInterceptorService } from './share/http-auth-interceptor.servic
 import { PagoModalComponent } from './pedidos/Carrito-Component/ProcesoPago/pago-modal';
 import { ReporteRoutingModule } from './Reportes/reporte-routing-module';
 import { ReporteModule } from './Reportes/reporte-module';
+import { PersonalizacionIndex } from './personalizacion/personalizacion-index/personalizacion-index';
+import { PersonalizacionForm } from './personalizacion/personalizacion-form/personalizacion-form';
+import { PersonalizacionAdmin } from './personalizacion/personalizacion-admin/personalizacion-admin';
+import { PersonalizacionModule } from './personalizacion/personalizacion-module';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, '/i18n/', '.json');
@@ -61,7 +65,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     PromocionesModule,
     PedidosModule,
     ResenasModule,
-
+    PersonalizacionModule,
 
     ReporteModule,
     AppRoutingModule,

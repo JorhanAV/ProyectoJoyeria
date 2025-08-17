@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { ProductoRoutingModule } from './producto-routing-module';
-import { ProductoIndex } from './producto-index/producto-index';
-import { ProductoDetail } from './producto-detail/producto-detail';
-import { ProductoAdmin } from './producto-admin/producto-admin';
+import { PersonalizacionRoutingModule } from './personalizacion-routing-module';
+import { PersonalizacionIndex } from './personalizacion-index/personalizacion-index';
+import { PersonalizacionAdmin } from './personalizacion-admin/personalizacion-admin';
+import { PersonalizacionForm } from './personalizacion-form/personalizacion-form';
+import { TranslateModule } from '@ngx-translate/core';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -22,29 +22,18 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ResenaForm } from '../resenas/resena-form/resena-form';
-import { ProductoForm } from './producto-form/producto-form';
-import { TranslateModule } from '@ngx-translate/core';
-import { ProductoPersonalizable } from './producto-personalizable/producto-personalizable';
-import { ReporteResenasCreate } from '../resenas/reporte-resenas-create/reporte-resenas-create';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
-    ProductoIndex,
-    ProductoDetail,
-    ProductoAdmin,
-    ResenaForm,
-    ProductoForm,
-    ProductoPersonalizable,
-    ReporteResenasCreate
+    PersonalizacionIndex,
+    PersonalizacionAdmin,
+    PersonalizacionForm,
   ],
   imports: [
     CommonModule,
-    FormsModule,
-    ProductoRoutingModule,
     TranslateModule.forChild(),
-    MatMenuModule,
+    PersonalizacionRoutingModule,
+     MatMenuModule,
     MatInputModule,
     MatSelectModule,
     MatGridListModule,
@@ -60,7 +49,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatRadioModule,
     MatDividerModule,
     MatTooltipModule,
-    ReactiveFormsModule
-  ]
+    FormsModule,
+    ReactiveFormsModule,
+  ],
 })
-export class ProductoModule { }
+export class PersonalizacionModule {}

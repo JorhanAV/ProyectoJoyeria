@@ -18,7 +18,7 @@ export interface ProductoModel {
   personalizable: boolean;
   categoria: CategoriaModel;
   imagenes: ImagenProductoModel[];
-  etiquetas: ProductoEtiquetaModel[];
+  etiquetas?: ProductoEtiquetaModel[];
   resenas: ResenaModel[];
   pedidoItems: PedidoItemModel[];
   promociones: PromocionModel[];

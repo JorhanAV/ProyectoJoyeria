@@ -1,0 +1,47 @@
+.update-button {
+  background-color: #1976d2; /* Verde elegante */
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  font-size: 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.update-button:hover {
+  background-color: #040e96; /* Verde más oscuro al pasar el mouse */
+}
+
+.attribute-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 10px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.attribute-group {
+  margin-bottom: 2rem;
+}
+
+.attribute-image img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.attribute-value {
+  font-weight: 600;
+  font-size: 16px;
+  min-width: 80px;
+}
+
+.price-input {
+  width: 100px;
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}

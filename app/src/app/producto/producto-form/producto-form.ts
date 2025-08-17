@@ -126,9 +126,9 @@ export class ProductoForm {
         });
 
         // Etiquetas
-        this.etiquetasSeleccionadas = producto.etiquetas.map(
+        this.etiquetasSeleccionadas = producto.etiquetas?.map(
           (e) => e.etiqueta.id
-        );
+        ) || [];
 
         // Imágenes (solo preview si vienen URLs)
         this.imagenesPreview = producto.imagenes.map(

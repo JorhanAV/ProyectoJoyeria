@@ -7,6 +7,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ProductoPersonalizable } from '../producto-personalizable/producto-personalizable';
 import { CartService } from '../../share/cart.service';
 import { ProductoPersonalizableCreateModel } from '../../share/models/ProductoPersonalizableDTO';
+import { CategoriaService } from '../../share/services/categoria.service';
+import { EtiquetaService } from '../../share/services/etiqueta.service';
 
 @Component({
   selector: 'app-producto-index',
@@ -16,15 +18,87 @@ import { ProductoPersonalizableCreateModel } from '../../share/models/ProductoPe
 })
 export class ProductoIndex {
   datos: any;
+  categorias: string[] = [];
+  etiquetas: string[] = [];
+
+  filtros = {
+    categoria: null as string | null,
+    etiqueta: [] as string[],
+  };
+
+  productosFiltrados: ProductoModel[] = [];
 
   constructor(
     private prodService: ProductoService,
     private noti: NotificationService,
     private router: Router,
     private dialog: MatDialog,
-    private cartService: CartService
+    private cartService: CartService,
+    private categoriaService: CategoriaService,
+    private etiquetaService: EtiquetaService
   ) {
     this.listProductos();
+    this.listCategorias();
+    this.listEtiquetas();
+  }
+
+  ngOnInit() {
+    this.listCategorias();
+    this.listEtiquetas();
+  }
+
+  listCategorias() {
+    this.categoriaService.get().subscribe((res: any[]) => {
+      console.log(this.categorias);
+      this.categorias = res.map((c) => c.nombre);
+    });
+  }
+  listEtiquetas() {
+    this.etiquetaService.get().subscribe((res: any[]) => {
+      this.etiquetas = res.map((c) => c.nombre);
+    });
+  }
+
+  aplicarFiltros() {
+    this.productosFiltrados = this.datos.filter((producto: ProductoModel) => {
+      const coincideCategoria =
+        !this.filtros.categoria ||
+        producto.categoria.nombre === this.filtros.categoria;
+
+      const nombresEtiquetas =
+        producto.etiquetas?.map((e) => e.etiqueta.nombre) || [];
+
+      const coincideEtiquetas =
+        this.filtros.etiqueta.length === 0 ||
+        this.filtros.etiqueta.every((etiqueta) =>
+          nombresEtiquetas.includes(etiqueta)
+        );
+
+      return coincideCategoria && coincideEtiquetas;
+    });
+  }
+
+  toggleCategoria(nombre: string) {
+    this.filtros.categoria = this.filtros.categoria === nombre ? null : nombre;
+    this.aplicarFiltros();
+  }
+
+  toggleEtiqueta(nombre: string) {
+    const index = this.filtros.etiqueta.indexOf(nombre);
+    if (index === -1) {
+      this.filtros.etiqueta.push(nombre);
+    } else {
+      this.filtros.etiqueta.splice(index, 1);
+    }
+    this.aplicarFiltros();
+  }
+
+  limpiarFiltros() {
+    this.filtros = {
+      categoria: null,
+      etiqueta: [],
+    };
+    this.aplicarFiltros();
   }
 
   //Listar todos los productos del API
@@ -42,7 +116,7 @@ export class ProductoIndex {
           const fin = new Date(promo.fecha_fin);
           return hoy >= inicio && hoy <= fin;
         });
-        
+
         // Aplica la mejor promoción disponible
         let mejorDescuento = 0;
         let tipoDescuento: 'Porcentaje' | 'CantidadFija' | null = null;
@@ -93,42 +167,55 @@ export class ProductoIndex {
 
         return producto;
       });
+      this.aplicarFiltros();
     });
   }
- agregarAlCarrito(producto?: ProductoModel): void {
+  agregarAlCarrito(producto?: ProductoModel): void {
     this.cartService.addToCart(producto);
   }
-   agregarAlCarritoPPersonalizado(productoPersonalizado?: ProductoPersonalizableCreateModel): void {
+  agregarAlCarritoPPersonalizado(
+    productoPersonalizado?: ProductoPersonalizableCreateModel
+  ): void {
     this.cartService.addToCartPersonalized(productoPersonalizado);
   }
   detalle(id: Number) {
     this.router.navigate(['/producto', id]);
   }
   comprar(producto?: ProductoModel) {
-  if (producto?.personalizable) {
-    const dialogRef = this.dialog.open(ProductoPersonalizable, {
-      width: '1000px',
-      maxWidth: '95vw',
-      data: producto,
-    });
-    dialogRef.afterClosed().subscribe((productoPersonalizado) => {
-      if (productoPersonalizado) {
-        this.agregarAlCarritoPPersonalizado(productoPersonalizado)
-        // Aquí podrías agregar el producto al carrito con las opciones
-        this.noti.success('Personalización', 'Producto personalizado agregado al carrito', 3000);
-        console.log('Producto Index:', productoPersonalizado);
+    if (producto?.personalizable) {
+      const dialogRef = this.dialog.open(ProductoPersonalizable, {
+        width: '1000px',
+        maxWidth: '95vw',
+        data: producto,
+      });
+      dialogRef.afterClosed().subscribe((productoPersonalizado) => {
+        if (productoPersonalizado) {
+          this.agregarAlCarritoPPersonalizado(productoPersonalizado);
+          // Aquí podrías agregar el producto al carrito con las opciones
+          this.noti.success(
+            'Personalización',
+            'Producto personalizado agregado al carrito',
+            3000
+          );
+          console.log('Producto Index:', productoPersonalizado);
+        }
+      });
+    } else {
+      if (producto) {
+        this.agregarAlCarrito(producto);
+        this.noti.success(
+          'Compra',
+          'Producto agregado: ' + producto?.nombre,
+          3000
+        );
       }
-    });
-  } else {
-    if(producto){
-      this.agregarAlCarrito(producto);
-      this.noti.success('Compra', 'Producto agregado: ' + producto?.nombre, 3000);
     }
   }
-}
   cambiarImagen(producto: any, hover: boolean) {
     producto.imagenActual = hover
       ? producto.imagenes[1]?.url || producto.imagenes[0]?.url
       : producto.imagenes[0]?.url;
   }
+
+  obtenerCategoria() {}
 }

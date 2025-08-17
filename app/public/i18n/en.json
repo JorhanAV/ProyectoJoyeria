@@ -31,7 +31,9 @@
     "GESTION_RESENAS": "Review Management",
     "ESTADO": "Status",
     "RAZON_REPORTE": "Reason for the report",
-    "COMENTARIO_RESENA": "Review Comment"
+    "COMENTARIO_RESENA": "Review Comment",
+    "YA_RESEÑO_TITULO": "Review already created",
+    "YA_RESEÑO_MENSAJE": "You can only leave one review per product."
   },
   "PROMOCION_TEXT": {
     "LISTADO_PROMOCIONES": "Promotions List",
@@ -120,7 +122,10 @@
     "PRECIO_TOTAL": "Total Price",
     "PRECIO_PERSONALIZACION": "Customization Price",
     "PRECIO_POSITIVO": "Error with price",
-    "REPORTAR": "Report"
+    "REPORTAR": "Report",
+    "FILTRO_CATEGORIA": "Filter by category",
+    "FILTRO_ETIQUETA": "Filter by tags",
+    "LIMPIAR_FILTROS": "Clean filters"
   },
 
   "PEDIDO_TEXT": {
@@ -167,7 +172,6 @@
     "PEDIDOS": "Orders",
     "PROMOCIONES": "Promotions"
   },
-
 
   "USER_TEXT": {
     "INICIAR_SESION": "Log In",
@@ -251,7 +255,12 @@
     "TITULAR": "Cardholder Name",
     "CANCELAR": "Cancel",
     "CONFIRMAR": "Confirm"
+  },
+  "PERSONALIZACION_TEXT": {
+    "ATRIBUTOS_PERSONALIZACION": "Customization Attributes",
+    "ACTUALIZAR_TITULO": "Updated.",
+    "ACTUALIZAR_MENSAJE": "The attribute has been updated successfully.",
+    "UPDATE": "Update",
+    "PRECIO_EXTRA": "Extra Price"
   }
-
-
 }
