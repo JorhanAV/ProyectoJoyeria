@@ -18,12 +18,8 @@ import { EtiquetaService } from '../../share/services/etiqueta.service';
 })
 export class ProductoIndex {
   datos: any;
-  /*   categorias: string[] = [];
+  categorias: string[] = [];
   etiquetas: string[] = [];
- */
-
-  categorias = ['Anillos','Collares','Pulseras'];
-  etiquetas = ['Exclusivo','Nuevo'];
 
   filtros = {
     categoria: null as string | null,
