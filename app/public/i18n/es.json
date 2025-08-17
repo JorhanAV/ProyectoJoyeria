@@ -21,7 +21,18 @@
     "NO_COMPRO_TITULO": "Producto no comprado",
     "NO_COMPRO_MENSAJE": "Debes comprar el producto antes de dejar una reseña.",
     "CREAR_REPORTE_TITULO":"Reseña reportada",
-    "CREAR_REPORTE_MENSAJE": "Se ha reportado con éxito la reseña"
+    "CREAR_REPORTE_MENSAJE": "Se ha reportado con éxito la reseña",
+    "REPORTAR_RESENA": "Reportar Reseña",
+    "ENVIAR": "Enviar",
+    "CANCELAR":"Cancelar",
+    "MOTIVO_REPORTE": "Escriba el motivo del reporte",
+    "TODAS_LAS_RESENAS": "Todas las reseñas",
+    "RESENAS_REPORTADAS": "Reseñas reportadas",
+    "GESTION_RESENAS": "Gestión de reseñas",
+    "ESTADO": "Estado",
+    "RAZON_REPORTE": "Razón del reporte",
+    "COMENTARIO_RESENA": "Comentario de la Reseña"
+
   },
   "PROMOCION_TEXT": {
     "LISTADO_PROMOCIONES": "Listado de Promociones",

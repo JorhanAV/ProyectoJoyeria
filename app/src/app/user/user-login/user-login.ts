@@ -42,7 +42,7 @@ export class UserLogin {
     console.log(credentials);
     this.authService.loginUser(credentials).subscribe({
       next: () => {
-        this.notification.success('Inicio de sesión', 'Bienvenido', 2000, '/inicio')
+        this.notification.success('Inicio de sesión', 'Bienvenido', 1000, '/inicio')
       },
       error: (error) => {
         console.log('Error inicio de sesión ', error)

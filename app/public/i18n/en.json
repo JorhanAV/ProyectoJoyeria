@@ -21,7 +21,17 @@
     "NO_COMPRO_TITULO": "Product Not Purchased",
     "NO_COMPRO_MENSAJE": "You must purchase the product before leaving a review.",
     "CREAR_REPORTE_TITULO": "Review reported",
-    "CREAR_REPORTE_MENSAJE": "The review has been successfully reported"
+    "CREAR_REPORTE_MENSAJE": "The review has been successfully reported",
+    "REPORTAR_RESENA": "Report review",
+    "ENVIAR": "Submit",
+    "CANCELAR": "Cancel",
+    "MOTIVO_REPORTE": "Write the reason for the report",
+    "TODAS_LAS_RESENAS": "All reviews",
+    "RESENAS_REPORTADAS": "Reviews reported",
+    "GESTION_RESENAS": "Review Management",
+    "ESTADO": "Status",
+    "RAZON_REPORTE": "Reason for the report",
+    "COMENTARIO_RESENA": "Review Comment"
   },
   "PROMOCION_TEXT": {
     "LISTADO_PROMOCIONES": "Promotions List",
@@ -109,7 +119,8 @@
     "DESGLOSE_PRECIO": "Price Breakdown",
     "PRECIO_TOTAL": "Total Price",
     "PRECIO_PERSONALIZACION": "Customization Price",
-    "PRECIO_POSITIVO": "Error with price"
+    "PRECIO_POSITIVO": "Error with price",
+    "REPORTAR": "Report"
   },
 
   "PEDIDO_TEXT": {

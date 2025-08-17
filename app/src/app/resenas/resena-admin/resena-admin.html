@@ -1,9 +1,9 @@
 <div class="resenas-admin">
-  <h2>Gestión de Reseñas</h2>
+  <h2>{{'RESENAS_TEXT.GESTION_RESENAS' | translate}}</h2>
 
   <div class="tabs">
-    <button (click)="setVista('todas')" [class.active]="vista === 'todas'">Todas las reseñas</button>
-    <button (click)="setVista('reportadas')" [class.active]="vista === 'reportadas'">Reseñas reportadas</button>
+    <button (click)="setVista('todas')" [class.active]="vista === 'todas'">{{'RESENAS_TEXT.TODAS_LAS_RESENAS' | translate}}</button>
+    <button (click)="setVista('reportadas')" [class.active]="vista === 'reportadas'">{{'RESENAS_TEXT.RESENAS_REPORTADAS' | translate}}</button>
   </div>
 
   <!-- Ambos componentes están en el DOM, se ocultan según la vista -->
