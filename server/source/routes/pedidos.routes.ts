@@ -28,6 +28,10 @@ export class PedidoRoutes {
       authorizeRoles(Rol.ADMIN, Rol.CLIENTE),
       controller.create);
 
+    router.post('/:id/bitacora',
+      authenticateJWT,
+      authorizeRoles(Rol.ADMIN,Rol.CLIENTE), 
+      controller.addBitacora);
 
     return router;
   }
