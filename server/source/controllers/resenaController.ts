@@ -88,4 +88,23 @@ export class ResenaController {
       next(error);
     }
   };
+
+  //Actualizar
+  update = async (request: Request, response: Response, next: NextFunction) => {
+    try {
+      const body = request.body;
+      const idResena = parseInt(request.params.id);
+
+      const resena = await this.prisma.resena.update({
+        where: { id: idResena },
+        data: {
+          visible: body.visible,
+        },
+      });
+
+      response.json(resena);
+    } catch (error) {
+      next(error);
+    }
+  };
 }

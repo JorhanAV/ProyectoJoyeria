@@ -1,5 +1,8 @@
-import { RequestHandler } from "express";
+import { NextFunction, RequestHandler } from "express";
+import { PrismaClient } from "../../generated/prisma";
+
 import { EstadoPedido, PrismaClient } from "../../generated/prisma";
+
 
 export class PedidoController {
   prisma = new PrismaClient();
@@ -266,16 +269,139 @@ export class PedidoController {
     }
   };
 
- create: RequestHandler = async (req, res, next) => {
-  try {
-    const { usuario_id, direccion_envio, metodo_pago, items } = req.body;
+  getByProductId: RequestHandler = async (req, res, next) => {
+    try {
+      const productoIdBuscado = parseInt(req.params.id);
+      const pedidosConProducto = await this.prisma.pedidoItem.findMany({
+        where: {
+          producto_id: productoIdBuscado,
+          pedido: {
+            estado_carrito: false, 
+          },
+        },
+        select: {
+          pedido: {
+            select: {
+              usuario_id: true,
+            },
+          },
+        },
+      });
 
-    if (!usuario_id || !direccion_envio || !metodo_pago || !items?.length) {
-      res.status(400).json({ mensaje: "Faltan campos obligatorios" });
-      return;
+      const usuarios = pedidosConProducto.map((item) => item.pedido.usuario_id);
+
+      res.json(usuarios);
+    } catch (error) {
+      next(error);
+
+  create: RequestHandler = async (req, res, next) => {
+    try {
+      const { usuario_id, direccion_envio, metodo_pago, items } = req.body;
+
+      if (!usuario_id || !direccion_envio || !metodo_pago || !items?.length) {
+        res.status(400).json({ mensaje: "Faltan campos obligatorios" });
+      }
+
+      let subtotal = 0;
+
+      const itemsPreparados = await Promise.all(
+        items.map(async (item: any) => {
+          const cantidad = item.cantidad;
+
+          if (item.producto_id) {
+            const producto = await this.prisma.producto.findUnique({
+              where: { id: item.producto_id },
+              select: { precio_base: true },
+            });
+
+            if (!producto) throw new Error("Producto estándar no encontrado");
+
+            const precio = producto.precio_base;
+            subtotal += precio * cantidad;
+
+            return {
+              cantidad,
+              producto: { connect: { id: item.producto_id } },
+            };
+          }
+
+          if (item.producto_personalizado_id) {
+            const personalizado =
+              await this.prisma.productoPersonalizable.findUnique({
+                where: { id: item.producto_personalizado_id },
+                include: {
+                  producto_base: true,
+                  variantes: {
+                    include: {
+                      valor: true,
+                    },
+                  },
+                },
+              });
+
+            if (!personalizado)
+              throw new Error("Producto personalizado no encontrado");
+
+            const precioBase = personalizado.producto_base.precio_base;
+            const extra = personalizado.variantes.reduce(
+              (acc, v) => acc + v.valor.precio_extra,
+              0
+            );
+            const totalIndividual = precioBase + extra;
+
+            subtotal += totalIndividual * cantidad;
+
+            return {
+              cantidad,
+              producto_personalizado: {
+                connect: { id: item.producto_personalizado_id },
+              },
+            };
+          }
+
+          throw new Error(
+            "Debe incluir producto_id o producto_personalizado_id"
+          );
+        })
+      );
+
+      const impuestos = +(subtotal * 0.13).toFixed(2); // 13% IVA
+      const total = +(subtotal + impuestos).toFixed(2);
+
+      const nuevoPedido = await this.prisma.pedido.create({
+        data: {
+          usuario: { connect: { id: usuario_id } },
+          direccion_envio,
+          metodo_pago,
+          subtotal,
+          impuestos,
+          total,
+          fecha_pedido: new Date(),
+          items: {
+            create: itemsPreparados,
+          },
+          transiciones: {
+            create: {
+              estado: "PendienteDePago",
+              fecha_hora: new Date(),
+              admin: { connect: { id: 1 } }, // ← ⚠️ temporalmente fijo
+            },
+          },
+        },
+        include: {
+          items: true,
+          transiciones: true,
+        },
+      });
+
+      res.status(201).json(nuevoPedido);
+    } catch (error: any) {
+      console.error(error);
+      res
+        .status(500)
+        .json({ mensaje: error.message || "Error al crear pedido" });
     }
-
-    let subtotal = 0;
+  };
 
     const itemsPreparados = await Promise.all(
       items.map(async (item: any) => {

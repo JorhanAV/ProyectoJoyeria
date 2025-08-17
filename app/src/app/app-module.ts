@@ -17,6 +17,7 @@ import {
   HTTP_INTERCEPTORS,
   provideHttpClient,
   HttpClient,
+  withInterceptorsFromDi,
 } from '@angular/common/http';
 import { HttpErrorInterceptorService } from './share/http-error-interceptor.service';
 
@@ -27,6 +28,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+import { HttpAuthInterceptorService } from './share/http-auth-interceptor.service';
+
 import { PagoModalComponent } from './pedidos/Carrito-Component/ProcesoPago/pago-modal';
 import { ReporteRoutingModule } from './Reportes/reporte-routing-module';
 import { ReporteModule } from './Reportes/reporte-module';
@@ -57,17 +61,24 @@ export function HttpLoaderFactory(http: HttpClient) {
     PromocionesModule,
     PedidosModule,
     ResenasModule,
+
+
     ReporteModule,
     AppRoutingModule,
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),
-    provideHttpClient(),
+    provideHttpClient(withInterceptorsFromDi()),
     //provideAnimations(),
     { provide: LOCALE_ID, useValue: 'es' }, // Configura el idioma por defecto a español
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpErrorInterceptorService,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpAuthInterceptorService,
       multi: true,
     },
   ],

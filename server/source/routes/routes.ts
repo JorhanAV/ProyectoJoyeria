@@ -13,6 +13,9 @@ import { AtributosRoutes } from "./atributos.routes";
 import { ValorAtributosRoutes } from "./valorAtributos.routes";
 import { VarianteDetalleRoutes } from "./varianteDetalle.routes";
 import { ProductoPersonalizableRoutes } from "./productoPersonalizable.routes";
+
+import { ReporteResenaRoutes } from "./reporteResena.routes";
+
 import { ReporteController } from "../controllers/reporteController";
 import { ReporteRoutes } from "./reporte.routes";
 
@@ -22,6 +25,8 @@ export class AppRoutes {
 
     // ----Agregar las rutas----
 
+    // localhost:3000/usuario/
+    router.use("/usuario", UsuarioRoutes.routes);
     // localhost:3000/resena/
     router.use("/resena", ResenaRoutes.routes);
 
@@ -33,12 +38,9 @@ export class AppRoutes {
 
     // localhost:3000/producto/
     router.use("/producto", ProductoRoutes.routes);
-    
+
     // localhost:3000/categoria/
     router.use("/categoria", CategoriaRoutes.routes);
-
-    // localhost:3000/usuario/
-    router.use("/usuario", UsuarioRoutes.routes);
 
     // localhost:3000/etiqueta/
     router.use("/etiqueta", EtiquetaRoutes.routes);
@@ -57,6 +59,9 @@ export class AppRoutes {
 
     // localhost:3000/productoPersonalizable/
     router.use("/productoPersonalizable", ProductoPersonalizableRoutes.routes);
+
+    // localhost:3000/reporteResena/
+    router.use("/reporteResena", ReporteResenaRoutes.routes);
 
     //localhost:3000/file/
     router.use("/file/", ImageRoutes.routes);

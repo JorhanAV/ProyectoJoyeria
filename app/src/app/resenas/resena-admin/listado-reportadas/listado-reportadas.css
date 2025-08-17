@@ -1,0 +1,40 @@
+.tabla-reportadas {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 14px;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin-top: 25px;
+}
+
+.tabla-reportadas th {
+  background-color: #f5f5f5;
+  color: #333;
+  font-weight: 600;
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+.tabla-reportadas td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #eee;
+  vertical-align: top;
+}
+
+.tabla-reportadas td:nth-child(2) {
+  color: #c62828; /* rojo elegante para motivo del reporte */
+  font-weight: 500;
+}
+
+.tabla-reportadas td:nth-child(3) {
+  color: #2e7d32; /* verde sobrio para comentario de reseña */
+  font-style: italic;
+}
+
+.tabla-reportadas button {
+  margin-right: 6px;
+  font-size: 13px;
+  text-transform: none;
+}

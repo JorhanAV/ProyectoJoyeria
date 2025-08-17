@@ -4,13 +4,34 @@ import { PromocionIndex } from './promocion-index/promocion-index';
 import { PromocionAdmin } from './promocion-admin/promocion-admin';
 import { PromocionDetail } from './promocion-detail/promocion-detail';
 import { PromocionForm } from './promocion-form/promocion-form';
+import { authGuard } from '../share/auth.guard';
 
 const routes: Routes = [
-  {path: 'promocion', component: PromocionIndex},
-  {path: 'promocion-admin',component: PromocionAdmin},
-  {path:'promocion/create',component:PromocionForm},
-  {path:'promocion/:id',component:PromocionDetail},
-  {path:'promocion/update/:id',component:PromocionForm}
+  {path: 'promocion', 
+    component: PromocionIndex,
+    canActivate: [authGuard],
+    data: { roles: ['CLIENTE', 'ADMIN'] }
+  },
+  {path: 'promocion-admin',
+    component: PromocionAdmin,
+    canActivate: [authGuard],
+    data: { roles: ['ADMIN'] }
+  },
+  {path:'promocion/create',
+    component:PromocionForm,
+    canActivate: [authGuard],
+    data: { roles: ['ADMIN'] }
+  },
+  {path:'promocion/:id',
+    component:PromocionDetail,
+    canActivate: [authGuard],
+    data: { roles: ['CLIENTE', 'ADMIN'] }
+  },
+  {path:'promocion/update/:id',
+    component:PromocionForm,
+    canActivate: [authGuard],
+    data: { roles: ['ADMIN'] }
+  }
 ];
 
 @NgModule({
