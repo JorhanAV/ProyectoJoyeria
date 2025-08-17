@@ -1,3 +1,67 @@
+2025-08-16 11:35:15.383 error: 	jorha--Se produjo un error interno del servidor 
+Invalid `this.prisma.pedidoItem.findFirst()` invocation in
+D:\UTN\XI Cuatrimestre\ProyectoJoyeria\server\source\controllers\pedidoController.ts:274:49
+
+  271 const productoId = parseInt(req.params.id);
+  272 const usuarioId = parseInt(req.query.usuarioId as string);
+  273 
+→ 274 const pedido = await this.prisma.pedidoItem.findFirst({
+        where: {
+          producto_id: 2,
+          pedido: {
+            usuario_id: NaN,
+            ~~~~~~~~~~
+            estado_carrito: false,
+      ?     is?: PedidoWhereInput,
+      ?     isNot?: PedidoWhereInput
+          }
+        }
+      })
+
+Unknown argument `usuario_id`. Available options are marked with ?.
+2025-08-16 11:36:08.289 error: 	jorha--Se produjo un error interno del servidor 
+Invalid `this.prisma.pedidoItem.findFirst()` invocation in
+D:\UTN\XI Cuatrimestre\ProyectoJoyeria\server\source\controllers\pedidoController.ts:274:49
+
+  271 const productoId = parseInt(req.params.id);
+  272 const usuarioId = parseInt(req.query.usuarioId as string);
+  273 
+→ 274 const pedido = await this.prisma.pedidoItem.findFirst({
+        where: {
+          producto_id: 2,
+          pedido: {
+            usuario_id: NaN,
+            ~~~~~~~~~~
+            estado_carrito: false,
+      ?     is?: PedidoWhereInput,
+      ?     isNot?: PedidoWhereInput
+          }
+        }
+      })
+
+Unknown argument `usuario_id`. Available options are marked with ?.
+2025-08-16 11:36:43.524 error: 	jorha--Se produjo un error interno del servidor 
+Invalid `this.prisma.pedidoItem.findFirst()` invocation in
+D:\UTN\XI Cuatrimestre\ProyectoJoyeria\server\source\controllers\pedidoController.ts:274:49
+
+  271 const productoId = parseInt(req.params.id);
+  272 const usuarioId = parseInt(req.params.usuarioId as string);
+  273 
+→ 274 const pedido = await this.prisma.pedidoItem.findFirst({
+        where: {
+          producto_id: 2,
+          pedido: {
+            usuario_id: NaN,
+            ~~~~~~~~~~
+            estado_carrito: false,
+      ?     is?: PedidoWhereInput,
+      ?     isNot?: PedidoWhereInput
+          }
+        }
+      })
+
+Unknown argument `usuario_id`. Available options are marked with ?.
+
 2025-08-16 11:22:07.633 error: 	mario--Se produjo un error interno del servidor 
 Invalid `prisma.$queryRaw()` invocation:
 

@@ -1,7 +1,7 @@
 <form [formGroup]="formResena" (ngSubmit)="submitResena()" novalidate>
   <h2>{{ 'RESENAS_TEXT.CREAR_RESEÑA' | translate }}</h2>
   <p class="fecha-actual">{{ 'RESENAS_TEXT.FECHA' | translate }}: {{ fechaActual | date: 'dd/MM/yyyy' }}</p>
-  <p class="nombre-usuario">{{ 'RESENAS_TEXT.USUARIO' | translate }}: <strong>{{ nombreUsuario }}</strong></p>
+  <p class="nombre-usuario">{{ 'RESENAS_TEXT.USUARIO' | translate }}: <strong>{{ nombreUsuario()?.nombre_usuario }}</strong></p>
   <!-- Comentario -->
   <div class="form-group">
     <label for="comentario">{{ 'RESENAS_TEXT.COMENTARIO' | translate }}:</label>

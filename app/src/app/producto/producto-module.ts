@@ -26,6 +26,7 @@ import { ResenaForm } from '../resenas/resena-form/resena-form';
 import { ProductoForm } from './producto-form/producto-form';
 import { TranslateModule } from '@ngx-translate/core';
 import { ProductoPersonalizable } from './producto-personalizable/producto-personalizable';
+import { ReporteResenasCreate } from '../resenas/reporte-resenas-create/reporte-resenas-create';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ProductoPersonalizable } from './producto-personalizable/producto-perso
     ProductoAdmin,
     ResenaForm,
     ProductoForm,
-    ProductoPersonalizable
+    ProductoPersonalizable,
+    ReporteResenasCreate
   ],
   imports: [
     CommonModule,

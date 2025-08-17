@@ -17,7 +17,22 @@
     "VER_DETALLES": "Ver Detalles",
     "DETALLE_RESEÑA": "Detalle de Reseña",
     "PRODUCTO": "Producto",
-    "VOLVER": "Volver"
+    "VOLVER": "Volver",
+    "NO_COMPRO_TITULO": "Producto no comprado",
+    "NO_COMPRO_MENSAJE": "Debes comprar el producto antes de dejar una reseña.",
+    "CREAR_REPORTE_TITULO":"Reseña reportada",
+    "CREAR_REPORTE_MENSAJE": "Se ha reportado con éxito la reseña",
+    "REPORTAR_RESENA": "Reportar Reseña",
+    "ENVIAR": "Enviar",
+    "CANCELAR":"Cancelar",
+    "MOTIVO_REPORTE": "Escriba el motivo del reporte",
+    "TODAS_LAS_RESENAS": "Todas las reseñas",
+    "RESENAS_REPORTADAS": "Reseñas reportadas",
+    "GESTION_RESENAS": "Gestión de reseñas",
+    "ESTADO": "Estado",
+    "RAZON_REPORTE": "Razón del reporte",
+    "COMENTARIO_RESENA": "Comentario de la Reseña"
+
   },
   "PROMOCION_TEXT": {
     "LISTADO_PROMOCIONES": "Listado de Promociones",
@@ -51,6 +66,7 @@
     "ACTUALIZADA_TITULO": "Promoción actualizada",
     "ACTUALIZADA_MENSAJE": "ID: {{id}}",
     "VER_DETALLES": "Ver Detalles"
+    
   },
   "PRODUCTO_TEXT": {
     "GESTION_PRODUCTOS": "Gestión de Productos",
@@ -106,7 +122,8 @@
     "DESGLOSE_PRECIO": "Desglose de Precio",
     "PRECIO_TOTAL": "Precio Total",
     "PRECIO_PERSONALIZACION": "Precio de Personalización",
-    "PRECIO_POSITIVO": "Error con el precio"
+    "PRECIO_POSITIVO": "Error con el precio",
+    "REPORTAR": "Reportar"
   },
 
   "PEDIDO_TEXT": {
@@ -149,6 +166,34 @@
     "PEDIDOS": "Pedidos",
     "PROMOCIONES": "Promociones"
   },
+
+
+  "USER_TEXT": {
+    "INICIAR_SESION": "Iniciar Sesión",
+    "CREAR_CUENTA": "Crear Cuenta",
+    "CORREO_ELECTRONICO": "Correo Electrónico",
+    "CONTRASENA": "Contraseña",
+    "OLVIDO_CONTRASENA": "Olvidó su Contraseña?",
+    "REGISTRARSE": "Regístrate",
+    "NO_TIENES_CUENTA": "¿No tienes cuenta?",
+    "CONFIRMAR_CONTRASENA": "Confirmar Contraseña",
+    "NOMBRE_USUARIO": "Nombre de Usuario",
+    "CREAR_USUARIO_TITULO": "Usuario Creado",
+    "CREAR_USUARIO_MENSAJE": "Usuario creado exitosamente",
+    "YA_TIENES_CUENTA": "¿Ya tienes cuenta?",
+    "NOMBRE_USUARIO_OBLIGATORIO": "El nombre de usuario es obligatorio.",
+    "NOMBRE_USUARIO_MIN_LENGTH": "El nombre de usuario debe tener al menos 3 caracteres.",
+    "CORREO_OBLIGATORIO": "El correo electrónico es obligatorio.",
+    "CORREO_INVALIDO": "El formato del correo electrónico no es válido.",
+    "CORREO_INVALIDO_FORMATO": "El correo no cumple con el formato requerido.",
+    "CONTRASENA_OBLIGATORIA": "La contraseña es obligatoria.",
+    "CONTRASENA_MIN_LENGTH": "La contraseña debe tener al menos 6 caracteres.",
+    "CONTRASENA_DEBE_INCLUIR": "La contraseña debe incluir mayúsculas, minúsculas, números y un carácter especial.",
+    "CONFIRMAR_CONTRASENA_OBLIGATORIA": "Debes confirmar la contraseña.",
+    "CONTRASENA_NO_COINCIDEN": "Las contraseñas no coinciden."
+
+  },
+
   "CARRITO_TEXT": {
     "CLIENTE": "Cliente",
     "CORREO": "Correo",

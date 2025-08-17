@@ -1,10 +1,14 @@
-import { Component, NgZone } from '@angular/core';
+import { Component, inject, NgZone } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { ProductoService } from '../../share/services/producto.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResenaModel } from '../../share/models/ResenaModel';
 import { ResenaService } from '../../share/services/resena.service';
 import { FormGroup } from '@angular/forms';
+import { AuthenticationService } from '../../share/authentication.service';
+import { ReporteResenaService } from '../../share/services/reporteResena.service';
+import { TranslateService } from '@ngx-translate/core';
+import { NotificationService } from '../../share/notification-service';
 
 @Component({
   selector: 'app-producto-detail',
@@ -23,8 +27,11 @@ export class ProductoDetail {
   tipoDescuento: string | null = null;
   valorDescuento: number | null = null;
   fechaActual: Date = new Date();
+  private authService = inject(AuthenticationService);
 
-  usuarioAutenticado = { id: 1 };
+  usuarioAutenticado = this.authService.currentUserSignal;
+  modalVisible = false;
+  resenaSeleccionada: any;
 
   // --- Relativo al formulario ---
   resenaForm!: FormGroup;
@@ -35,7 +42,10 @@ export class ProductoDetail {
     private prodService: ProductoService,
     private router: Router,
     private activeRoute: ActivatedRoute,
-    private zone: NgZone
+    private zone: NgZone,
+    private reporteResenaService: ReporteResenaService,
+    private translate: TranslateService,
+    private noti: NotificationService
   ) {
     let id = this.activeRoute.snapshot.paramMap.get('id');
     if (!isNaN(Number(id))) this.obtenerProducto(Number(id));
@@ -122,5 +132,22 @@ export class ProductoDetail {
     this.obtenerProducto(this.datos.id); // 👈 vuelve a consultar el producto
 
     this.mostrarFormularioResena = false;
+  }
+
+  reportarResena(resena: any) {
+    this.resenaSeleccionada = resena;
+    this.modalVisible = true;
+  }
+  crearReporte(payload: any) {
+    this.reporteResenaService.create(payload).subscribe(() => {
+      this.modalVisible = false;
+      // Podés mostrar un toast o feedback visual aquí
+
+      this.noti.success(
+        this.translate.instant('RESENAS_TEXT.CREAR_REPORTE_TITULO'),
+        this.translate.instant('RESENAS_TEXT.CREAR_REPORTE_MENSAJE', ),
+        2000
+      );
+    });
   }
 }

@@ -17,7 +17,21 @@
     "VER_DETALLES": "View Details",
     "DETALLE_RESEÑA": "Review Detail",
     "PRODUCTO": "Product",
-    "VOLVER": "Back"
+    "VOLVER": "Back",
+    "NO_COMPRO_TITULO": "Product Not Purchased",
+    "NO_COMPRO_MENSAJE": "You must purchase the product before leaving a review.",
+    "CREAR_REPORTE_TITULO": "Review reported",
+    "CREAR_REPORTE_MENSAJE": "The review has been successfully reported",
+    "REPORTAR_RESENA": "Report review",
+    "ENVIAR": "Submit",
+    "CANCELAR": "Cancel",
+    "MOTIVO_REPORTE": "Write the reason for the report",
+    "TODAS_LAS_RESENAS": "All reviews",
+    "RESENAS_REPORTADAS": "Reviews reported",
+    "GESTION_RESENAS": "Review Management",
+    "ESTADO": "Status",
+    "RAZON_REPORTE": "Reason for the report",
+    "COMENTARIO_RESENA": "Review Comment"
   },
   "PROMOCION_TEXT": {
     "LISTADO_PROMOCIONES": "Promotions List",
@@ -29,7 +43,7 @@
     "VALOR": "Value",
     "VIGENTE_DEL": "Valid from",
     "AL": "to",
-    "TIPO_DESCUENTO":"Discount Type",
+    "TIPO_DESCUENTO": "Discount Type",
     "VER_MAS": "See More",
     "VOLVER": "Back",
     "CREAR_PROMOCION": "Create Promotion",
@@ -105,7 +119,8 @@
     "DESGLOSE_PRECIO": "Price Breakdown",
     "PRECIO_TOTAL": "Total Price",
     "PRECIO_PERSONALIZACION": "Customization Price",
-    "PRECIO_POSITIVO": "Error with price"
+    "PRECIO_POSITIVO": "Error with price",
+    "REPORTAR": "Report"
   },
 
   "PEDIDO_TEXT": {
@@ -151,6 +166,32 @@
     "RESENAS": "Reviews",
     "PEDIDOS": "Orders",
     "PROMOCIONES": "Promotions"
+  },
+
+
+  "USER_TEXT": {
+    "INICIAR_SESION": "Log In",
+    "CREAR_CUENTA": "Create Account",
+    "CORREO_ELECTRONICO": "Email Address",
+    "CONTRASENA": "Password",
+    "OLVIDO_CONTRASENA": "Forgot Password?",
+    "REGISTRARSE": "Sign Up",
+    "NO_TIENES_CUENTA": "Don't have an account?",
+    "CONFIRMAR_CONTRASENA": "Confirm Password",
+    "NOMBRE_USUARIO": "Username",
+    "CREAR_USUARIO_TITULO": "User Created",
+    "CREAR_USUARIO_MENSAJE": "User created successfully",
+    "YA_TIENES_CUENTA": "Already have an account?",
+    "NOMBRE_USUARIO_OBLIGATORIO": "Username is required.",
+    "NOMBRE_USUARIO_MIN_LENGTH": "Username must be at least 3 characters long.",
+    "CORREO_OBLIGATORIO": "Email address is required.",
+    "CORREO_INVALIDO": "Email format is invalid.",
+    "CORREO_INVALIDO_FORMATO": "Email does not meet the required format.",
+    "CONTRASENA_OBLIGATORIA": "Password is required.",
+    "CONTRASENA_MIN_LENGTH": "Password must be at least 6 characters long.",
+    "CONTRASENA_DEBE_INCLUIR": "Password must include uppercase, lowercase, numbers, and a special character.",
+    "CONFIRMAR_CONTRASENA_OBLIGATORIA": "Confirm Password is required.",
+    "CONTRASENA_NO_COINCIDEN": "Passwords do not match."
   },
   "CARRITO_TEXT": {
     "CLIENTE": "Customer",

@@ -1,17 +1,22 @@
-import { Router } from 'express'  
-import { UsuarioController } from '../controllers/usuarioController'
-export class UsuarioRoutes { 
-    static get routes(): Router { 
-        const router= Router() 
-        const controller=new UsuarioController() 
-        //localhost:3000/usuario/ 
-        router.get('/',controller.get) 
-        //localhost:3000/usuario/6
-        router.get('/:id',controller.getById) 
+import { Router } from "express";
+import { UsuarioController } from "../controllers/usuarioController";
+import { authenticate } from "passport";
+import { authenticateJWT } from "../middleware/authMiddleware";
+export class UsuarioRoutes {
+  static get routes(): Router {
+    const router = Router();
+    const controller = new UsuarioController();
+    router.get("/profile", authenticateJWT, controller.userAuth);
 
-        //Crear
-        router.post('/',controller.create)
-        
-        return router 
-    } 
+    //localhost:3000/usuario/
+    router.get("/", controller.get);
+    //localhost:3000/usuario/6
+    router.get("/:id", controller.getById);
+
+    router.post("/login", controller.login);
+    //Crear
+    router.post("/register", controller.register);
+
+    return router;
+  }
 }

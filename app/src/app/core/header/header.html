@@ -16,17 +16,22 @@
   <!-- ENLACES DE NAVEGACIÓN -->
   <nav class="nav-links" [class.open]="menuOpen">
     <a routerLink="/">{{ 'MENU_TEXT.HOME' | translate }}</a>
+
     <a class="more-link" [matMenuTriggerFor]="moreMenu">
       {{ 'MENU_TEXT.TIENDA' | translate }}
       <mat-icon class="arrow-icon">arrow_drop_down</mat-icon>
     </a>
+
+    @if (currentUser()?.rol === 'ADMIN') {
     <a class="more-link" [matMenuTriggerFor]="moreMenuMant">
       {{ 'MENU_TEXT.MANTENIMIENTOS' | translate }}
       <mat-icon class="arrow-icon">arrow_drop_down</mat-icon>
     </a>
+    } @if(currentUser()?.rol === 'ADMIN'){
     <a routerLink="/reporte-ventas">Reportes</a>
+
+    }
     <a routerLink="/acercade">{{ 'MENU_TEXT.ACERCA_DE' | translate }}</a>
-    <!-- <a routerLink="/contacto">Contacto</a> -->
 
     <mat-menu #moreMenu="matMenu" panelClass="white-menu-panel">
       <button mat-menu-item routerLink="/productos">
@@ -47,14 +52,13 @@
       <button mat-menu-item routerLink="/producto-admin">
         <span>{{ 'MENU_TEXT.PRODUCTOS' | translate }}</span>
       </button>
-      <!-- <button mat-menu-item routerLink="/resena">
-        <span>Reseñas</span>
-      </button>
-      <button mat-menu-item routerLink="/pedidos">
-        <span>Pedidos</span>
-      </button> -->
+
       <button mat-menu-item routerLink="/promocion-admin">
         <span>{{ 'MENU_TEXT.PROMOCIONES' | translate }}</span>
+      </button>
+
+      <button mat-menu-item routerLink="/resena-admin">
+        <span>{{ 'MENU_TEXT.RESENAS' | translate }}</span>
       </button>
       <!-- agrega más <button mat-menu-item> según necesites -->
     </mat-menu>
@@ -71,22 +75,20 @@
     >
       <mat-icon>shopping_cart</mat-icon>
     </button>
-    @if (isAuth) {
-    <span class="user-email">{{user}}</span>
-    } @else {
-    <span class="user-email">Email</span>
-    }
+
+    <span class="user-email">{{currentUser()?.nombre_usuario}}</span>
+
     <button mat-icon-button [matMenuTriggerFor]="menu3">
       <mat-icon>person</mat-icon>
     </button>
     <mat-menu #menu3="matMenu">
-      @if (!isAuth) {
-      <button mat-menu-item>
+      @if (!isAuthenticated()) {
+      <button mat-menu-item routerLink="/user-login">
         <mat-icon>login</mat-icon>
         <span>Login</span>
       </button>
       } @else {
-      <button mat-menu-item>
+      <button mat-menu-item (click)="logout()">
         <mat-icon>logout</mat-icon>
         <span>Logout</span>
       </button>

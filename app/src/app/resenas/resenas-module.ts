@@ -22,11 +22,13 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ResenaForm } from './resena-form/resena-form';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
+import { ListadoResenas } from './resena-admin/listado-resenas/listado-resenas';
+import { ListadoReportadas } from './resena-admin/listado-reportadas/listado-reportadas';
 
 @NgModule({
-  declarations: [ResenaIndex, ResenaDetail, ResenaAdmin],
+  declarations: [ResenaIndex, ResenaDetail, ResenaAdmin,ListadoResenas,ListadoReportadas],
   imports: [
     CommonModule,
     ResenasRoutingModule,
@@ -47,6 +49,7 @@ import { TranslateModule } from '@ngx-translate/core';
     MatRadioModule,
     MatDividerModule,
     MatTooltipModule,
+    FormsModule,
     ReactiveFormsModule,
   ],
 })

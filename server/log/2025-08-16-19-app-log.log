@@ -1,0 +1,105 @@
+2025-08-16 19:56:09.301 error: 	jorha--Se produjo un error interno del servidor 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Can't reach database server at `localhost:3306`
+
+Please make sure your database server is running at `localhost:3306`.
+2025-08-16 19:56:09.305 error: 	jorha--Se produjo un error interno del servidor 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Can't reach database server at `localhost:3306`
+
+Please make sure your database server is running at `localhost:3306`.
+2025-08-16 19:56:09.307 error: 	jorha--Se produjo un error interno del servidor 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Can't reach database server at `localhost:3306`
+
+Please make sure your database server is running at `localhost:3306`.
+2025-08-16 19:56:09.310 error: 	jorha--Se produjo un error interno del servidor 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Can't reach database server at `localhost:3306`
+
+Please make sure your database server is running at `localhost:3306`.
+2025-08-16 19:56:09.313 error: 	jorha--Se produjo un error interno del servidor 
+Invalid `this.prisma.resena.findMany()` invocation in
+D:\UTN\XI Cuatrimestre\ProyectoJoyeria\server\source\controllers\reporteController.ts:100:47
+
+   97   next: NextFunction
+   98 ) => {
+   99   try {
+→ 100     const result = await this.prisma.resena.findMany(
+Can't reach database server at `localhost:3306`
+
+Please make sure your database server is running at `localhost:3306`.
+2025-08-16 19:56:33.253 error: 	jorha--Se produjo un error interno del servidor 
+Invalid `prisma.usuario.findUnique()` invocation in
+D:\UTN\XI Cuatrimestre\ProyectoJoyeria\server\source\config\passport.ts:22:43
+
+  19 },
+  20 async (correo, contraseña, done) => {
+  21   try {
+→ 22     const user = await prisma.usuario.findUnique(
+Can't reach database server at `localhost:3306`
+
+Please make sure your database server is running at `localhost:3306`.
+2025-08-16 19:56:33.254 error: 	jorha--Se produjo un error interno del servidor 
+Invalid `prisma.usuario.findUnique()` invocation in
+D:\UTN\XI Cuatrimestre\ProyectoJoyeria\server\source\config\passport.ts:22:43
+
+  19 },
+  20 async (correo, contraseña, done) => {
+  21   try {
+→ 22     const user = await prisma.usuario.findUnique(
+Can't reach database server at `localhost:3306`
+
+Please make sure your database server is running at `localhost:3306`.
+2025-08-16 19:56:33.256 error: 	jorha--Se produjo un error interno del servidor 
+Invalid `prisma.usuario.findUnique()` invocation in
+D:\UTN\XI Cuatrimestre\ProyectoJoyeria\server\source\config\passport.ts:22:43
+
+  19 },
+  20 async (correo, contraseña, done) => {
+  21   try {
+→ 22     const user = await prisma.usuario.findUnique(
+Can't reach database server at `localhost:3306`
+
+Please make sure your database server is running at `localhost:3306`.
+2025-08-16 19:56:33.258 error: 	jorha--Se produjo un error interno del servidor 
+Invalid `prisma.usuario.findUnique()` invocation in
+D:\UTN\XI Cuatrimestre\ProyectoJoyeria\server\source\config\passport.ts:22:43
+
+  19 },
+  20 async (correo, contraseña, done) => {
+  21   try {
+→ 22     const user = await prisma.usuario.findUnique(
+Can't reach database server at `localhost:3306`
+
+Please make sure your database server is running at `localhost:3306`.
+2025-08-16 19:56:37.557 error: 	jorha--Se produjo un error interno del servidor 
+Invalid `prisma.usuario.findUnique()` invocation in
+D:\UTN\XI Cuatrimestre\ProyectoJoyeria\server\source\config\passport.ts:22:43
+
+  19 },
+  20 async (correo, contraseña, done) => {
+  21   try {
+→ 22     const user = await prisma.usuario.findUnique(
+Can't reach database server at `localhost:3306`
+
+Please make sure your database server is running at `localhost:3306`.
+2025-08-16 19:57:07.557 error: 	jorha--Se produjo un error interno del servidor 
+Invalid `prisma.usuario.findUnique()` invocation in
+D:\UTN\XI Cuatrimestre\ProyectoJoyeria\server\source\config\passport.ts:22:43
+
+  19 },
+  20 async (correo, contraseña, done) => {
+  21   try {
+→ 22     const user = await prisma.usuario.findUnique(
+Can't reach database server at `localhost:3306`
+
+Please make sure your database server is running at `localhost:3306`.

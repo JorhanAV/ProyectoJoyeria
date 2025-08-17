@@ -94,6 +94,7 @@ export class ProductoController {
             },
           },
           resenas: {
+            where:{visible: true},
             include: {
               usuario: {
                 omit: { contraseña: true },

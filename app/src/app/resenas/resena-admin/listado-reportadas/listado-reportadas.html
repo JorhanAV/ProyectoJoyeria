@@ -1,0 +1,40 @@
+<table mat-table [dataSource]="resenasReportadas" class="tabla-reportadas">
+  <!-- Producto -->
+  <ng-container matColumnDef="producto">
+    <th mat-header-cell *matHeaderCellDef>{{'RESENAS_TEXT.PRODUCTO' | translate}}</th>
+    <td mat-cell *matCellDef="let reporte">
+      {{ reporte.resena?.producto?.nombre }}
+    </td>
+  </ng-container>
+
+  <!-- Comentario -->
+  <ng-container matColumnDef="comentario">
+    <th mat-header-cell *matHeaderCellDef>{{'RESENAS_TEXT.RAZON_REPORTE' | translate}}</th>
+    <td mat-cell *matCellDef="let resena">{{ resena.comentario }}</td>
+  </ng-container>
+
+  <!-- Comentario -->
+  <ng-container matColumnDef="comentarioResena">
+    <th mat-header-cell *matHeaderCellDef>{{'RESENAS_TEXT.COMENTARIO_RESENA' | translate}}</th>
+    <td mat-cell *matCellDef="let reporte">{{ reporte.resena?.comentario }}</td>
+  </ng-container>
+
+  <!-- Acciones -->
+  <ng-container matColumnDef="acciones">
+    <th mat-header-cell *matHeaderCellDef>{{'RESENAS_TEXT.ESTADO' | translate}}</th>
+    <td mat-cell *matCellDef="let reporte">
+      <button
+        mat-icon-button
+        [color]="reporte.resena.visible ? 'primary' : 'warn'"
+        (click)="actualizarVisibilidad(reporte.resena)"
+      >
+        <mat-icon>
+          {{ reporte.resena.visible ? 'visibility' : 'visibility_off' }}
+        </mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+  <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+</table>

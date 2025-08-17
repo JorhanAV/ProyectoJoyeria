@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { CartService } from '../../share/cart.service';
 import { PedidoService } from '../../share/services/pedido.service';
 import { ItemCartModel } from '../../share/models/ItemCartModel';
@@ -11,6 +11,7 @@ import { PagoModalComponent } from './ProcesoPago/pago-modal';
 import { Subscription, timeout } from 'rxjs';
 import { Router } from '@angular/router';
 import { UsuarioService } from '../../share/services/usuario.service';
+import { AuthenticationService } from '../../share/authentication.service';
 
 @Component({
   selector: 'app-carrito',
@@ -24,13 +25,16 @@ export class CarritoComponent implements OnInit {
   impuestos: number = 0;
   direccion_envio: string = '';
   metodo_pago: string = 'Efectivo';
-  usuarioId: number=1;
   estadoPedido: string = 'En carrito';
   pedidoId: number = 0;
   nombreUsuario: string = '';
   correoUsuario: string = '';
   fechaActual: string = '';
   private langSub!: Subscription;
+  private authService = inject(AuthenticationService);
+
+  usuarioId = this.authService.currentUserSignal;
+
 
   constructor(
     private cartService: CartService,
@@ -40,58 +44,60 @@ export class CarritoComponent implements OnInit {
     private dialog: MatDialog,
     private router: Router,
     private usuarioService: UsuarioService
-  ) {
-
-  }
+  ) {}
 
   ngOnInit(): void {
     this.items = this.cartService.itemsCart();
     this.total = this.cartService.total();
     this.impuestos = this.cartService.impuestos();
-    this.obtenerUsuario(); 
-    
+    this.obtenerUsuario();
+
     // inicializa con el idioma actual
-    this.setFecha(this.translate.currentLang || this.translate.getDefaultLang());
+    this.setFecha(
+      this.translate.currentLang || this.translate.getDefaultLang()
+    );
 
     // escucha cambios de idioma
-    this.langSub = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
-      this.setFecha(event.lang);
-    });
+    this.langSub = this.translate.onLangChange.subscribe(
+      (event: LangChangeEvent) => {
+        this.setFecha(event.lang);
+      }
+    );
   }
-    ngOnDestroy(): void {
+  ngOnDestroy(): void {
     if (this.langSub) {
       this.langSub.unsubscribe();
     }
   }
 
-   private setFecha(lang: string) {
+  private setFecha(lang: string) {
     this.fechaActual =
       lang === 'es'
         ? new Date().toLocaleDateString('es-CR')
         : new Date().toLocaleDateString('en-US');
   }
-incrementarCantidad(item: ItemCartModel): void {
-  if (item.producto) {
-    if (item.cantidad < (item.producto.stock ?? 0)) {
-      this.cartService.addToCart(item.producto);
-    } else {
-      this.noti.warning(
-        'Stock insuficiente',
-        `Solo hay ${item.producto.stock} unidades disponibles`,
-        3000
-      );
+  incrementarCantidad(item: ItemCartModel): void {
+    if (item.producto) {
+      if (item.cantidad < (item.producto.stock ?? 0)) {
+        this.cartService.addToCart(item.producto);
+      } else {
+        this.noti.warning(
+          'Stock insuficiente',
+          `Solo hay ${item.producto.stock} unidades disponibles`,
+          3000
+        );
+      }
+    } else if (item.productoPersonalizado) {
+      this.cartService.addToCartPersonalized(item.productoPersonalizado);
     }
-  } else if (item.productoPersonalizado) {
-    this.cartService.addToCartPersonalized(item.productoPersonalizado);
+    this.ngOnInit();
   }
-  this.ngOnInit();
-}
 
   decrementarCantidad(item: ItemCartModel): void {
     if (item.producto) {
-      this.cartService.addToCart(item.producto,-1);
+      this.cartService.addToCart(item.producto, -1);
     } else if (item.productoPersonalizado) {
-      this.cartService.addToCartPersonalized(item.productoPersonalizado,-1);
+      this.cartService.addToCartPersonalized(item.productoPersonalizado, -1);
     }
     this.ngOnInit();
   }
@@ -158,7 +164,7 @@ incrementarCantidad(item: ItemCartModel): void {
   registrarPedido() {
     if (this.cartService.itemsCart().length > 0) {
       const pedido = {
-        usuario_id: this.usuarioId,
+        usuario_id: this.usuarioId()?.id,
         direccion_envio: this.direccion_envio,
         metodo_pago: this.metodo_pago,
         items: this.cartService.itemsCart().map((item) => {
@@ -211,9 +217,12 @@ incrementarCantidad(item: ItemCartModel): void {
     }
   }
   obtenerUsuario() {
-    this.usuarioService.getById(this.usuarioId).subscribe((usuario) => {
+    if (this.usuarioId()?.id) {
+      this.usuarioService.getById(this.usuarioId()?.id!).subscribe((usuario) => {
       this.nombreUsuario = usuario.nombre_usuario;
       this.correoUsuario = usuario.correo;
     });
+    }
+    
   }
 }
