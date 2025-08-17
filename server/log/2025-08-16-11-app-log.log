@@ -61,3 +61,18 @@ D:\UTN\XI Cuatrimestre\ProyectoJoyeria\server\source\controllers\pedidoControlle
       })
 
 Unknown argument `usuario_id`. Available options are marked with ?.
+
+2025-08-16 11:22:07.633 error: 	mario--Se produjo un error interno del servidor 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Raw query failed. Code: `1064`. Message: `You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '?
+        GROUP BY DATE(p.fecha_pedido)
+        ORDER BY DATE(p.fecha_pedido)' at line 4`
+2025-08-16 11:22:07.636 error: 	mario--Se produjo un error interno del servidor 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Raw query failed. Code: `1064`. Message: `You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '?
+        GROUP BY DATE_FORMAT(p.fecha_pedido, '%Y-%m')
+        ORDER BY name' at line 4`

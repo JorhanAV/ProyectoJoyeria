@@ -1,0 +1,106 @@
+/* Contenedor principal del modal */
+.pago-modal-container {
+  max-width: 600px;
+  margin: auto;
+  padding: 2rem;
+  background: #fffdf9;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Título del modal */
+.pago-modal-container h2 {
+  text-align: center;
+  color: #6a4e2f;
+  margin-bottom: 1rem;
+}
+
+/* Etiquetas */
+.pago-modal-container label {
+  font-weight: bold;
+  color: #6a4e2f;
+  display: block;
+  margin-top: 1rem;
+}
+
+/* Inputs */
+.pago-modal-container input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #e0d7ce;
+  border-radius: 6px;
+  background: #f7f3ee;
+  color: #4a3b27;
+  font-weight: bold;
+  margin-top: 0.25rem;
+}
+
+/* Campo de vuelto */
+.vuelto-box {
+  background: #fdf8f2;
+  padding: 0.75rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+  font-weight: bold;
+  color: #6a4e2f;
+  text-align: center;
+}
+
+/* Error */
+.pago-error {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+/* Botones */
+.pago-botones {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+.btn-cancelar {
+  background: #b33a3a;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.btn-cancelar:hover {
+  background: #992f2f;
+}
+
+.btn-confirmar {
+  background: linear-gradient(135deg, #d4af37, #b8860b);
+  color: white;
+  border: none;
+  padding: 0.6rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.btn-confirmar:hover {
+  background: linear-gradient(135deg, #b8860b, #d4af37);
+}
+.input-moneda {
+  position: relative;
+  display: inline-block;
+  width: 90%;
+}
+
+.input-moneda .simbolo {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6a4e2f;
+  font-weight: bold;
+  pointer-events: none;
+}
+
+.input-moneda input {
+  padding-left: 25px; /* deja espacio para el símbolo */
+}

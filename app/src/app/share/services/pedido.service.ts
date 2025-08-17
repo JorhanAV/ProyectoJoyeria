@@ -13,6 +13,7 @@ export class PedidoService extends BaseAPI<PedidoModel> {
     super(httpClient, environment.endPointPedido);
   }
 
+
   apiUrl = environment.apiURL;
 
   verificarProductoComprado(usuarioId: number, productoId: number): Observable<boolean> {
@@ -22,5 +23,17 @@ export class PedidoService extends BaseAPI<PedidoModel> {
     map((usuarioIds: number[]) => usuarioIds.includes(usuarioId))
   );
 }
+
+
+  pagarpedido(pedidoId: number, adminId: number) {
+    const url = `${environment.apiURL}/${environment.endPointPedido}/${pedidoId}/bitacora`;
+
+    const body = {
+      estado: 'Pagado',
+      admin_id: adminId,
+    };
+
+    return this.http.post(url, body);
+  }
 
 }

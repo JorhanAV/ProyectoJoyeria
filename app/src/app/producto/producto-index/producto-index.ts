@@ -6,6 +6,7 @@ import { ProductoModel } from '../../share/models/ProductoModel';
 import { MatDialog } from '@angular/material/dialog';
 import { ProductoPersonalizable } from '../producto-personalizable/producto-personalizable';
 import { CartService } from '../../share/cart.service';
+import { ProductoPersonalizableCreateModel } from '../../share/models/ProductoPersonalizableDTO';
 
 @Component({
   selector: 'app-producto-index',
@@ -94,34 +95,37 @@ export class ProductoIndex {
       });
     });
   }
- agregarAlCarrito(producto: ProductoModel): void {
+ agregarAlCarrito(producto?: ProductoModel): void {
     this.cartService.addToCart(producto);
+  }
+   agregarAlCarritoPPersonalizado(productoPersonalizado?: ProductoPersonalizableCreateModel): void {
+    this.cartService.addToCartPersonalized(productoPersonalizado);
   }
   detalle(id: Number) {
     this.router.navigate(['/producto', id]);
   }
-  comprar(producto: ProductoModel) {
-  if (producto.personalizable) {
+  comprar(producto?: ProductoModel) {
+  if (producto?.personalizable) {
     const dialogRef = this.dialog.open(ProductoPersonalizable, {
       width: '1000px',
       maxWidth: '95vw',
       data: producto,
     });
-
     dialogRef.afterClosed().subscribe((productoPersonalizado) => {
       if (productoPersonalizado) {
+        this.agregarAlCarritoPPersonalizado(productoPersonalizado)
         // Aquí podrías agregar el producto al carrito con las opciones
         this.noti.success('Personalización', 'Producto personalizado agregado al carrito', 3000);
         console.log('Producto Index:', productoPersonalizado);
       }
     });
   } else {
-    this.noti.success('Compra', 'Producto agregado: ' + producto.nombre, 3000);
-    this.agregarAlCarrito(producto)
+    if(producto){
+      this.agregarAlCarrito(producto);
+      this.noti.success('Compra', 'Producto agregado: ' + producto?.nombre, 3000);
+    }
   }
 }
-
-
   cambiarImagen(producto: any, hover: boolean) {
     producto.imagenActual = hover
       ? producto.imagenes[1]?.url || producto.imagenes[0]?.url

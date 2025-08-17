@@ -13,7 +13,11 @@ import { AtributosRoutes } from "./atributos.routes";
 import { ValorAtributosRoutes } from "./valorAtributos.routes";
 import { VarianteDetalleRoutes } from "./varianteDetalle.routes";
 import { ProductoPersonalizableRoutes } from "./productoPersonalizable.routes";
+
 import { ReporteResenaRoutes } from "./reporteResena.routes";
+
+import { ReporteController } from "../controllers/reporteController";
+import { ReporteRoutes } from "./reporte.routes";
 
 export class AppRoutes {
   static get routes(): Router {
@@ -61,6 +65,8 @@ export class AppRoutes {
 
     //localhost:3000/file/
     router.use("/file/", ImageRoutes.routes);
+    
+    router.use("/reporte", ReporteRoutes.routes);
 
     return router;
   }

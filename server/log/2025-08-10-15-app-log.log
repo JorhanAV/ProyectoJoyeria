@@ -1,0 +1,12 @@
+2025-08-10 15:07:45.960 error: 	mario--Se produjo un error interno del servidor Cannot set headers after they are sent to the client
+2025-08-10 15:44:38.156 error: 	mario--Se produjo un error interno del servidor Cannot set headers after they are sent to the client
+2025-08-10 15:47:29.479 error: 	mario--Se produjo un error interno del servidor Cannot set headers after they are sent to the client
+2025-08-10 15:51:49.105 error: 	mario--Se produjo un error interno del servidor 
+Invalid `this.prisma.pedido.findMany()` invocation in
+C:\Angular\ProyectoJoyeria\server\source\controllers\pedidoController.ts:9:48
+
+  6 
+  7 get: RequestHandler = async (req, res, next) => {
+  8 try {
+→ 9   const pedidos = await this.prisma.pedido.findMany(
+Value '' not found in enum 'EstadoPedido'

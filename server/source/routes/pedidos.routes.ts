@@ -27,6 +27,8 @@ export class PedidoRoutes {
       authenticateJWT,
       authorizeRoles(Rol.ADMIN, Rol.CLIENTE),
       controller.create);
+
+
     return router;
   }
 }
