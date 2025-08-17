@@ -123,7 +123,10 @@
     "PRECIO_TOTAL": "Precio Total",
     "PRECIO_PERSONALIZACION": "Precio de Personalización",
     "PRECIO_POSITIVO": "Error con el precio",
-    "REPORTAR": "Reportar"
+    "REPORTAR": "Reportar",
+    "FILTRO_CATEGORIA": "Filtrar por categoria",
+    "FILTRO_ETIQUETA": "Filtrar por etiquetas",
+    "LIMPIAR_FILTROS":"Limpiar filtros"
   },
 
   "PEDIDO_TEXT": {

@@ -1,5 +1,5 @@
 <div class="filtros-superior">
-  <h4>Filtrar por categoría</h4>
+  <h4> {{ 'PRODUCTO_TEXT.FILTRO_CATEGORIA' | translate }}</h4>
    <mat-chip
     *ngFor="let categoria of categorias"
     color="primary"
@@ -11,7 +11,7 @@
     {{ categoria }}
   </mat-chip>
 
-  <h4>Filtrar por etiqueta</h4>
+ <h4> {{ 'PRODUCTO_TEXT.FILTRO_ETIQUETA' | translate }}</h4>
   <mat-chip
     *ngFor="let etiqueta of etiquetas"
     color="accent"
@@ -24,7 +24,7 @@
   </mat-chip> 
 
   <button mat-button color="warn" (click)="limpiarFiltros()">
-    Limpiar filtros
+   {{'PRODUCTO_TEXT.LIMPIAR_FILTROS'| translate}}
   </button>
 </div>
 <div class="contenedor-productos">
