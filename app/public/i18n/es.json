@@ -254,6 +254,8 @@
   "PERSONALIZACION_TEXT": {
     "ATRIBUTOS_PERSONALIZACION": "Atributos Personalización",
     "ACTUALIZAR_TITULO": "Actualizado.",
-    "ACTUALIZAR_MENSAJE": "El atributo ha sido actualizado correctamente."
+    "ACTUALIZAR_MENSAJE": "El atributo ha sido actualizado correctamente.",
+    "UPDATE": "Actualizar",
+    "PRECIO_EXTRA": "Precio Extra"
   }
 }

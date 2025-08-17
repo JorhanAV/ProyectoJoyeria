@@ -1,5 +1,5 @@
 <div class="customization-list">
-  <h2>Atributos de Personalización</h2>
+  <h2>{{'PERSONALIZACION_TEXT.ATRIBUTOS_PERSONALIZACION' | translate}}</h2>
 
   @for (grupo of agrupadasPorAtributo; track grupo.nombre) {
     <div class="attribute-group">
@@ -16,7 +16,7 @@
           </div>
 
           <div class="attribute-price">
-            <label for="precio-{{ opcion.id }}">Precio extra:</label>
+            <label for="precio-{{ opcion.id }}">{{'PERSONALIZACION_TEXT.PRECIO_EXTRA'| translate}}:  </label>
             <input
               id="precio-{{ opcion.id }}"
               type="number"
@@ -28,7 +28,7 @@
 
           <div class="attribute-action">
             <button (click)="update(opcion)" class="update-button">
-              Actualizar
+              {{'PERSONALIZACION_TEXT.UPDATE'| translate}}
             </button>
           </div>
         </div>

@@ -257,7 +257,9 @@
     "PERSONALIZACION_TEXT":{
     "ATRIBUTOS_PERSONALIZACION" : "Customization Attributes",
     "ACTUALIZAR_TITULO": "Updated.",
-    "ACTUALIZAR_MENSAJE": "The attribute has been updated successfully."
+    "ACTUALIZAR_MENSAJE": "The attribute has been updated successfully.",
+     "UPDATE": "Update",
+     "PRECIO_EXTRA": "Extra Price"
   }
 
 
