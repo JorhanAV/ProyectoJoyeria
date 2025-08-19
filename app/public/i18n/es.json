@@ -130,7 +130,8 @@
     "PERSONALIZACION" : "Personalización",
     "PERSONALIZACION_MENSAJE": "Producto personalizado agregado al carrito.",
     "CARRITO": "Carrito",
-    "CARRITO_MENSAJE": "Producto agregado al carrito."
+    "CARRITO_MENSAJE": "Producto agregado al carrito.",
+    "TODAS_LAS_RESEÑAS": "Todas las reseñas"
   },
 
   "PEDIDO_TEXT": {

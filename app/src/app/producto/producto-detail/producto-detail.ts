@@ -32,6 +32,9 @@ export class ProductoDetail {
   usuarioAutenticado = this.authService.currentUserSignal;
   modalVisible = false;
   resenaSeleccionada: any;
+  filtroEstrellas: number | null = null;
+  resenasFiltradas: ResenaModel[] = [];
+  conteoPorEstrellas: { [key: number]: number } = {};
 
   // --- Relativo al formulario ---
   resenaForm!: FormGroup;
@@ -109,6 +112,11 @@ export class ProductoDetail {
           0
         );
         this.promedioValoracion = resenas.length ? total / resenas.length : 0;
+
+        if (this.datos.resenas) {
+          this.filtrarResenasPorEstrellas(null);
+          this.calcularConteoPorEstrellas();
+        }
       });
   }
   goBack(): void {
@@ -145,9 +153,29 @@ export class ProductoDetail {
 
       this.noti.success(
         this.translate.instant('RESENAS_TEXT.CREAR_REPORTE_TITULO'),
-        this.translate.instant('RESENAS_TEXT.CREAR_REPORTE_MENSAJE', ),
+        this.translate.instant('RESENAS_TEXT.CREAR_REPORTE_MENSAJE'),
         2000
       );
     });
+  }
+
+  filtrarResenasPorEstrellas(valor: number | null) {
+    this.filtroEstrellas = valor;
+    const todas =
+      this.datos.resenas?.filter((r: ResenaModel) => r.visible !== false) || [];
+    this.resenasFiltradas = valor
+      ? todas.filter((r: ResenaModel) => r.valoracion === valor)
+      : todas;
+  }
+
+  calcularConteoPorEstrellas() {
+    const todas =
+      this.datos.resenas?.filter((r: ResenaModel) => r.visible !== false) || [];
+    this.conteoPorEstrellas = {};
+    for (let i = 1; i <= 5; i++) {
+      this.conteoPorEstrellas[i] = todas.filter(
+        (r: ResenaModel) => r.valoracion === i
+      ).length;
+    }
   }
 }
