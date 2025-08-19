@@ -9,6 +9,7 @@ import { CartService } from '../../share/cart.service';
 import { ProductoPersonalizableCreateModel } from '../../share/models/ProductoPersonalizableDTO';
 import { CategoriaService } from '../../share/services/categoria.service';
 import { EtiquetaService } from '../../share/services/etiqueta.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-producto-index',
@@ -35,7 +36,8 @@ export class ProductoIndex {
     private dialog: MatDialog,
     private cartService: CartService,
     private categoriaService: CategoriaService,
-    private etiquetaService: EtiquetaService
+    private etiquetaService: EtiquetaService,
+    private translate: TranslateService
   ) {
     this.listProductos();
     this.listCategorias();
@@ -193,8 +195,8 @@ export class ProductoIndex {
           this.agregarAlCarritoPPersonalizado(productoPersonalizado);
           // Aquí podrías agregar el producto al carrito con las opciones
           this.noti.success(
-            'Personalización',
-            'Producto personalizado agregado al carrito',
+            this.translate.instant('PRODUCTO_TEXT.PERSONALIZACION'),
+            this.translate.instant('PRODUCTO_TEXT.PERSONALIZACION_MENSAJE'),
             3000
           );
           console.log('Producto Index:', productoPersonalizado);
@@ -204,8 +206,8 @@ export class ProductoIndex {
       if (producto) {
         this.agregarAlCarrito(producto);
         this.noti.success(
-          'Compra',
-          'Producto agregado: ' + producto?.nombre,
+          this.translate.instant('PRODUCTO_TEXT.CARRITO'),
+            this.translate.instant('PRODUCTO_TEXT.CARRITO_MENSAJE'),
           3000
         );
       }

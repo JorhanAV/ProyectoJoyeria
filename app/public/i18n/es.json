@@ -126,7 +126,12 @@
     "REPORTAR": "Reportar",
     "FILTRO_CATEGORIA": "Filtrar por categoria",
     "FILTRO_ETIQUETA": "Filtrar por etiquetas",
-    "LIMPIAR_FILTROS":"Limpiar filtros"
+    "LIMPIAR_FILTROS":"Limpiar filtros",
+    "PERSONALIZACION" : "Personalización",
+    "PERSONALIZACION_MENSAJE": "Producto personalizado agregado al carrito.",
+    "CARRITO": "Carrito",
+    "CARRITO_MENSAJE": "Producto agregado al carrito.",
+    "TODAS_LAS_RESEÑAS": "Todas las reseñas"
   },
 
   "PEDIDO_TEXT": {

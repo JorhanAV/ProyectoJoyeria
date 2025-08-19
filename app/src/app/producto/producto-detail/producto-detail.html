@@ -63,7 +63,25 @@
   <div class="resenas">
     <h3>{{ 'PRODUCTO_TEXT.RESENAS' | translate }}</h3>
 
-    <div class="resena" *ngFor="let r of datos.resenas;">
+    <div class="filtro-resenas">
+      @for (estrella of estrellas; track estrella) {
+      <button
+        (click)="filtrarResenasPorEstrellas(estrella)"
+        [class.activo]="filtroEstrellas === estrella"
+      >
+        {{ estrella }} ★ ({{ conteoPorEstrellas[estrella] || 0 }})
+      </button>
+      }
+
+      <button
+        (click)="filtrarResenasPorEstrellas(null)"
+        [class.activo]="filtroEstrellas === null"
+      >
+        {{ 'PRODUCTO_TEXT.TODAS_LAS_RESEÑAS' | translate }}
+      </button>
+    </div>
+
+    <div class="resena" *ngFor="let r of resenasFiltradas">
       <div class="resena-info">
         <strong>{{ r.usuario.nombre_usuario }}</strong>
         <span class="fecha">{{ r.fecha | date: 'longDate' }}</span>
@@ -107,5 +125,4 @@
     (reporteCreado)="crearReporte($event)"
     (cerrarModal)="modalVisible = false"
   ></app-reporte-resenas-create>
-  
 </div>

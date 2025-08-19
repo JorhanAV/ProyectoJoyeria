@@ -182,3 +182,22 @@
 .reportar-btn:hover {
   color: #900;
 }
+
+.filtro-resenas {
+  margin-bottom: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.filtro-resenas button {
+  padding: 0.4rem 0.8rem;
+  border: none;
+  background-color: #eee;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.filtro-resenas button.activo {
+  background-color: #c5a880;
+  color: white;
+  font-weight: bold;
+}
