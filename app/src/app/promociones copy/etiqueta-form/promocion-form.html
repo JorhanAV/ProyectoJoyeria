@@ -1,0 +1,136 @@
+<form
+  *ngIf="formPromocion"
+  [formGroup]="formPromocion"
+  (ngSubmit)="submitPromocion()"
+  class="admin-form"
+  novalidate
+>
+  <h2>
+    {{ isCreate ? ('PROMOCION_TEXT.CREAR_PROMOCION' | translate) : ('PROMOCION_TEXT.EDITAR_PROMOCION' | translate) }}
+  </h2>
+
+  <!-- Nombre -->
+  <div class="form-row">
+    <div>
+      <label for="nombre">{{ 'PROMOCION_TEXT.NOMBRE' | translate }}:</label>
+      <input type="text" id="nombre" formControlName="nombre" />
+      <div
+        *ngIf="formPromocion.get('nombre')?.touched && formPromocion.get('nombre')?.invalid"
+        class="error"
+      >
+        {{ 'PROMOCION_TEXT.CAMPO_OBLIGATORIO' | translate }}
+      </div>
+    </div>
+  </div>
+
+  <!-- Tipo de Descuento -->
+  <div class="form-row">
+    <div>
+      <label for="tipoDescuento">{{ 'PROMOCION_TEXT.TIPO_DESCUENTO' | translate }}:</label>
+      <select
+        id="tipo"
+        formControlName="tipo"
+        (change)="tipoDescuento = formPromocion.value.tipo"
+      >
+        <option value="Porcentaje">Porcentaje</option>
+        <option value="CantidadFija">Cantidad fija</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Valor con ícono -->
+  <div class="form-row">
+    <div>
+      <label for="valor">{{ 'PROMOCION_TEXT.VALOR' | translate }}:</label>
+      <div class="input-group">
+        <span>{{ tipoDescuento === 'Porcentaje' ? '%' : '₡' }}</span>
+        <input type="number" id="valor" formControlName="valor" />
+      </div>
+      <div
+        *ngIf="formPromocion.get('valor')?.touched && formPromocion.get('valor')?.invalid"
+        class="error"
+      >
+        {{ 'PROMOCION_TEXT.VALOR_DEBE_SER_MAYOR_A_0' | translate }}
+      </div>
+    </div>
+  </div>
+
+  <!-- Fecha de inicio -->
+  <div class="form-row">
+    <div>
+      <label for="fecha_inicio">{{ 'PROMOCION_TEXT.FECHA_INICIO' | translate }}:</label>
+      <input
+        type="datetime-local"
+        id="fecha_inicio"
+        formControlName="fecha_inicio"
+      />
+    </div>
+
+    <!-- Fecha de fin -->
+    <div>
+      <label for="fecha_fin">{{ 'PROMOCION_TEXT.FECHA_FIN' | translate }}:</label>
+      <input type="datetime-local" id="fecha_fin" formControlName="fecha_fin" />
+    </div>
+  </div>
+  <!-- Aplicar a -->
+  <div class="form-row">
+    <div>
+      <label>¿{{ 'PROMOCION_TEXT.APLICA_A' | translate }}?</label>
+      <label>
+        <input
+          type="radio"
+          name="aplicaA"
+          value="categoria"
+          [checked]="aplicaA() === 'categoria'"
+          (change)="aplicaA.set('categoria')"
+        />
+        {{ 'PROMOCION_TEXT.CATEGORIA' | translate }}
+      </label>
+      <label>
+        <input
+          type="radio"
+          name="aplicaA"
+          value="producto"
+          [checked]="aplicaA() === 'producto'"
+          (change)="aplicaA.set('producto')"
+        />
+        {{ 'PROMOCION_TEXT.PRODUCTO' | translate }}
+      </label>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div *ngIf="aplicaA() === 'categoria'">
+      <label for="idCategoria">{{ 'PROMOCION_TEXT.CATEGORIA' | translate }}:</label>
+      <select id="idCategoria" formControlName="idCategoria">
+        <option value="">Seleccione una categoría</option>
+        <option *ngFor="let cat of categorias" [value]="cat.id">
+          {{ cat.nombre }}
+        </option>
+      </select>
+    </div>
+
+    <div *ngIf="aplicaA() === 'producto'">
+      <label for="idproducto">{{ 'PROMOCION_TEXT.PRODUCTO' | translate }}:</label>
+      <select id="idproducto" formControlName="idproducto">
+        <option value="">Seleccione un producto</option>
+        <option *ngFor="let prod of productos" [value]="prod.id">
+          {{ prod.nombre }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Validación: Al menos uno requerido -->
+  <div
+    *ngIf="formPromocion.errors?.['requiereUnaSeleccion'] && formPromocion.touched"
+    class="error"
+  >
+    {{ 'PROMOCION_TEXT.DEBE_SELECCIONAR_AL_MENOS_UNA_CATEGORIA_O_UN_PRODUCTO' | translate }}
+  </div>
+
+  <!-- Botón -->
+  <div class="form-row">
+    <button type="submit">{{ 'PROMOCION_TEXT.GUARDAR_PROMOCION' | translate }}</button>
+  </div>
+</form>
