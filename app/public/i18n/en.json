@@ -125,7 +125,11 @@
     "REPORTAR": "Report",
     "FILTRO_CATEGORIA": "Filter by category",
     "FILTRO_ETIQUETA": "Filter by tags",
-    "LIMPIAR_FILTROS": "Clean filters"
+    "LIMPIAR_FILTROS": "Clean filters",
+    "PERSONALIZACION": "Customization",
+    "PERSONALIZACION_MENSAJE": "Customized product added to cart.",
+    "CARRITO": "Cart",
+    "CARRITO_MENSAJE": "Product added to the cart shopping"
   },
 
   "PEDIDO_TEXT": {
