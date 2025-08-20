@@ -15,26 +15,15 @@ import { Component, effect, OnDestroy, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
-export const alMenosUnaSeleccionValidator: ValidatorFn = (
-  control: AbstractControl
-): ValidationErrors | null => {
-  const categoria = control.get('idCategoria')?.value;
-  const producto = control.get('idproducto')?.value;
 
-  if (!categoria && !producto) {
-    return { requiereUnaSeleccion: true };
-  }
-
-  return null;
-};
 
 @Component({
-  selector: 'app-promocion-form',
-  templateUrl: './promocion-form.html',
-  styleUrls: ['./promocion-form.css'],
+  selector: 'app-etiquetas-form',
+  templateUrl: './etiquetas-form.html',
+  styleUrls: ['./etiquetas-form.css'],
   standalone: false,
 })
-export class PromocionForm implements OnInit, OnDestroy {
+export class etiquetasForm implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
   formPromocion!: FormGroup;
   categorias: any[] = [];
@@ -96,9 +85,6 @@ export class PromocionForm implements OnInit, OnDestroy {
         fecha_fin: ['', Validators.required],
         idCategoria: [null],
         idproducto: [null],
-      },
-      {
-        validators: alMenosUnaSeleccionValidator,
       }
     );
   }

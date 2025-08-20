@@ -1,0 +1,9 @@
+2025-08-19 20:11:21.207 error: 	mario--Se produjo un error interno del servidor 
+Invalid `this.prisma.usuario.create()` invocation in
+C:\Angular\ProyectoJoyeria\server\source\controllers\usuarioController.ts:52:46
+
+  49 const salt = await bcrypt.genSalt(10);
+  50 const hash = await bcrypt.hash(contraseña, salt);
+  51 
+→ 52 const user = await this.prisma.usuario.create(
+Unique constraint failed on the constraint: `Usuario_correo_key`

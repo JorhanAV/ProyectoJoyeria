@@ -1,9 +1,5 @@
 
 import { CommonModule } from '@angular/common';
-import { PromocionesRoutingModule } from './etiqueta-routing-module';
-import { PromocionIndex } from './etiqueta-index/promocion-index';
-import { PromocionDetail } from './etiqueta-detail/promocion-detail';
-import { PromocionAdmin } from './etiqueta-admin/etiqueta-admin';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -20,22 +16,24 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatTooltipModule } from '@angular/material/tooltip'
-import { PromocionForm } from './etiqueta-form/promocion-form'
 import { effect, NgModule, signal } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
+import { etiquetasForm } from './etiquetas-form/etiquetas-form';
+import { etiquetasAdmin } from './etiquetas-admin/etiquetas-admin';
+import { etiquetasDetail } from './etiquetas-detail/etiquetas-detail';
+import { etiquetasRoutingModule } from './etiquetas-routing-module';
 
 
 @NgModule({
   declarations: [
-    PromocionIndex,
-    PromocionAdmin,
-    PromocionDetail,
-    PromocionForm
+    etiquetasAdmin,
+    etiquetasDetail,
+    etiquetasForm
   ],
   imports: [
     CommonModule,
-    PromocionesRoutingModule,
+    etiquetasRoutingModule,
     TranslateModule.forChild(),
     MatMenuModule,
     MatInputModule,
@@ -56,4 +54,4 @@ import { TranslateModule } from '@ngx-translate/core';
     ReactiveFormsModule
   ]
 })
-export class PromocionesModule { }
+export class etiquetasModule { }

@@ -5,12 +5,12 @@ import { NumericLiteral } from 'typescript';
 import { Subject, takeUntil } from 'rxjs';
 
 @Component({
-  selector: 'app-promocion-detail',
+  selector: 'app-etiquetas-detail',
   standalone: false,
-  templateUrl: './promocion-detail.html',
-  styleUrl: './promocion-detail.css',
+  templateUrl: './etiquetas-detail.html',
+  styleUrl: './etiquetas-detail.css',
 })
-export class PromocionDetail implements OnInit {
+export class etiquetasDetail implements OnInit {
   idPromocion!: number;
   productos: any[] = [];
   promo: any;

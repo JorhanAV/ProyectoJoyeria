@@ -127,3 +127,40 @@ h2 {
   background-color: #1e40af;
   color: white;
 }
+.editar-icono {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 8px; /* espacio entre íconos */
+}
+
+/* Cada ícono dentro de editar-icono es un botón circular */
+.editar-icono button {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  padding: 0;
+}
+
+.editar-icono button mat-icon {
+  font-size: 20px;
+  color: #1e40af;
+}
+
+.promo-card:hover .editar-icono button mat-icon {
+  color: white;
+}
+
+.editar-icono button:hover {
+  background-color: #1e40af;
+  color: white;
+}
