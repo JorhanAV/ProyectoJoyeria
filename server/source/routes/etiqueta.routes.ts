@@ -12,7 +12,7 @@ export class EtiquetaRoutes {
 
         //Crear
         router.post('/',controller.create)
-        
+         router.put('/:id',controller.update) 
         return router 
     } 
 }
