@@ -11,8 +11,8 @@ export class EtiquetaRoutes {
         router.get('/:id',controller.getById) 
 
         //Crear
-        router.post('/',controller.create)
-        
+        router.post("/", controller.create);
+        router.put("/:id", controller.update);
         return router 
     } 
 }
