@@ -1,4 +1,6 @@
-<button class="back-button" (click)="goback()">← Volver</button>
+<button class="back-button" (click)="goback()">
+  ← {{"ETIQUETA_TEXT.VOLVER" |translate}}
+</button>
 <form
   *ngIf="formEtiqueta"
   [formGroup]="formEtiqueta"
@@ -7,19 +9,22 @@
   novalidate
 >
   <h2>
-    {{ isCreate ? 'Crear Etiqueta' : 'Editar Etiqueta' }}
+    {{ isCreate ? ('ETIQUETA_TEXT.CREAR_ETIQUETA' | translate) :
+    ('ETIQUETA_TEXT.ACTUALIZAR_ETIQUETA' | translate) }}
   </h2>
 
   <!-- Nombre -->
   <div class="form-row">
     <div>
-      <label for="nombre">Nombre de la etiqueta:</label>
+      <label for="nombre"
+        >{{"ETIQUETA_TEXT.NOMBRE_ETIQUETA" |translate}}:</label
+      >
       <input type="text" id="nombre" formControlName="nombre" />
       <div
         *ngIf="formEtiqueta.get('nombre')?.touched && formEtiqueta.get('nombre')?.invalid"
         class="error"
       >
-        Este campo es obligatorio.
+        {{"ETIQUETA_TEXT.CAMPO_REQUERIDO" |translate}}
       </div>
     </div>
   </div>
@@ -27,7 +32,7 @@
   <!-- Productos -->
   <div class="form-row">
     <div>
-      <label>Seleccionar productos:</label>
+      <label>{{"ETIQUETA_TEXT.SELECCIONAR_PRODUCTO" |translate}}:</label>
       <div *ngFor="let producto of productosDisponibles" class="checkbox-item">
         <input
           type="checkbox"
@@ -44,13 +49,14 @@
     *ngIf="formEtiqueta.errors?.['requiereUnProducto'] && formEtiqueta.touched"
     class="error"
   >
-    Debe seleccionar al menos un producto.
+   {{"ETIQUETA_TEXT.DEBE_SELECCIONAR_PRODUCTO" |translate}}
   </div>
 
   <!-- Botón -->
   <div class="form-row">
     <button type="submit">
-      {{ isCreate ? 'Crear Etiqueta' : 'Actualizar Etiqueta' }}
+      {{ isCreate ? ('ETIQUETA_TEXT.CREAR_ETIQUETA' | translate) :
+      ('ETIQUETA_TEXT.ACTUALIZAR_ETIQUETA' | translate) }}
     </button>
   </div>
 </form>

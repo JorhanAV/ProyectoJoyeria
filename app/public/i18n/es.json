@@ -126,8 +126,8 @@
     "REPORTAR": "Reportar",
     "FILTRO_CATEGORIA": "Filtrar por categoria",
     "FILTRO_ETIQUETA": "Filtrar por etiquetas",
-    "LIMPIAR_FILTROS":"Limpiar filtros",
-    "PERSONALIZACION" : "Personalización",
+    "LIMPIAR_FILTROS": "Limpiar filtros",
+    "PERSONALIZACION": "Personalización",
     "PERSONALIZACION_MENSAJE": "Producto personalizado agregado al carrito.",
     "CARRITO": "Carrito",
     "CARRITO_MENSAJE": "Producto agregado al carrito.",
@@ -172,7 +172,8 @@
     "PRODUCTOS": "Productos",
     "RESENAS": "Reseñas",
     "PEDIDOS": "Pedidos",
-    "PROMOCIONES": "Promociones"
+    "PROMOCIONES": "Promociones",
+    "REPORTES": "Reportes"
   },
 
   "USER_TEXT": {
@@ -265,5 +266,46 @@
     "ACTUALIZAR_MENSAJE": "El atributo ha sido actualizado correctamente.",
     "UPDATE": "Actualizar",
     "PRECIO_EXTRA": "Precio Extra"
+  },
+  "ETIQUETA_TEXT": {
+    "LISTADO_ETIQUETAS": "Listado de Etiquetas",
+    "AGREGAR_ETIQUETA": "Agregar Etiqueta",
+    "NOMBRE_ETIQUETA": "Nombre de etiqueta",
+    "VOLVER": "Volver",
+    "CREAR_ETIQUETA": "Crear Etiqueta",
+    "ACTUALIZAR_ETIQUETA": "Actualizar Etiqueta",
+    "CAMPO_REQUERIDO": "Este campo es obligatorio",
+    "SELECCIONAR_PRODUCTO": "Seleccionar productos",
+    "DEBE_SELECCIONAR_PRODUCTO": "Debe seleccionar al menos un producto.",
+    "ETIQUETAS": "Etiquetas"
+  },
+
+  "DASHBOARD": {
+    "FILTRO_RANGO_DIAS": "Rango de días",
+    "DESDE": "Desde",
+    "HASTA": "Hasta",
+    "APLICAR": "Aplicar",
+    "FILTRO_MES_ANIO_ESTADO": "Mes / Año / Estado",
+    "ANIO": "Año",
+    "MES": "Mes",
+    "ESTADO": "Estado",
+    "ITEMS_VENDIDOS_RANGO": "Items vendidos (rango días)",
+    "PROMEDIO_DIARIO": "Promedio diario",
+    "ITEMS_VENDIDOS_MES": "Items vendidos (mes)",
+    "PEDIDOS_ESTADO": "Pedidos",
+    "PORCENTAJE_SOBRE_TOTAL": "% sobre total",
+    "TOTAL_PEDIDOS_MES": "Total pedidos (mes)",
+    "DISTRIBUCION_ESTADO": "Distribución por estado",
+    "GRAFICO_VENTAS_DIA": "Ventas por día",
+    "SUBTITULO_VENTAS_DIA": "Visualización de ventas diarias.",
+    "GRAFICO_VENTAS_MES": "Ventas por mes",
+    "SUBTITULO_VENTAS_MES": "Visualización de ventas mensuales.",
+    "GRAFICO_PEDIDOS_ESTADO": "Pedidos por estado",
+    "SUBTITULO_PEDIDOS_ESTADO": "Distribución de pedidos según estado.",
+    "TOP_PRODUCTOS": "Top 3 productos",
+    "PRODUCTO": "Producto",
+    "CANTIDAD": "Cantidad",
+    "PORCENTAJE_TOP": "% sobre top",
+    "ULTIMAS_RESEÑAS": "Últimas 3 reseñas"
   }
 }

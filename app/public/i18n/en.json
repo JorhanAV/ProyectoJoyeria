@@ -175,7 +175,8 @@
     "PRODUCTOS": "Products",
     "RESENAS": "Reviews",
     "PEDIDOS": "Orders",
-    "PROMOCIONES": "Promotions"
+    "PROMOCIONES": "Promotions",
+    "REPORTES": "Reports"
   },
 
   "USER_TEXT": {
@@ -267,5 +268,46 @@
     "ACTUALIZAR_MENSAJE": "The attribute has been updated successfully.",
     "UPDATE": "Update",
     "PRECIO_EXTRA": "Extra Price"
+  },
+  "ETIQUETA_TEXT": {
+    "LISTADO_ETIQUETAS": "List of tags",
+    "AGREGAR_ETIQUETA": "Add Tag",
+    "NOMBRE_ETIQUETA": "Tag name",
+    "VOLVER": "Back",
+    "CREAR_ETIQUETA": "Create Tag",
+    "ACTUALIZAR_ETIQUETA": "Update Tag",
+    "CAMPO_REQUERIDO": "This field is required",
+    "SELECCIONAR_PRODUCTO": "Select products",
+    "DEBE_SELECCIONAR_PRODUCTO": "You must select at least one product.",
+    "ETIQUETAS": "Tags"
+  },
+
+  "DASHBOARD": {
+    "FILTRO_RANGO_DIAS": "Date Range",
+    "DESDE": "From",
+    "HASTA": "To",
+    "APLICAR": "Apply",
+    "FILTRO_MES_ANIO_ESTADO": "Month / Year / Status",
+    "ANIO": "Year",
+    "MES": "Month",
+    "ESTADO": "Status",
+    "ITEMS_VENDIDOS_RANGO": "Items Sold (Date Range)",
+    "PROMEDIO_DIARIO": "Daily Average",
+    "ITEMS_VENDIDOS_MES": "Items Sold (Month)",
+    "PEDIDOS_ESTADO": "Orders",
+    "PORCENTAJE_SOBRE_TOTAL": "% of Total",
+    "TOTAL_PEDIDOS_MES": "Total Orders (Month)",
+    "DISTRIBUCION_ESTADO": "Status Distribution",
+    "GRAFICO_VENTAS_DIA": "Sales by Day",
+    "SUBTITULO_VENTAS_DIA": "Daily sales visualization.",
+    "GRAFICO_VENTAS_MES": "Sales by Month",
+    "SUBTITULO_VENTAS_MES": "Monthly sales visualization.",
+    "GRAFICO_PEDIDOS_ESTADO": "Orders by Status",
+    "SUBTITULO_PEDIDOS_ESTADO": "Order distribution by status.",
+    "TOP_PRODUCTOS": "Top 3 Products",
+    "PRODUCTO": "Product",
+    "CANTIDAD": "Quantity",
+    "PORCENTAJE_TOP": "% of Top",
+    "ULTIMAS_RESEÑAS": "Latest 3 Reviews"
   }
 }
