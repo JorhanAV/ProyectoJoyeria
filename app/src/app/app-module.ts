@@ -38,6 +38,7 @@ import { PersonalizacionIndex } from './personalizacion/personalizacion-index/pe
 import { PersonalizacionForm } from './personalizacion/personalizacion-form/personalizacion-form';
 import { PersonalizacionAdmin } from './personalizacion/personalizacion-admin/personalizacion-admin';
 import { PersonalizacionModule } from './personalizacion/personalizacion-module';
+import { etiquetasModule } from './etiquetas/etiquetas-module';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, '/i18n/', '.json');
@@ -66,7 +67,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     PedidosModule,
     ResenasModule,
     PersonalizacionModule,
-
+    etiquetasModule,
     ReporteModule,
     AppRoutingModule,
   ],

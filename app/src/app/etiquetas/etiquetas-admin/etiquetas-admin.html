@@ -1,0 +1,36 @@
+<div class="promo-wrapper">
+  <div class="header">
+    <h2>Listado Etiquetas</h2>
+    
+  </div>
+<button class="btn-add" (click)="irACrear()" aria-label="Agregar Etiqueta">
+      <mat-icon>add_circle_outline</mat-icon>
+      <span>Agregar Etiqueta</span>
+    </button>
+    <br>
+  <div
+    class="promo-card"
+    *ngFor="let eti of etiquetas"
+    (click)="irAEditar(eti)"
+    tabindex="0"
+    role="button"
+    [attr.aria-label]="'Editar etiqueta ' + eti.nombre"
+  >
+    <div class="promo-info">
+      <div class="columna-id">
+        <strong>#{{ eti.id }}</strong>
+      </div>
+
+      <div class="columna-datos">
+        <div>
+          <strong>Nombre Etiqueta:</strong> {{ eti.nombre }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Ícono de edición flotante -->
+    <div class="editar-icono">
+      <mat-icon>edit</mat-icon>
+    </div>
+  </div>
+</div>
