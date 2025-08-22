@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response, NextFunction, RequestHandler } from "express";
 import { AppError } from "../errors/custom.error";
 import { PrismaClient } from "../../generated/prisma";
 
@@ -34,35 +34,34 @@ export class PromocionController {
     }
   };
   //Obtener por Id
-  getById = async (
-    request: Request,
-    response: Response,
-    next: NextFunction
-  ) => {
-    try {
-      let idPromocion = parseInt(request.params.id);
-      const orden = await this.prisma.promocion.findUnique({
-        where: { id: idPromocion },
-        include: {
-          producto: {
-            select: {
-              nombre: true,
-              descripcion: true,
-            },
-          },
-          categoria: {
-            select: {
-              nombre: true,
-              descripcion: true,
-            },
+
+getById: RequestHandler = async (req, res, next) => {
+  try {
+    const idPromocion = parseInt(req.params.id);
+    const orden = await this.prisma.promocion.findUnique({
+      where: { id: idPromocion },
+      include: {
+        producto: {
+          select: {
+            nombre: true,
+            descripcion: true,
           },
         },
-      });
-      response.json(orden);
-    } catch (error: any) {
-      next(error);
-    }
-  };
+        categoria: {
+          select: {
+            nombre: true,
+            descripcion: true,
+          },
+        },
+      },
+    });
+
+    res.json(orden);
+  } catch (error) {
+    next(error);
+  }
+};
+
   //Obtener por Id todos los productos con promo
   getallProductswithPromo = async (
     request: Request,
