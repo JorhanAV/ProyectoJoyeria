@@ -18,10 +18,10 @@ export class etiquetasAdmin {
   ) {}
 
   ngOnInit(): void {
-    this.cargarPromociones();
+    this.cargarEtiquetas();
   }
 
-  cargarPromociones(): void {
+  cargarEtiquetas(): void {
     this.etiquetasService.get().subscribe({
       next: (data) => {
         this.etiquetas = data;
