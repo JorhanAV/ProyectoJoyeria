@@ -32,7 +32,7 @@ export class ProductoPersonalizable {
     private varianteDetalleService: VarianteDetalleService,
     private noti: NotificationService,
     private translate: TranslateService,
-        private cartService: CartService,
+    private cartService: CartService,
 
     public dialogRef: MatDialogRef<ProductoPersonalizable>,
     @Inject(MAT_DIALOG_DATA) public producto: ProductoModel
@@ -150,7 +150,7 @@ export class ProductoPersonalizable {
           productoPersonalizado.id = nuevoId;
           const id_valores = valoresSeleccionados.map((v) => v.id);
 
-         /*  console.log(
+          /*  console.log(
             'Producto personalizado creado con ID:',
             productoPersonalizado.id
           );
@@ -181,6 +181,6 @@ export class ProductoPersonalizable {
 
   cancelar() {
     this.dialogRef.close();
-    this.cartService.addToCart(this.producto)
+    this.cartService.addToCart(this.producto);
   }
 }
