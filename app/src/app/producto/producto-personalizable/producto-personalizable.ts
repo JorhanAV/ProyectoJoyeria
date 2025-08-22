@@ -11,6 +11,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ProductoPersonalizableCreateModel } from '../../share/models/ProductoPersonalizableDTO';
 import { VarianteDetalleService } from '../../share/services/varianteDetalle.service';
 import { switchMap } from 'rxjs';
+import { CartService } from '../../share/cart.service';
 
 @Component({
   selector: 'app-producto-personalizable',
@@ -31,6 +32,7 @@ export class ProductoPersonalizable {
     private varianteDetalleService: VarianteDetalleService,
     private noti: NotificationService,
     private translate: TranslateService,
+        private cartService: CartService,
 
     public dialogRef: MatDialogRef<ProductoPersonalizable>,
     @Inject(MAT_DIALOG_DATA) public producto: ProductoModel
@@ -179,5 +181,6 @@ export class ProductoPersonalizable {
 
   cancelar() {
     this.dialogRef.close();
+    this.cartService.addToCart(this.producto)
   }
 }
