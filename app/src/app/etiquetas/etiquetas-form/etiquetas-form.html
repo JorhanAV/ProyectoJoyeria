@@ -1,0 +1,56 @@
+<button class="back-button" (click)="goback()">← Volver</button>
+<form
+  *ngIf="formEtiqueta"
+  [formGroup]="formEtiqueta"
+  (ngSubmit)="submitEtiqueta()"
+  class="admin-form"
+  novalidate
+>
+  <h2>
+    {{ isCreate ? 'Crear Etiqueta' : 'Editar Etiqueta' }}
+  </h2>
+
+  <!-- Nombre -->
+  <div class="form-row">
+    <div>
+      <label for="nombre">Nombre de la etiqueta:</label>
+      <input type="text" id="nombre" formControlName="nombre" />
+      <div
+        *ngIf="formEtiqueta.get('nombre')?.touched && formEtiqueta.get('nombre')?.invalid"
+        class="error"
+      >
+        Este campo es obligatorio.
+      </div>
+    </div>
+  </div>
+
+  <!-- Productos -->
+  <div class="form-row">
+    <div>
+      <label>Seleccionar productos:</label>
+      <div *ngFor="let producto of productosDisponibles" class="checkbox-item">
+        <input
+          type="checkbox"
+          [checked]="productosSeleccionados.includes(producto.id)"
+          (change)="toggleProducto(producto.id)"
+        />
+        {{ producto.nombre }}
+      </div>
+    </div>
+  </div>
+
+  <!-- Validación -->
+  <div
+    *ngIf="formEtiqueta.errors?.['requiereUnProducto'] && formEtiqueta.touched"
+    class="error"
+  >
+    Debe seleccionar al menos un producto.
+  </div>
+
+  <!-- Botón -->
+  <div class="form-row">
+    <button type="submit">
+      {{ isCreate ? 'Crear Etiqueta' : 'Actualizar Etiqueta' }}
+    </button>
+  </div>
+</form>

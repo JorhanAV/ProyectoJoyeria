@@ -1,0 +1,32 @@
+2025-08-19 19:14:09.832 error: 	mario--Se produjo un error interno del servidor 
+Invalid `this.prisma.etiqueta.create()` invocation in
+C:\Angular\ProyectoJoyeria\server\source\controllers\etiquetaController.ts:42:51
+
+  39 try {
+  40   const { nombre } = request.body;
+  41 
+→ 42   const etiqueta = await this.prisma.etiqueta.create({
+         data: {
+           nombre: "Verano",
+           productos: {
+             create: [
+               {
+                 etiqueta: {
+                   connect: {
+                     id: undefined
+                   }
+                 }
+               },
+               {
+                 etiqueta: {
+                   connect: {
+                     id: undefined
+                   }
+                 }
+               }
+             ]
+           }
+         }
+       })
+
+Argument `producto` is missing.
