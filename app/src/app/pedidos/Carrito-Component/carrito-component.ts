@@ -225,4 +225,28 @@ export class CarritoComponent implements OnInit {
     }
     
   }
+  guardarCarrito() {
+  if (this.items.length > 0) {
+    const pedido = {
+      usuario_id: this.usuarioId()?.id,
+      direccion_envio: this.direccion_envio,
+      metodo_pago: this.metodo_pago,
+      items: this.items.map((item) =>
+        item.producto
+          ? { producto_id: item.producto.id, cantidad: item.cantidad }
+          : { producto_personalizado_id: item.productoPersonalizado!.id, cantidad: item.cantidad }
+      ),
+    };
+
+    this.pedidoService.guardarCarrito(pedido).subscribe({
+      next: () => {
+        this.noti.success('Carrito guardado', 'Se cargará en tu próxima sesión', 3000);
+      },
+      error: (err) => {
+        this.noti.error('Error al guardar carrito', err.message || '', 3000);
+      }
+    });
+  }
+}
+
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -19,4 +19,13 @@ export class App {
     const idioma = selectElement.value;
     this.translate.use(idioma);
   }
+  @HostListener('window:beforeunload', ['$event'])
+handleBeforeUnload(event: Event) {
+  if (this.items.length > 0) {
+    this.guardarCarrito();
+    const confirmMessage = 'Tienes productos en tu carrito. Se guardará automáticamente.';
+    (event || window.event).returnValue = confirmMessage;
+    return confirmMessage;
+  }
+}
 }

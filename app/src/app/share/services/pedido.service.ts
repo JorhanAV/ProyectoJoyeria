@@ -23,6 +23,13 @@ export class PedidoService extends BaseAPI<PedidoModel> {
     map((usuarioIds: number[]) => usuarioIds.includes(usuarioId))
   );
 }
+guardarCarrito(pedido: any) {
+  return this.http.post(`${this.apiUrl}/carrito`, pedido);
+}
+
+getCarritoActivo(usuarioId: number) {
+  return this.http.get(`${this.apiUrl}/carrito/${usuarioId}`);
+}
 
 
   pagarpedido(pedidoId: number, adminId: number) {
