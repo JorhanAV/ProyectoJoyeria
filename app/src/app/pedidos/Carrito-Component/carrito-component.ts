@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnInit } from '@angular/core';
+import { Component, HostListener, inject, Input, OnInit } from '@angular/core';
 import { CartService } from '../../share/cart.service';
 import { PedidoService } from '../../share/services/pedido.service';
 import { ItemCartModel } from '../../share/models/ItemCartModel';
@@ -35,7 +35,6 @@ export class CarritoComponent implements OnInit {
 
   usuarioId = this.authService.currentUserSignal;
 
-
   constructor(
     private cartService: CartService,
     private pedidoService: PedidoService,
@@ -63,6 +62,9 @@ export class CarritoComponent implements OnInit {
         this.setFecha(event.lang);
       }
     );
+    localStorage.setItem('usuarioID', String(this.usuarioId()?.id));
+    localStorage.setItem('direccion_envio', this.direccion_envio);
+    localStorage.setItem('metodo_pago', this.metodo_pago);
   }
   ngOnDestroy(): void {
     if (this.langSub) {
@@ -186,17 +188,8 @@ export class CarritoComponent implements OnInit {
         next: (respuesta) => {
           // Guardas el ID del pedido creado
           this.pedidoId = respuesta.id;
-
-          // Limpias el carrito (puedes decidir si hacer esto aquí o luego de pagar)
-          // Guardas el ID del pedido creado
-          this.pedidoId = respuesta.id;
-
           // Limpias el carrito (puedes decidir si hacer esto aquí o luego de pagar)
           this.cartService.deleteCart();
-
-          // Muestras la notificación
-
-          // Muestras la notificación
           this.noti.success(
             'Pedido creado',
             'Pedido #' + respuesta.id,
@@ -218,35 +211,43 @@ export class CarritoComponent implements OnInit {
   }
   obtenerUsuario() {
     if (this.usuarioId()?.id) {
-      this.usuarioService.getById(this.usuarioId()?.id!).subscribe((usuario) => {
-      this.nombreUsuario = usuario.nombre_usuario;
-      this.correoUsuario = usuario.correo;
-    });
+      this.usuarioService
+        .getById(this.usuarioId()?.id!)
+        .subscribe((usuario) => {
+          this.nombreUsuario = usuario.nombre_usuario;
+          this.correoUsuario = usuario.correo;
+        });
     }
-    
   }
   guardarCarrito() {
-  if (this.items.length > 0) {
-    const pedido = {
-      usuario_id: this.usuarioId()?.id,
-      direccion_envio: this.direccion_envio,
-      metodo_pago: this.metodo_pago,
-      items: this.items.map((item) =>
-        item.producto
-          ? { producto_id: item.producto.id, cantidad: item.cantidad }
-          : { producto_personalizado_id: item.productoPersonalizado!.id, cantidad: item.cantidad }
-      ),
-    };
+    if (this.items.length > 0) {
+      const pedido = {
+        usuario_id: this.usuarioId()?.id,
+        direccion_envio: this.direccion_envio,
+        metodo_pago: this.metodo_pago,
+        items: this.items.map((item) =>
+          item.producto
+            ? { producto_id: item.producto.id, cantidad: item.cantidad }
+            : {
+                producto_personalizado_id: item.productoPersonalizado!.id,
+                cantidad: item.cantidad,
+              }
+        ),
+      };
 
-    this.pedidoService.guardarCarrito(pedido).subscribe({
-      next: () => {
-        this.noti.success('Carrito guardado', 'Se cargará en tu próxima sesión', 3000);
-      },
-      error: (err) => {
-        this.noti.error('Error al guardar carrito', err.message || '', 3000);
-      }
-    });
+      this.pedidoService.guardarCarrito(pedido as any).subscribe({
+        next: () => {
+          this.noti.success(
+            'Carrito guardado',
+            'Se cargará en tu próxima sesión',
+            3000
+          );
+        },
+        error: (err) => {
+          this.noti.error('Error al guardar carrito', err.message || '', 3000);
+        },
+      });
+    }
   }
-}
 
 }

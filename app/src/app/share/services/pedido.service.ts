@@ -13,24 +13,25 @@ export class PedidoService extends BaseAPI<PedidoModel> {
     super(httpClient, environment.endPointPedido);
   }
 
-
   apiUrl = environment.apiURL;
 
-  verificarProductoComprado(usuarioId: number, productoId: number): Observable<boolean> {
-  return this.http.get<number[]>(
-    `${this.apiUrl}/${environment.endPointPedido}/usuario/${productoId}`
-  ).pipe(
-    map((usuarioIds: number[]) => usuarioIds.includes(usuarioId))
-  );
-}
-guardarCarrito(pedido: any) {
-  return this.http.post(`${this.apiUrl}/carrito`, pedido);
-}
+  verificarProductoComprado(
+    usuarioId: number,
+    productoId: number
+  ): Observable<boolean> {
+    return this.http
+      .get<number[]>(
+        `${this.apiUrl}/${environment.endPointPedido}/usuario/${productoId}`
+      )
+      .pipe(map((usuarioIds: number[]) => usuarioIds.includes(usuarioId)));
+  }
+  guardarCarrito(pedido: any) {
+    return this.http.post(`${this.apiUrl}/pedido/saveCart`, pedido);
+  }
 
-getCarritoActivo(usuarioId: number) {
-  return this.http.get(`${this.apiUrl}/carrito/${usuarioId}`);
-}
-
+  getCarritoActivo(usuarioId: number) {
+    return this.http.get(`${this.apiUrl}/pedido/activeCart/${usuarioId}`);
+  }
 
   pagarpedido(pedidoId: number, adminId: number) {
     const url = `${environment.apiURL}/${environment.endPointPedido}/${pedidoId}/bitacora`;
@@ -42,5 +43,4 @@ getCarritoActivo(usuarioId: number) {
 
     return this.http.post(url, body);
   }
-
 }

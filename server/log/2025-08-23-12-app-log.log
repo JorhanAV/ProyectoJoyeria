@@ -1,0 +1,41 @@
+2025-08-23 12:03:06.027 error: 	mario--Se produjo un error interno del servidor 
+Invalid `this.prisma.pedido.create()` invocation in
+C:\Angular\ProyectoJoyeria\server\source\controllers\pedidoController.ts:542:52
+
+  539 const total = +(subtotal + impuestos).toFixed(2);
+  540 console.log(req.body)
+  541 // 💡 Crear pedido
+→ 542 const nuevoPedido = await this.prisma.pedido.create({
+        data: {
+          usuario: {
+            connect: {
+              id: "3"
+                  ~~~
+            }
+          },
+          direccion_envio: "",
+          metodo_pago: "Efectivo",
+          subtotal: 15000,
+          impuestos: 1950,
+          total: 16950,
+          fecha_pedido: new Date("2025-08-23T18:03:05.989Z"),
+          items: {
+            create: [
+              {
+                cantidad: 1,
+                producto: {
+                  connect: {
+                    id: 1
+                  }
+                }
+              }
+            ]
+          },
+          estado_carrito: true
+        },
+        include: {
+          items: true
+        }
+      })
+
+Argument `id`: Invalid value provided. Expected Int, provided String.

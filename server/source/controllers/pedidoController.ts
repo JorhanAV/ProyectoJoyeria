@@ -418,10 +418,7 @@ export class PedidoController {
 
       res.status(201).json(nuevoPedido);
     } catch (error: any) {
-      console.error(error);
-      res
-        .status(500)
-        .json({ mensaje: error.message || "Error al crear pedido" });
+      next(error); // 🔹 deja que ErrorMiddleware maneje la respuesta
     }
   };
 
@@ -464,7 +461,7 @@ export class PedidoController {
     try {
       const { usuario_id, direccion_envio, metodo_pago, items } = req.body;
 
-      if (!usuario_id || !direccion_envio || !metodo_pago || !items?.length) {
+      if (!usuario_id || !metodo_pago || !items?.length) {
         res.status(400).json({ mensaje: "Faltan campos obligatorios" });
         return;
       }
@@ -540,7 +537,7 @@ export class PedidoController {
 
       const impuestos = +(subtotal * 0.13).toFixed(2); // 13% IVA
       const total = +(subtotal + impuestos).toFixed(2);
-
+      console.log(req.body)
       // 💡 Crear pedido
       const nuevoPedido = await this.prisma.pedido.create({
         data: {
@@ -577,10 +574,7 @@ export class PedidoController {
 
       res.status(201).json(nuevoPedido);
     } catch (error: any) {
-      console.error(error);
-      res
-        .status(500)
-        .json({ mensaje: error.message || "Error al crear pedido" });
+      next(error); // 🔹 deja que ErrorMiddleware maneje la respuesta
     }
   };
   getCarritoActivo: RequestHandler = async (req, res, next) => {

@@ -3,13 +3,14 @@ import { ItemCartModel } from './models/ItemCartModel';
 import { ProductoModel } from './models/ProductoModel'; // Suponemos que lo tenés
 import { ProductoPersonalizableModel } from './models/ProductoPersonalizableModel';
 import { ProductoPersonalizableCreateModel } from './models/ProductoPersonalizableDTO';
+import { PedidoService } from './services/pedido.service';
+import { NotificationService } from './notification-service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
   private cart = signal<ItemCartModel[]>(this.loadCartFromStorage());
-
   public readonly itemsCart = computed(() => this.cart());
   public qtyItems = computed(() =>
     this.cart().reduce((sum, item) => sum + item.cantidad, 0)
@@ -21,7 +22,10 @@ export class CartService {
     this.cart().reduce((total, item) => (total + item.subtotal) * 0.13, 0)
   );
 
-  constructor() {
+ constructor(
+    private pedidoService: PedidoService,
+    private noti: NotificationService 
+  ) {
     effect(() => {
       localStorage.setItem('orden', JSON.stringify(this.cart()));
     });
@@ -31,6 +35,73 @@ export class CartService {
     const cartData = localStorage.getItem('orden');
     return cartData ? JSON.parse(cartData) : [];
   }
+ guardarCarrito() {
+    if (this.cart().length === 0) return;
+
+    const pedido = {
+      usuario_id: localStorage.getItem('usuarioID') || '',
+      direccion_envio: localStorage.getItem('direccion_envio') || '',
+      metodo_pago: localStorage.getItem('metodo_pago') || 'Efectivo',
+      items: this.cart().map((item) =>
+        item.producto
+          ? { producto_id: item.producto.id, cantidad: item.cantidad }
+          : {
+              producto_personalizado_id: item.productoPersonalizado!.id,
+              cantidad: item.cantidad,
+            }
+      ),
+    };
+    console.log(pedido)
+    this.pedidoService.guardarCarrito(pedido).subscribe({
+      next: () => {
+        this.noti.success(
+          'Carrito guardado',
+          'Se cargará en tu próxima sesión',
+          3000
+        );
+      },
+      error: (err) => {
+        this.noti.error(
+          'Error al guardar carrito',
+          err.message || '',
+          3000
+        );
+      },
+    });
+  }
+  loadCartFromBackend(usuarioId: number) {
+    console.log("loadCAart")
+  this.pedidoService.getCarritoActivo(usuarioId).subscribe({
+    next: (pedido: any) => {
+      if (pedido && pedido.items) {
+        const items: ItemCartModel[] = pedido.items.map((i: any) => {
+          if (i.producto) {
+            return {
+              producto: i.producto,
+              cantidad: i.cantidad,
+              subtotal: this.calculateSubtotalProducto(i.producto, i.cantidad),
+            };
+          } else {
+            return {
+              productoPersonalizado: i.productoPersonalizado,
+              cantidad: i.cantidad,
+              subtotal: this.calculateSubtotalPersonalizado(
+                i.productoPersonalizado,
+                i.cantidad
+              ),
+            };
+          }
+        });
+        console.log(items)
+        this.setCart(items);
+      }
+    },
+    error: () => {
+      console.log('No hay carrito activo');
+    }
+  });
+}
+
 
   private calculateSubtotalProducto(
     producto: ProductoModel,

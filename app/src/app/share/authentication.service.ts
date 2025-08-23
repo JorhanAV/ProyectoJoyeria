@@ -63,7 +63,12 @@ export class AuthenticationService {
           localStorage.setItem(this.tokenKey, token);
           this.tokenUser.set(token);
           //Registrar usuario
-          this.getUserProfile().subscribe();
+            this.getUserProfile().subscribe((user) => {
+          if (user) {
+            this.usuario.set(user);
+            this.cartService.loadCartFromBackend(user.id); // 🔹 carga el carrito activo
+          }
+        });
         })
       );
   }
@@ -80,11 +85,19 @@ export class AuthenticationService {
   }
 
   // Logout
-  logout(): void {
-    localStorage.removeItem(this.tokenKey);
-    this.tokenUser.set(null);
-    this.usuario.set(null);
-    this.cartService.deleteCart();
-    this.router.navigate(['/login']);
+ logout(): void {
+  const items = this.cartService.itemsCart();
+  if (items.length > 0) {
+    if (confirm('Tienes productos en tu carrito. ¿Deseas guardarlos para tu próxima sesión?')) {
+      this.cartService.guardarCarrito(); // 🔹 guarda en backend
+    }
   }
+
+  localStorage.removeItem(this.tokenKey);
+  this.tokenUser.set(null);
+  this.usuario.set(null);
+  this.cartService.deleteCart();
+  this.router.navigate(['/login']);
+}
+
 }

@@ -1,5 +1,6 @@
 import { Component, HostListener } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { CartService } from './share/cart.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,9 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class App {
   protected title = 'app';
-   constructor(private translate: TranslateService) {
+   constructor(private translate: TranslateService,
+   private cartService: CartService
+   ) {
     this.translate.setDefaultLang('es');
     this.translate.use('es'); // Idioma inicial
   }
@@ -20,12 +23,12 @@ export class App {
     this.translate.use(idioma);
   }
   @HostListener('window:beforeunload', ['$event'])
-handleBeforeUnload(event: Event) {
-  if (this.items.length > 0) {
-    this.guardarCarrito();
-    const confirmMessage = 'Tienes productos en tu carrito. Se guardará automáticamente.';
-    (event || window.event).returnValue = confirmMessage;
-    return confirmMessage;
+handleBeforeUnload(event: BeforeUnloadEvent) {
+  if (this.cartService.itemsCart().length > 0) {
+    this.cartService.guardarCarrito(); // ahora guarda en backend
+    event.preventDefault();
+    event.returnValue = ''; 
   }
 }
+
 }
