@@ -39,8 +39,8 @@ export class CartService {
     if (this.cart().length === 0) return;
 
     const pedido = {
-      usuario_id: localStorage.getItem('usuarioID') || '',
-      direccion_envio: localStorage.getItem('direccion_envio') || '',
+      usuario_id: Number(localStorage.getItem('usuarioID')),
+      direccion_envio: localStorage.getItem('direccion_envio')||'',
       metodo_pago: localStorage.getItem('metodo_pago') || 'Efectivo',
       items: this.cart().map((item) =>
         item.producto
@@ -83,7 +83,7 @@ export class CartService {
             };
           } else {
             return {
-              productoPersonalizado: i.productoPersonalizado,
+              productoPersonalizado: i.producto_Personalizado,
               cantidad: i.cantidad,
               subtotal: this.calculateSubtotalPersonalizado(
                 i.productoPersonalizado,
@@ -101,7 +101,6 @@ export class CartService {
     }
   });
 }
-
 
   private calculateSubtotalProducto(
     producto: ProductoModel,

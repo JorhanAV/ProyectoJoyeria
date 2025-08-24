@@ -63,15 +63,19 @@ export class CarritoComponent implements OnInit {
       }
     );
     localStorage.setItem('usuarioID', String(this.usuarioId()?.id));
-    localStorage.setItem('direccion_envio', this.direccion_envio);
+  }
+
+  updateMetodoPago(){
     localStorage.setItem('metodo_pago', this.metodo_pago);
+  }
+  updateDireccionEnvio(){
+    localStorage.setItem('direccion_envio', this.direccion_envio);
   }
   ngOnDestroy(): void {
     if (this.langSub) {
       this.langSub.unsubscribe();
     }
   }
-
   private setFecha(lang: string) {
     this.fechaActual =
       lang === 'es'
@@ -220,6 +224,9 @@ export class CarritoComponent implements OnInit {
     }
   }
   guardarCarrito() {
+     localStorage.setItem('usuarioID', String(this.usuarioId()?.id));
+    localStorage.setItem('direccion_envio', this.direccion_envio);
+    localStorage.setItem('metodo_pago', this.metodo_pago);
     if (this.items.length > 0) {
       const pedido = {
         usuario_id: this.usuarioId()?.id,
