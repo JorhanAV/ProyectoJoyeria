@@ -31,6 +31,14 @@
   align-items: center;
   margin-bottom: 12px;
 }
+.row2 {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 12px;
+  height: 150px;
+}
 
 .row label { font-weight: 500; color: #5c4033; }
 

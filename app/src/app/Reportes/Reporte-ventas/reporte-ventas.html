@@ -1,44 +1,4 @@
 <div >
-
-  <!-- SECCIÓN DE FILTROS -->
-  <section class="filtros">
-    <!-- Filtro por rango de días -->
-    <div class="filtro-card">
-      <h4>Rango de días</h4>
-      <div class="row">
-        <label>Desde</label>
-        <input type="date" [(ngModel)]="fechaInicio">
-      </div>
-      <div class="row">
-        <label>Hasta</label>
-        <input type="date" [(ngModel)]="fechaFin">
-      </div>
-      <button class="btn" (click)="onAplicarFiltrosRango()">Aplicar</button>
-    </div>
-
-    <!-- Filtro por mes/año/estado -->
-    <div class="filtro-card">
-      <h4>Mes / Año / Estado</h4>
-      <div class="row">
-        <label>Año</label>
-        <input type="number" [(ngModel)]="anio" min="2000" max="2100">
-      </div>
-      <div class="row">
-        <label>Mes</label>
-        <select [(ngModel)]="mes">
-          <option *ngFor="let m of meses" [value]="m.value">{{ m.label }}</option>
-        </select>
-      </div>
-      <div class="row">
-        <label>Estado</label>
-        <select [(ngModel)]="estado">
-          <option *ngFor="let e of estados" [value]="e">{{ e }}</option>
-        </select>
-      </div>
-      <button class="btn" (click)="onAplicarFiltrosMes()">Aplicar</button>
-    </div>
-  </section>
-<br><br><br><br><br><br>
   <!-- SECCIÓN DE KPIs -->
   <section class="kpis">
     <div class="kpi">
@@ -70,6 +30,18 @@
   <section class="charts">
 
     <mat-card class="chart-card">
+      <div class="filtro-card">
+      <h4>Rango de días</h4>
+      <div class="row">
+        <label>Desde</label>
+        <input type="date" [(ngModel)]="fechaInicio">
+      </div>
+      <div class="row">
+        <label>Hasta</label>
+        <input type="date" [(ngModel)]="fechaFin">
+      </div>
+      <button class="btn" (click)="onAplicarFiltrosRango()">Aplicar</button>
+    </div>
       <mat-card-header>
         <mat-card-title>Ventas por día</mat-card-title>
         <mat-card-subtitle>Visualización de ventas diarias.</mat-card-subtitle>
@@ -82,6 +54,21 @@
     </mat-card>
 
     <mat-card class="chart-card">
+      <div class="filtro-card">
+      <h4>Año</h4>
+      <div class="row">
+        <label>Año</label>
+        <input type="number" [(ngModel)]="anio" min="2000" max="2100">
+      </div>
+      <div class="row">
+      </div>
+      <div class="row">
+      </div>
+      <div class="row">
+      </div>
+      <button class="btn" (click)="onAplicarFiltrosMes()">Aplicar</button>
+      <br>
+    </div>
       <mat-card-header>
         <mat-card-title>Ventas por mes</mat-card-title>
         <mat-card-subtitle>Visualización de ventas mensuales.</mat-card-subtitle>
@@ -94,7 +81,11 @@
     </mat-card>
 
     <mat-card class="chart-card">
-      <mat-card-header>
+       <div class="filtro-card">
+      <div class="row2">
+      </div>
+      </div>
+     <mat-card-header>
         <mat-card-title>Pedidos por estado</mat-card-title>
         <mat-card-subtitle>Distribución de pedidos según estado.</mat-card-subtitle>
       </mat-card-header>
