@@ -191,7 +191,6 @@ export class CarritoComponent implements OnInit {
 
       this.pedidoService.create(pedido as any).subscribe({
         next: (respuesta) => {
-          // Guardas el ID del pedido creado
           this.pedidoId = respuesta.id;
           // Limpias el carrito (puedes decidir si hacer esto aquí o luego de pagar)
           this.cartService.deleteCart();
@@ -207,7 +206,7 @@ export class CarritoComponent implements OnInit {
         },
         error: (err) => {
           console.error(err);
-          this.noti.error('Error al crear el pedido', err.message || '', 3000);
+          this.noti.error('Error al crear el pedido', 'Rellene correctamente los campos', 3000);
         },
       });
     } else {

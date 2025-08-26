@@ -101,3 +101,28 @@ button[mat-raised-button] {
   align-items: center;
   gap: 8px;
 }
+
+.button-personalizar {
+  background-color: rgb(185, 116, 25);
+  color: white;
+  font-weight: 600;
+  font-family: 'Segoe UI', sans-serif;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+}
+
+.button-personalizar:hover {
+  background-color: rgb(255, 160, 50);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+.button-personalizar:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
