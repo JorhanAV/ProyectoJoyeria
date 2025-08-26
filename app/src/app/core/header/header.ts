@@ -26,7 +26,6 @@ export class Header {
   }
 
   logout() {
-    //
     this.authService.logout();
     this.router.navigate(['inicio']);
     //console.log(this.isAuthenticated);

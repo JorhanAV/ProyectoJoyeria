@@ -39,8 +39,10 @@ export class EtiquetaController {
           },
         },
       });
+
       response.json(etiqueta);
-    } catch (error: any) {
+    } catch (error) {
+      console.error(error);
       next(error);
     }
   };
@@ -61,7 +63,6 @@ export class EtiquetaController {
         },
         include: { productos: true },
       });
-
       res.json(nuevaEtiqueta);
     } catch (error) {
       console.error(error);

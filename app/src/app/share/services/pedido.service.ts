@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { PedidoModel } from '../models/PedidoModel';
 import { BaseAPI } from '../base-api';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment.development';
-import { map, Observable } from 'rxjs';
+import { map, Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -13,17 +13,34 @@ export class PedidoService extends BaseAPI<PedidoModel> {
     super(httpClient, environment.endPointPedido);
   }
 
-
   apiUrl = environment.apiURL;
 
-  verificarProductoComprado(usuarioId: number, productoId: number): Observable<boolean> {
-  return this.http.get<number[]>(
-    `${this.apiUrl}/${environment.endPointPedido}/usuario/${productoId}`
-  ).pipe(
-    map((usuarioIds: number[]) => usuarioIds.includes(usuarioId))
-  );
-}
+  // 👇 Subject para notificar que se deben refrescar los pedidos
+  private refreshPedidosSource = new Subject<void>();
+  refreshPedidos$ = this.refreshPedidosSource.asObservable();
 
+  emitRefreshPedidos() {
+    this.refreshPedidosSource.next();
+  }
+
+  verificarProductoComprado(
+    usuarioId: number,
+    productoId: number
+  ): Observable<boolean> {
+    return this.http
+      .get<number[]>(
+        `${this.apiUrl}/${environment.endPointPedido}/usuario/${productoId}`
+      )
+      .pipe(map((usuarioIds: number[]) => usuarioIds.includes(usuarioId)));
+  }
+
+  guardarCarrito(pedido: any) {
+    return this.http.post(`${this.apiUrl}/pedido/saveCart`, pedido);
+  }
+
+  getCarritoActivo(usuarioId: number) {
+    return this.http.get(`${this.apiUrl}/pedido/activeCart/${usuarioId}`);
+  }
 
   pagarpedido(pedidoId: number, adminId: number) {
     const url = `${environment.apiURL}/${environment.endPointPedido}/${pedidoId}/bitacora`;
@@ -35,5 +52,4 @@ export class PedidoService extends BaseAPI<PedidoModel> {
 
     return this.http.post(url, body);
   }
-
 }

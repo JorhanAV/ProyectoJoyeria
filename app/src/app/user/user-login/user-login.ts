@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NotificationService } from '../../share/notification-service';
 import { AuthenticationService } from '../../share/authentication.service';
+import { CartService } from '../../share/cart.service';
 
 @Component({
   selector: 'app-user-login',
@@ -15,7 +16,8 @@ export class UserLogin {
   constructor(
     private fb: FormBuilder,
     private notification: NotificationService,
-    private authService: AuthenticationService
+    private authService: AuthenticationService,
+    private cartService: CartService
   ) {
     this.reactiveForm();
   }
@@ -41,17 +43,22 @@ export class UserLogin {
     const credentials = this.loginForm.value;
     console.log(credentials);
     this.authService.loginUser(credentials).subscribe({
-      next: () => {
-        this.notification.success('Inicio de sesión', 'Bienvenido', 1000, '/inicio')
+      next: (usuario) => {
+        this.notification.success(
+          'Inicio de sesión',
+          'Bienvenido',
+          1000,
+          '/inicio'
+        );
       },
       error: (error) => {
-        console.log('Error inicio de sesión ', error)
-        let message = 'Error al iniciar sesión. Por favor, intente de nuevo'
+        console.log('Error inicio de sesión ', error);
+        let message = 'Error al iniciar sesión. Por favor, intente de nuevo';
         if (error.status === 401) {
-          message = 'Credenciales incorrectas. Verifique su email y contraseña'
+          message = 'Credenciales incorrectas. Verifique su email y contraseña';
         }
-        this.notification.error('Error de autenticación', message)
-      }
-    })
+        this.notification.error('Error de autenticación', message);
+      },
+    });
   }
 }
