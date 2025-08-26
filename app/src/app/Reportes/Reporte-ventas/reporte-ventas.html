@@ -1,14 +1,11 @@
-<!-- FILTER SECTION -->
-<section class="filtros">
-  <div class="filtro-card">
-    <h4>{{ 'DASHBOARD.FILTRO_RANGO_DIAS' | translate }}</h4>
-    <div class="row">
-      <label>{{ 'DASHBOARD.DESDE' | translate }}</label>
-      <input type="date" [(ngModel)]="fechaInicio" />
-    </div>
-    <div class="row">
-      <label>{{ 'DASHBOARD.HASTA' | translate }}</label>
-      <input type="date" [(ngModel)]="fechaFin" />
+<div >
+  <!-- SECCIÓN DE KPIs -->
+  <section class="kpis">
+    <div class="kpi">
+      <div class="kpi-title">Items vendidos (rango días)</div>
+      <div class="kpi-value">{{ kpi.totalItemsEnRango | number }}</div>
+      <div class="kpi-sub">Promedio diario: {{ kpi.promedioDiario | number:'1.0-2' }}</div>
+
     </div>
     <button class="btn" (click)="onAplicarFiltrosRango()">
       {{ 'DASHBOARD.APLICAR' | translate }}
@@ -39,25 +36,72 @@
   </div>
 </section>
 
-<!-- KPI SECTION -->
-<section class="kpis">
-  <div class="kpi">
-    <div class="kpi-title">{{ 'DASHBOARD.ITEMS_VENDIDOS_RANGO' | translate }}</div>
-    <div class="kpi-value">{{ kpi.totalItemsEnRango | number }}</div>
-    <div class="kpi-sub">{{ 'DASHBOARD.PROMEDIO_DIARIO' | translate }}: {{ kpi.promedioDiario | number:'1.0-2' }}</div>
-  </div>
+    <mat-card class="chart-card">
+      <div class="filtro-card">
+      <h4>Rango de días</h4>
+      <div class="row">
+        <label>Desde</label>
+        <input type="date" [(ngModel)]="fechaInicio">
+      </div>
+      <div class="row">
+        <label>Hasta</label>
+        <input type="date" [(ngModel)]="fechaFin">
+      </div>
+      <button class="btn" (click)="onAplicarFiltrosRango()">Aplicar</button>
+    </div>
+      <mat-card-header>
+        <mat-card-title>Ventas por día</mat-card-title>
+        <mat-card-subtitle>Visualización de ventas diarias.</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content class="content-graph">
+        <div class="chart-container">
+          <ag-charts *ngIf="chartVentasDia" [options]="chartVentasDia"></ag-charts>
+        </div>
+      </mat-card-content>
+    </mat-card>
 
-  <div class="kpi">
-    <div class="kpi-title">{{ 'DASHBOARD.ITEMS_VENDIDOS_MES' | translate }}</div>
-    <div class="kpi-value">{{ kpi.totalMensual | number }}</div>
-    <div class="kpi-sub">{{ 'DASHBOARD.MES' | translate }}: {{ mes }}/{{ anio }}</div>
-  </div>
+    <mat-card class="chart-card">
+      <div class="filtro-card">
+      <h4>Año</h4>
+      <div class="row">
+        <label>Año</label>
+        <input type="number" [(ngModel)]="anio" min="2000" max="2100">
+      </div>
+      <div class="row">
+      </div>
+      <div class="row">
+      </div>
+      <div class="row">
+      </div>
+      <button class="btn" (click)="onAplicarFiltrosMes()">Aplicar</button>
+      <br>
+    </div>
+      <mat-card-header>
+        <mat-card-title>Ventas por mes</mat-card-title>
+        <mat-card-subtitle>Visualización de ventas mensuales.</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content class="content-graph">
+        <div class="chart-container">
+          <ag-charts *ngIf="chartVentasMes" [options]="chartVentasMes"></ag-charts>
+        </div>
+      </mat-card-content>
+    </mat-card>
 
-  <div class="kpi">
-    <div class="kpi-title">{{ 'DASHBOARD.PEDIDOS_ESTADO' | translate }}: {{ estado }}</div>
-    <div class="kpi-value">{{ kpi.estadoSeleccionadoTotal | number }}%</div>
-    <div class="kpi-sub">{{ 'DASHBOARD.PORCENTAJE_SOBRE_TOTAL' | translate }}: {{ kpi.porcentajeEstadoVsTotal | number:'1.0-2' }}%</div>
-  </div>
+    <mat-card class="chart-card">
+       <div class="filtro-card">
+      <div class="row2">
+      </div>
+      </div>
+     <mat-card-header>
+        <mat-card-title>Pedidos por estado</mat-card-title>
+        <mat-card-subtitle>Distribución de pedidos según estado.</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content class="content-graph">
+        <div class="chart-container">
+          <ag-charts *ngIf="chartPedidosEstado" [options]="chartPedidosEstado"></ag-charts>
+        </div>
+      </mat-card-content>
+    </mat-card>
 
   <div class="kpi">
     <div class="kpi-title">{{ 'DASHBOARD.TOTAL_PEDIDOS_MES' | translate }}</div>

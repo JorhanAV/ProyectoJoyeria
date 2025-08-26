@@ -42,7 +42,6 @@ ORDER BY DATE(p.fecha_pedido);`
         FROM Pedido p
         JOIN PedidoItem i ON p.id = i.pedido_id
         WHERE (${anio} IS NULL OR YEAR(p.fecha_pedido) = ${anio})
-          AND (${mes} IS NULL OR MONTH(p.fecha_pedido) = ${mes})
         GROUP BY DATE_FORMAT(p.fecha_pedido, '%Y-%m')
         ORDER BY name;`
       );

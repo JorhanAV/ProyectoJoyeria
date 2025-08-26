@@ -22,6 +22,8 @@ export class PedidoRoutes {
       authenticateJWT,
       authorizeRoles(Rol.ADMIN, Rol.CLIENTE),
       controller.getByProductId);
+      router.get('/activeCart/:usuarioId', 
+      controller.getCarritoActivo);
 
     router.post('/', 
       authenticateJWT,
@@ -32,7 +34,8 @@ export class PedidoRoutes {
       authenticateJWT,
       authorizeRoles(Rol.ADMIN,Rol.CLIENTE), 
       controller.addBitacora);
-
+    router.post('/saveCart', 
+      controller.guardarCarrito);
     return router;
   }
 }
