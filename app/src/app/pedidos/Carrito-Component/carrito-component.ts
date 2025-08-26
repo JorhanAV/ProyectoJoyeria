@@ -153,6 +153,7 @@ export class CarritoComponent implements OnInit {
           console.log(this.pedidoId);
           this.pedidoService.pagarpedido(this.pedidoId, 1).subscribe(
             () => {
+               this.pedidoService.emitRefreshPedidos(); // 👈 Notificar
               this.noti.success(
                 'Pago realizado',
                 'Pedido actualizado',

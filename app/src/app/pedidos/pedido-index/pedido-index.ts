@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { PedidoService } from '../../share/services/pedido.service';
 import { NotificationService } from '../../share/notification-service';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { PedidoModel } from '../../share/models/PedidoModel';
 import { EstadoPedidoModel } from '../../share/models/EstadoPedidoModel';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-pedido-index',
@@ -13,7 +14,7 @@ import { EstadoPedidoModel } from '../../share/models/EstadoPedidoModel';
 })
 export class PedidoIndex {
   datos: any;
-
+ private routerSub!: Subscription;
   constructor(
     private pedidoService: PedidoService,
     private noti: NotificationService,
@@ -21,6 +22,14 @@ export class PedidoIndex {
   ) {
     this.listPedidos();
   }
+ ngOnInit() {
+  this.listPedidos();
+
+  this.pedidoService.refreshPedidos$.subscribe(() => {
+    this.listPedidos();
+  });
+}
+
 
   //Listar todos los productos del API
   listPedidos() {

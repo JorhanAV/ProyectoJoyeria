@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { PedidoModel } from '../models/PedidoModel';
 import { BaseAPI } from '../base-api';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment.development';
-import { map, Observable } from 'rxjs';
+import { map, Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +15,14 @@ export class PedidoService extends BaseAPI<PedidoModel> {
 
   apiUrl = environment.apiURL;
 
+  // 👇 Subject para notificar que se deben refrescar los pedidos
+  private refreshPedidosSource = new Subject<void>();
+  refreshPedidos$ = this.refreshPedidosSource.asObservable();
+
+  emitRefreshPedidos() {
+    this.refreshPedidosSource.next();
+  }
+
   verificarProductoComprado(
     usuarioId: number,
     productoId: number
@@ -25,6 +33,7 @@ export class PedidoService extends BaseAPI<PedidoModel> {
       )
       .pipe(map((usuarioIds: number[]) => usuarioIds.includes(usuarioId)));
   }
+
   guardarCarrito(pedido: any) {
     return this.http.post(`${this.apiUrl}/pedido/saveCart`, pedido);
   }
