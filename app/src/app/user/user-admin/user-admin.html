@@ -1,1 +1,30 @@
-<p>user-admin works!</p>
+<div class="usuarios-container" *ngIf="usuarios.length">
+  <h2>Listado de usuarios</h2>
+
+  <table class="tabla-usuarios">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre de usuario</th>
+        <th>Correo</th>
+        <th>Rol</th>
+        <th>Último inicio de sesión</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let u of usuarios">
+        <td>{{ u.id }}</td>
+        <td>{{ u.nombre_usuario }}</td>
+        <td>{{ u.correo }}</td>
+        <td>{{ u.rol }}</td>
+        <td>
+          {{ u.ultimo_inicio_sesion ? (u.ultimo_inicio_sesion | date:'yyyy-MM-dd HH:mm') : '—' }}
+        </td>
+        <td>
+          <button class="btn-editar" (click)="editarUsuario(u.id)">✏️ Editar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,38 +1,28 @@
-.perfil-container {
-  max-width: 500px;
-  margin: 40px auto;
-  padding: 24px;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  font-family: 'Segoe UI', sans-serif;
+.form-group {
+  margin-bottom: 20px;
 }
 
-.perfil-container h2 {
-  text-align: center;
-  margin-bottom: 24px;
-  font-size: 1.5rem;
-  color: #333;
-}
-
-form label {
-  display: block;
-  margin-top: 16px;
-  font-weight: 600;
-  color: #555;
-}
-
-form input {
+.input-field,
+.select-field {
   width: 100%;
-  padding: 10px;
-  margin-top: 6px;
+  padding: 10px 14px;
   border: 1px solid #ccc;
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 0.95rem;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-button[type="submit"] {
-  margin-top: 24px;
+.input-field:focus,
+.select-field:focus {
+  border-color: #d4af37;
+  box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.3);
+  outline: none;
+}
+
+.btn-guardar {
   width: 100%;
   padding: 12px;
   background-color: #d4af37;
@@ -44,6 +34,6 @@ button[type="submit"] {
   transition: background 0.3s ease;
 }
 
-button[type="submit"]:hover {
+.btn-guardar:hover {
   background-color: #c19e2b;
 }

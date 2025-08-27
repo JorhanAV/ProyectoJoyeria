@@ -176,7 +176,8 @@
     "RESENAS": "Reviews",
     "PEDIDOS": "Orders",
     "PROMOCIONES": "Promotions",
-    "REPORTES": "Reports"
+    "REPORTES": "Reports",
+    "USUARIOS": "Users"
   },
 
   "USER_TEXT": {
@@ -206,7 +207,11 @@
     "ACTUALIZAR_PERFIL_MENSAJE": "The profile has been updated successfully.",
     "TITULO": "Update Profile",
     "CORREO": "Email",
-    "GUARDAR": "Save Changes"
+    "GUARDAR": "Save Changes",
+    "TIPO_USUARIO": "User Type",
+    "ROL_ADMIN": "Administrator",
+    "ROL_CLIENTE": "Customer"
+
   },
   "CARRITO_TEXT": {
     "CLIENTE": "Customer",

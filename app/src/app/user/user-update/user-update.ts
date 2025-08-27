@@ -5,6 +5,7 @@ import { AuthenticationService } from '../../share/authentication.service';
 import { UsuarioService } from '../../share/services/usuario.service';
 import { NotificationService } from '../../share/notification-service';
 import { TranslateService } from '@ngx-translate/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user-update',
@@ -14,41 +15,53 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class UserUpdate {
   perfilForm!: FormGroup;
-   idUsuario!: number;
+  idUsuario!: number;
+  esAdminLogueado = false;
+
   constructor(
     private fb: FormBuilder,
     private userService: UsuarioService,
     private auth: AuthenticationService,
     private noti: NotificationService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private route: ActivatedRoute
   ) {}
 
- ngOnInit() {
-    this.idUsuario = this.auth.currentUserSignal()?.id!;
-    this.userService.getById(this.idUsuario).subscribe((usuario) => {
-      this.perfilForm = this.fb.group({
-        id: [usuario.id], // 👈 incluimos el id en el form si lo necesitás en el body
-        nombre_usuario: [usuario.nombre_usuario, Validators.required],
-        correo: [usuario.correo, [Validators.required, Validators.email]],
-        rol: [{ value: usuario.rol, disabled: true }],
-      });
-    });
-  }
+  ngOnInit() {
+  const idParam = this.route.snapshot.paramMap.get('id');
+  this.idUsuario = idParam ? Number(idParam) : this.auth.currentUserSignal()?.id!;
+  this.esAdminLogueado = this.auth.currentUserSignal()?.rol === 'ADMIN';
 
-guardar() {
+  this.userService.getById(this.idUsuario).subscribe((usuario) => {
+    this.perfilForm = this.fb.group({
+      id: [usuario.id],
+      nombre_usuario: [usuario.nombre_usuario, Validators.required],
+      correo: [usuario.correo, [Validators.required, Validators.email]],
+      rol: [
+        { value: usuario.rol, disabled: !this.esAdminLogueado },
+        Validators.required
+      ]
+    });
+  });
+}
+
+
+  guardar() {
     if (this.perfilForm.valid) {
       const data = {
         id: this.idUsuario,
-        ...this.perfilForm.getRawValue()
+        ...this.perfilForm.getRawValue(),
       };
 
       this.userService.update(data).subscribe(() => {
-        // Mostrar notificación si querés
+        const esAdminEditando = !!this.route.snapshot.paramMap.get('id');
+        const destino = esAdminEditando ? '/user-admin' : '/inicio';
+
         this.noti.success(
           this.translate.instant('USER_TEXT.ACTUALIZAR_PERFIL_TITULO'),
           this.translate.instant('USER_TEXT.ACTUALIZAR_PERFIL_MENSAJE'),
           2000,
-          '/inicio'
+          destino
         );
       });
     }

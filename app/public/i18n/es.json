@@ -173,7 +173,8 @@
     "RESENAS": "Reseñas",
     "PEDIDOS": "Pedidos",
     "PROMOCIONES": "Promociones",
-    "REPORTES": "Reportes"
+    "REPORTES": "Reportes",
+    "USUARIOS": "Usuarios"
   },
 
   "USER_TEXT": {
@@ -203,7 +204,10 @@
     "ACTUALIZAR_PERFIL_MENSAJE": "El perfil ha sido actualizado correctamente.",
     "TITULO": "Actualizar perfil",
     "CORREO": "Correo electrónico",
-    "GUARDAR": "Guardar cambios"
+    "GUARDAR": "Guardar cambios",
+    "TIPO_USUARIO": "Tipo de usuario",
+    "ROL_ADMIN": "Administrador",
+    "ROL_CLIENTE": "Cliente"
   },
 
   "CARRITO_TEXT": {

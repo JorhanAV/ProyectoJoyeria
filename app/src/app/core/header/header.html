@@ -67,6 +67,10 @@
       <button mat-menu-item routerLink="/etiquetas-admin">
         <span>{{"ETIQUETA_TEXT.ETIQUETAS" |translate}}</span>
       </button>
+
+      <button mat-menu-item routerLink="/user-admin">
+        <span>{{ 'MENU_TEXT.USUARIOS' | translate }}</span>
+      </button>
       <!-- agrega más <button mat-menu-item> según necesites -->
     </mat-menu>
   </nav>
@@ -101,7 +105,7 @@
         <span>Logout</span>
       </button>
       <button mat-menu-item routerLink="/user-profile">
-        <mat-icon>login</mat-icon>
+        <mat-icon>manage_accounts</mat-icon>
         <span>Actualizar perfil</span>
       </button>
       }
