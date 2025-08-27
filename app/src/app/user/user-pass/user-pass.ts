@@ -4,6 +4,7 @@ import { UsuarioService } from '../../share/services/usuario.service';
 import { AuthenticationService } from '../../share/authentication.service';
 import { NotificationService } from '../../share/notification-service';
 import { TranslateService } from '@ngx-translate/core';
+import { passwordStrengthValidator } from '../../share/custom-validators';
 
 @Component({
   selector: 'app-user-pass',
@@ -30,7 +31,7 @@ export class UserPass {
     this.passForm = this.fb.group(
       {
         actual: ['', Validators.required],
-        nueva: ['', [Validators.required, Validators.minLength(6)]],
+        nueva: ['', [Validators.required, Validators.minLength(6), passwordStrengthValidator]],
         confirmar: ['', Validators.required],
       },
       { validators: this.validarCoincidencia }
