@@ -10,6 +10,7 @@ export class EtiquetaController {
       const etiquetas = await this.prisma.etiqueta.findMany({
         orderBy: { nombre: "asc" },
       });
+
       response.json(etiquetas);
     } catch (error) {
       next(error);
