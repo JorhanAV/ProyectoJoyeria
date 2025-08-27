@@ -14,17 +14,32 @@
       <div class="form-group">
         <label>{{ 'USER_TEXT.NUEVA_CONTRASENA' | translate }}</label>
         <input type="password" formControlName="nueva" class="input-field" />
+        <div
+          class="error"
+          *ngIf="passForm.get('nueva')?.errors?.['weakPassword'] && passForm.get('nueva')?.touched"
+        >
+          La contraseña debe incluir mayúsculas, minúsculas, números y
+          caracteres especiales
+        </div>
       </div>
 
       <div class="form-group">
         <label>{{ 'USER_TEXT.CONFIRMAR_CONTRASENA' | translate }}</label>
-        <input type="password" formControlName="confirmar" class="input-field" />
+        <input
+          type="password"
+          formControlName="confirmar"
+          class="input-field"
+        />
         <div class="error" *ngIf="passForm.errors?.['noCoincide']">
           Las contraseñas no coinciden
         </div>
       </div>
 
-      <button type="submit" [disabled]="passForm.invalid || passForm.errors?.['noCoincide']" class="btn-guardar">
+      <button
+        type="submit"
+        [disabled]="passForm.invalid || passForm.errors?.['noCoincide']"
+        class="btn-guardar"
+      >
         {{ 'USER_TEXT.GUARDAR_CAMBIOS' | translate }}
       </button>
     </form>
