@@ -213,7 +213,7 @@
     "NUEVA_CONTRASENA": "Nueva contraseña",
     "GUARDAR_CAMBIOS": "Guardar cambios",
     "ERROR_CONTRASENA_INCORRECTA": "La contraseña actual es incorrecta",
-    "ERROR_CONTRASENA_NO_COINCIDE": "Las contraseñas no coinciden",
+    "ERROR_CONTRASENA_NO_COINCIDE": "Las contraseñas no coinciden.",
     "CONTRASENA_ACTUAL_INCORRECTA": "La contraseña actual está incorrecta."
 
   },
