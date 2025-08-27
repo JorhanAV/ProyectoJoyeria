@@ -13,6 +13,12 @@
       <label>{{ 'USER_TEXT.CORREO' | translate }}</label>
       <input type="email" formControlName="correo" class="input-field" />
     </div>
+    <div
+      class="error"
+      *ngIf="perfilForm.get('correo')?.errors?.['emailExists']"
+    >
+      Este correo ya está registrado por otro usuario
+    </div>
 
     <!-- Tipo de usuario -->
     <div class="form-group">
@@ -21,14 +27,23 @@
       <ng-container *ngIf="esAdminLogueado; else soloLectura">
         <div class="select-wrapper">
           <select formControlName="rol" class="select-field">
-            <option value="ADMIN">{{ 'USER_TEXT.ROL_ADMIN' | translate }}</option>
-            <option value="CLIENTE">{{ 'USER_TEXT.ROL_CLIENTE' | translate }}</option>
+            <option value="ADMIN">
+              {{ 'USER_TEXT.ROL_ADMIN' | translate }}
+            </option>
+            <option value="CLIENTE">
+              {{ 'USER_TEXT.ROL_CLIENTE' | translate }}
+            </option>
           </select>
         </div>
       </ng-container>
 
       <ng-template #soloLectura>
-        <input type="text" [value]="perfilForm.get('rol')?.value" class="input-field" disabled />
+        <input
+          type="text"
+          [value]="perfilForm.get('rol')?.value"
+          class="input-field"
+          disabled
+        />
       </ng-template>
     </div>
 

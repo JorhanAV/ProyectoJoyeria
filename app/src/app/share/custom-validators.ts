@@ -34,3 +34,19 @@ export function emailExistsValidator(usuarioService: UsuarioService) {
     );
   };
 }
+
+export function emailExistsValidatorUpdate(usuarioService: UsuarioService, idUsuario: number) {
+  return (control: AbstractControl): Observable<{ emailExists: true } | null> => {
+    const correo = control.value;
+    if (!correo) return of(null);
+
+    return usuarioService.verificarCorreoUpdate(correo).pipe(
+      map((idEncontrado: number | null) => {
+        // Si el correo existe y pertenece a otro usuario, es error
+        return idEncontrado !== null && idEncontrado !== idUsuario
+          ? { emailExists: true }
+          : null;
+      })
+    );
+  };
+}

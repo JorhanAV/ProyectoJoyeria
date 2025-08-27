@@ -12,6 +12,9 @@ export class UsuarioRoutes {
     //localhost:3000/usuario/
     router.get("/", controller.get);
     router.get("/verificar-correo", controller.verificarCorreo);
+
+    router.get("/verificar-correo-update", controller.verificarCorreoUpdate);
+
     //localhost:3000/usuario/6
     router.get("/:id", controller.getById);
 
