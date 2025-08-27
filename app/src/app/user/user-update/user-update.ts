@@ -6,6 +6,7 @@ import { UsuarioService } from '../../share/services/usuario.service';
 import { NotificationService } from '../../share/notification-service';
 import { TranslateService } from '@ngx-translate/core';
 import { ActivatedRoute } from '@angular/router';
+import { emailExistsValidatorUpdate } from '../../share/custom-validators';
 
 @Component({
   selector: 'app-user-update',
@@ -28,23 +29,35 @@ export class UserUpdate {
   ) {}
 
   ngOnInit() {
-  const idParam = this.route.snapshot.paramMap.get('id');
-  this.idUsuario = idParam ? Number(idParam) : this.auth.currentUserSignal()?.id!;
-  this.esAdminLogueado = this.auth.currentUserSignal()?.rol === 'ADMIN';
+    const idParam = this.route.snapshot.paramMap.get('id');
+    this.idUsuario = idParam
+      ? Number(idParam)
+      : this.auth.currentUserSignal()?.id!;
+    this.esAdminLogueado = this.auth.currentUserSignal()?.rol === 'ADMIN';
 
-  this.userService.getById(this.idUsuario).subscribe((usuario) => {
-    this.perfilForm = this.fb.group({
-      id: [usuario.id],
-      nombre_usuario: [usuario.nombre_usuario, Validators.required],
-      correo: [usuario.correo, [Validators.required, Validators.email]],
-      rol: [
-        { value: usuario.rol, disabled: !this.esAdminLogueado },
-        Validators.required
-      ]
+    this.userService.getById(this.idUsuario).subscribe((usuario) => {
+      const esCorreoDelUsuarioLogueado =
+        this.auth.currentUserSignal()?.correo === usuario.correo;
+
+      const correoControl = esCorreoDelUsuarioLogueado
+        ? [usuario.correo, [Validators.required, Validators.email]]
+        : [
+            usuario.correo,
+            [Validators.required, Validators.email],
+            [emailExistsValidatorUpdate(this.userService, this.idUsuario)],
+          ];
+
+      this.perfilForm = this.fb.group({
+        id: [usuario.id],
+        nombre_usuario: [usuario.nombre_usuario, Validators.required],
+        correo: correoControl,
+        rol: [
+          { value: usuario.rol, disabled: !this.esAdminLogueado },
+          Validators.required,
+        ],
+      });
     });
-  });
-}
-
+  }
 
   guardar() {
     if (this.perfilForm.valid) {

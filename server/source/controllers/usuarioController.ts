@@ -184,11 +184,20 @@ export class UsuarioController {
   };
 
   verificarCorreo = async (req: Request, res: Response) => {
-  const { correo } = req.query;
-  const existe = await this.prisma.usuario.findUnique({
-    where: { correo: String(correo) }
-  });
-  res.json(!!existe);
-};
+    const { correo } = req.query;
+    const existe = await this.prisma.usuario.findUnique({
+      where: { correo: String(correo) },
+    });
+    res.json(!!existe);
+  };
 
+  verificarCorreoUpdate = async (req: Request, res: Response) => {
+    const { correo } = req.query;
+    const usuario = await this.prisma.usuario.findUnique({
+      where: { correo: String(correo) },
+      select: { id: true },
+    });
+
+    res.json(usuario ? usuario.id : null);
+  };
 }

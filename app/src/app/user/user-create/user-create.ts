@@ -15,7 +15,6 @@ import {
 } from '../../share/custom-validators';
 import { UsuarioService } from '../../share/services/usuario.service';
 
-
 @Component({
   selector: 'app-user-create',
   standalone: false,
@@ -24,7 +23,8 @@ import { UsuarioService } from '../../share/services/usuario.service';
 })
 export class UserCreate {
   registerForm: FormGroup;
-
+  mostrarPassword = false;
+  mostrarConfirmacion = false;
   constructor(
     private fb: FormBuilder,
     private authService: AuthenticationService,
@@ -35,8 +35,19 @@ export class UserCreate {
     this.registerForm = this.fb.group(
       {
         nombre_usuario: ['', [Validators.required, Validators.minLength(3)]],
-        correo: ['', [Validators.required, Validators.email, customEmailValidator], [emailExistsValidator(this.userService)]],
-        contraseña: ['', [Validators.required, Validators.minLength(6), passwordStrengthValidator]],
+        correo: [
+          '',
+          [Validators.required, Validators.email, customEmailValidator],
+          [emailExistsValidator(this.userService)],
+        ],
+        contraseña: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(6),
+            passwordStrengthValidator,
+          ],
+        ],
         confirmarContraseña: ['', Validators.required],
         rol: ['CLIENTE', Validators.required],
       },
@@ -51,6 +62,14 @@ export class UserCreate {
     const password = form.get('contraseña')?.value;
     const confirmPassword = form.get('confirmarContraseña')?.value;
     return password === confirmPassword ? null : { passwordMismatch: true };
+  }
+
+  togglePasswordVisibility() {
+    this.mostrarPassword = !this.mostrarPassword;
+  }
+
+  toggleConfirmVisibility() {
+    this.mostrarConfirmacion = !this.mostrarConfirmacion;
   }
 
   onSubmit(): void {

@@ -16,6 +16,9 @@ export class UserPass {
   passForm!: FormGroup;
   idUsuario!: number;
   errorActualIncorrecta = false;
+  mostrarActual = false;
+  mostrarNueva = false;
+  mostrarConfirmar = false;
 
   constructor(
     private fb: FormBuilder,
@@ -23,7 +26,6 @@ export class UserPass {
     private auth: AuthenticationService,
     private noti: NotificationService,
     private translate: TranslateService
-
   ) {}
 
   ngOnInit(): void {
@@ -31,7 +33,14 @@ export class UserPass {
     this.passForm = this.fb.group(
       {
         actual: ['', Validators.required],
-        nueva: ['', [Validators.required, Validators.minLength(6), passwordStrengthValidator]],
+        nueva: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(6),
+            passwordStrengthValidator,
+          ],
+        ],
         confirmar: ['', Validators.required],
       },
       { validators: this.validarCoincidencia }
@@ -72,5 +81,17 @@ export class UserPass {
           },
         });
     }
+  }
+
+  toggleActual() {
+    this.mostrarActual = !this.mostrarActual;
+  }
+
+  toggleNueva() {
+    this.mostrarNueva = !this.mostrarNueva;
+  }
+
+  toggleConfirmar() {
+    this.mostrarConfirmar = !this.mostrarConfirmar;
   }
 }

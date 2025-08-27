@@ -1,16 +1,34 @@
 <div class="page-wrapper">
   <div class="login-container">
     <h2>{{ "USER_TEXT.INICIAR_SESION" | translate }}</h2>
+
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <label for="correo">{{ "USER_TEXT.CORREO_ELECTRONICO" | translate }}</label>
-      <input id="correo" formControlName="correo" type="email" required />
+      <div class="form-group">
+        <label for="correo">{{ "USER_TEXT.CORREO_ELECTRONICO" | translate }}</label>
+        <input id="correo" formControlName="correo" type="email" class="input-field" />
+      </div>
 
-      <label for="contraseña">{{ "USER_TEXT.CONTRASENA" | translate }}</label>
-      <input id="contraseña" formControlName="contraseña" type="password" required />
+      <div class="form-group password-group">
+        <label for="contraseña">{{ "USER_TEXT.CONTRASENA" | translate }}</label>
+        <input
+          id="contraseña"
+          [type]="mostrarPassword ? 'text' : 'password'"
+          formControlName="contraseña"
+          class="input-field"
+        />
+        <span class="toggle-icon" (click)="togglePasswordVisibility()">
+          <i [class]="mostrarPassword ? 'fa fa-eye-slash' : 'fa fa-eye'"></i>
+        </span>
+      </div>
 
-      <button type="submit" [disabled]="loginForm.invalid">{{ "USER_TEXT.INICIAR_SESION" | translate }}</button>
+      <button type="submit" [disabled]="loginForm.invalid" class="btn-login">
+        {{ "USER_TEXT.INICIAR_SESION" | translate }}
+      </button>
     </form>
 
-    <p>{{ "USER_TEXT.NO_TIENES_CUENTA" | translate }} <a routerLink="/user-create">{{ "USER_TEXT.CREAR_CUENTA" | translate }}</a></p>
+    <p class="register-link">
+      {{ "USER_TEXT.NO_TIENES_CUENTA" | translate }}
+      <a routerLink="/user-create">{{ "USER_TEXT.CREAR_CUENTA" | translate }}</a>
+    </p>
   </div>
 </div>
