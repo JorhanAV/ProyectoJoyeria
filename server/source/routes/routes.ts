@@ -67,7 +67,8 @@ export class AppRoutes {
     router.use("/file/", ImageRoutes.routes);
     
     router.use("/reporte", ReporteRoutes.routes);
-
+    
+    router.use("/etiqueta", EtiquetaRoutes.routes);
     return router;
   }
 }

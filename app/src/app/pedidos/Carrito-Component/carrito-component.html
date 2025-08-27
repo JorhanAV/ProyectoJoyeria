@@ -104,6 +104,7 @@
       name="direccion"
       [(ngModel)]="direccion_envio"
       required
+      onchange="updateDireccionEnvio()"
     />
     <div *ngIf="form.submitted && !direccion_envio" class="error">
       {{ 'CARRITO_TEXT.DIRECCION_OBLIGATORIA' | translate }}

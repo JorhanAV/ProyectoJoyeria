@@ -172,15 +172,17 @@ export class ReporteVentas implements OnInit {
       title: { text: 'Ventas por mes (items)' },
       data: this.ventasMes,
       series: [{
-        type: 'column',
+        type: 'bar',
         xKey: 'name',
         yKey: 'value',
-        yName: 'Cantidad'
+        yName: 'Cantidad',
+        marker: { enabled: true, shape: 'circle', size: 6 },
+        strokeWidth: 3
       }],
       axes: [
-        { type: 'category', position: 'bottom' },
-        { type: 'number', position: 'left' },
-      ],
+  { type: 'category', position: 'bottom', title: { text: 'Mes' } },
+  { type: 'number', position: 'left', title: { text: 'Cantidad' } },
+],
       legend: { enabled: false },
     };
   }

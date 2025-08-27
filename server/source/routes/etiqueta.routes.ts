@@ -16,7 +16,6 @@ export class EtiquetaRoutes {
       authorizeRoles(Rol.ADMIN),
       controller.getById
     );
-
     //Crear
     router.post(
       "/",
