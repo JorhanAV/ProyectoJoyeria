@@ -28,7 +28,7 @@
       <mat-icon class="arrow-icon">arrow_drop_down</mat-icon>
     </a>
     } @if(currentUser()?.rol === 'ADMIN'){
-    <a routerLink="/reporte-ventas">Reportes</a>
+    <a routerLink="/reporte-ventas">{{"MENU_TEXT.REPORTES" |translate}}</a>
 
     }
     <a routerLink="/acercade">{{ 'MENU_TEXT.ACERCA_DE' | translate }}</a>
@@ -65,7 +65,11 @@
         <span>{{'PERSONALIZACION_TEXT.ATRIBUTOS_PERSONALIZACION' | translate }}</span>
       </button>
       <button mat-menu-item routerLink="/etiquetas-admin">
-        <span>Etiquetas</span>
+        <span>{{"ETIQUETA_TEXT.ETIQUETAS" |translate}}</span>
+      </button>
+
+      <button mat-menu-item routerLink="/user-admin">
+        <span>{{ 'MENU_TEXT.USUARIOS' | translate }}</span>
       </button>
       <!-- agrega más <button mat-menu-item> según necesites -->
     </mat-menu>
@@ -94,10 +98,19 @@
         <mat-icon>login</mat-icon>
         <span>Login</span>
       </button>
+      
       } @else {
       <button mat-menu-item (click)="logout()">
         <mat-icon>logout</mat-icon>
         <span>Logout</span>
+      </button>
+      <button mat-menu-item routerLink="/user-profile">
+        <mat-icon>manage_accounts</mat-icon>
+        <span>Actualizar perfil</span>
+      </button>
+      <button mat-menu-item routerLink="/user-pass">
+        <mat-icon>lock_reset</mat-icon>
+        <span>Restablecer contraseña</span>
       </button>
       }
     </mat-menu>

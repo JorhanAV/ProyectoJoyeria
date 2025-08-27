@@ -10,10 +10,8 @@ export class UsuarioController {
 
   get = async (request: Request, response: Response, next: NextFunction) => {
     try {
-      //Obtener todas las resenas incluyendo el usuario, 
-      const usuario = await this.prisma.usuario.findMany({
-        
-      });
+      //Obtener todas las resenas incluyendo el usuario,
+      const usuario = await this.prisma.usuario.findMany({});
       response.json(usuario);
     } catch (error) {
       next(error);
@@ -96,6 +94,84 @@ export class UsuarioController {
     try {
       const usuario = req.user as Usuario;
       res.json(usuario);
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  update = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const idUsuario = parseInt(req.params.id);
+      const { nombre_usuario, correo, rol } = req.body;
+
+      const usuarioExistente = await this.prisma.usuario.findUnique({
+        where: { id: idUsuario },
+      });
+
+      const usuarioActualizado = await this.prisma.usuario.update({
+        where: { id: idUsuario },
+        data: {
+          nombre_usuario,
+          correo,
+          rol
+        },
+        select: {
+          id: true,
+          nombre_usuario: true,
+          correo: true,
+          rol: true,
+        },
+      });
+
+      res.json({
+        success: true,
+        message: "Perfil actualizado",
+        data: usuarioActualizado,
+      });
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  cambiarContrasena = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<void> => {
+    try {
+      const idUsuario = parseInt(req.params.id);
+      const { actual, nueva } = req.body;
+
+      const usuario = await this.prisma.usuario.findUnique({
+        where: { id: idUsuario },
+      });
+
+      if (!usuario) {
+        res
+          .status(404)
+          .json({ success: false, message: "Usuario no encontrado" });
+        return;
+      }
+
+      const esValida = await bcrypt.compare(actual, usuario.contraseña);
+      if (!esValida) {
+        res
+          .status(400)
+          .json({ success: false, message: "Contraseña actual incorrecta" });
+        return;
+      }
+
+      const nuevaHash = await bcrypt.hash(nueva, 10);
+
+      await this.prisma.usuario.update({
+        where: { id: idUsuario },
+        data: { contraseña: nuevaHash },
+      });
+
+      res.json({
+        success: true,
+        message: "Contraseña actualizada correctamente",
+      });
     } catch (error) {
       next(error);
     }

@@ -6,6 +6,7 @@ export class UsuarioRoutes {
   static get routes(): Router {
     const router = Router();
     const controller = new UsuarioController();
+
     router.get("/profile", authenticateJWT, controller.userAuth);
 
     //localhost:3000/usuario/
@@ -16,6 +17,10 @@ export class UsuarioRoutes {
     router.post("/login", controller.login);
     //Crear
     router.post("/register", controller.register);
+
+    router.put("/:id", controller.update);
+
+    router.put("/:id/password", controller.cambiarContrasena);
 
     return router;
   }
