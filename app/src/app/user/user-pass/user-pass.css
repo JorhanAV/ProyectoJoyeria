@@ -86,3 +86,46 @@ body {
   padding: 0;
   box-sizing: border-box;
 }
+
+.password-group {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 12px 14px;
+  padding-right: 40px; /* espacio para el ícono */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.input-field:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+  outline: none;
+}
+
+.toggle-icon {
+  position: absolute;
+  top: 55%;
+  right: 12px;
+  transform: translateY(-70%);
+  cursor: pointer;
+  color: #888;
+  font-size: 1.2rem;
+  transition: color 0.3s ease;
+}
+
+.toggle-icon:hover {
+  color: #007bff;
+}
+
+.error {
+  color: #d32f2f;
+  font-size: 0.85rem;
+  margin-top: 6px;
+  display: block;
+}

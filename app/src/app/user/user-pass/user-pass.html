@@ -3,17 +3,31 @@
     <h2>{{ 'USER_TEXT.TITULO_RESTABLECER' | translate }}</h2>
 
     <form [formGroup]="passForm" (ngSubmit)="guardar()">
-      <div class="form-group">
+      <div class="form-group password-group">
         <label>{{ 'USER_TEXT.CONTRASENA_ACTUAL' | translate }}</label>
-        <input type="password" formControlName="actual" class="input-field" />
+        <input
+          [type]="mostrarActual ? 'text' : 'password'"
+          formControlName="actual"
+          class="input-field"
+        />
+        <span class="toggle-icon" (click)="toggleActual()">
+          <i [class]="mostrarActual ? 'fa fa-eye-slash' : 'fa fa-eye'"></i>
+        </span>
         <div class="error" *ngIf="errorActualIncorrecta">
           La contraseña actual es incorrecta
         </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-group password-group">
         <label>{{ 'USER_TEXT.NUEVA_CONTRASENA' | translate }}</label>
-        <input type="password" formControlName="nueva" class="input-field" />
+        <input
+          [type]="mostrarNueva ? 'text' : 'password'"
+          formControlName="nueva"
+          class="input-field"
+        />
+        <span class="toggle-icon" (click)="toggleNueva()">
+          <i [class]="mostrarNueva ? 'fa fa-eye-slash' : 'fa fa-eye'"></i>
+        </span>
         <div
           class="error"
           *ngIf="passForm.get('nueva')?.errors?.['weakPassword'] && passForm.get('nueva')?.touched"
@@ -23,13 +37,16 @@
         </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-group password-group">
         <label>{{ 'USER_TEXT.CONFIRMAR_CONTRASENA' | translate }}</label>
         <input
-          type="password"
+          [type]="mostrarConfirmar ? 'text' : 'password'"
           formControlName="confirmar"
           class="input-field"
         />
+        <span class="toggle-icon" (click)="toggleConfirmar()">
+          <i [class]="mostrarConfirmar ? 'fa fa-eye-slash' : 'fa fa-eye'"></i>
+        </span>
         <div class="error" *ngIf="passForm.errors?.['noCoincide']">
           Las contraseñas no coinciden
         </div>
