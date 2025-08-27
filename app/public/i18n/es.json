@@ -198,7 +198,12 @@
     "CONTRASENA_MIN_LENGTH": "La contraseña debe tener al menos 6 caracteres.",
     "CONTRASENA_DEBE_INCLUIR": "La contraseña debe incluir mayúsculas, minúsculas, números y un carácter especial.",
     "CONFIRMAR_CONTRASENA_OBLIGATORIA": "Debes confirmar la contraseña.",
-    "CONTRASENA_NO_COINCIDEN": "Las contraseñas no coinciden."
+    "CONTRASENA_NO_COINCIDEN": "Las contraseñas no coinciden.",
+    "ACTUALIZAR_PERFIL_TITULO": "Perfil Actualizado",
+    "ACTUALIZAR_PERFIL_MENSAJE": "El perfil ha sido actualizado correctamente.",
+    "TITULO": "Actualizar perfil",
+    "CORREO": "Correo electrónico",
+    "GUARDAR": "Guardar cambios"
   },
 
   "CARRITO_TEXT": {

@@ -17,6 +17,8 @@ export class UsuarioRoutes {
     //Crear
     router.post("/register", controller.register);
 
+    router.put("/:id", controller.update);
+
     return router;
   }
 }

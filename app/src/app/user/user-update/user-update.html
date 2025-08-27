@@ -1,0 +1,15 @@
+<div class="perfil-container" *ngIf="perfilForm">
+  <h2>{{ 'USER_TEXT.TITULO' | translate }}</h2>
+
+  <form [formGroup]="perfilForm" (ngSubmit)="guardar()">
+    <label>{{ 'USER_TEXT.NOMBRE_USUARIO' | translate }}</label>
+    <input type="text" formControlName="nombre_usuario" />
+
+    <label>{{ 'USER_TEXT.CORREO' | translate }}</label>
+    <input type="email" formControlName="correo" />
+
+    <button type="submit" [disabled]="perfilForm.invalid">
+      {{ 'USER_TEXT.GUARDAR' | translate }}
+    </button>
+  </form>
+</div>

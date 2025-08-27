@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "../../generated/prisma";
 import { Request, Response, NextFunction } from "express";
 
 export class EtiquetaController {

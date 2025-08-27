@@ -100,4 +100,38 @@ export class UsuarioController {
       next(error);
     }
   };
+
+  update = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const idUsuario = parseInt(req.params.id);
+      const { nombre_usuario, correo } = req.body;
+
+      const usuarioExistente = await this.prisma.usuario.findUnique({
+        where: { id: idUsuario },
+      });
+
+      
+      const usuarioActualizado = await this.prisma.usuario.update({
+        where: { id: idUsuario },
+        data: {
+          nombre_usuario,
+          correo,
+        },
+        select: {
+          id: true,
+          nombre_usuario: true,
+          correo: true,
+          rol: true,
+        },
+      });
+
+      res.json({
+        success: true,
+        message: "Perfil actualizado",
+        data: usuarioActualizado,
+      });
+    } catch (error) {
+      next(error);
+    }
+  };
 }
