@@ -9,7 +9,6 @@ import { AgCharts } from 'ag-charts-angular';
 import { ReporteVentas } from './Reporte-ventas/reporte-ventas';
 import { AgChartsModule } from 'ag-charts-angular';
 import { FormsModule } from '@angular/forms';
-import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [ReporteVentas],
@@ -21,7 +20,6 @@ import { TranslateModule } from '@ngx-translate/core';
     MatSelectModule,
     AgCharts,
     AgChartsModule,
-    TranslateModule,
     FormsModule
   ],
 })
