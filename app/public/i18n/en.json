@@ -210,8 +210,14 @@
     "GUARDAR": "Save Changes",
     "TIPO_USUARIO": "User Type",
     "ROL_ADMIN": "Administrator",
-    "ROL_CLIENTE": "Customer"
-
+    "ROL_CLIENTE": "Customer",
+    "TITULO_RESTABLECER": "Reset Password",
+    "CONTRASENA_ACTUAL": "Current Password",
+    "NUEVA_CONTRASENA": "New Password",
+    "GUARDAR_CAMBIOS": "Save Changes",
+    "ERROR_CONTRASENA_INCORRECTA": "Current password is incorrect",
+    "ERROR_CONTRASENA_NO_COINCIDE": "Passwords do not match",
+    "CONTRASENA_ACTUAL_INCORRECTA": "Current password is incorrect"
   },
   "CARRITO_TEXT": {
     "CLIENTE": "Customer",

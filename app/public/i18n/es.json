@@ -207,7 +207,15 @@
     "GUARDAR": "Guardar cambios",
     "TIPO_USUARIO": "Tipo de usuario",
     "ROL_ADMIN": "Administrador",
-    "ROL_CLIENTE": "Cliente"
+    "ROL_CLIENTE": "Cliente",
+    "TITULO_RESTABLECER": "Restablecer contraseña",
+    "CONTRASENA_ACTUAL": "Contraseña actual",
+    "NUEVA_CONTRASENA": "Nueva contraseña",
+    "GUARDAR_CAMBIOS": "Guardar cambios",
+    "ERROR_CONTRASENA_INCORRECTA": "La contraseña actual es incorrecta",
+    "ERROR_CONTRASENA_NO_COINCIDE": "Las contraseñas no coinciden",
+    "CONTRASENA_ACTUAL_INCORRECTA": "La contraseña actual está incorrecta."
+
   },
 
   "CARRITO_TEXT": {

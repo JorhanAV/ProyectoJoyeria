@@ -102,7 +102,7 @@ export class UsuarioController {
   update = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const idUsuario = parseInt(req.params.id);
-      const { nombre_usuario, correo } = req.body;
+      const { nombre_usuario, correo, rol } = req.body;
 
       const usuarioExistente = await this.prisma.usuario.findUnique({
         where: { id: idUsuario },
@@ -113,6 +113,7 @@ export class UsuarioController {
         data: {
           nombre_usuario,
           correo,
+          rol
         },
         select: {
           id: true,
