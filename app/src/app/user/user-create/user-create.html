@@ -17,9 +17,13 @@
       @if (registerForm.get('nombre_usuario')?.touched &&
       registerForm.get('nombre_usuario')?.invalid) { @if
       (registerForm.get('nombre_usuario')?.errors?.['required']) {
-      <small class="error">{{ "USER_TEXT.NOMBRE_USUARIO_OBLIGATORIO" | translate }}</small>
+      <small class="error"
+        >{{ "USER_TEXT.NOMBRE_USUARIO_OBLIGATORIO" | translate }}</small
+      >
       } @if (registerForm.get('nombre_usuario')?.errors?.['minlength']) {
-      <small class="error">{{ "USER_TEXT.NOMBRE_USUARIO_MIN_LENGTH" | translate }}</small>
+      <small class="error"
+        >{{ "USER_TEXT.NOMBRE_USUARIO_MIN_LENGTH" | translate }}</small
+      >
       } }
 
       <!-- Correo electrónico -->
@@ -30,12 +34,22 @@
       @if (registerForm.get('correo')?.touched &&
       registerForm.get('correo')?.invalid) { @if
       (registerForm.get('correo')?.errors?.['required']) {
-      <small class="error">{{ "USER_TEXT.CORREO_OBLIGATORIO" | translate }}</small>
+      <small class="error"
+        >{{ "USER_TEXT.CORREO_OBLIGATORIO" | translate }}</small
+      >
       } @if (registerForm.get('correo')?.errors?.['email']) {
       <small class="error">{{ "USER_TEXT.CORREO_INVALIDO" | translate }}</small>
       } @if (registerForm.get('correo')?.errors?.['invalidEmail']) {
-      <small class="error">{{ "USER_TEXT.CORREO_INVALIDO_FORMATO" | translate }}</small>
+      <small class="error"
+        >{{ "USER_TEXT.CORREO_INVALIDO_FORMATO" | translate }}</small
+      >
       } }
+      <div
+        class="error"
+        *ngIf="registerForm.get('correo')?.errors?.['emailExists']"
+      >
+       {{'USER_TEXT.CORREO_YA_REGISTRADO' | translate}}
+      </div>
 
       <!-- Contraseña -->
       <label for="contraseña">{{ "USER_TEXT.CONTRASENA" | translate }}</label>
@@ -48,10 +62,14 @@
       @if (registerForm.get('contraseña')?.touched &&
       registerForm.get('contraseña')?.invalid) { @if
       (registerForm.get('contraseña')?.errors?.['required']) {
-      <small class="error">{{ "USER_TEXT.CONTRASENA_OBLIGATORIA" | translate }}</small>
+      <small class="error"
+        >{{ "USER_TEXT.CONTRASENA_OBLIGATORIA" | translate }}</small
+      >
 
       } @if (registerForm.get('contraseña')?.errors?.['minlength']) {
-      <small class="error">{{ "USER_TEXT.CONTRASENA_MIN_LENGTH" | translate }}</small>
+      <small class="error"
+        >{{ "USER_TEXT.CONTRASENA_MIN_LENGTH" | translate }}</small
+      >
       } @if (registerForm.get('contraseña')?.errors?.['weakPassword']) {
       <small class="error"
         >{{ "USER_TEXT.CONTRASENA_DEBE_INCLUIR" | translate }}</small
@@ -71,13 +89,17 @@
       @if (registerForm.get('confirmarContraseña')?.touched &&
       registerForm.get('confirmarContraseña')?.invalid) { @if
       (registerForm.get('confirmarContraseña')?.errors?.['required']) {
-      <small class="error">{{ "USER_TEXT.CONFIRMAR_CONTRASENA_OBLIGATORIA" | translate }}</small>
+      <small class="error"
+        >{{ "USER_TEXT.CONFIRMAR_CONTRASENA_OBLIGATORIA" | translate }}</small
+      >
       } }
 
       <!-- Validación cruzada -->
       @if (registerForm.errors?.['passwordMismatch'] &&
       registerForm.get('confirmarContraseña')?.touched) {
-      <small class="error">{{ "USER_TEXT.CONTRASENA_NO_COINCIDEN" | translate }}</small>
+      <small class="error"
+        >{{ "USER_TEXT.CONTRASENA_NO_COINCIDEN" | translate }}</small
+      >
       }
 
       <button type="submit" [disabled]="registerForm.invalid">

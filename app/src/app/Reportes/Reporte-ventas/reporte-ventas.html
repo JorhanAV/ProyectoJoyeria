@@ -5,36 +5,29 @@
       <div class="kpi-title">Items vendidos (rango días)</div>
       <div class="kpi-value">{{ kpi.totalItemsEnRango | number }}</div>
       <div class="kpi-sub">Promedio diario: {{ kpi.promedioDiario | number:'1.0-2' }}</div>
+    </div>
 
+    <div class="kpi">
+      <div class="kpi-title">Items vendidos (mes)</div>
+      <div class="kpi-value">{{ kpi.totalMensual | number }}</div>
+      <div class="kpi-sub">Mes: {{ mes }}/{{ anio }}</div>
     </div>
-    <button class="btn" (click)="onAplicarFiltrosRango()">
-      {{ 'DASHBOARD.APLICAR' | translate }}
-    </button>
-  </div>
 
-  <div class="filtro-card">
-    <h4>{{ 'DASHBOARD.FILTRO_MES_ANIO_ESTADO' | translate }}</h4>
-    <div class="row">
-      <label>{{ 'DASHBOARD.ANIO' | translate }}</label>
-      <input type="number" [(ngModel)]="anio" min="2000" max="2100" />
+    <div class="kpi">
+      <div class="kpi-title">Pedidos: {{ estado }}</div>
+      <div class="kpi-value">{{ kpi.estadoSeleccionadoTotal | number }}%</div>
+      <div class="kpi-sub">% sobre total: {{ kpi.porcentajeEstadoVsTotal | number:'1.0-2' }}%</div>
     </div>
-    <div class="row">
-      <label>{{ 'DASHBOARD.MES' | translate }}</label>
-      <select [(ngModel)]="mes">
-        <option *ngFor="let m of meses" [value]="m.value">{{ m.label }}</option>
-      </select>
+
+    <div class="kpi">
+      <div class="kpi-title">Total pedidos (mes)</div>
+      <div class="kpi-value">{{ kpi.totalPedidos | number }}</div>
+      <div class="kpi-sub">Distribución por estado</div>
     </div>
-    <div class="row">
-      <label>{{ 'DASHBOARD.ESTADO' | translate }}</label>
-      <select [(ngModel)]="estado">
-        <option *ngFor="let e of estados" [value]="e">{{ e }}</option>
-      </select>
-    </div>
-    <button class="btn" (click)="onAplicarFiltrosMes()">
-      {{ 'DASHBOARD.APLICAR' | translate }}
-    </button>
-  </div>
-</section>
+  </section>
+<br><br><br><br>
+  <!-- SECCIÓN DE GRÁFICOS -->
+  <section class="charts">
 
     <mat-card class="chart-card">
       <div class="filtro-card">
@@ -103,84 +96,46 @@
       </mat-card-content>
     </mat-card>
 
-  <div class="kpi">
-    <div class="kpi-title">{{ 'DASHBOARD.TOTAL_PEDIDOS_MES' | translate }}</div>
-    <div class="kpi-value">{{ kpi.totalPedidos | number }}</div>
-    <div class="kpi-sub">{{ 'DASHBOARD.DISTRIBUCION_ESTADO' | translate }}</div>
-  </div>
-</section>
+  </section>
+<br><br><br><br>
+  <!-- SECCIÓN DE LISTAS: Top productos + Últimas reseñas -->
+  <section class="lists">
 
-<!-- CHARTS SECTION -->
-<section class="charts">
-  <mat-card class="chart-card">
-    <mat-card-header>
-      <mat-card-title>{{ 'DASHBOARD.GRAFICO_VENTAS_DIA' | translate }}</mat-card-title>
-      <mat-card-subtitle>{{ 'DASHBOARD.SUBTITULO_VENTAS_DIA' | translate }}</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content class="content-graph">
-      <div class="chart-container">
-        <ag-charts *ngIf="chartVentasDia" [options]="chartVentasDia"></ag-charts>
-      </div>
-    </mat-card-content>
-  </mat-card>
-
-  <mat-card class="chart-card">
-    <mat-card-header>
-      <mat-card-title>{{ 'DASHBOARD.GRAFICO_VENTAS_MES' | translate }}</mat-card-title>
-      <mat-card-subtitle>{{ 'DASHBOARD.SUBTITULO_VENTAS_MES' | translate }}</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content class="content-graph">
-      <div class="chart-container">
-        <ag-charts *ngIf="chartVentasMes" [options]="chartVentasMes"></ag-charts>
-      </div>
-    </mat-card-content>
-  </mat-card>
-
-  <mat-card class="chart-card">
-    <mat-card-header>
-      <mat-card-title>{{ 'DASHBOARD.GRAFICO_PEDIDOS_ESTADO' | translate }}</mat-card-title>
-      <mat-card-subtitle>{{ 'DASHBOARD.SUBTITULO_PEDIDOS_ESTADO' | translate }}</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content class="content-graph">
-      <div class="chart-container">
-        <ag-charts *ngIf="chartPedidosEstado" [options]="chartPedidosEstado"></ag-charts>
-      </div>
-    </mat-card-content>
-  </mat-card>
-</section>
-
-<!-- LISTS SECTION -->
-<section class="lists">
-  <div class="card">
-    <h3>{{ 'DASHBOARD.TOP_PRODUCTOS' | translate }} ({{ mes }}/{{ anio }})</h3>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>{{ 'DASHBOARD.PRODUCTO' | translate }}</th>
-          <th>{{ 'DASHBOARD.CANTIDAD' | translate }}</th>
-          <th>{{ 'DASHBOARD.PORCENTAJE_TOP' | translate }}</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let p of topProductos">
-          <td>{{ p.name }}</td>
-          <td>{{ p.value }}</td>
-          <td>{{ getPorcentajeProducto(p) | number:'1.0-2' }}%</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="card">
-    <h3>{{ 'DASHBOARD.ULTIMAS_RESEÑAS' | translate }}</h3>
-    <div class="resena" *ngFor="let r of ultimasResenas">
-      <div class="resena-head">
-        <strong>{{ r.usuario?.nombre_usuario }}</strong>
-        <span class="pill">{{ r.producto?.nombre }}</span>
-        <span class="stars">★ {{ r.valoracion }}</span>
-      </div>
-      <div class="resena-body">{{ r.comentario }}</div>
-      <div class="resena-foot">{{ r.fecha | date:'yyyy-MM-dd HH:mm' }}</div>
+    <!-- Top Productos -->
+    <div class="card">
+      <h3>Top 3 productos ({{ mes }}/{{ anio }})</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>% sobre top</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of topProductos">
+            <td>{{ p.name }}</td>
+            <td>{{ p.value }}</td>
+            <td>{{ getPorcentajeProducto(p) | number:'1.0-2' }}%</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-  </div>
-</section>
+
+    <!-- Últimas reseñas -->
+    <div class="card">
+      <h3>Últimas 3 reseñas</h3>
+      <div class="resena" *ngFor="let r of ultimasResenas">
+        <div class="resena-head">
+          <strong>{{ r.usuario?.nombre_usuario }}</strong>
+          <span class="pill">{{ r.producto?.nombre }}</span>
+          <span class="stars">★ {{ r.valoracion }}</span>
+        </div>
+        <div class="resena-body">{{ r.comentario }}</div>
+        <div class="resena-foot">{{ r.fecha | date:'yyyy-MM-dd HH:mm' }}</div>
+      </div>
+    </div>
+
+  </section>
+
+</div>

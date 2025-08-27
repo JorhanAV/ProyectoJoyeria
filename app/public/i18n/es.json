@@ -173,7 +173,8 @@
     "RESENAS": "Reseñas",
     "PEDIDOS": "Pedidos",
     "PROMOCIONES": "Promociones",
-    "REPORTES": "Reportes"
+    "REPORTES": "Reportes",
+    "USUARIOS": "Usuarios"
   },
 
   "USER_TEXT": {
@@ -198,7 +199,24 @@
     "CONTRASENA_MIN_LENGTH": "La contraseña debe tener al menos 6 caracteres.",
     "CONTRASENA_DEBE_INCLUIR": "La contraseña debe incluir mayúsculas, minúsculas, números y un carácter especial.",
     "CONFIRMAR_CONTRASENA_OBLIGATORIA": "Debes confirmar la contraseña.",
-    "CONTRASENA_NO_COINCIDEN": "Las contraseñas no coinciden."
+    "CONTRASENA_NO_COINCIDEN": "Las contraseñas no coinciden.",
+    "ACTUALIZAR_PERFIL_TITULO": "Perfil Actualizado",
+    "ACTUALIZAR_PERFIL_MENSAJE": "El perfil ha sido actualizado correctamente.",
+    "TITULO": "Actualizar perfil",
+    "CORREO": "Correo electrónico",
+    "GUARDAR": "Guardar cambios",
+    "TIPO_USUARIO": "Tipo de usuario",
+    "ROL_ADMIN": "Administrador",
+    "ROL_CLIENTE": "Cliente",
+    "TITULO_RESTABLECER": "Restablecer contraseña",
+    "CONTRASENA_ACTUAL": "Contraseña actual",
+    "NUEVA_CONTRASENA": "Nueva contraseña",
+    "GUARDAR_CAMBIOS": "Guardar cambios",
+    "ERROR_CONTRASENA_INCORRECTA": "La contraseña actual es incorrecta",
+    "ERROR_CONTRASENA_NO_COINCIDE": "Las contraseñas no coinciden.",
+    "CONTRASENA_ACTUAL_INCORRECTA": "La contraseña actual está incorrecta.",
+    "CORREO_YA_REGISTRADO": "Este correo ya está registrado."
+
   },
 
   "CARRITO_TEXT": {

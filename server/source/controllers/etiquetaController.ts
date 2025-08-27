@@ -1,41 +1,79 @@
-import { PrismaClient } from "@prisma/client";
 import { Request, Response, NextFunction } from "express";
+import { PrismaClient } from "../../generated/prisma";
 
 export class EtiquetaController {
   prisma = new PrismaClient();
 
-  // Obtener todas las etiquetas
   get = async (request: Request, response: Response, next: NextFunction) => {
     try {
+
       const etiquetas = await this.prisma.etiqueta.findMany({
         orderBy: { nombre: "asc" },
       });
+
       response.json(etiquetas);
     } catch (error) {
       next(error);
     }
   };
+  
+  //Obtener por Id
+  getById = async (
+  request: Request,
+  response: Response,
+  next: NextFunction
+) => {
+  try {
+    const idEtiqueta = parseInt(request.params.id);
 
-  // Obtener etiqueta por ID
-  getById = async (request: Request, response: Response, next: NextFunction) => {
+    // Buscamos la etiqueta principal
+    const etiqueta = await this.prisma.etiqueta.findUnique({
+      where: { id: idEtiqueta },
+    });
+
+    if (!etiqueta) {
+      response.status(404).json({ message: 'Etiqueta no encontrada' });
+    }
+
+    // Traemos los productos relacionados a través de la tabla intermedia
+    const productosRelacionados = await this.prisma.productoEtiqueta.findMany({
+      where: { etiqueta_id: idEtiqueta },
+      include: {
+        producto: {
+          select: {
+            id: true,
+            nombre: true,
+            descripcion: true, // si querés mantener la misma estructura que promociones
+          },
+        },
+      },
+    });
+
+    // Extraemos los productos
+    const productos = productosRelacionados.map((pe) => pe.producto);
+
+    // Devolvemos la etiqueta junto con los productos
+    response.json({
+      ...etiqueta,
+      productos,
+    });
+  } catch (error: any) {
+    next(error);
+  }
+};
+
+  //Crear
+  create = async (request: Request, response: Response, next: NextFunction) => {
     try {
-      const idEtiqueta = parseInt(request.params.id);
-      const etiqueta = await this.prisma.etiqueta.findUnique({
-        where: { id: idEtiqueta },
-        select: {
-          id: true,
-          nombre: true,
+      const { nombre } = request.body;
+
+      const etiqueta = await this.prisma.etiqueta.create({
+        data: {
+          nombre,
           productos: {
-            select: {
-              producto: {
-                select: {
-                  id: true,
-                  nombre: true,
-                  descripcion: true,
-                  precio_base: true,
-                },
-              },
-            },
+            create: request.body.productosIds.map((item: { id: number }) => ({
+              producto: { connect: { id: item.id } },
+            })),
           },
         },
       });
@@ -47,53 +85,37 @@ export class EtiquetaController {
     }
   };
 
-  // Crear etiqueta
-  async create(req: Request, res: Response) {
-    try {
-      const { nombre, productosIds } = req.body;
-
-      const nuevaEtiqueta = await this.prisma.etiqueta.create({
-        data: {
-          nombre,
-          productos: productosIds
-            ? {
-                connect: productosIds.map((id: number) => ({ id })),
-              }
-            : undefined,
-        },
-        include: { productos: true },
-      });
-      res.json(nuevaEtiqueta);
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: "Error al crear etiqueta" });
-    }
-  }
-
   // Actualizar etiqueta y sus productos
-  async update(req: Request, res: Response) {
+  update = async (request: Request, response: Response, next: NextFunction) => {
     try {
-      const { id } = req.params;
-      const { nombre, productosIds } = req.body;
+      const idEtiqueta = parseInt(request.params.id);
+      const { nombre, productosIds } = request.body;
 
-      const etiquetaActualizada = await this.prisma.etiqueta.update({
-        where: { id: Number(id) },
+      // Mapear [{id:1}, {id:3}] a [1,3]
+      const productoIds = productosIds
+        ? productosIds.map((p: { id: number }) => p.id)
+        : [];
+
+      const createProductos = productoIds.map((productoId: number) => ({
+        producto: { connect: { id: productoId } },
+      }));
+
+      const etiqueta = await this.prisma.etiqueta.update({
+        where: { id: idEtiqueta },
         data: {
           nombre,
-          productos: productosIds
-            ? {
-                set: productosIds.map((id: number) => ({ id })), // 🔄 Reemplaza relaciones
-              }
-            : undefined,
+          productos: {
+            deleteMany: {}, // elimina todas las relaciones existentes
+            create: createProductos, // crea las nuevas
+          },
         },
         include: { productos: true },
       });
 
-      res.json(etiquetaActualizada);
+      response.json(etiqueta);
     } catch (error) {
       console.error(error);
-      res.status(500).json({ error: "Error al actualizar etiqueta" });
+      next(error);
     }
-  }
-
+  };
 }

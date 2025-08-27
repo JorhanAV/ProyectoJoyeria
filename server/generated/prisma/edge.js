@@ -348,7 +348,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Angular\\ProyectoJoyeria\\server\\generated\\prisma",
+      "value": "D:\\UTN\\XI Cuatrimestre\\ProyectoJoyeria\\server\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -362,7 +362,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Angular\\ProyectoJoyeria\\server\\prisma\\schema.prisma",
+    "sourceFilePath": "D:\\UTN\\XI Cuatrimestre\\ProyectoJoyeria\\server\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -376,6 +376,7 @@ const config = {
     "db"
   ],
   "activeProvider": "mysql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {

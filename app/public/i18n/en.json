@@ -176,7 +176,8 @@
     "RESENAS": "Reviews",
     "PEDIDOS": "Orders",
     "PROMOCIONES": "Promotions",
-    "REPORTES": "Reports"
+    "REPORTES": "Reports",
+    "USUARIOS": "Users"
   },
 
   "USER_TEXT": {
@@ -201,7 +202,23 @@
     "CONTRASENA_MIN_LENGTH": "Password must be at least 6 characters long.",
     "CONTRASENA_DEBE_INCLUIR": "Password must include uppercase, lowercase, numbers, and a special character.",
     "CONFIRMAR_CONTRASENA_OBLIGATORIA": "Confirm Password is required.",
-    "CONTRASENA_NO_COINCIDEN": "Passwords do not match."
+    "CONTRASENA_NO_COINCIDEN": "Passwords do not match.",
+    "ACTUALIZAR_PERFIL_TITULO": "Profile Updated",
+    "ACTUALIZAR_PERFIL_MENSAJE": "The profile has been updated successfully.",
+    "TITULO": "Update Profile",
+    "CORREO": "Email",
+    "GUARDAR": "Save Changes",
+    "TIPO_USUARIO": "User Type",
+    "ROL_ADMIN": "Administrator",
+    "ROL_CLIENTE": "Customer",
+    "TITULO_RESTABLECER": "Reset Password",
+    "CONTRASENA_ACTUAL": "Current Password",
+    "NUEVA_CONTRASENA": "New Password",
+    "GUARDAR_CAMBIOS": "Save Changes",
+    "ERROR_CONTRASENA_INCORRECTA": "Current password is incorrect",
+    "ERROR_CONTRASENA_NO_COINCIDE": "Passwords do not match",
+    "CONTRASENA_ACTUAL_INCORRECTA": "Current password is incorrect",
+    "CORREO_YA_REGISTRADO": "This email is already registered."
   },
   "CARRITO_TEXT": {
     "CLIENTE": "Customer",
