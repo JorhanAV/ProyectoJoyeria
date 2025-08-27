@@ -214,7 +214,8 @@
     "GUARDAR_CAMBIOS": "Guardar cambios",
     "ERROR_CONTRASENA_INCORRECTA": "La contraseña actual es incorrecta",
     "ERROR_CONTRASENA_NO_COINCIDE": "Las contraseñas no coinciden.",
-    "CONTRASENA_ACTUAL_INCORRECTA": "La contraseña actual está incorrecta."
+    "CONTRASENA_ACTUAL_INCORRECTA": "La contraseña actual está incorrecta.",
+    "CORREO_YA_REGISTRADO": "Este correo ya está registrado."
 
   },
 

@@ -11,7 +11,9 @@ import { TranslateService } from '@ngx-translate/core';
 import {
   passwordStrengthValidator,
   customEmailValidator,
+  emailExistsValidator,
 } from '../../share/custom-validators';
+import { UsuarioService } from '../../share/services/usuario.service';
 
 
 @Component({
@@ -27,13 +29,13 @@ export class UserCreate {
     private fb: FormBuilder,
     private authService: AuthenticationService,
     private notificationService: NotificationService,
-    private translate: TranslateService
-    
+    private translate: TranslateService,
+    private userService: UsuarioService
   ) {
     this.registerForm = this.fb.group(
       {
         nombre_usuario: ['', [Validators.required, Validators.minLength(3)]],
-        correo: ['', [Validators.required, Validators.email, customEmailValidator]],
+        correo: ['', [Validators.required, Validators.email, customEmailValidator], [emailExistsValidator(this.userService)]],
         contraseña: ['', [Validators.required, Validators.minLength(6), passwordStrengthValidator]],
         confirmarContraseña: ['', Validators.required],
         rol: ['CLIENTE', Validators.required],

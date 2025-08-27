@@ -17,4 +17,8 @@ export class UsuarioService extends BaseAPI<UsuarioModel> {
     return this.http.put(`${environment.apiURL}/usuario/${id}/password`, { actual, nueva });
   }
 
+  verificarCorreo(correo: string) {
+    return this.http.get<boolean>(`${environment.apiURL}/usuario/verificar-correo?correo=${correo}`);
+  }
+
 }

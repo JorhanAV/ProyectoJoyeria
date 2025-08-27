@@ -217,7 +217,8 @@
     "GUARDAR_CAMBIOS": "Save Changes",
     "ERROR_CONTRASENA_INCORRECTA": "Current password is incorrect",
     "ERROR_CONTRASENA_NO_COINCIDE": "Passwords do not match",
-    "CONTRASENA_ACTUAL_INCORRECTA": "Current password is incorrect"
+    "CONTRASENA_ACTUAL_INCORRECTA": "Current password is incorrect",
+    "CORREO_YA_REGISTRADO": "This email is already registered."
   },
   "CARRITO_TEXT": {
     "CLIENTE": "Customer",

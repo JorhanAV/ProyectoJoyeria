@@ -70,7 +70,7 @@ export class UsuarioController {
     passport.authenticate(
       "local",
       { session: false },
-      (
+      async (
         err: Error | null,
         user: Express.User | false | null,
         info: { message?: string }
@@ -82,6 +82,12 @@ export class UsuarioController {
             .json({ success: false, message: info.message });
         }
         const token = generateToken(user as Usuario);
+
+        await this.prisma.usuario.update({
+          where: { id: (user as Usuario).id },
+          data: { ultimo_inicio_sesion: new Date() },
+        });
+
         return res.json({
           success: true,
           message: "Inicio de sesión exitoso",
@@ -113,7 +119,7 @@ export class UsuarioController {
         data: {
           nombre_usuario,
           correo,
-          rol
+          rol,
         },
         select: {
           id: true,
@@ -176,4 +182,13 @@ export class UsuarioController {
       next(error);
     }
   };
+
+  verificarCorreo = async (req: Request, res: Response) => {
+  const { correo } = req.query;
+  const existe = await this.prisma.usuario.findUnique({
+    where: { correo: String(correo) }
+  });
+  res.json(!!existe);
+};
+
 }

@@ -1,0 +1,21 @@
+2025-08-26 21:44:53.304 error: 	jorha--Se produjo un error interno del servidor 
+Invalid `this.prisma.usuario.findUnique()` invocation in
+D:\UTN\XI Cuatrimestre\ProyectoJoyeria\server\source\controllers\usuarioController.ts:28:49
+
+  25 ) => {
+  26   try {
+  27     let idUsuario = parseInt(request.params.id);
+→ 28     const usuario = await this.prisma.usuario.findUnique({
+           where: {
+         +   id: Int
+           },
+           select: {
+             id: true,
+             nombre_usuario: true,
+             correo: true,
+             contraseña: false,
+             rol: true
+           }
+         })
+
+Argument `id` is missing.
