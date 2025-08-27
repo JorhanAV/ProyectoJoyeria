@@ -12,7 +12,7 @@ import { CartService } from '../../share/cart.service';
 })
 export class UserLogin {
   loginForm!: FormGroup;
-
+  mostrarPassword = false;
   constructor(
     private fb: FormBuilder,
     private notification: NotificationService,
@@ -31,6 +31,9 @@ export class UserLogin {
 
   onReset() {
     this.loginForm.reset();
+  }
+  togglePasswordVisibility() {
+    this.mostrarPassword = !this.mostrarPassword;
   }
 
   onSubmit(): void {

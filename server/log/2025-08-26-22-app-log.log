@@ -7,3 +7,12 @@ D:\UTN\XI Cuatrimestre\ProyectoJoyeria\server\source\controllers\usuarioControll
   116 
 → 117 const usuarioActualizado = await this.prisma.usuario.update(
 Unique constraint failed on the constraint: `Usuario_correo_key`
+2025-08-26 22:58:50.975 error: 	jorha--Se produjo un error interno del servidor 
+Invalid `this.prisma.usuario.update()` invocation in
+D:\UTN\XI Cuatrimestre\ProyectoJoyeria\server\source\controllers\usuarioController.ts:117:60
+
+  114   where: { id: idUsuario },
+  115 });
+  116 
+→ 117 const usuarioActualizado = await this.prisma.usuario.update(
+Unique constraint failed on the constraint: `Usuario_correo_key`
