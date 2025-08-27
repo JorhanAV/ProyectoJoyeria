@@ -7,7 +7,7 @@ export class EtiquetaController {
   get = async (request: Request, response: Response, next: NextFunction) => {
     try {
       //Obtener todas las etiquetas incluyendo el usuario, ordenadas por fecha
-      // de forma descendiente, omitiendo el password del usuario
+      // de forma descendiente, omitiendo el password del usuario tesat
       const etiquetas = await this.prisma.etiqueta.findMany({});
       response.json(etiquetas);
     } catch (error) {
