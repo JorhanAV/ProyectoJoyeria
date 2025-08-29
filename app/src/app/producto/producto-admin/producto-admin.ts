@@ -26,7 +26,7 @@ export class ProductoAdmin {
   }
 
   listProductos() {
-    this.prodService.get().subscribe((respuesta: ProductoModel[]) => {
+    this.prodService.getAdmin().subscribe((respuesta: ProductoModel[]) => {
       this.datos = respuesta;
     });
   }

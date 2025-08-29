@@ -5,16 +5,14 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment.development';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProductoService extends BaseAPI<ProductoModel> {
+  constructor(httpClient: HttpClient) {
+    super(httpClient, environment.endPointProducto);
+  }
 
-  constructor(httpClient: HttpClient) { 
-        super(
-          httpClient,
-          environment.endPointProducto);
-      }
+    getAdmin() {
+    return this.http.get<any[]>(`${this.urlAPI}/producto/admin/`);
+  }
 }
-
-
-

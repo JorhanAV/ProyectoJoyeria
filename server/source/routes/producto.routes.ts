@@ -12,6 +12,11 @@ export class ProductoRoutes {
             authenticateJWT,
             authorizeRoles(Rol.ADMIN, Rol.CLIENTE),
             controller.get) 
+        
+        router.get('/admin/',
+            authenticateJWT,
+            authorizeRoles(Rol.ADMIN, Rol.CLIENTE),
+            controller.getAdmin) 
         //localhost:3000/producto/6
         router.get('/:id',
             authenticateJWT,
