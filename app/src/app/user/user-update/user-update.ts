@@ -44,7 +44,6 @@ export class UserUpdate {
         : [
             usuario.correo,
             [Validators.required, Validators.email],
-            [emailExistsValidatorUpdate(this.userService, this.idUsuario)],
           ];
 
       this.perfilForm = this.fb.group({
