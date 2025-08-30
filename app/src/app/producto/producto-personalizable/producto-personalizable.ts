@@ -182,5 +182,11 @@ export class ProductoPersonalizable {
   cancelar() {
     this.dialogRef.close();
     this.cartService.addToCart(this.producto);
+     this.noti.success(
+          this.translate.instant('PRODUCTO_TEXT.CARRITO'),
+            this.translate.instant('PRODUCTO_TEXT.CARRITO_MENSAJE'),
+          3000
+        );
+
   }
 }
